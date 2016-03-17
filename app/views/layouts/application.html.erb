@@ -13,6 +13,9 @@
   <script type="text/javascript" src="/javascripts/home_scroller.js"></script>
   <!-- <link rel="stylesheet" href="/stylesheets/swiper.min.css">
   <link rel="stylesheet" href="/stylesheets/swiper_config.css"> -->
+  <!-- CSS imports for FullPage scroll -->
+    <link href='http://fonts.googleapis.com/css?family=Alegreya+Sans:300,400,700' rel='stylesheet' type='text/css'>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.6.6/jquery.fullPage.css" rel="stylesheet">
   <%= csrf_meta_tags %>
 </head>
 <body>
@@ -53,8 +56,8 @@
     </div><!-- /.container-fluid -->
   </nav>
 <div class="container-fluid">
-    <div id="header-branding">
-      <img class="header-image" src="../assets/citizen-debate-banner2.png" alt="logo banner TBD"/>
+    <!-- <div id="header-branding"> -->
+      <!-- <img class="header-image" src="../assets/citizen-debate-banner2.png" alt="logo banner TBD"/> -->
     <% if notice || alert %>
         <p id="notice"><%= notice %></p>
         <p class="alert-danger"><%= alert %></p>
@@ -83,8 +86,10 @@
       <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
     </div>
     <% end %>
-  </div>
+  <!-- END OF header-branding -->
+  <!-- </div> -->
   <%= yield %>
+  <script src="//my.hellobar.com/4d4249d8ba5d5fbf8bf06c23987b6dafc5bdfa7a.js" type="text/javascript" charset="utf-8" async="async"></script>
 </div>
 
     <!-- Footer -->
@@ -109,11 +114,14 @@
                             <a href="#contact">Privacy Policy</a>
                         </li>
                     </ul6
-                    <p class="copyright text-muted small">Copyright &copy; Rent Masters, LLC 2016. All Rights Reserved</p>
+                    <p class="copyright text-muted small">Copyright &copy; Citizen Debate, Inc 2016. All Rights Reserved</p>
                 </div>
             </div>
         </div>
     </footer>
 
 </body>
+    <!-- Jquery & JS files for Full Page Scroll -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.6.6/jquery.fullPage.min.js"></script>
 </html>
