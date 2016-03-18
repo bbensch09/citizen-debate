@@ -33,14 +33,18 @@ $black: #0F0F0D;
   /*font-family: 'Raleway', sans-serif !important;*/
 }
 
-.container-nav {
+
+.container, .container-nav {
   width: 90vw;
   max-width: 1200px;
   margin: auto;
   padding-right: 5vw !important;
   padding-left: 5vw !important;
+}
+.container-nav {
   background-color: #f8f8f8;
 }
+
 
 .container-fluid {
   width: 100vw;
@@ -57,7 +61,7 @@ $black: #0F0F0D;
     z-index: 99;
     position: fixed !important;
 }
-.header-image{
+/*.header-image{
   top:50px;
   position: relative;
   clear: both;
@@ -66,6 +70,15 @@ $black: #0F0F0D;
   width: 100%;
   max-width: 1600px;
   margin-bottom: 50px;
+}*/
+#flash-notice-overlays{
+  top:50px;
+  position: relative;
+  clear: both;
+  margin-left: 50%;
+  background-color: transparent;
+  width: 100%;
+  max-width: 1600px;
 }
 
 .text-left{text-align:left;}

@@ -1,41 +1,95 @@
 <div id="fullpage">
   <section class="vertical-scrolling">
-    <h2>fullPage.js</h2>
-    <h3>This is the first section</h3>
-    <h1>Thanks for signing up!</h1>
-      <p>
-        Citizen Debate is preparing for our public beta launch on April 1st, 2016. As of TODAY'S DATE, you are number XX on the wait list. We'll be inviting the first 20 people onto the platform on April 1st, and then over the coming weeks will be inviting additional cohorts. If you're really excited to use Citizen Debate, please take a few actions to complete your profile, and we'll bump you up on the waitlist.
-      </p>
-        <h2><a href="/profiles/new">Complete your profile</a></h2>
-    <div class="scroll-icon">
-      <p>Begin scrolling to jump to the next slide</p>
-      <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"> Glyhpicon down icon</span>
-      <a href="#fifthSection/1">
-        <i class="fa fa-chevron-down"> FA down icon here </i>
-      </a> <!-- class="icon-up-open-big" -->
-    </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-7 col-sm-6">
+                    <h2 class="section-heading">Ready to start debating?</h2>
+                    <p class="slide-text-content">
+                      We're excited too! Unfortunately, we have to ask you for your patience. We are busily preparing for our upcoming beta launch on April 1st, 2016.
+                      <br> <br> However, in order to ensure that Citizen Debate remains the best place for civil political discourse, we won't be opening the flood gates right away. At launch we'll be inviting the first 50 debaters onto the platform. You are currently number <span class="rank"> <%= current_user.rank %> </span> on our waiting list.
+                    </p>
+                </div>
+                <div class="col-lg-5 col-sm-6">
+                    <img class="img-responsive" src="https://media4.giphy.com/media/fQZX2aoRC1Tqw/200.gif" alt="">
+                </div>
+            </div>
+        </div>
+      <div class="scroll-icon">
+        <p>How to bump your spot in line
+          <!-- <a href="#fifthSection/1" > </a>-->
+            <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+        </p>
+      </div>
+  </section>
+
+  <section class="vertical-scrolling">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-5 col-sm-6">
+                    <img class="img-responsive" src="assets/dog.png" alt="">
+                </div>
+                <div class="col-lg-7 col-sm-6">
+                    <h2 class="section-heading">Complete your profile</h2>
+                    <p class="slide-text-content">
+                       If you're really excited to be one of our first Citizen Debate users, you can boost your ranking on the wait list simply by completing your full profile, which includes selecting an avatar and sharing a brief bio. By completing your profile, you'll earn 10 <a href="#thirdSection" class="inline-link">reputation points</a>.
+                    </p>
+                    <h2><a href="/profiles/new" class="btn btn-default btn-large">Setup profile</a></h2>
+                </div>
+            </div>
+        </div>
+  </section>
+
+  <section class="vertical-scrolling">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-7 col-sm-6">
+                    <h2 class="section-heading">What are reputation points?</h2>
+                    <h3>Reputation points reward you for your civility and active engagement with the community.</h3>
+                    <p class="slide-text-content">
+                      Earning reputation points helps you "climb the ladder" and secure your spot as one of the first Citizen Debaters.
+                      <ul>
+                        <li> Complete your profile: 10 reputation points </li>
+                        <li> Propose a debate prompt: 5 reputation points </li>
+                        <li> Invite up to 5 friends: 15 reputation points </li>
+                      </ul>
+                    </p>
+                </div>
+                <div class="col-lg-5 col-sm-6">
+                    <img class="img-responsive" src="https://media2.giphy.com/media/13UKMgwNHrBSIo/200.gif" alt="">
+                </div>
+            </div>
+        </div>
   </section>
   <section class="vertical-scrolling">
-    <h2>fullPage.js</h2>
-    <h3>This is the second section</h3>
+    <div class="container">
+            <div class="row">
+                <div class="col-lg-5 col-sm-6">
+                    <img class="img-responsive" src="assets/dog.png" alt="">
+                </div>
+                <div class="col-lg-7 col-sm-6">
+                    <h2 class="section-heading">Share a debate prompt</h2>
+                    <p class="slide-text-content">
+                       INSERT NEW SNIPPET FORM
+                    </p>
+                    <h2><a href="#" class="btn btn-default btn-large">Submit Prompt</a></h2>
+                </div>
+            </div>
+        </div>
   </section>
   <section class="vertical-scrolling">
-    <h2>fullPage.js</h2>
-    <h3>This is the third section</h3>
-  </section>
-  <section class="vertical-scrolling">
-    <h2>fullPage.js</h2>
-    <h3>This is the fourth section</h3>
-  </section>
-  <section class="vertical-scrolling">
-    <div class="horizontal-scrolling">
-      <h2>fullPage.js</h2>
-      <h3>This is the fifth section and it contains the first slide (actually section == first slide)</h3>
-    </div>
-    <div class="horizontal-scrolling">
-      <h2>fullPage.js</h2>
-      <h3>This is the second slide</h3>
-      <p class="end">Thank you!</p>
-    </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-7 col-sm-6">
+                    <h2 class="section-heading">Invite your friends</h2>
+                    <p class="slide-text-content">
+                      INSERT EMAIL CAPTURE FORM
+                      *caveat that points will be awarded only if friends actually signup, 3 points per friend
+                    </p>
+                </div>
+                <div class="col-lg-5 col-sm-6">
+                    <img class="img-responsive" src="https://media2.giphy.com/media/13UKMgwNHrBSIo/200.gif" alt="">
+                </div>
+            </div>
+        </div>
   </section>
 </div>

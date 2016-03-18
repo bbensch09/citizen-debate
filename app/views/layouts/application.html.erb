@@ -50,10 +50,10 @@
           <%end%>
         </ul>
       </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
+    </div><!-- /.container-nav -->
   </nav>
 <div class="container-fluid">
-    <!-- <div id="header-branding"> -->
+    <div id="flash-notice-overlays">
       <!-- <img class="header-image" src="../assets/citizen-debate-banner2.png" alt="logo banner TBD"/> -->
     <% if notice || alert %>
         <p id="notice"><%= notice %></p>
@@ -84,7 +84,7 @@
     </div>
     <% end %>
   <!-- END OF header-branding -->
-  <!-- </div> -->
+  </div>
   <%= yield %>
   <script src="//my.hellobar.com/4d4249d8ba5d5fbf8bf06c23987b6dafc5bdfa7a.js" type="text/javascript" charset="utf-8" async="async"></script>
 </div>

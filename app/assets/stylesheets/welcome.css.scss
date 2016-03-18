@@ -460,7 +460,6 @@ section {
 }
 
 h2 {
-    text-transform: lowercase;
     font-size: 4em;
     margin-bottom: 20px;
 }
@@ -534,4 +533,33 @@ h3 {
     nav li a {
         padding: 3px;
     }
+}
+
+/*BEGIN BRIAN's CUSTOM CSS*/
+a:visited {
+    color: white;
+}
+a:hover {
+    background-color: white;
+    color: #449d44 !important;
+}
+a.btn{
+    color:#003c80;
+    font-size: 1.3em;
+}
+.inline-link{
+    font-weight: bold;
+    color:#000 !important;
+}
+.slide-text-content{
+    font-size: 1.5em;
+    text-align: left;
+    top: 0vh;
+    margin-bottom: 20px;
+    font-weight: 300;
+    line-height: 1.4;
+}
+.rank {
+    color: #449d44;
+    font-weight: bold;
 }
