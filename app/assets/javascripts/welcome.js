@@ -15,8 +15,6 @@ $(document).ready(function(){
     $(this).parent().toggleClass('open-menu');
   });
 
-
-
   // fullpage customization
   $('#fullpage').fullpage({
     sectionsColor: ['#003c80', '#820408', '#003c80', '#820408', '#003c80','#820408','#003c80','#820408','#003c80'],

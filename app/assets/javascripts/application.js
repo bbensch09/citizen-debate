@@ -12,6 +12,17 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
 //= require bootstrap-sprockets
 //= require_tree .
+
+// $(document).ready(function(){
+//     if $('body').hasClass("welcome"){
+//       $.fn.fullpage();
+//       $('html,body').css('overflow','hidden').css('height','100%');
+//       console.log('true')
+//       }
+//     else {
+//       $fn.fullPage().setAutoScrolling(false);
+//     }
+// });
+
