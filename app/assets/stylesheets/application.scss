@@ -47,6 +47,7 @@ $black: #0F0F0D;
 
 
 .container-fluid {
+  margin-top: 50px;
   width: 100vw;
   max-width: 1600px;
   padding-right: 0vw !important;
@@ -72,13 +73,15 @@ $black: #0F0F0D;
   margin-bottom: 50px;
 }*/
 #flash-notice-overlays{
-  top:50px;
-  position: relative;
-  clear: both;
-  margin-left: 50%;
-  background-color: transparent;
-  width: 100%;
-  max-width: 1600px;
+    height: auto;
+    max-height: 24px;
+    position: absolute;
+    z-index: 1;
+    clear: both;
+    background-color: #F6F6F6;
+    text-align: center;
+    width: 100%;
+    max-width: 1600px;
 }
 
 .text-left{text-align:left;}
