@@ -6,12 +6,3 @@
 // $(document).ready(function(){
 // $fn.fullPage().setAutoScrolling(false);
 // });
-
-// $(document).ready(function(){
-//     if $('#test_div').hasClass("test"){
-//       $fn.fullPage().setAutoScrolling(false);
-//       }
-//     else {
-//       console.log("Good to go...")
-//     };
-// });
