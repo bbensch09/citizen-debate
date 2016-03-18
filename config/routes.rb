@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   devise_for :users
 
   get '/admin_index' => 'snippets#admin_index'
-  get '/pre_beta_period' => 'welcome#pre_beta_period'
+  get '/pre_launch' => 'welcome#pre_launch'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -2,6 +2,6 @@ class WelcomeController < ApplicationController
   def index
   end
 
-  def pre_beta_period
+  def pre_launch
   end
 end

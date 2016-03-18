@@ -29,7 +29,8 @@ $black: #0F0F0D;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-  font-family: 'Raleway', sans-serif !important;
+  /*Cannot define a font-family within umbrella CSS as it will overwrite any font-awesome or glyphicon abilities*/
+  /*font-family: 'Raleway', sans-serif !important;*/
 }
 
 .container-nav {
