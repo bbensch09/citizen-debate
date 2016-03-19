@@ -4,6 +4,10 @@
 Rails.application.config.assets.version = '1.0'
 
 # Add additional assets to the asset load path
+%w(profiles snippets welcome application).each do |controller|
+  Rails.application.config.assets.precompile += ["#{controller}.js", "#{controller}.css"]
+end
+
 # Rails.application.config.assets.paths << Emoji.images_path
 
 # Precompile additional assets.

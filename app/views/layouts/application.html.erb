@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>PAGE TITLE</title>
+  <title>Citizen Debate</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+  <!-- Google FONTS -->
   <link href='https://fonts.googleapis.com/css?family=Raleway:400,700,300' rel='stylesheet' type='text/css'>
-  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"  crossorigin="anonymous"></script>
-  <script type="text/javascript" src="/javascripts/home_scroller.js"></script>
-  <!-- <link rel="stylesheet" href="/stylesheets/swiper.min.css">
-  <link rel="stylesheet" href="/stylesheets/swiper_config.css"> -->
+  <link href='http://fonts.googleapis.com/css?family=Alegreya+Sans:300,400,700' rel='stylesheet' type='text/css'>
+
+  <!-- CSS for FullPage scroll -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.6.6/jquery.fullPage.css" rel="stylesheet">
+  <!-- DEFAULT RAILS HELPER TAGS -->
+  <%= javascript_include_tag 'application', params[:controller] %> <!-- 'data-turbolinks-track' => true -->
   <%= csrf_meta_tags %>
 </head>
 <body>
@@ -26,7 +26,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="/">Home
+        <a class="navbar-brand" href="/">
           <span class="glyphicon glyphicon-home"></span>
         </a>
       </div>
@@ -35,7 +35,7 @@
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
           <li><a href="#how-it-works">How it works<span class="sr-only">(current)</span></a></li>
-          <li><a href=#schedule>Upcoming Schedule</a></li>
+          <li><a href="/pre_launch">Pre-launch Period</a></li>
           <li><a href="/profiles">Wait List Rankings</a></li>
           <li><a href="/profiles/new">Your Profile </a></li>
           <li> <a href="/snippets" > Share an Idea</a></li>
@@ -50,11 +50,11 @@
           <%end%>
         </ul>
       </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
+    </div><!-- /.container-nav -->
   </nav>
 <div class="container-fluid">
-    <div id="header-branding">
-      <img class="header-image" src="../assets/citizen-debate-banner2.png" alt="logo banner TBD"/>
+    <div id="flash-notice-overlays">
+      <!-- <img class="header-image" src="../assets/citizen-debate-banner2.png" alt="logo banner TBD"/> -->
     <% if notice || alert %>
         <p id="notice"><%= notice %></p>
         <p class="alert-danger"><%= alert %></p>
@@ -83,8 +83,10 @@
       <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
     </div>
     <% end %>
+  <!-- END OF header-branding -->
   </div>
   <%= yield %>
+  <script src="//my.hellobar.com/4d4249d8ba5d5fbf8bf06c23987b6dafc5bdfa7a.js" type="text/javascript" charset="utf-8" async="async"></script>
 </div>
 
     <!-- Footer -->
@@ -109,11 +111,16 @@
                             <a href="#contact">Privacy Policy</a>
                         </li>
                     </ul6
-                    <p class="copyright text-muted small">Copyright &copy; Rent Masters, LLC 2016. All Rights Reserved</p>
+                    <p class="copyright text-muted small">Copyright &copy; Citizen Debate, Inc 2016. All Rights Reserved</p>
                 </div>
             </div>
         </div>
     </footer>
 
 </body>
+    <!-- CORE BOOTSTRAP JS -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <!-- Jquery & JS files for Full Page Scroll -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.6.6/jquery.fullPage.min.js"></script>
 </html>
