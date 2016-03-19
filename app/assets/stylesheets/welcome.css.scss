@@ -3,8 +3,16 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .lead {
-    font-size: 18px;
+    font-size: 24px;
     font-weight: 400;
+    text-align: left;
+    line-height: 1.6;
+}
+.lead ul li {
+    font-size: 20px;
+    font-weight: 400;
+    text-align: left;
+    line-height: 1.6;
 }
 
 .intro-header {
@@ -70,18 +78,17 @@
 }
 
 .content-section-a {
-    padding: 50px 0;
-    background-color: #f8f8f8;
+    padding: 20px 0;
+    height: 80vh;
 }
 
 .content-section-b {
-    padding: 50px 0;
-    border-top: 1px solid #e7e7e7;
-    border-bottom: 1px solid #e7e7e7;
+    padding: 20px 0;
 }
 
 .section-heading {
     margin-bottom: 30px;
+    font-size: 2.5em;
 }
 
 .section-heading-spacer {
@@ -562,4 +569,21 @@ a.btn{
 .rank {
     color: #449d44;
     font-weight: bold;
+}
+.citations {
+    position: absolute;
+    bottom:0px;
+    padding-bottom: 50px;
+    font-size:12px;
+    color: gray;
+    text-align: left;
+}
+.citations p a {
+    color: gray;
+}
+.vertical-middle{
+    margin-top:10vh;
+}
+.text-smaller {
+    font-size: 0.8em;
 }

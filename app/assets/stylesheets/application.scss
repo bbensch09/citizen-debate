@@ -35,11 +35,11 @@ $black: #0F0F0D;
 
 
 .container, .container-nav {
-  width: 90vw;
-  max-width: 1200px;
+  width: 100vw;
+  max-width: 2000px;
   margin: auto;
-  padding-right: 5vw !important;
-  padding-left: 5vw !important;
+  padding-right: 10vw !important;
+  padding-left: 10vw !important;
 }
 .container-nav {
   background-color: #f8f8f8;
@@ -87,10 +87,10 @@ $black: #0F0F0D;
 .text-left{text-align:left;}
 .text-right{ text-align: right;}
 .btn-hero {
-  padding: 20px 28px;
-  font-size: 36px !important;
-  line-height: 2 !important;
-  border-radius: 12px !important;
+    padding: 0px 28px;
+    font-size: 36px !important;
+    line-height: 1.5 !important;
+    border-radius: 12px !important;
 }
 .nps {
   padding: 10px 10px;
