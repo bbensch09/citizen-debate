@@ -1,55 +1,43 @@
-<div>
-  <%= image_tag @profile.avatar.url(:large), alt:"avatar-img", class:"img-responsive img-thumbnail" %>
+<div class="profile-container">
+  <div class="col-lg-4 col-sm-6">
+    <%= image_tag @profile.avatar.url(:large), alt:"avatar-img", class:"img-responsive img-avatar" %>
+  </div>
+  <div class="col-lg-8 col-sm-6 publicly-visible">
+  <h3 class="publicly-visible-warning">Your publicly visible profile</h3>
+    <h2> <%= @profile.display_name %></h2>
+  <p>
+    <strong>Current Wait List Ranking:</strong>
+    <%= @profile.user.rank %>
+  </p>
+  <p>
+    <strong>Total Accumulated Points:</strong>
+    <%= @profile.user.points %>
+  </p>
+  <p>
+    <strong>Bio:</strong>
+    <%= @profile.about_me %>
+  </p>
+  <p>
+    <strong> Location:</strong> <%= @profile.city %>, <%= @profile.state %>
+  </p>
+  </div>
+  <div class="col-lg-12 col-sm-12 privately-visible">
+    <h3 class="publicly-visible-warning">This part of your profile is always kept private.</h3>
+  <p>
+    <%= @profile.first_name %> <%= @profile.last_name %>
+  </p>
+  <p>
+    <%= @profile.user.email %>
+  </p>
+
+  <p>
+    <strong>Age:</strong>
+    <%= @profile.age %>
+  </p>
+  <p>
+    <strong>Political affiliation:</strong>
+    <%= @profile.political_affiliation %>
+  </p>
+  </div>
+  <%= link_to 'Edit', edit_profile_path(@profile) %>
 </div>
-<p>
-  <strong>Your Display name:</strong>
-  <%= @profile.display_name %>
-</p>
-<p>
-  <strong>Wait List Ranking:</strong>
-  <%= @profile.user.rank %>
-</p>
-<p>
-  <strong>Accumulated Points:</strong>
-  <%= @profile.user.points %>
-</p>
-<p>
-  <strong>First name:</strong>
-  <%= @profile.first_name %>
-</p>
-
-<p>
-  <strong>Last name:</strong>
-  <%= @profile.last_name %>
-</p>
-
-<p>
-  <strong>Email:</strong>
-  <%= @profile.user.email %>
-</p>
-<p>
-  <strong>City:</strong>
-  <%= @profile.city %>
-</p>
-
-<p>
-  <strong>State:</strong>
-  <%= @profile.state %>
-</p>
-
-<p>
-  <strong>Age:</strong>
-  <%= @profile.age %>
-</p>
-
-<p>
-  <strong>About me:</strong>
-  <%= @profile.about_me %>
-</p>
-
-<p>
-  <strong>Political affiliation:</strong>
-  <%= @profile.political_affiliation %>
-</p>
-
-<%= link_to 'Edit', edit_profile_path(@profile) %> |

@@ -1,3 +1,33 @@
 // Place all the styles related to the Profiles controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.profile-container{
+  width: 100vw;
+  max-width: 1200px;
+  margin: auto;
+  top:50px;
+  position: relative;
+  padding-right: 10vw !important;
+  padding-left: 10vw !important;
+  font-color: #000;
+}
+
+.img-avatar{
+  width:100%;
+  height: auto;
+}
+.publicly-visible{
+  border: 1px solid gray;
+  background-color: rgba(68,157,68,0.1);
+  /*background-color: #449D44;*/
+}
+.publicly-visible-warning{
+  font-style: italic;
+  font-size: 0.8em;
+}
+
+.privately-visible{
+  border: 1px solid gray;
+  background-color: rgba(240,173,78,0.1);
+}
