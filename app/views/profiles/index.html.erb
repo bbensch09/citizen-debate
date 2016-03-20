@@ -27,7 +27,7 @@
       <% else %>
       <tr>
       <% end %>
-        <td><%= profile.user.rank %></td>
+        <td><%= profile.rank %></td>
         <td> <%= image_tag profile.avatar.url(:thumb), alt:"avatar-img", class:"img-responsive img-thumbnail" %> </td>
         <td><%= profile.display_name %></td>
         <td><%= profile.user.time_since_created %></td>

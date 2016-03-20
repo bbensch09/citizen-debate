@@ -20,7 +20,7 @@ class ProfilesController < ApplicationController
   # GET /profiles
   # GET /profiles.json
   def index
-    @profiles = Profile.all.sort { |a,b| a.rank <=> b.rank}
+    @profiles = Profile.all.sort { |a,b| b.points <=> a.points}
   end
 
   # GET /profiles/1

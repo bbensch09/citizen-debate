@@ -16,7 +16,26 @@ TopicVote.delete_all
 age_array = (18...65).to_a
 political_affiliation_array = ['Democrat','Democrat','Republican','Republican','Independent']
 
-20.times do
+User.create!({
+      email: "bbensch@gmail.com",
+      password: 'password'
+    })
+  Profile.create!({
+      user_id: User.last.id,
+      first_name: "Brian",
+      last_name: "Bensch",
+      city: "San Francisco",
+      state: "CA",
+      age: 29,
+      about_me: Faker::Hacker.say_something_smart,
+      display_name: Faker::Internet.user_name,
+      political_affiliation: political_affiliation_array.sample,
+      snippets: Faker::Hacker.say_something_smart,
+      nps: rand(1..10),
+      pmf: ["Very disappointed", "Somewhat disappointed", "Not dissappointed", "N/A - I don't know since I haven't used it yet."].sample
+    })
+
+50.times do
   User.create!({
       email: Faker::Internet.safe_email,
       password: 'password'
@@ -37,24 +56,6 @@ political_affiliation_array = ['Democrat','Democrat','Republican','Republican','
     })
 end
 
-User.create!({
-      email: "bbensch@gmail.com",
-      password: 'password'
-    })
-  Profile.create!({
-      user_id: User.last.id,
-      first_name: "Brian",
-      last_name: "Bensch",
-      city: "San Francisco",
-      state: "CA",
-      age: 29,
-      about_me: Faker::Hacker.say_something_smart,
-      display_name: Faker::Internet.user_name,
-      political_affiliation: political_affiliation_array.sample,
-      snippets: Faker::Hacker.say_something_smart,
-      nps: rand(1..10),
-      pmf: ["Very disappointed", "Somewhat disappointed", "Not dissappointed", "N/A - I don't know since I haven't used it yet."].sample
-    })
 
 topics_array = [
   "Should Apple build a software update to allow FBI access to suspects’ iPhones?",
