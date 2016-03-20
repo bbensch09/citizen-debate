@@ -1,7 +1,7 @@
 class UserMailer < ApplicationMailer
-  def thank_you_for_snippet(snippet,user)
-    @snippet = snippet
+  def thank_you_for_snippet(topic,user)
+    @topic = topic
     @user = user
-    mail(to: @snippet.email, subject: "We appreciate your interest!")
+    mail(to: @topic.creator.email, subject: "We appreciate your interest!")
   end
 end

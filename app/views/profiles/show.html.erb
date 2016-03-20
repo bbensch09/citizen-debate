@@ -11,7 +11,7 @@
   </p>
   <p>
     <strong>Total Accumulated Points:</strong>
-    <%= @profile.user.points %>
+    <%= @profile.points %>
   </p>
   <p>
     <strong>Bio:</strong>
@@ -40,4 +40,8 @@
   </p>
   </div>
   <%= link_to 'Edit', edit_profile_path(@profile) %>
+  <div class="profile-activity">
+    <h1>INSERT RECENT DEBATES YOU"VE BEEN INVOLVED IN</h1>
+    <h1>ALSO DEBATES YOU ARE FOLLOWING(?)</h1>
+  </div>
 </div>

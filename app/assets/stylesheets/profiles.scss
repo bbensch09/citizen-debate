@@ -4,7 +4,7 @@
 
 .profile-container{
   width: 100vw;
-  max-width: 1200px;
+  max-width: 1600px;
   margin: auto;
   top:50px;
   position: relative;
@@ -30,4 +30,25 @@
 .privately-visible{
   border: 1px solid gray;
   background-color: rgba(240,173,78,0.1);
+}
+.waitlist-table{
+  padding: 5 5 5 5px;
+  border: 1px solid gray;
+}
+.waitlist-table tbody tr td, .waitlist-table thead tr th {
+    padding-left: 20px;
+}
+.waitlist-table thead {
+  font-size: 1.3em;
+  border: 1px solid gray;
+  background-color: rgba(0,60,128,0.3);
+}
+.highlight{
+  background-color: rgba(68,157,68,0.3);
+  font-style: bold;
+}
+.profile-activity{
+  clear:both;
+  padding: 10 10 10 10px;
+  position: relative;
 }

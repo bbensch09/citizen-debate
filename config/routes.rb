@@ -1,9 +1,12 @@
 Rails.application.routes.draw do
+  resources :topic_votes
+  resources :topics
   resources :profiles
-  resources :snippets
+  resources :topics
+  resources :topic_votes
   devise_for :users
 
-  get '/admin_index' => 'snippets#admin_index'
+  get '/admin_index' => 'profiles#admin_index'
   get '/pre_launch' => 'welcome#pre_launch'
   # HACKY SHIT
   get '/test' => 'profiles#test_page'

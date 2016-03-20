@@ -20,8 +20,9 @@
 
 
 $orange: #ff6618;
-$light-teal: #76bbc5;
-$teal: #00788a;
+$dark_blue: #003c80;
+/*$dark_blue: rgba(0,60,128,0.3)*/
+$red: #820408;
 $gray: #9A9C9F;
 $black: #0F0F0D;
 
@@ -96,4 +97,23 @@ $black: #0F0F0D;
   padding: 10px 10px;
   line-height: 1.5;
   font-size: 18px;
+}
+.text-center{
+  text-align: center;
+}
+.underlined{
+  text-decoration: underline;
+}
+footer {
+   /*height: 5em; */
+   /* .push must (SHOULD) be the same height as .footer */
+   position:relative;
+   clear:both;
+   background-color:#f8f8f8;
+   text-align: center;
+   left:0px;
+   bottom:0px;
+   margin-top:100px;
+   width:100vw;
+   z-index: -1;
 }
