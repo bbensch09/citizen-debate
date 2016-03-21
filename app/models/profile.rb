@@ -38,8 +38,6 @@ class Profile < ActiveRecord::Base
     sorted = Profile.all.sort { |a,b| b.points <=> a.points}
     if sorted.index(self)
       self.rank = sorted.index(self) + 1
-    else
-      self.rank = 1000
     end
     puts "profiles sorted, this profile is ranked #{self.rank}."
   end

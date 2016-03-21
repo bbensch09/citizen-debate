@@ -9,7 +9,7 @@ class CreateProfiles < ActiveRecord::Migration
       t.string :about_me
       t.string :display_name
       t.string :political_affiliation
-      t.integer :rank, default: 10000
+      t.integer :rank
       t.string :snippets
       t.integer :nps
       t.integer :pmf
