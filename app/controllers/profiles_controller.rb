@@ -57,6 +57,8 @@ class ProfilesController < ApplicationController
         if @profile.save
           format.html { redirect_to @profile, notice: 'Profile was successfully created.' }
           format.json { render :show, status: :created, location: @profile }
+        @profile.update_points
+        @profile.update_rank
         else
           format.html { render :new }
           format.json { render json: @profile.errors, status: :unprocessable_entity }
