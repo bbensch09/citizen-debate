@@ -8,8 +8,15 @@ class TopicVotesController < ApplicationController
     @topic_vote.value = 1
     @topic_vote.voter_id = current_user.id
     @topic_vote.topic_id = @topic.id
-    @topic_vote.save
-    redirect_to(topics_path, notice: 'Your up vote was successfully recorded.' )
+    if TopicVote.where(topic_id:@topic.id,voter_id:current_user.id).empty?
+      @topic_vote.save
+      redirect_to(topics_path, notice: 'Your up vote was successfully recorded.' )
+    elsif TopicVote.where(topic_id:@topic.id,voter_id:current_user.id).last.value == -1
+      @topic_vote.save
+      redirect_to(topics_path, notice: 'Your previous down vote was changed to an up vote.')
+    else
+      redirect_to(topics_path, notice: 'You may only vote once, you have already voted for on this topic.')
+    end
   end
 
   def downvote
@@ -19,8 +26,15 @@ class TopicVotesController < ApplicationController
     @topic_vote.value = -1
     @topic_vote.voter_id = current_user.id
     @topic_vote.topic_id = @topic.id
-    @topic_vote.save
-    redirect_to(topics_path, notice: 'Your down vote was successfully recorded.' )
+    if TopicVote.where(topic_id:@topic.id,voter_id:current_user.id).empty?
+      @topic_vote.save
+      redirect_to(topics_path, notice: 'Your down vote was successfully recorded.' )
+    elsif TopicVote.where(topic_id:@topic.id,voter_id:current_user.id).last.value == 1
+      @topic_vote.save
+      redirect_to(topics_path, notice: 'Your previous up vote was changed to a down vote.')
+    else
+      redirect_to(topics_path, notice: 'You may only vote once, you have already voted down on this topic.')
+    end
   end
 
   # GET /topic_votes
