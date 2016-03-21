@@ -1,8 +1,10 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Topics</h1>
+<h1>Popular Debate Topics</h1>
 
-<table>
+<%= link_to 'Propose your own debate topic', new_topic_path, :class=>"topic-link" %>
+
+<table class="col-lg-12 col-sm-12 topics-table">
   <thead>
     <tr>
       <th>Votes</th>
@@ -14,10 +16,12 @@
   <tbody>
     <% @topics.each do |topic| %>
       <tr>
-        <td><%= topic.score %></td>
-        <td><%= link_to topic.title, topic_path(topic), :class=> "topic-link" %></td>
+        <td><h3><%= topic.score %></h3></td>
+        <td class="col-lg-8 col-sm-4"><h4><%= link_to topic.title, topic_path(topic), :class=> "topic-link" %> </h4></td>
         <td>
           <%= link_to '', upvote_topic_vote_path(topic), method: :post, class: "glyphicon glyphicon-thumbs-up topic-vote-button" %>
+        </td>
+        <td>
           <%= link_to '', downvote_topic_vote_path(topic), method: :post, class: "glyphicon glyphicon-thumbs-down topic-vote-button" %>
         </td>
         <% if current_user && current_user.email == "bbensch@gmail.com" %>
@@ -32,4 +36,4 @@
 
 <br>
 
-<%= link_to 'New Topic', new_topic_path %>
+

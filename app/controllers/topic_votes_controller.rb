@@ -9,7 +9,7 @@ class TopicVotesController < ApplicationController
     @topic_vote.voter_id = current_user.id
     @topic_vote.topic_id = @topic.id
     @topic_vote.save
-    redirect_to(topics_path)
+    redirect_to(topics_path, notice: 'Your up vote was successfully recorded.' )
   end
 
   def downvote
@@ -20,7 +20,7 @@ class TopicVotesController < ApplicationController
     @topic_vote.voter_id = current_user.id
     @topic_vote.topic_id = @topic.id
     @topic_vote.save
-    redirect_to(topics_path)
+    redirect_to(topics_path, notice: 'Your down vote was successfully recorded.' )
   end
 
   # GET /topic_votes
@@ -41,21 +41,6 @@ class TopicVotesController < ApplicationController
 
   # GET /topic_votes/1/edit
   def edit
-  end
-
-  # POST /topic_votes
-  # POST /topic_votes.json
-  def create
-    @topic_vote = TopicVote.new(topic_vote_params)
-    respond_to do |format|
-      if @topic_vote.save
-        format.html { redirect_to @topic_vote, notice: 'Topic vote was successfully created.' }
-        format.json { render :show, status: :created, location: @topic_vote }
-      else
-        format.html { render :new }
-        format.json { render json: @topic_vote.errors, status: :unprocessable_entity }
-      end
-    end
   end
 
   # PATCH/PUT /topic_votes/1

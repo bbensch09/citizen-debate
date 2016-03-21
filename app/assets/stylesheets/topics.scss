@@ -8,5 +8,22 @@
 
 .topic-vote-button, .topic-vote-button:visited {
   color: #337ab7;
-  font-size: 1.5em;
+  font-size: 2em;
+}
+
+.topics-table{
+  padding: 5 5 5 5px;
+  border: 1px solid gray;
+}
+.topics-table tbody tr td, .topics-table thead tr th {
+    padding-left: 20px;
+}
+.topics-table thead {
+  font-size: 1.3em;
+  border: 1px solid gray;
+  background-color: rgba(0,60,128,0.3);
+}
+.highlight{
+  background-color: rgba(68,157,68,0.3);
+  font-style: bold;
 }
