@@ -1,8 +1,14 @@
 class Topic < ActiveRecord::Base
   belongs_to :user
-  has_many :topic_votes
+  has_many :votes, :class_name => "TopicVote"
 
-  def rank
+  def score
+    collected_votes = self.votes
+    score = 0
+    collected_votes.each do |vote|
+      score += vote.value
+    end
+    return score
   end
 
   def time_since_written

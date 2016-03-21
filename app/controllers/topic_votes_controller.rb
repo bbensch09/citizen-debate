@@ -69,6 +69,6 @@ class TopicVotesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def topic_vote_params
-      params.require(:topic_vote).permit(:value)
+      params.require(:topic_vote).permit(:value,:topic_id,:voter_id)
     end
 end

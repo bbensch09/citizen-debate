@@ -5,8 +5,8 @@
 <table>
   <thead>
     <tr>
-      <th>Title</th>
-      <th>Description</th>
+      <th>Votes</th>
+      <th>Debate Topic</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -14,11 +14,37 @@
   <tbody>
     <% @topics.each do |topic| %>
       <tr>
-        <td><%= topic.title %></td>
-        <td><%= topic.description %></td>
-        <td><%= link_to 'Show', topic %></td>
-        <td><%= link_to 'Edit', edit_topic_path(topic) %></td>
-        <td><%= link_to 'Destroy', topic, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= topic.score %></td>
+        <td><%= link_to topic.title, topic_path(topic), :class=> "topic-link" %></td>
+        <td>
+
+<% @topic_vote = TopicVote.new %>
+<%= form_for(@topic_vote) do |f| %>
+  <div class="field">
+    <%= f.label :vote_value %><br>
+    <%= f.number_field :value %>
+  </div>
+  <div class="field">
+    <%= f.label :voter_id %><br>
+    <%= f.number_field :voter_id %>
+  </div>
+  <div class="field">
+    <%= f.label :topic_id %><br>
+    <%= f.number_field :topic_id %>
+  </div>
+  <div class="actions">
+    <%= f.label :upvote, "Vote Up" %>
+    <%= f.submit %>
+  </div>
+<% end %>
+
+
+        </td>
+        <% if current_user && current_user.email == "bbensch@gmail.com" %>
+          <td><%= link_to 'Show', topic %></td>
+          <td><%= link_to 'Edit', edit_topic_path(topic) %></td>
+          <td><%= link_to 'Destroy', topic, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
