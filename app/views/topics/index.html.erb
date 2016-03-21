@@ -17,28 +17,8 @@
         <td><%= topic.score %></td>
         <td><%= link_to topic.title, topic_path(topic), :class=> "topic-link" %></td>
         <td>
-
-<% @topic_vote = TopicVote.new %>
-<%= form_for(@topic_vote) do |f| %>
-  <div class="field">
-    <%= f.label :vote_value %><br>
-    <%= f.number_field :value %>
-  </div>
-  <div class="field">
-    <%= f.label :voter_id %><br>
-    <%= f.number_field :voter_id %>
-  </div>
-  <div class="field">
-    <%= f.label :topic_id %><br>
-    <%= f.number_field :topic_id %>
-  </div>
-  <div class="actions">
-    <%= f.label :upvote, "Vote Up" %>
-    <%= f.submit %>
-  </div>
-<% end %>
-
-
+          <%= link_to '', upvote_topic_vote_path(topic), method: :post, class: "glyphicon glyphicon-thumbs-up topic-vote-button" %>
+          <%= link_to '', downvote_topic_vote_path(topic), method: :post, class: "glyphicon glyphicon-thumbs-down topic-vote-button" %>
         </td>
         <% if current_user && current_user.email == "bbensch@gmail.com" %>
           <td><%= link_to 'Show', topic %></td>

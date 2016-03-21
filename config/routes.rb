@@ -1,9 +1,12 @@
 Rails.application.routes.draw do
-  resources :topic_votes
-  resources :topics
   resources :profiles
   resources :topics
-  resources :topic_votes
+  resources :topic_votes do
+    member do
+      post :upvote
+      post :downvote
+    end
+  end
   devise_for :users
 
   get '/admin_index' => 'profiles#admin_index'

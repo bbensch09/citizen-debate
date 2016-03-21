@@ -1,6 +1,28 @@
 class TopicVotesController < ApplicationController
   before_action :set_topic_vote, only: [:show, :edit, :update, :destroy]
 
+  def upvote
+    # HACKY SHIT --> confirm scope on these instance variables
+    @topic = Topic.find(params[:id])
+    @topic_vote = TopicVote.new
+    @topic_vote.value = 1
+    @topic_vote.voter_id = current_user.id
+    @topic_vote.topic_id = @topic.id
+    @topic_vote.save
+    redirect_to(topics_path)
+  end
+
+  def downvote
+    # HACKY SHIT --> confirm scope on these instance variables
+    @topic = Topic.find(params[:id])
+    @topic_vote = TopicVote.new
+    @topic_vote.value = -1
+    @topic_vote.voter_id = current_user.id
+    @topic_vote.topic_id = @topic.id
+    @topic_vote.save
+    redirect_to(topics_path)
+  end
+
   # GET /topic_votes
   # GET /topic_votes.json
   def index
@@ -25,7 +47,6 @@ class TopicVotesController < ApplicationController
   # POST /topic_votes.json
   def create
     @topic_vote = TopicVote.new(topic_vote_params)
-
     respond_to do |format|
       if @topic_vote.save
         format.html { redirect_to @topic_vote, notice: 'Topic vote was successfully created.' }
