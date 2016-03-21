@@ -1,4 +1,7 @@
 <div class="profile-container">
+  <div class="col-lg-12 col-sm-12">
+  <%= link_to 'Edit Profile', edit_profile_path(@profile), :class => "btn btn-default" %>
+  </div>
   <div class="col-lg-4 col-sm-6">
     <%= image_tag @profile.avatar.url(:large), alt:"avatar-img", class:"img-responsive img-avatar" %>
   </div>
@@ -38,8 +41,19 @@
     <strong>Political affiliation:</strong>
     <%= @profile.political_affiliation %>
   </p>
+  <p>
+    <strong>Your previous feedback about Citizen Debate:</strong>
+    <%= @profile.snippets %>
+  </p>
+  <p>
+    <strong>How likely you are to recommend to a friend:</strong>
+    <%= @profile.nps %>
+  </p>
+  <p>
+    <strong>Your opinion about the early adopter program:</strong>
+    <%= @profile.pmf %>
+  </p>
   </div>
-  <%= link_to 'Edit', edit_profile_path(@profile) %>
   <div class="profile-activity">
     <h1>INSERT RECENT DEBATES YOU"VE BEEN INVOLVED IN</h1>
     <h1>ALSO DEBATES YOU ARE FOLLOWING(?)</h1>
