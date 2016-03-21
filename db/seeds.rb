@@ -51,11 +51,14 @@ User.create!({
       display_name: Faker::Internet.user_name,
       political_affiliation: political_affiliation_array.sample,
       snippets: Faker::Hacker.say_something_smart,
-      rank: User.last.id,
       nps: rand(1..10),
       pmf: ["Very disappointed", "Somewhat disappointed", "Not dissappointed", "N/A - I don't know since I haven't used it yet."].sample
     })
+  Profile.last.update_points
 end
+
+# Rank all profiles after last one is created.
+Profile.last.update_rank
 
 
 topics_array = [
