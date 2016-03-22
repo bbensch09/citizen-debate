@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  resources :profiles
+  resources :profiles do
+    member do
+      post :verify_profile
+    end
+  end
   resources :topics
   resources :topic_votes do
     member do

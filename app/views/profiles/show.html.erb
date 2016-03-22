@@ -1,6 +1,9 @@
 <div class="profile-container">
   <div class="col-lg-12 col-sm-12 edit-btn">
   <%= link_to 'Edit Profile', edit_profile_path(@profile), :class => "btn btn-default" %>
+  <% if current_user && current_user.email == "bbensch@gmail.com" %>
+    <%= link_to 'Verify Profile', verify_profile_path(@profile), method: :post, class: "glyphicon glyphicon-check topic-vote-button" %>
+  <% end %>
   </div>
   <div class="col-lg-4 col-sm-6 no-right-padding">
     <%= image_tag @profile.avatar.url(:large), alt:"avatar-img", class:"img-responsive img-avatar" %>
