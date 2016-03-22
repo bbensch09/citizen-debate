@@ -2,7 +2,7 @@
   <div class="col-lg-12 col-sm-12 edit-btn">
   <%= link_to 'Edit Profile', edit_profile_path(@profile), :class => "btn btn-default" %>
   <% if current_user && current_user.email == "bbensch@gmail.com" %>
-    <%= link_to 'Verify Profile', verify_profile_path(@profile), method: :post, class: "glyphicon glyphicon-check topic-vote-button" %>
+    <%= link_to 'Verify', verify_profile_path(@profile), method: :post, class: "btn btn-default glyphicon glyphicon-check" %>
   <% end %>
   </div>
   <div class="col-lg-4 col-sm-6 no-right-padding">
@@ -26,19 +26,26 @@
   <p>
     <strong> Location:</strong> <%= @profile.city %>, <%= @profile.state %>
   </p>
+  <p>
+    <strong> Account Status:</strong> <%= @profile.verification_status %>
+  </p>
   </div>
   <div class="col-lg-12 col-sm-12 privately-visible">
     <h3 class="publicly-visible-warning">This part of your profile is always kept private.</h3>
   <p>
-    <%= @profile.first_name %> <%= @profile.last_name %>
+    <b>Name: </b><%= @profile.first_name %> <%= @profile.last_name %>
   </p>
   <p>
-    <%= @profile.user.email %>
+    <b>Email</b><%= @profile.user.email %>
   </p>
 
   <p>
     <strong>Age:</strong>
     <%= @profile.age %>
+  </p>
+  <p>
+    <strong>LinkedIn Profile:</strong>
+    <%= @profile.linkedin_profile %>
   </p>
   <p>
     <strong>Political affiliation:</strong>

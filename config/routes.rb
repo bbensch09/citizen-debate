@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :profiles do
     member do
-      post :verify_profile
+      post :verify
     end
   end
   resources :topics

@@ -30,9 +30,12 @@ ActiveRecord::Schema.define(version: 20160320212312) do
     t.string   "snippets"
     t.integer  "nps"
     t.integer  "pmf"
+    t.string   "linkedin_profile"
+    t.string   "verification_status",   default: "not yet verified"
+    t.string   "cohort",                default: "wait list"
     t.integer  "user_id"
-    t.datetime "created_at",                        null: false
-    t.datetime "updated_at",                        null: false
+    t.datetime "created_at",                                         null: false
+    t.datetime "updated_at",                                         null: false
     t.string   "avatar_file_name"
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"

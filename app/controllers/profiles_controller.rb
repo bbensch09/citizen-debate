@@ -13,7 +13,7 @@ class ProfilesController < ApplicationController
     end
   end
 
-  def verify_profile
+  def verify
     profile = Profile.find(params[:id])
     profile.verification_status = "verified"
     profile.save
