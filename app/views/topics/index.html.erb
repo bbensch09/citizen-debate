@@ -1,8 +1,7 @@
 <p id="notice"><%= notice %></p>
-
-<h1>Popular Debate Topics</h1>
-
-<%= link_to 'Propose your own debate topic', new_topic_path, :class=>"topic-link" %>
+<div class="profile-container">
+<h1 class="text-center">Popular Debate Topics</h1>
+<%= link_to 'Propose your own debate topic', new_topic_path, :class=>"btn btn-default" %> <br> <br>
 
 <table class="col-lg-12 col-sm-12 topics-table">
   <thead>
@@ -29,7 +28,5 @@
     <% end %>
   </tbody>
 </table>
-
-<br>
-
+</div>
 

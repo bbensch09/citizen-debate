@@ -6,7 +6,7 @@
   width: 100vw;
   max-width: 1600px;
   margin: auto;
-  top:50px;
+  top:20px;
   position: relative;
   padding-right: 10vw !important;
   padding-left: 10vw !important;
@@ -16,6 +16,12 @@
 .img-avatar{
   width:100%;
   height: auto;
+  position: relative;
+  left: -15px;
+  padding-bottom: 20px;
+}
+.no-right-padding{
+  padding-right: 0px !important;
 }
 .publicly-visible{
   border: 1px solid gray;
@@ -48,7 +54,12 @@
   font-style: bold;
 }
 .profile-activity{
-  clear:both;
-  padding: 10 10 10 10px;
+  margin-top: 20px;
+  border: 1px solid gray;
+  padding: 20px 20px 20px 20px;
   position: relative;
+  background-color: rgba(0,60,128,0.3);
+}
+.edit-btn{
+  padding-bottom:10px;
 }

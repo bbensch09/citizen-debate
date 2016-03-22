@@ -1,8 +1,8 @@
 <div class="profile-container">
-  <div class="col-lg-12 col-sm-12">
+  <div class="col-lg-12 col-sm-12 edit-btn">
   <%= link_to 'Edit Profile', edit_profile_path(@profile), :class => "btn btn-default" %>
   </div>
-  <div class="col-lg-4 col-sm-6">
+  <div class="col-lg-4 col-sm-6 no-right-padding">
     <%= image_tag @profile.avatar.url(:large), alt:"avatar-img", class:"img-responsive img-avatar" %>
   </div>
   <div class="col-lg-8 col-sm-6 publicly-visible">
@@ -54,8 +54,12 @@
     <%= @profile.pmf %>
   </p>
   </div>
-  <div class="profile-activity">
-    <h1>INSERT RECENT DEBATES YOU"VE BEEN INVOLVED IN</h1>
-    <h1>ALSO DEBATES YOU ARE FOLLOWING(?)</h1>
+  <div class="profile-activity col-lg-12 col-sm-12">
+    <h1>Your upcoming debates:</h1>
+      <h4>You do not currently have any scheduled debates.</h4>
+    <h1>Your previous debates:</h1>
+      <h4>You have not yet participated in any debates.</h4>
+    <h1>Debates you are following:</h1>
+      <h4>You are not yet following any debates.</h4>
   </div>
 </div>

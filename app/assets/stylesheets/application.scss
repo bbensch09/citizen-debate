@@ -63,16 +63,7 @@ $black: #0F0F0D;
     z-index: 99;
     position: fixed !important;
 }
-/*.header-image{
-  top:50px;
-  position: relative;
-  clear: both;
-  margin-left: auto;
-  height:100px;
-  width: 100%;
-  max-width: 1600px;
-  margin-bottom: 50px;
-}*/
+
 #flash-notice-overlays{
     height: auto;
     max-height: 24px;
@@ -105,8 +96,6 @@ $black: #0F0F0D;
   text-decoration: underline;
 }
 footer {
-   /*height: 5em; */
-   /* .push must (SHOULD) be the same height as .footer */
    position:relative;
    clear:both;
    background-color:#f8f8f8;
@@ -116,4 +105,20 @@ footer {
    margin-top:100px;
    width:100vw;
    z-index: -1;
+}
+.mac-frame{
+  z-index: 1;
+  width:417px;
+  height:auto;
+  float:left;
+}
+.inner-image-div{
+  z-index: 0;
+}
+.behind-frame{
+  top: 16px;
+  left: 30px;
+  width: 390px;
+  z-index: 0;
+  position: absolute;
 }

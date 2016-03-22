@@ -17,7 +17,7 @@ age_array = (18...65).to_a
 political_affiliation_array = ['Democrat','Democrat','Republican','Republican','Independent']
 
 User.create!({
-      email: "bbensch@gmail.com",
+      email: "citizen.debate.16@gmail.com",
       password: 'password'
     })
   Profile.create!({
@@ -68,8 +68,8 @@ topics_array = [
   "Should abortion be legal?",
   "Should background checks be required in order to purchase a gun?",
   "Should same-sex marriage be legal?",
-  "Is free trade goods harmful or beneficial to the creation of jobs in the US?",
-  "Should the US increase the minimum wage to $15",
+  "Is free trade harmful or beneficial to the creation of jobs in the US?",
+  "Should the US increase the minimum wage to $15?",
   "Should the US build a wall along the Mexican border?",
 ]
 
