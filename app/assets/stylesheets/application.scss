@@ -20,7 +20,8 @@
 
 
 $orange: #ff6618;
-$dark_blue: #003c80;
+$dark_blue: #4285F4;
+$google_blue: #4285F4;
 /*$dark_blue: rgba(0,60,128,0.3)*/
 $red: #820408;
 $gray: #9A9C9F;
@@ -37,24 +38,25 @@ $black: #0F0F0D;
 
 .container, .container-nav {
   width: 100vw;
+  height: 50px;
   max-width: 2000px;
   margin: auto;
   padding-right: 10vw !important;
   padding-left: 10vw !important;
 }
 .container-nav {
-  background-color: #f8f8f8;
+  background-color: #fff;
 }
 
 
-.container-fluid {
+/*.container-fluid {
   margin-top: 50px;
   width: 100vw;
   max-width: 1600px;
   padding-right: 0vw !important;
   padding-left: 0vw !important;
   background-color: white;
-}
+}*/
 
 .sticky-header {
     top: 0;
@@ -89,9 +91,8 @@ $black: #0F0F0D;
   line-height: 1.5;
   font-size: 18px;
 }
-.text-center{
-  text-align: center;
-}
+.text-center{  text-align: center;}
+.text-left{  text-align: left;}
 .underlined{
   text-decoration: underline;
 }
@@ -121,4 +122,11 @@ footer {
   width: 390px;
   z-index: 0;
   position: absolute;
+}
+.font-large{
+  font-size: 2em;
+}
+.font-medium{
+  font-size: 1.5em;
+  line-height: 1.5;
 }

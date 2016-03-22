@@ -17,7 +17,7 @@ $(document).ready(function(){
 
   // fullpage customization
   $('#fullpage').fullpage({
-    sectionsColor: ['#003c80', '#820408', '#003c80', '#820408', '#003c80','#820408','#003c80','#820408','#003c80'],
+    sectionsColor: ['#f6f6f6', '#f6f6f6', '#f6f6f6', '#f6f6f6', '#f6f6f6','#f6f6f6','#f6f6f6','#f6f6f6','#f6f6f6'],
     sectionSelector: '.vertical-scrolling',
     slideSelector: '.horizontal-scrolling',
     navigation: true,

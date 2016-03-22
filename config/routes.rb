@@ -11,6 +11,8 @@ Rails.application.routes.draw do
 
   get '/admin_index' => 'profiles#admin_index'
   get '/pre_launch' => 'welcome#pre_launch'
+  get '/debate_format' => 'about#debate_format'
+  get '/reputation' => 'about#reputation'
   # HACKY SHIT
   get '/test' => 'profiles#test_page'
   # The priority is based upon order of creation: first created -> highest priority.
