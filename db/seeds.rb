@@ -28,11 +28,13 @@ User.create!({
       state: "CA",
       age: 29,
       about_me: Faker::Hacker.say_something_smart,
-      display_name: Faker::Internet.user_name,
+      display_name: "sf_skier2016",
       political_affiliation: political_affiliation_array.sample,
       snippets: Faker::Hacker.say_something_smart,
       nps: rand(1..10),
-      pmf: ["Very disappointed", "Somewhat disappointed", "Not dissappointed", "N/A - I don't know since I haven't used it yet."].sample
+      pmf: ["Very disappointed", "Somewhat disappointed", "Not disappointed", "N/A - I don't know since I haven't used it yet."].sample,
+      linkedin_profile: "https://www.linkedin.com/in/bbensch09",
+      verification_status: ["not yet verified","verified"].sample
     })
 
 50.times do
@@ -52,7 +54,9 @@ User.create!({
       political_affiliation: political_affiliation_array.sample,
       snippets: Faker::Hacker.say_something_smart,
       nps: rand(1..10),
-      pmf: ["Very disappointed", "Somewhat disappointed", "Not disappointed", "I don't know"].sample
+      pmf: ["Very disappointed", "Somewhat disappointed", "Not disappointed", "I don't know"].sample,
+      linkedin_profile: "https://www.linkedin.com/in/example",
+      verification_status: ["not yet verified","verified"].sample
     })
   Profile.last.update_points
 end

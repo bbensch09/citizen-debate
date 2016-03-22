@@ -7,7 +7,10 @@ class Profile < ActiveRecord::Base
            :s3_host_name => 's3-us-west-2.amazonaws.com'
 
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
-  # before_save :update_points
+
+  validates :first_name, :last_name, :city, :state, :age, :about_me, :display_name, :political_affiliation, :linkedin_profile,
+    presence: true
+
 
   def profile_bonus
     profile_bonus = 0

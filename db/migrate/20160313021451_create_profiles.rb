@@ -13,7 +13,7 @@ class CreateProfiles < ActiveRecord::Migration
       t.integer :rank
       t.string :snippets
       t.integer :nps
-      t.integer :pmf
+      t.string :pmf
       t.string :linkedin_profile
       t.string :verification_status, default: "not yet verified"
       t.string :cohort, default: "wait list"
