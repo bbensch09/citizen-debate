@@ -1,0 +1,62 @@
+// Place all the styles related to the about controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+/*Universal styling for About pages*/
+h1,h2,h3,h4,p,li,div{
+  color: #4285F4;
+  font-family: 'Raleway', sans-serif !important;
+}
+.bg-light-gray{
+  background: #f6f6f6;
+  min-height: 100vh;
+}
+.section-buffer{
+  padding-top: 10vh;
+  padding-bottom: 10vh;
+}
+.vh80{
+  height: 80vh;
+}
+/*.div-outline-debug{
+    border: 1px solid blue;
+}*/
+h4.section-sub-heading{
+    position: relative;
+    margin-bottom: 35px;
+    padding-bottom: 20px;
+}
+h4.section-sub-heading.border-yellow::after{
+  background-color:#ffbc00;
+}
+.section-sub-heading::after{
+    bottom: -2px;
+    content: '';
+    height: 2px;
+    left: 0;
+    position: absolute;
+    width: 60px;
+}
+.section-headline{
+  font-size: 2.5em;
+  line-height: 1.2;
+  margin-top: 0px;
+  margin-right: 0px;
+  margin-bottom: 25px;
+  margin-left: 0px;
+}
+.link-more{
+  bottom:0px;
+}
+.img-right-panel{
+    display: block;
+    height: 80vh;
+    width: auto;
+}
+.reputaion-emphasis{
+  left:-10px;
+  font-size: 1.6em;
+  line-height: 1.3;
+  text-decoration: underline;
+  text-align: left;
+}
