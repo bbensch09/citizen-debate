@@ -1,9 +1,15 @@
 Rails.application.routes.draw do
   resources :profiles
-  resources :snippets
+  resources :topics
+  resources :topic_votes do
+    member do
+      post :upvote
+      post :downvote
+    end
+  end
   devise_for :users
 
-  get '/admin_index' => 'snippets#admin_index'
+  get '/admin_index' => 'profiles#admin_index'
   get '/pre_launch' => 'welcome#pre_launch'
   # HACKY SHIT
   get '/test' => 'profiles#test_page'

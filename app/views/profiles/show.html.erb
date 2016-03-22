@@ -1,55 +1,65 @@
-<div>
-  <%= image_tag @profile.avatar.url(:large), alt:"avatar-img", class:"img-responsive img-thumbnail" %>
+<div class="profile-container">
+  <div class="col-lg-12 col-sm-12 edit-btn">
+  <%= link_to 'Edit Profile', edit_profile_path(@profile), :class => "btn btn-default" %>
+  </div>
+  <div class="col-lg-4 col-sm-6 no-right-padding">
+    <%= image_tag @profile.avatar.url(:large), alt:"avatar-img", class:"img-responsive img-avatar" %>
+  </div>
+  <div class="col-lg-8 col-sm-6 publicly-visible">
+  <h3 class="publicly-visible-warning">Your publicly visible profile</h3>
+    <h2> <%= @profile.display_name %></h2>
+  <p>
+    <strong>Current Wait List Ranking:</strong>
+    <%= @profile.user.rank %>
+  </p>
+  <p>
+    <strong>Total Accumulated Points:</strong>
+    <%= @profile.points %>
+  </p>
+  <p>
+    <strong>Bio:</strong>
+    <%= @profile.about_me %>
+  </p>
+  <p>
+    <strong> Location:</strong> <%= @profile.city %>, <%= @profile.state %>
+  </p>
+  </div>
+  <div class="col-lg-12 col-sm-12 privately-visible">
+    <h3 class="publicly-visible-warning">This part of your profile is always kept private.</h3>
+  <p>
+    <%= @profile.first_name %> <%= @profile.last_name %>
+  </p>
+  <p>
+    <%= @profile.user.email %>
+  </p>
+
+  <p>
+    <strong>Age:</strong>
+    <%= @profile.age %>
+  </p>
+  <p>
+    <strong>Political affiliation:</strong>
+    <%= @profile.political_affiliation %>
+  </p>
+  <p>
+    <strong>Your previous feedback about Citizen Debate:</strong>
+    <%= @profile.snippets %>
+  </p>
+  <p>
+    <strong>How likely you are to recommend to a friend:</strong>
+    <%= @profile.nps %>
+  </p>
+  <p>
+    <strong>Your opinion about the early adopter program:</strong>
+    <%= @profile.pmf %>
+  </p>
+  </div>
+  <div class="profile-activity col-lg-12 col-sm-12">
+    <h1>Your upcoming debates:</h1>
+      <h4>You do not currently have any scheduled debates.</h4>
+    <h1>Your previous debates:</h1>
+      <h4>You have not yet participated in any debates.</h4>
+    <h1>Debates you are following:</h1>
+      <h4>You are not yet following any debates.</h4>
+  </div>
 </div>
-<p>
-  <strong>Your Display name:</strong>
-  <%= @profile.display_name %>
-</p>
-<p>
-  <strong>Wait List Ranking:</strong>
-  <%= @profile.user.rank %>
-</p>
-<p>
-  <strong>Accumulated Points:</strong>
-  <%= @profile.user.points %>
-</p>
-<p>
-  <strong>First name:</strong>
-  <%= @profile.first_name %>
-</p>
-
-<p>
-  <strong>Last name:</strong>
-  <%= @profile.last_name %>
-</p>
-
-<p>
-  <strong>Email:</strong>
-  <%= @profile.user.email %>
-</p>
-<p>
-  <strong>City:</strong>
-  <%= @profile.city %>
-</p>
-
-<p>
-  <strong>State:</strong>
-  <%= @profile.state %>
-</p>
-
-<p>
-  <strong>Age:</strong>
-  <%= @profile.age %>
-</p>
-
-<p>
-  <strong>About me:</strong>
-  <%= @profile.about_me %>
-</p>
-
-<p>
-  <strong>Political affiliation:</strong>
-  <%= @profile.political_affiliation %>
-</p>
-
-<%= link_to 'Edit', edit_profile_path(@profile) %> |

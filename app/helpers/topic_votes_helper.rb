@@ -1,0 +1,2 @@
+module TopicVotesHelper
+end

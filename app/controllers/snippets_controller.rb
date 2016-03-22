@@ -8,16 +8,6 @@ class SnippetsController < ApplicationController
     @snippets = Snippet.where(user_id:current_user.id)
   end
 
-  def admin_index
-    if current_user.email == "bbensch@gmail.com"
-      @snippets = Snippet.all
-      render 'index'
-    else
-      @snippets = Snippet.where(user_id:current_user.id)
-      render 'index'
-    end
-  end
-
   # GET /snippets/1
   # GET /snippets/1.json
   def show

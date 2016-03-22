@@ -1,0 +1,32 @@
+<p id="notice"><%= notice %></p>
+<div class="profile-container">
+<h1 class="text-center">Popular Debate Topics</h1>
+<%= link_to 'Propose your own debate topic', new_topic_path, :class=>"btn btn-default" %> <br> <br>
+
+<table class="col-lg-12 col-sm-12 topics-table">
+  <thead>
+    <tr>
+      <th>Votes</th>
+      <th>Debate Topic</th>
+      <th>Vote Up</th>
+      <th>Vote Down</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @topics.each do |topic| %>
+      <tr>
+        <td><%= topic.score %></td>
+        <td class="col-lg-8 col-sm-4"><%= link_to topic.title, topic_path(topic), :class=> "topic-link" %></td>
+        <td>
+          <%= link_to '', upvote_topic_vote_path(topic), method: :post, class: "glyphicon glyphicon-thumbs-up topic-vote-button" %>
+        </td>
+        <td>
+          <%= link_to '', downvote_topic_vote_path(topic), method: :post, class: "glyphicon glyphicon-thumbs-down topic-vote-button" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
+

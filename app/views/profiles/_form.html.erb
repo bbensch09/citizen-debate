@@ -1,3 +1,5 @@
+<div class="profile-container">
+<h1>Your Profile</h1>
 <%= form_for(@profile) do |f| %>
   <% if @profile.errors.any? %>
     <div id="error_explanation">
@@ -11,43 +13,94 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="col-lg-4 col-sm-6">
     <%= f.label :avatar %><br>
     <%= f.file_field :avatar %>
   </div>
-  <div class="field">
-    <%= f.label :display_name %><br>
-    <%= f.text_field :display_name %>
+  <div class="col-lg-8 col-sm-6 publicly-visible">
+    <h3 class="publicly-visible-warning">Your publicly visible profile</h3>
+      <h2>
+      <%= f.label :display_name %><br>
+      <%= f.text_field :display_name %>
+      </h2>
+    <div class="field">
+      <%= f.label :about_me %><br>
+      <%= f.text_area :about_me, size:"80x4" %>
+    </div>
+    <div class="field">
+      <%= f.label :city %><br>
+      <%= f.text_field :city %>
+    </div>
+    <div class="field">
+      <%= f.label :state %><br>
+      <%= f.text_field :state %>
+    </div>
+  </div>
+  <div class="col-lg-12 col-sm-12 privately-visible">
+    <h3 class="publicly-visible-warning">This part of your profile will always be kept private.</h3>
+    <div class="field">
+      <%= f.label :first_name %><br>
+      <%= f.text_field :first_name %>
+    </div>
+    <div class="field">
+      <%= f.label :last_name %><br>
+      <%= f.text_field :last_name %>
+    </div>
+    <div class="field">
+      <%= f.label :political_orientation %><br>
+      <%= f.select :political_affiliation, options_for_select(["Independent","Liberal", "Conservative"]) %>
+    </div>
+
+    <div class="field">
+      <%= f.label :age %><br>
+      <%= f.number_field :age %>
+    </div>
+  </div>
+
+  <hr>
+    <div class="field">
+    <h3> Please tell us why you are you most excited to use Citizen Debate. Feel free to share any feedback you have about the <a href="/debate-format"> debate format</a> or our unique <a href="/reputation">reputation system </a>.</h3>
+    <%= f.text_area :snippets, size:"100x4" %>
   </div>
   <div class="field">
-    <%= f.label :first_name %><br>
-    <%= f.text_field :first_name %>
+    <h3> At this point, how likely are you to recommend Citizen Debate to a friend?</h3>
+    <%= f.radio_button :nps, 1  %>
+    <%= label_tag(:one, "1 - Unlikely", :class=> "nps") %>
+    <%= f.radio_button :nps, 2  %>
+    <%= label_tag(:two, "2", :class=> "nps") %>
+    <%= f.radio_button :nps, 3  %>
+    <%= label_tag(:three, "3", :class=> "nps") %>
+    <%= f.radio_button :nps, 4  %>
+    <%= label_tag(:two, "4", :class=> "nps") %>
+    <%= f.radio_button :nps, 5  %>
+    <%= label_tag(:three, "5", :class=> "nps") %>
+    <%= f.radio_button :nps, 6  %>
+    <%= label_tag(:two, "6", :class=> "nps") %>
+    <%= f.radio_button :nps, 7  %>
+    <%= label_tag(:three, "7", :class=> "nps") %>
+    <%= f.radio_button :nps, 8  %>
+    <%= label_tag(:two, "8", :class=> "nps") %>
+    <%= f.radio_button :nps, 9  %>
+    <%= label_tag(:three, "9", :class=> "nps") %>
+    <%= f.radio_button :nps, 10 %>
+    <%= label_tag(:ten, "10 - Most likely", :class=> "nps") %>
   </div>
   <div class="field">
-    <%= f.label :last_name %><br>
-    <%= f.text_field :last_name %>
-  </div>
-  <div class="field">
-    <%= f.label :political_affiliation %><br>
-    <%= f.text_field :political_affiliation %>
-  </div>
-  <div class="field">
-    <%= f.label :city %><br>
-    <%= f.text_field :city %>
-  </div>
-  <div class="field">
-    <%= f.label :state %><br>
-    <%= f.text_field :state %>
-  </div>
-  <div class="field">
-    <%= f.label :age %><br>
-    <%= f.number_field :age %>
-  </div>
-  <div class="field">
-    <%= f.label :about_me %><br>
-    <%= f.text_field :about_me %>
+    <h3> At this point, how would you feel if you were not invited into Citizen Debate's early adopter program?</h3>
+    <%= f.radio_button :pmf, "Very disappointed"  %>
+    <%= label_tag(:one, "Very disappointed", :class=> "pmf") %>
+    <br>
+    <%= f.radio_button :pmf, "Somewhat disappointed"  %>
+    <%= label_tag(:two, "Somewhat disappointed", :class=> "pmf") %>
+    <br>
+    <%= f.radio_button :pmf, "Not disappointed"  %>
+    <%= label_tag(:three, "Not disappointed", :class=> "pmf") %>
+    <br>
+    <%= f.radio_button :pmf, "I don't know"  %>
+    <%= label_tag(:two, "I don't know", :class=> "pmf") %>
   </div>
   <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>
+</div>

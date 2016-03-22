@@ -4,15 +4,18 @@
       :fields:
         - id
         - user_id
+        - rank
         - first_name
         - last_name
         - city
+        - snippets
+        - profile_bonus
+        - snippet_bonus
+        - points
+
   User:
     :options:
       :fields:
         - id
         - email
-        - profile_bonus
-        - snippet_bonus
-        - points
         - rank

@@ -6,10 +6,21 @@ class ProfilesController < ApplicationController
   def test_page
   end
 
+  # HACKY SHIT --> ADMIN VIEW TO SEE ALL SNIPPETS
+  def admin_index
+    if current_user.email == "bbensch@gmail.com"
+      @profiles = Profile.all
+      render 'index'
+    else
+      @profiles = Profile.where(user_id:current_user.id)
+      render 'index'
+    end
+  end
+
   # GET /profiles
   # GET /profiles.json
   def index
-    @profiles = Profile.all.sort { |a,b| b.user.points <=> a.user.points}
+    @profiles = Profile.all.sort { |a,b| b.points <=> a.points}
   end
 
   # GET /profiles/1
@@ -46,6 +57,8 @@ class ProfilesController < ApplicationController
         if @profile.save
           format.html { redirect_to @profile, notice: 'Profile was successfully created.' }
           format.json { render :show, status: :created, location: @profile }
+        @profile.update_points
+        @profile.update_rank
         else
           format.html { render :new }
           format.json { render json: @profile.errors, status: :unprocessable_entity }
@@ -61,6 +74,8 @@ class ProfilesController < ApplicationController
       if @profile.update(profile_params)
         format.html { redirect_to @profile, notice: 'Profile was successfully updated.' }
         format.json { render :show, status: :ok, location: @profile }
+        @profile.update_points
+        @profile.update_rank
       else
         format.html { render :edit }
         format.json { render json: @profile.errors, status: :unprocessable_entity }
@@ -86,6 +101,6 @@ class ProfilesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def profile_params
-      params.require(:profile).permit(:first_name, :last_name, :city, :state, :age, :about_me, :display_name, :political_affiliation, :avatar)
+      params.require(:profile).permit(:first_name, :last_name, :city, :state, :age, :about_me, :display_name, :political_affiliation, :avatar, :snippets, :nps, :pmf)
     end
 end

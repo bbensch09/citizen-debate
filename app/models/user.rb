@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
   has_many :snippets
+  has_many :topics
+  has_many :topic_votes, class_name: "TopicVote", foreign_key: "voter_id"
   has_one :profile
   # Include default devise modules. Others available are:
   # Need to activate Omniauthabl to use FB still :omniauthable
@@ -7,33 +9,20 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :lockable, :timeoutable#, :confirmable
 
-  def profile_bonus
-    profile_bonus = 0
-    if self.profile && self.profile.about_me.length > 75
-      profile_bonus = 10
-    end
-    profile_bonus
-  end
-
-  def snippet_bonus
-    snippet_bonus = 0
-    if self.snippets && self.snippets.count > 0
-      snippet_bonus = 5
-    end
-    snippet_bonus
-  end
-
-  def points
-    #free points
-    #users get more points for being earlier to sign up; how it works: all users get a point for every user that signs up after them, so with 10 users, the 1st user gets 10 points, and the last user gets zero. when 11th user signs up, each of those users gets one more point.
-    free_points = User.count - self.id
-    total_points = free_points + self.profile_bonus + self.snippet_bonus
+  def time_since_created
+    time_elapsed = ((Time.now - created_at.to_time) / (60*60*24)).round
+      if time_elapsed < 1
+        return "Today"
+      else
+        return "#{time_elapsed} days ago"
+      end
   end
 
   def rank
-    all_users = User.all
-    #sort users by most points to least points
-    all_users_sorted = all_users.sort { |a,b| b.points <=> a.points}
-    all_users_sorted.index(self) + 1
+    if self.profile.nil?
+      return "N/A (You must first complete your profile to join the wait list)"
+    else
+      return self.profile.rank
+    end
   end
 end
