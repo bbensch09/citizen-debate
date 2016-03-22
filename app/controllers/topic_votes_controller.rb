@@ -1,18 +1,19 @@
 class TopicVotesController < ApplicationController
   before_action :set_topic_vote, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
+
 
   def upvote
-    # HACKY SHIT --> confirm scope on these instance variables
-    @topic = Topic.find(params[:id])
-    @topic_vote = TopicVote.new
-    @topic_vote.value = 1
-    @topic_vote.voter_id = current_user.id
-    @topic_vote.topic_id = @topic.id
-    if TopicVote.where(topic_id:@topic.id,voter_id:current_user.id).empty?
-      @topic_vote.save
+    topic = Topic.find(params[:id])
+    topic_vote = TopicVote.new
+    topic_vote.value = 1
+    topic_vote.voter_id = current_user.id
+    topic_vote.topic_id = topic.id
+    if TopicVote.where(topic_id:topic.id,voter_id:current_user.id).empty?
+      topic_vote.save
       redirect_to(topics_path, notice: 'Your up vote was successfully recorded.' )
-    elsif TopicVote.where(topic_id:@topic.id,voter_id:current_user.id).last.value == -1
-      @topic_vote.save
+    elsif TopicVote.where(topic_id:topic.id,voter_id:current_user.id).last.value == -1
+      topic_vote.save
       redirect_to(topics_path, notice: 'Your previous down vote was changed to an up vote.')
     else
       redirect_to(topics_path, notice: 'You may only vote once, you have already voted for on this topic.')
@@ -20,17 +21,16 @@ class TopicVotesController < ApplicationController
   end
 
   def downvote
-    # HACKY SHIT --> confirm scope on these instance variables
-    @topic = Topic.find(params[:id])
-    @topic_vote = TopicVote.new
-    @topic_vote.value = -1
-    @topic_vote.voter_id = current_user.id
-    @topic_vote.topic_id = @topic.id
-    if TopicVote.where(topic_id:@topic.id,voter_id:current_user.id).empty?
-      @topic_vote.save
+    topic = Topic.find(params[:id])
+    topic_vote = TopicVote.new
+    topic_vote.value = -1
+    topic_vote.voter_id = current_user.id
+    topic_vote.topic_id = topic.id
+    if TopicVote.where(topic_id:topic.id,voter_id:current_user.id).empty?
+      topic_vote.save
       redirect_to(topics_path, notice: 'Your down vote was successfully recorded.' )
-    elsif TopicVote.where(topic_id:@topic.id,voter_id:current_user.id).last.value == 1
-      @topic_vote.save
+    elsif TopicVote.where(topic_id:topic.id,voter_id:current_user.id).last.value == 1
+      topic_vote.save
       redirect_to(topics_path, notice: 'Your previous up vote was changed to a down vote.')
     else
       redirect_to(topics_path, notice: 'You may only vote once, you have already voted down on this topic.')
