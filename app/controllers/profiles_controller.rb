@@ -2,19 +2,22 @@ class ProfilesController < ApplicationController
   before_action :set_profile, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
 
-  # HACKY SHIT
-  def test_page
-  end
-
   # HACKY SHIT --> ADMIN VIEW TO SEE ALL SNIPPETS
   def admin_index
     if current_user.email == "bbensch@gmail.com"
       @profiles = Profile.all
-      render 'index'
+      render 'admin_index'
     else
       @profiles = Profile.where(user_id:current_user.id)
       render 'index'
     end
+  end
+
+  def verify
+    profile = Profile.find(params[:id])
+    profile.verification_status = "verified"
+    profile.save
+    redirect_to(profile_path, notice: 'Profile has been verified.')
   end
 
   # GET /profiles
@@ -101,6 +104,6 @@ class ProfilesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def profile_params
-      params.require(:profile).permit(:first_name, :last_name, :city, :state, :age, :about_me, :display_name, :political_affiliation, :avatar, :snippets, :nps, :pmf)
+      params.require(:profile).permit(:first_name, :last_name, :city, :state, :age, :about_me, :display_name, :political_affiliation, :avatar, :snippets, :nps, :pmf, :linkedin_profile)
     end
 end

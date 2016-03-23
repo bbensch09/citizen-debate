@@ -7,22 +7,43 @@ class Profile < ActiveRecord::Base
            :s3_host_name => 's3-us-west-2.amazonaws.com'
 
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
-  # before_save :update_points
+
+  validates :first_name, :last_name, :city, :state, :age, :about_me, :display_name, :political_affiliation, :linkedin_profile,
+    presence: true
+
 
   def profile_bonus
     profile_bonus = 0
     if self.about_me.length > 75
       profile_bonus = 10
     end
+    if self.verification_status == 'verified'
+      profile_bonus +=10
+    end
+    if self.nps & self.pmf
+      profile_bonus +=5
+    end
     profile_bonus
   end
 
   def snippet_bonus
     snippet_bonus = 0
-    if self.snippets && self.snippets.length > 40
-      snippet_bonus = 5
+    if self.snippets && self.snippets.length > 50
+      snippet_bonus = 10
     end
     snippet_bonus
+  end
+
+  def topic_bonus
+    topic_bonus = 0
+    if current_user && current_user.topic_votes.count >= 1
+      topic_bonus = [4,current_user.topic_votes.count*2].min
+    end
+    topic_bonus
+  end
+
+  def referral_bonus
+    return self.extra_info
   end
 
   def update_points
@@ -34,7 +55,7 @@ class Profile < ActiveRecord::Base
     else
       free_points = 0
     end
-    self.points = free_points + self.profile_bonus + self.snippet_bonus
+    self.points = free_points + self.profile_bonus + self.snippet_bonus + self.topic_bonus + self.referral_bonus
     self.save
     puts "points updated and saved. Profile ID #{self.id} has #{self.points}"
   end

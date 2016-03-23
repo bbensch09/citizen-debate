@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  resources :profiles
+  resources :profiles do
+    member do
+      post :verify
+    end
+  end
   resources :topics
   resources :topic_votes do
     member do
@@ -13,6 +17,8 @@ Rails.application.routes.draw do
   get '/pre_launch' => 'welcome#pre_launch'
   get '/debate_format' => 'about#debate_format'
   get '/reputation' => 'about#reputation'
+  get '/faqs' => 'about#faqs'
+  get '/about_us' => 'about#about_us'
   # HACKY SHIT
   get '/test' => 'profiles#test_page'
   # The priority is based upon order of creation: first created -> highest priority.

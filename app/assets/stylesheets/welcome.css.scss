@@ -26,8 +26,8 @@
 
 .intro-message {
     position: relative;
-    padding-top: 20%;
-    padding-bottom: 20%;
+    padding-top: 15vh;
+    color:#fff;
 }
 
 .intro-message > h1 {
@@ -84,6 +84,7 @@
 
 .content-section-b {
     padding: 20px 0;
+    height: 80vh;
 }
 
 .section-heading {
@@ -97,13 +98,6 @@
     border-top: 3px solid #e7e7e7;
 }
 
-.banner {
-    padding: 100px 0;
-    color: #f8f8f8;
-    /*background: url(../img/banner-bg.jpg) no-repeat center center;*/
-    background-size: cover;
-}
-
 .banner h2 {
     margin: 0;
     text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
@@ -115,7 +109,6 @@
 }
 
 .banner-social-buttons {
-    float: right;
     margin-top: 0;
 }
 
@@ -483,7 +476,7 @@ h3 {
 
 #fp-nav ul li a span,
 .fp-slidesNav ul li a span {
-    background: white !important;
+    background: #4285F4 !important;
     width: 8px;
     height: 8px;
     margin: -4px 0 0 -4px;
@@ -556,7 +549,7 @@ a.btn{
 }
 .inline-link{
     font-weight: bold;
-    color:#000 !important;
+    color:#34A853 !important;
 }
 .slide-text-content{
     font-size: 1.5em;
@@ -578,7 +571,11 @@ a.btn{
     color: gray;
     text-align: left;
 }
-.citations p a {
+.citations p {
+    color: gray;
+    line-height: 8px;
+}
+.citations p a, .citations p a:visited {
     color: gray;
 }
 .vertical-middle{
@@ -591,15 +588,50 @@ a.btn{
     height:150px;
 }
 .example-prompt-container{
-    color: #4285F4;
     border: 1px solid gray;
-    background-color: rgba(240,173,78,1);
+    /*background-color: rgba(240,173,78,1);*/
+    background-color: rgba(234, 67, 53,1);
     width:100%;
 }
 .example-prompts{
-    color: #fff;
+    color: #fff !important;
     font-style: italic;
 }
-.debate-resolution{
-    line-height: 2;
+.img-top-padding{
+    padding-top:50px;
+}
+.mac-frame {
+  z-index: 2;
+  width:417px;
+  height:auto;
+  float:left;
+}
+.behind-frame{
+  top: 16px;
+  left: 30px;
+  width: 390px;
+  z-index: 1;
+  position: absolute;
+}
+/*.debate-topics-slider{
+  width:417px;
+  height:auto;
+  float:left;
+}*/
+.ipad-frame{
+  top: 16px;
+  left: 30px;
+  width: 480px;
+  z-index: 0;
+  position: absolute;
+}
+.carousel-inner{
+    z-index: 10;
+    top:100px;
+    left: 80px;
+    max-width:350px;
+    height: 300px;
+}
+#activityCarousel .carousel-inner .item span{
+    color: black !important;
 }

@@ -19,11 +19,9 @@
 @import "font-awesome";
 
 
-$orange: #ff6618;
-$dark_blue: #4285F4;
 $google_blue: #4285F4;
-/*$dark_blue: rgba(0,60,128,0.3)*/
-$red: #820408;
+$google_red: #EA4335;
+$google_green: #34A853;
 $gray: #9A9C9F;
 $black: #0F0F0D;
 
@@ -36,18 +34,25 @@ $black: #0F0F0D;
 }
 
 
-.container, .container-nav {
+.container {
+  width: 100vw;
+  max-width: 2000px;
+  margin: auto;
+  padding-right: 5vw !important;
+  padding-left: 5vw !important;
+}
+.container-nav {
   width: 100vw;
   height: 50px;
   max-width: 2000px;
   margin: auto;
-  padding-right: 10vw !important;
-  padding-left: 10vw !important;
-}
-.container-nav {
+  padding-right: 5vw !important;
+  padding-left: 5vw !important;
   background-color: #fff;
 }
-
+.row{
+  height:100vh;
+}
 
 /*.container-fluid {
   margin-top: 50px;
@@ -99,29 +104,15 @@ $black: #0F0F0D;
 footer {
    position:relative;
    clear:both;
-   background-color:#f8f8f8;
+   background-color:#f6f6f6;
    text-align: center;
    left:0px;
    bottom:0px;
-   margin-top:100px;
    width:100vw;
    z-index: -1;
 }
-.mac-frame{
-  z-index: 1;
-  width:417px;
-  height:auto;
-  float:left;
-}
 .inner-image-div{
   z-index: 0;
-}
-.behind-frame{
-  top: 16px;
-  left: 30px;
-  width: 390px;
-  z-index: 0;
-  position: absolute;
 }
 .font-large{
   font-size: 2em;
