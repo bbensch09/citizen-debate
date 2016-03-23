@@ -60,3 +60,25 @@ h4.section-sub-heading.border-green::after{
   text-decoration: underline;
   text-align: left;
 }
+.faq-q,.faq-a {font-style: bold;}
+.faq-question{
+  font-size: 2em;
+  line-height: 2em;
+  color: #006caf;
+  text-transform: uppercase;
+}
+.faq-answer{
+  font-size: 1.8em;
+  color: green;
+  font-style: bold;
+}
+p.faq-text{
+  font-size: 1.2em;
+  color: black;
+}
+.faq-title{
+  font-size: 4em;
+}
+.section-heading{
+  font-size:1.6em;
+}

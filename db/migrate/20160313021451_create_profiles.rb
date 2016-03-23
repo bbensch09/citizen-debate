@@ -17,6 +17,7 @@ class CreateProfiles < ActiveRecord::Migration
       t.string :linkedin_profile
       t.string :verification_status, default: "not yet verified"
       t.string :cohort, default: "wait list"
+      t.integer :extra_info, default: 0
       t.belongs_to :user, index: true
       t.timestamps null: false
     end
