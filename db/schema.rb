@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(version: 20160320212312) do
     t.string   "linkedin_profile"
     t.string   "verification_status",   default: "not yet verified"
     t.string   "cohort",                default: "wait list"
+    t.integer  "extra_info",            default: 0
     t.integer  "user_id"
     t.datetime "created_at",                                         null: false
     t.datetime "updated_at",                                         null: false

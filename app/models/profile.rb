@@ -20,7 +20,7 @@ class Profile < ActiveRecord::Base
     if self.verification_status == 'verified'
       profile_bonus +=10
     end
-    if self.nps & self.pmf
+    if self.nps && self.pmf
       profile_bonus +=5
     end
     profile_bonus
@@ -36,8 +36,8 @@ class Profile < ActiveRecord::Base
 
   def topic_bonus
     topic_bonus = 0
-    if current_user && current_user.topic_votes.count >= 1
-      topic_bonus = [4,current_user.topic_votes.count*2].min
+    if self.user.topic_votes.count >= 1
+      topic_bonus = [4,self.user.topic_votes.count*2].min
     end
     topic_bonus
   end
