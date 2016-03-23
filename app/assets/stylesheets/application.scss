@@ -19,10 +19,8 @@
 @import "font-awesome";
 
 
-$orange: #ff6618;
 $google_blue: #4285F4;
-/*$dark_blue: rgba(0,60,128,0.3)*/
-$google_red: #820408;
+$google_red: #EA4335;
 $google_green: #34A853;
 $gray: #9A9C9F;
 $black: #0F0F0D;
@@ -114,21 +112,8 @@ footer {
    width:100vw;
    z-index: -1;
 }
-.mac-frame{
-  z-index: 1;
-  width:417px;
-  height:auto;
-  float:left;
-}
 .inner-image-div{
   z-index: 0;
-}
-.behind-frame{
-  top: 16px;
-  left: 30px;
-  width: 390px;
-  z-index: 0;
-  position: absolute;
 }
 .font-large{
   font-size: 2em;

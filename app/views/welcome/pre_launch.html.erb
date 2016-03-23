@@ -7,20 +7,21 @@
                     <h2 class="section-heading">Ready to start debating?</h2>
                     <p class="slide-text-content">
                       We're excited too! Unfortunately, we have to ask you for your patience. We are busily preparing for our upcoming launch on <b>April 1st, 2016</b>.
-                      <br> <br> In order to ensure that Citizen Debate remains the premier online destination for civil political discourse, our first users will join us as part of the Early Adopter Program. At launch we'll be inviting the first 50 debaters onto the platform.
+                      <br> <br> In order to ensure that Citizen Debate remains the premier online destination for civil political discourse, our first users will join us as part of the <b>Early Adopter Program</b>. At launch we'll be inviting 50 debaters onto the platform.
                       <% if current_user %>
-                        You are currently number <span class="rank"> <%= current_user.rank %> </span> on our waiting list.
+                        <br> <br>You are currently number <span class="rank"> <%= current_user.rank %> </span> on our waiting list.
                       <% end %>
                     </p>
                 </div>
                 <div class="col-lg-6 col-sm-6">
                     <img class="mac-frame" src="https://s3-us-west-2.amazonaws.com/citizen-debate/static_images/imac_frame.png">
                     <div class="inner-image-div">
-                    <img class="behind-frame" src="https://media4.giphy.com/media/fQZX2aoRC1Tqw/200.gif" alt="">
+                      <img class="behind-frame" src="https://media4.giphy.com/media/fQZX2aoRC1Tqw/200.gif" alt="">
                     </div>
                 </div>
-            </div>
-        </div>
+            </div> <!-- end row -->
+          </div> <!-- end container -->
+        </div> <!-- end content-section a -->
       <div class="scroll-icon">
         <p>How to bump your spot in line
           <!-- <a href="#fifthSection/1" > </a>-->
@@ -30,119 +31,139 @@
   </section>
 
   <section class="vertical-scrolling">
+      <div class="content-section-a">
         <div class="container">
             <div class="row">
                 <div class="col-lg-5 col-sm-6">
-                    <img class="img-responsive" src="https://s3-us-west-2.amazonaws.com/citizen-debate/static_images/CD-example-profile-bernie.png" alt="">
+                    <img class="img-responsive img-top-padding" src="https://s3-us-west-2.amazonaws.com/citizen-debate/static_images/CD-example-profile-bernie.png" alt="">
                 </div>
                 <div class="col-lg-7 col-sm-6">
-                    <h2 class="section-heading">Complete your profile</h2>
+                    <h2 class="section-heading">Step 1: Complete your profile</h2>
                     <p class="slide-text-content">
-                       If you're really excited to be one of our first Citizen Debate users, you can boost your ranking on the wait list simply by completing your full profile, which includes selecting an avatar and sharing a brief bio. By completing your profile, you'll earn 10 <a href="#thirdSection" class="inline-link">reputation points</a>.
-                    </p>
+                       The first thing you can do to boost your ranking on the wait list and improve your chances of being selected for the <b> early adopter program </b> is to complete your full profile. Once complete, we will verify your identity by sending you a secure message via LinkedIn. Plase note that your public visible profile will always remain anonymous.
+                     </p>
+                     <div class="lead">
+                       <ul>
+                          <li class="full-page-bullets"> Earn 10 <a href="/reputation" class="inline-link">reputation points</a> for completing your full profile, including an avatar and brief bio.</li>
+                          <li class="full-page-bullets"> Earn an additional 10 <a href="/reputation" class="inline-link">reputation points</a> for verifying your identity via LinkedIn.</li>
+                        </ul>
+                      </div>
                     <h2><a href="/profiles/new" class="btn btn-default btn-large">Setup profile</a></h2>
                 </div>
-            </div>
-        </div>
+            </div> <!-- end row -->
+          </div> <!-- end container -->
+        </div> <!-- end content-section a -->
   </section>
 
   <section class="vertical-scrolling">
+      <div class="content-section-a">
         <div class="container">
             <div class="row">
                 <div class="col-lg-7 col-sm-6">
-                    <h2 class="section-heading">What are reputation points?</h2>
-                    <h3>Reputation points reward you for your civility and active engagement with the community.</h3>
+                    <h2 class="section-heading">Step 2: Share your feedback</h2>
                     <p class="slide-text-content">
-                      Earning reputation points helps you "climb the ladder" and secure your spot as one of the first Citizen Debaters.
-                      <ul>
-                        <li> Complete your profile: 10 reputation points </li>
-                        <li> Propose a debate prompt: 5 reputation points </li>
-                        <li> Invite up to 5 friends: 15 reputation points </li>
-                      </ul>
-                    </p>
+                       When creating your profile, you have the option to provide both quantitative and qualitative feedback about the platform. As an early adopter, your feedback is crucial to us as we prepare for a public launch.
+                     </p>
+                     <div class="lead">
+                       <ul>
+                          <li class="full-page-bullets"> Earn <b> 5 points </b> for answering the quantitative feedback questions.</li>
+                          <li class="full-page-bullets"> Earn an <b> additional 10 points </b> for providing qualitative feedback. Additionally, if you encounter any bugs or vulnerabilities, please feel free to email us directly at <a href="mailto:citizen.debate.16@gmail.com">citizen.debate.16@gmail.com</a>.</li>
+                        </ul>
+                      </div>
+                    <h4><a href="/profiles/new" class="btn btn-default">Enter feedback</a></h4>
                 </div>
                 <div class="col-lg-5 col-sm-6">
-                    <img class="img-responsive" src="https://s3-us-west-2.amazonaws.com/citizen-debate/static_images/CD-climb-the-ladder.png" alt="">
+                    <img class="img-responsive img-top-padding" src="https://s3-us-west-2.amazonaws.com/citizen-debate/static_images/CD-climb-the-ladder.png" alt="">
                 </div>
-            </div>
-        </div>
+            </div> <!-- end row -->
+          </div> <!-- end container -->
+        </div> <!-- end content-section a -->
   </section>
   <section class="vertical-scrolling">
-    <div class="container">
+    <div class="content-section-a">
+      <div class="container">
             <div class="row">
-                <div class="col-lg-5 col-sm-6 example-prompt-container">
-                  <h1 class="debate-resolution"> DEBATE RESOLUTION: </h1>
+                <div class="col-lg-6 col-sm-6">
+                  <div class="debate-topics-slider">
+                    <!-- INSERT SLIDER -->
                     <h2 class="example-prompts">
-                <div id="activityCarousel" class=" slide" data-ride="carousel" data-interval="3000">
-                  <div class="carousel-inner" role="listbox">
-                    <div class="item active">
-                      <div class="">
-                        <span>The Senate should hold confirmation hearings for Merrick Garland.</span>
+                      <div id="activityCarousel" class=" slide" data-ride="carousel" data-interval="3000">
+                        <div class="carousel-inner" role="listbox">
+                          <div class="item active">
+                              <span>The Senate should hold confirmation hearings for Merrick Garland.</span><br>
+                                <a href="/topics" class="btn btn-default btn-vote"> Vote Now </a>
+                          </div>
+                          <div class="item">
+                              <span>Apple should build a software update to allow FBI access to suspects' iPhones.</span><br>
+                              <a href="/topics" class="btn btn-default btn-vote"> Vote Now </a>
+                          </div>
+                          <div class="item">
+                              <span>The US should build a wall along the Mexican border.</span><br>
+                              <a href="/topics" class="btn btn-default btn-vote"> Vote Now </a>
+                          </div>
+                          <div class="item">
+                              <span>The US should increase the minimum wage to $15.</span><br>
+                              <a href="/topics" class="btn btn-default btn-vote"> Vote Now </a>
+                          </div>
+                          <div class="item">
+                              <span>Background checks should be required in order to purchase a gun.</span><br>
+                              <a href="/topics" class="btn btn-default btn-vote"> Vote Now </a>
+                          </div>
+                          <div class="item">
+                              <span>Abortion should be illegal.</span><br>
+                              <a href="/topics" class="btn btn-default btn-vote"> Vote Now </a>
+                          </div>
+                          <div class="item">
+                              <span>Free trade is harmful to the creation of jobs in the US.</span><br>
+                              <a href="/topics" class="btn btn-default btn-vote"> Vote Now </a>
+                          </div>
+                        </div>
                       </div>
+                    </h2>
+                    <!-- END INNER SLIDER -->
+                </div> <!-- END DEBATE TOICS SLIDER SHELL -->
+                    <div class="inner-image-div">
+                      <img class="ipad-frame img img-responsive" src="https://docs.google.com/drawings/d/1jR2Rx_EKmYsWyj3M5nGZz3Jzd9HeRjslSjn0RauAPKg/pub?w=796&h=659" alt="">
                     </div>
-                    <div class="item">
-                      <div class="">
-                        <span>Apple should build a software update to allow FBI access to suspects' iPhones.</span>
-                      </div>
-                    </div>
-                    <div class="item">
-                      <div class="">
-                        <span>The US should build a wall along the Mexican border.</span>
-                      </div>
-                    </div>
-                    <div class="item">
-                      <div class="">
-                        <span>The US should increase the minimum wage to $15.</span>
-                      </div>
-                    </div>
-                    <div class="item">
-                      <div class="">
-                        <span>Background checks should be required in order to purchase a gun.</span>
-                      </div>
-                    </div>
-                    <div class="item">
-                      <div class="">
-                        <span>Abortion should be illegal.</span>
-                      </div>
-                    </div>
-                    <div class="item">
-                      <div class="">
-                        <span>Free trade is harmful to the creation of jobs in the US.</span>
-                      </div>
-                    </div>
-                  </div>
                 </div>
-                <a href="/topics" class="btn btn-default"> You decide </a>
-              </h2>
-                </div>
-                <div class="col-lg-7 col-sm-6">
-                    <h2 class="section-heading">Vote on popular debate prompts</h2>
+                <div class="col-lg-6 col-sm-6">
+                    <h2 class="section-heading">Step 3: Browse debate topics</h2>
                     <p class="slide-text-content">
-                       TEXT ABOUT INSERTING A NEW TOPIC
-                    </p>
-                    <h2><a href="#" class="btn btn-default btn-large">Submit your own topic</a></h2>
+                       During the Early Adopter Program, each user can submit up to two debate prompts, and can vote on previously submitted prompts. See what topics your fellow debaters have already proposed, and tell us what you are most passionate about.
+                     </p>
+                     <div class="lead">
+                       <ul>
+                          <li class="full-page-bullets"> Earn <b> 2 points </b> for each debate topic you submit.</li>
+                        </ul>
+                      </div>
+                    <h4><a href="/topics/new" class="btn btn-default">Submit a new debate topic</a></h4>
                 </div>
-            </div>
-        </div>
+            </div> <!-- end row -->
+          </div> <!-- end container -->
+        </div> <!-- end content-section a -->
   </section>
   <section class="vertical-scrolling">
+      <div class="content-section-a">
         <div class="container">
             <div class="row">
                 <div class="col-lg-7 col-sm-6">
                     <h2 class="section-heading">Invite your friends</h2>
-                    <p class="slide-text-content">
-                      INSERT EMAIL CAPTURE FORM
-                      *caveat that points will be awarded only if friends actually signup, 3 points per friend
-                    </p>
+                      <p class="slide-text-content">
+                       Help us spread the word by sharing Citizen Debate on your favorite social network. We anticipate expanding the Early Adopter Program to a full public beta in advance of the Democratic and Republican conventions in July. Be sure to tag @citizen_debate in your post so we can be sure to credit your account with the appropriate reputation points.
+                      </p>
+                     <div class="lead">
+                       <ul>
+                          <li class="full-page-bullets"> Earn <b> 15 points </b> for public posting to either Facebook, Twitter, or Instagram <br><em>(one per account, please don't spam your friends multiple times)</em>.</li>
+                          <li class="full-page-bullets"> Earn <b> ONE MILLION POINTS </b> for posting to Google+. <br> <em> (Jokes. We'll still give you  15 points, but let's focus on what matters.) </em></li>
+                        </ul>
+                      </div>
+                    <h4><a href="/profiles/new" class="btn btn-default">Enter feedback</a></h4>
                 </div>
                 <div class="col-lg-5 col-sm-6">
-                    <img class="img-responsive" src="https://s3-us-west-2.amazonaws.com/citizen-debate/static_images/CD-share.png" alt="">
+                    <img class="img-responsive img-top-padding" src="https://s3-us-west-2.amazonaws.com/citizen-debate/static_images/CD-share.png" alt="">
                 </div>
-            </div>
-        </div>
+            </div> <!-- end row -->
+          </div> <!-- end container -->
+        </div> <!-- end content-section a -->
   </section>
 </div>
-<!-- LOAD FULLPAGE JS ONLY ON THIS PAGE -->
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.6.6/jquery.fullPage.min.js"></script>
- -->

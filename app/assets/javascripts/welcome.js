@@ -17,53 +17,54 @@ $(document).ready(function(){
 
   // fullpage customization
   $('#fullpage').fullpage({
-    sectionsColor: ['#f6f6f6', '#f6f6f6', '#f6f6f6', '#f6f6f6', '#f6f6f6','#f6f6f6','#f6f6f6','#f6f6f6','#f6f6f6'],
+    sectionsColor: ['#f6f6f6', '#f6f6f6', '#f6f6f6', '#f6f6f6', '#f6f6f6'],
     sectionSelector: '.vertical-scrolling',
     slideSelector: '.horizontal-scrolling',
     navigation: true,
     slidesNavigation: true,
     css3: true,
     controlArrows: false,
-    anchors: ['firstSection', 'secondSection', 'thirdSection', 'fourthSection', 'fifthSection','sixthSection','seventhSection','eighthSection','ninthSection'],
+    anchors: ['firstSection', 'secondSection', 'thirdSection', 'fourthSection', 'fifthSection'],
 
     afterLoad: function(anchorLink, index) {
       $header_top.css('background', 'rgba(0, 47, 77, .3)');
       $nav.css('background', 'rgba(0, 47, 77, .25)');
-      if (index == 5) {
-          $('#fp-nav').hide();
-        }
+      // if (index == 5) {
+      //     $('#fp-nav').hide();
+      //   }
     },
 
-    onLeave: function(index, nextIndex, direction) {
-      if(index == 5) {
-        $('#fp-nav').show();
-      }
-    },
+// HACKY SHIT: commented functions below in attempt to debug the quirky opposite slider behavior, which seems to be happening after a pause of at least 3 secs on one slide.
+    // onLeave: function(index, nextIndex, direction) {
+    //   if(index == 5) {
+    //     $('#fp-nav').show();
+    //   }
+    // },
 
-    afterSlideLoad: function( anchorLink, index, slideAnchor, slideIndex) {
-      if(anchorLink == 'fifthSection' && slideIndex == 1) {
-        $.fn.fullpage.setAllowScrolling(false, 'up');
-        $header_top.css('background', 'transparent');
-        $nav.css('background', 'transparent');
-        $(this).css('background', '#374140');
-        $(this).find('h2').css('color', 'white');
-        $(this).find('h3').css('color', 'white');
-        $(this).find('p').css(
-          {
-            'color': '#DC3522',
-            'opacity': 1,
-            'transform': 'translateY(0)'
-          }
-        );
-      }
-    },
+    // afterSlideLoad: function( anchorLink, index, slideAnchor, slideIndex) {
+    //   if(anchorLink == 'fifthSection' && slideIndex == 1) {
+    //     $.fn.fullpage.setAllowScrolling(false, 'up');
+    //     $header_top.css('background', 'transparent');
+    //     $nav.css('background', 'transparent');
+    //     $(this).css('background', '#374140');
+    //     $(this).find('h2').css('color', 'white');
+    //     $(this).find('h3').css('color', 'white');
+    //     $(this).find('p').css(
+    //       {
+    //         'color': '#DC3522',
+    //         'opacity': 1,
+    //         'transform': 'translateY(0)'
+    //       }
+    //     );
+    //   }
+    // },
 
-    onSlideLeave: function( anchorLink, index, slideIndex, direction) {
-      if(anchorLink == 'fifthSection' && slideIndex == 1) {
-        $.fn.fullpage.setAllowScrolling(true, 'up');
-        $header_top.css('background', 'rgba(0, 47, 77, .3)');
-        $nav.css('background', 'rgba(0, 47, 77, .25)');
-      }
-    }
+    // onSlideLeave: function( anchorLink, index, slideIndex, direction) {
+    //   if(anchorLink == 'fifthSection' && slideIndex == 1) {
+    //     $.fn.fullpage.setAllowScrolling(true, 'up');
+    //     $header_top.css('background', 'rgba(0, 47, 77, .3)');
+    //     $nav.css('background', 'rgba(0, 47, 77, .25)');
+    //   }
+    // }
   });
 });
