@@ -65,15 +65,12 @@ end
 Profile.last.update_rank
 
 topics_array = [
-  "Should Apple build a software update to allow FBI access to suspects’ iPhones?",
+  "Should Bernie Sanders supporters in California register for the Republican primary to vote against Trump?",
   "Should the Senate hold confirmation hearings for Merrick Garland as the next Supreme Court justice?",
-  "Should the government increase taxes wealthy citizens who earning > $250K/yr?",
-  "Should the government overturn Obamacare?",
-  "Should abortion be legal?",
-  "Should background checks be required in order to purchase a gun?",
-  "Should same-sex marriage be legal?",
-  "Is free trade harmful or beneficial to the creation of jobs in the US?",
-  "Should the US increase the minimum wage to $15?",
+  "Would raising the minimum wage to $15 have a positive impact on GDP?",
+  "Has the affordable care act caused measurable harm to small businesses?",
+  "Does the incidence of mass shootings decline in countries that have passed gun control legislation?",
+  "Has the NAFTA free trade agreement been harmful to the US employment rate?",
   "Should the US build a wall along the Mexican border?",
 ]
 
