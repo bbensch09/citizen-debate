@@ -37,7 +37,7 @@ User.create!({
       verification_status: ["not yet verified","verified"].sample
     })
 
-20.times do
+5.times do
   User.create!({
       email: Faker::Internet.safe_email,
       password: 'password'

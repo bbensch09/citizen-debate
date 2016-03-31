@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   # Need to activate Omniauthabl to use FB still :omniauthable
   # Also need to reactivate :confirmable to resume email confirmations
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable, :lockable, :timeoutable#, :confirmable
+         :recoverable, :rememberable, :trackable, :validatable, :lockable, :timeoutable, :confirmable
 
   def self.to_csv
     attributes = %w{id email created_at}

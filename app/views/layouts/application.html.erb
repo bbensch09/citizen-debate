@@ -42,12 +42,13 @@
 
 </head>
 <body>
-  <div class="warning-overlays">
+<!--   <div class="warning-overlays">
     <h3 class="alert-danger">
       Attention - Citizen Debate is actively under development. Any profile information you create now may be removed when we launch our upcoming public beta in the coming weeks.
     </h3>
   </div>
-  <nav class="navbar navbar-default sticky-header">
+ -->
+ <nav class="navbar navbar-default sticky-header">
     <div class="container-nav">
       <!-- Brand and toggle get grouped for better mobile display -->
       <div class="navbar-header">
@@ -87,8 +88,10 @@
   </nav>
 <div id="flash-notice-overlays">
     <% if notice || alert %>
-        <p id="notice"><%= notice %></p>
-        <p class="alert-danger"><%= alert %></p>
+      <div class="alert alert-warning" role="alert">
+          <%= notice %>
+          <%= alert %>
+      </div
     <%end%>
     <% if flash[:success] %>
     <div class="alert alert-success" role="alert">
