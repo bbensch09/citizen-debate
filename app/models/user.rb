@@ -9,6 +9,16 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :lockable, :timeoutable#, :confirmable
 
+  def self.to_csv
+    attributes = %w{id email created_at}
+    CSV.generate(headers: true) do |csv|
+      csv << attributes
+      all.each do |user|
+        csv << attributes.map{ |attr| user.send(attr)}
+      end
+    end
+  end
+
   def time_since_created
     time_elapsed = ((Time.now - created_at.to_time) / (60*60*24)).round
       if time_elapsed < 1
@@ -25,4 +35,5 @@ class User < ActiveRecord::Base
       return self.profile.rank
     end
   end
+
 end

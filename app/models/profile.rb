@@ -11,6 +11,19 @@ class Profile < ActiveRecord::Base
   validates :first_name, :last_name, :city, :state, :age, :about_me, :display_name, :political_affiliation, :linkedin_profile,
     presence: true
 
+  def self.to_csv
+    attributes = %w{id first_name last_name display_name email city state age political_affiliation points snippets nps pmf created_at}
+    CSV.generate(headers: true) do |csv|
+      csv << attributes
+      all.each do |profile|
+        csv << attributes.map{ |attr| profile.send(attr)}
+      end
+    end
+  end
+
+  def email
+    self.user.email
+  end
 
   def profile_bonus
     profile_bonus = 0

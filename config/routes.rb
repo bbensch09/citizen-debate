@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   devise_for :users
 
   get '/admin_index' => 'profiles#admin_index'
+  get '/admin_users' => 'profiles#admin_users'
   get '/pre_launch' => 'welcome#pre_launch'
   get '/debate_format' => 'about#debate_format'
   get '/reputation' => 'about#reputation'

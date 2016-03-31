@@ -6,10 +6,25 @@ class ProfilesController < ApplicationController
   def admin_index
     if current_user.email == "bbensch@gmail.com"
       @profiles = Profile.all
-      render 'admin_index'
+      respond_to do |format|
+          format.html
+          format.csv { send_data @profiles.to_csv, filename: "profiles-#{Date.today}.csv" }
+        end
     else
       @profiles = Profile.where(user_id:current_user.id)
       render 'index'
+    end
+  end
+
+  def admin_users
+    if current_user.email == "bbensch@gmail.com"
+      @users = User.all
+      respond_to do |format|
+          format.html
+          format.csv { send_data @users.to_csv, filename: "users-#{Date.today}.csv" }
+        end
+    else
+      render :file => "#{Rails.root}/public/404", :layout => false, :status => :not_found
     end
   end
 
