@@ -126,3 +126,17 @@ footer {
   font-size: 1.5em;
   line-height: 1.5;
 }
+.warning-overlays{
+  z-index: 100;
+  position: absolute;
+  top: 50px;
+  clear: both;
+  background-color: #F6F6F6;
+  text-align: center;
+  width: 100%;
+  max-width: 1600px;
+}
+h3.alert-danger{
+  margin-top:0;
+  margin-bottom:0;
+}
