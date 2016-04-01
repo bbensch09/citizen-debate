@@ -82,3 +82,7 @@ p.faq-text{
 .section-heading{
   font-size:1.6em;
 }
+footer div div ul li a {
+  pointer-events: auto !important;
+  cursor: default;
+}

@@ -20,6 +20,8 @@ Rails.application.routes.draw do
   get '/reputation' => 'about#reputation'
   get '/faqs' => 'about#faqs'
   get '/about_us' => 'about#about_us'
+  get '/privacy_policy' =>'about#privacy_policy'
+  get '/terms_of_service' =>'about#terms_of_service'
   # HACKY SHIT
   get '/test' => 'profiles#test_page'
   # The priority is based upon order of creation: first created -> highest priority.
