@@ -38,8 +38,9 @@ User.create!({
     })
 
 5.times do
+  number = User.count + 1
   User.create!({
-      email: Faker::Internet.safe_email,
+      email: "citizen.debate.16+test#{number}",
       password: 'password'
     })
   Profile.create!({
