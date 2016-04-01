@@ -82,7 +82,8 @@ p.faq-text{
 .section-heading{
   font-size:1.6em;
 }
-footer div div ul li a {
-  pointer-events: auto !important;
-  cursor: default;
+footer, footer a, footer a:visited {
+  color: #4285F4;
+  z-index: 1 !important;
+
 }
