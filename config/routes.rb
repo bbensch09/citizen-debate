@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+  resources :civility_votes
+  resources :debate_votes
+  resources :messages
+  resources :rounds
+  resources :verdicts
+  resources :debates
+  resources :debaters
+  resources :judges
   resources :profiles do
     member do
       post :verify

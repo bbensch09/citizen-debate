@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Author:</strong>
+  <%= @message.author_id %>
+</p>
+
+<p>
+  <strong>Message content:</strong>
+  <%= @message.message_content %>
+</p>
+
+<p>
+  <strong>Round:</strong>
+  <%= @message.round_id %>
+</p>
+
+<p>
+  <strong>Unread:</strong>
+  <%= @message.unread %>
+</p>
+
+<%= link_to 'Edit', edit_message_path(@message) %> |
+<%= link_to 'Back', messages_path %>

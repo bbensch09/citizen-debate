@@ -1,0 +1,41 @@
+<%= form_for(@verdict) do |f| %>
+  <% if @verdict.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@verdict.errors.count, "error") %> prohibited this verdict from being saved:</h2>
+
+      <ul>
+      <% @verdict.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :status %><br>
+    <%= f.text_field :status %>
+  </div>
+  <div class="field">
+    <%= f.label :opinion_left %><br>
+    <%= f.text_field :opinion_left %>
+  </div>
+  <div class="field">
+    <%= f.label :opinion_right %><br>
+    <%= f.text_field :opinion_right %>
+  </div>
+  <div class="field">
+    <%= f.label :winner %><br>
+    <%= f.number_field :winner %>
+  </div>
+  <div class="field">
+    <%= f.label :confirmed_judges %><br>
+    <%= f.text_field :confirmed_judges %>
+  </div>
+  <div class="field">
+    <%= f.label :confirmed_public %><br>
+    <%= f.text_field :confirmed_public %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @verdict.status %>
+</p>
+
+<p>
+  <strong>Opinion left:</strong>
+  <%= @verdict.opinion_left %>
+</p>
+
+<p>
+  <strong>Opinion right:</strong>
+  <%= @verdict.opinion_right %>
+</p>
+
+<p>
+  <strong>Winner:</strong>
+  <%= @verdict.winner %>
+</p>
+
+<p>
+  <strong>Confirmed judges:</strong>
+  <%= @verdict.confirmed_judges %>
+</p>
+
+<p>
+  <strong>Confirmed public:</strong>
+  <%= @verdict.confirmed_public %>
+</p>
+
+<%= link_to 'Edit', edit_verdict_path(@verdict) %> |
+<%= link_to 'Back', verdicts_path %>

@@ -37,10 +37,10 @@ User.create!({
       verification_status: ["not yet verified","verified"].sample
     })
 
-5.times do
+3.times do
   number = User.count + 1
   User.create!({
-      email: "citizen.debate.16+test#{number}",
+      email: "citizen.debate.16+test#{number}@gmail.com",
       password: 'password'
     })
   Profile.create!({

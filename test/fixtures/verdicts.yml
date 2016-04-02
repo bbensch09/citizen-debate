@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  status: MyString
+  opinion_left: MyString
+  opinion_right: MyString
+  winner: 1
+  confirmed_judges: MyString
+  confirmed_public: MyString
+
+two:
+  status: MyString
+  opinion_left: MyString
+  opinion_right: MyString
+  winner: 1
+  confirmed_judges: MyString
+  confirmed_public: MyString

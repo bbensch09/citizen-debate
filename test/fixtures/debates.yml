@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  affirmative_id: 1
+  negative_id: 1
+  judge_left_id: 1
+  judge_right_id: 1
+  status: MyString
+  start_date: 2016-04-01
+  start_time: 2016-04-01 17:08:02
+  verdict_id: 1
+  topic_id: 1
+
+two:
+  affirmative_id: 1
+  negative_id: 1
+  judge_left_id: 1
+  judge_right_id: 1
+  status: MyString
+  start_date: 2016-04-01
+  start_time: 2016-04-01 17:08:02
+  verdict_id: 1
+  topic_id: 1
