@@ -3,11 +3,12 @@ class User < ActiveRecord::Base
   has_many :topics
   has_many :topic_votes, class_name: "TopicVote", foreign_key: "voter_id"
   has_one :profile
+  has_one :judge
   # Include default devise modules. Others available are:
   # Need to activate Omniauthabl to use FB still :omniauthable
   # Also need to reactivate :confirmable to resume email confirmations
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable, :lockable, :timeoutable, :confirmable
+         :recoverable, :rememberable, :trackable, :validatable, :lockable, :timeoutable#, :confirmable
 
   def self.to_csv
     attributes = %w{id email created_at}
