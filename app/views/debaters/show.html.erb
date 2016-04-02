@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @debater.user_id %>
+</p>
+
+<p>
+  <strong>Record:</strong>
+  <%= @debater.record %>
+</p>
+
+<%= link_to 'Edit', edit_debater_path(@debater) %> |
+<%= link_to 'Back', debaters_path %>

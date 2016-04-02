@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+  resources :civility_votes
+  resources :debate_votes
+  resources :messages
+  resources :rounds
+  resources :verdicts
+  resources :debates
+  resources :debaters
+  resources :judges
   resources :profiles do
     member do
       post :verify
@@ -14,11 +22,14 @@ Rails.application.routes.draw do
   devise_for :users
 
   get '/admin_index' => 'profiles#admin_index'
+  get '/admin_users' => 'profiles#admin_users'
   get '/pre_launch' => 'welcome#pre_launch'
   get '/debate_format' => 'about#debate_format'
   get '/reputation' => 'about#reputation'
   get '/faqs' => 'about#faqs'
   get '/about_us' => 'about#about_us'
+  get '/privacy_policy' =>'about#privacy_policy'
+  get '/terms_of_service' =>'about#terms_of_service'
   # HACKY SHIT
   get '/test' => 'profiles#test_page'
   # The priority is based upon order of creation: first created -> highest priority.

@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Judges</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Slant profile</th>
+      <th>Slant historical</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @judges.each do |judge| %>
+      <tr>
+        <td><%= judge.user_id %></td>
+        <td><%= judge.slant_profile %></td>
+        <td><%= judge.slant_historical %></td>
+        <td><%= link_to 'Show', judge %></td>
+        <td><%= link_to 'Edit', edit_judge_path(judge) %></td>
+        <td><%= link_to 'Destroy', judge, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Judge', new_judge_path %>

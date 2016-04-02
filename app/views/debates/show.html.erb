@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Affirmative:</strong>
+  <%= @debate.affirmative_id %>
+</p>
+
+<p>
+  <strong>Negative:</strong>
+  <%= @debate.negative_id %>
+</p>
+
+<p>
+  <strong>Judge left:</strong>
+  <%= @debate.judge_left_id %>
+</p>
+
+<p>
+  <strong>Judge right:</strong>
+  <%= @debate.judge_right_id %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @debate.status %>
+</p>
+
+<p>
+  <strong>Start date:</strong>
+  <%= @debate.start_date %>
+</p>
+
+<p>
+  <strong>Start time:</strong>
+  <%= @debate.start_time %>
+</p>
+
+<p>
+  <strong>Verdict:</strong>
+  <%= @debate.verdict_id %>
+</p>
+
+<p>
+  <strong>Topic:</strong>
+  <%= @debate.topic_id %>
+</p>
+
+<%= link_to 'Edit', edit_debate_path(@debate) %> |
+<%= link_to 'Back', debates_path %>

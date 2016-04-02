@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Debate:</strong>
+  <%= @round.debate_id %>
+</p>
+
+<p>
+  <strong>Round number:</strong>
+  <%= @round.round_number %>
+</p>
+
+<p>
+  <strong>Start time:</strong>
+  <%= @round.start_time %>
+</p>
+
+<p>
+  <strong>End time:</strong>
+  <%= @round.end_time %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @round.status %>
+</p>
+
+<%= link_to 'Edit', edit_round_path(@round) %> |
+<%= link_to 'Back', rounds_path %>

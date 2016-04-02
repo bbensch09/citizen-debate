@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Voter:</strong>
+  <%= @civility_vote.voter_id %>
+</p>
+
+<p>
+  <strong>Debate:</strong>
+  <%= @civility_vote.debate_id %>
+</p>
+
+<p>
+  <strong>Debater:</strong>
+  <%= @civility_vote.debater_id %>
+</p>
+
+<p>
+  <strong>Rating:</strong>
+  <%= @civility_vote.rating %>
+</p>
+
+<%= link_to 'Edit', edit_civility_vote_path(@civility_vote) %> |
+<%= link_to 'Back', civility_votes_path %>

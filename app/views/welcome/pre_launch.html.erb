@@ -8,7 +8,7 @@
                     <p class="slide-text-content">
                       We're excited too! Unfortunately, we have to ask you for your patience. We are busily preparing for our upcoming launch on <b>April 15th, 2016</b>.
                       <br> <br> Citizen Debate will initially be available to a select group of 20 registered users that will soon join us as part of the <b>Early Adopter Program</b>.
-                      <% if current_user.profile %>
+                      <% if current_user && current_user.profile %>
                         <br> <br>You are currently number <span class="rank"> <%= current_user.rank %> </span> on our <a href="/profiles" class="inline-link">wait list</a>. Learn below what you can do to move up on the wait list.
                       <% else %>
                           To be considered for this program, please start by setting up your profile.
@@ -76,7 +76,7 @@
                     <h4><a href="/profiles/new" class="btn btn-default">Submit feedback</a></h4>
                 </div>
                 <div class="col-lg-5 col-sm-6">
-                    <img class="img-responsive img-top-padding" src="https://docs.google.com/drawings/d/1H0OYak-rRtLWdkRbhdGTfAT7fNUeiXJM3emkO0K8QNE/pub?w=796&h=659" alt="">
+                    <img class="img-responsive img-top-padding" src="https://s3-us-west-2.amazonaws.com/citizen-debate/static_images/CD-feedback_loop.png" alt="">
                 </div>
             </div> <!-- end row -->
           </div> <!-- end container -->
@@ -126,7 +126,7 @@
                     <!-- END INNER SLIDER -->
                 </div> <!-- END DEBATE TOICS SLIDER SHELL -->
                     <div class="inner-image-div">
-                      <img class="ipad-frame img img-responsive" src="https://docs.google.com/drawings/d/1jR2Rx_EKmYsWyj3M5nGZz3Jzd9HeRjslSjn0RauAPKg/pub?w=796&h=659" alt="">
+                      <img class="ipad-frame img img-responsive" src="https://s3-us-west-2.amazonaws.com/citizen-debate/static_images/CD-blank_ipad.png" alt="">
                     </div>
                 </div>
                 <div class="col-lg-6 col-sm-6">

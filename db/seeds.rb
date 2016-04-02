@@ -37,9 +37,10 @@ User.create!({
       verification_status: ["not yet verified","verified"].sample
     })
 
-20.times do
+3.times do
+  number = User.count + 1
   User.create!({
-      email: Faker::Internet.safe_email,
+      email: "citizen.debate.16+test#{number}@gmail.com",
       password: 'password'
     })
   Profile.create!({
@@ -85,4 +86,56 @@ topics_array.each do |topic|
     })
 end
 
-puts "Seed file complete!"
+puts "Seed file users & profiles complete!"
+
+#Example debate
+Judge.create!({
+  id:1,
+  user_id:1,
+  slant_profile: "Liberal",
+  slant_historical: "None"
+  })
+
+Judge.create!({
+  id:2,
+  user_id:2,
+  slant_profile: "Conservative",
+  slant_historical: "None"
+  })
+
+Debate.create!({
+  affirmative_id: 3,
+  negative_id: 4,
+  judge_left_id: 1,
+  judge_right_id: 2,
+  status: "Upcoming - schedule unconfirmed",
+  topic_id: 1
+  })
+
+Round.create!({
+  debate_id: 1,
+  round_number: 1,
+  start_time: Time.now,
+  status: "upcoming"
+  })
+
+Round.create!({
+  debate_id: 1,
+  round_number: 2,
+  start_time: Time.now,
+  status: "upcoming"
+  })
+
+Round.create!({
+  debate_id: 1,
+  round_number: 3,
+  start_time: Time.now,
+  status: "upcoming"
+  })
+
+Verdict.create!({
+  status: "Pending",
+  opinion_left: "The affirmative was great!",
+  opinion_right: "The affirmative was very well prepared!",
+  winner: nil
+  })

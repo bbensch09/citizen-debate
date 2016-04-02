@@ -1,0 +1,43 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Debates</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Affirmative</th>
+      <th>Negative</th>
+      <th>Judge left</th>
+      <th>Judge right</th>
+      <th>Status</th>
+      <th>Start date</th>
+      <th>Start time</th>
+      <th>Verdict</th>
+      <th>Topic</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @debates.each do |debate| %>
+      <tr>
+        <td><%= debate.affirmative_id %></td>
+        <td><%= debate.negative_id %></td>
+        <td><%= debate.judge_left_id %></td>
+        <td><%= debate.judge_right_id %></td>
+        <td><%= debate.status %></td>
+        <td><%= debate.start_date %></td>
+        <td><%= debate.start_time %></td>
+        <td><%= debate.verdict_id %></td>
+        <td><%= debate.topic_id %></td>
+        <td><%= link_to 'Show', debate %></td>
+        <td><%= link_to 'Edit', edit_debate_path(debate) %></td>
+        <td><%= link_to 'Destroy', debate, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Debate', new_debate_path %>

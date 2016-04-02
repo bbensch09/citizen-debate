@@ -11,10 +11,65 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160320212312) do
+ActiveRecord::Schema.define(version: 20160402001708) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "civility_votes", force: :cascade do |t|
+    t.integer  "voter_id"
+    t.integer  "debate_id"
+    t.integer  "debater_id"
+    t.integer  "rating"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "debate_votes", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "vote_for"
+    t.integer  "debate_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "debaters", force: :cascade do |t|
+    t.integer  "user_id"
+    t.float    "record"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "debates", force: :cascade do |t|
+    t.integer  "affirmative_id"
+    t.integer  "negative_id"
+    t.integer  "judge_left_id"
+    t.integer  "judge_right_id"
+    t.string   "status"
+    t.date     "start_date"
+    t.datetime "start_time"
+    t.integer  "verdict_id"
+    t.integer  "topic_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  create_table "judges", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "slant_profile"
+    t.float    "slant_historical"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.integer  "author_id"
+    t.string   "message_content"
+    t.integer  "round_id"
+    t.boolean  "unread"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
 
   create_table "profiles", force: :cascade do |t|
     t.string   "first_name"
@@ -44,6 +99,16 @@ ActiveRecord::Schema.define(version: 20160320212312) do
   end
 
   add_index "profiles", ["user_id"], name: "index_profiles_on_user_id", using: :btree
+
+  create_table "rounds", force: :cascade do |t|
+    t.integer  "debate_id"
+    t.integer  "round_number"
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.string   "status"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
 
   create_table "snippets", force: :cascade do |t|
     t.string   "email"
@@ -98,5 +163,16 @@ ActiveRecord::Schema.define(version: 20160320212312) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+
+  create_table "verdicts", force: :cascade do |t|
+    t.string   "status"
+    t.string   "opinion_left"
+    t.string   "opinion_right"
+    t.integer  "winner"
+    t.string   "confirmed_judges"
+    t.string   "confirmed_public"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
 
 end

@@ -3,11 +3,22 @@ class User < ActiveRecord::Base
   has_many :topics
   has_many :topic_votes, class_name: "TopicVote", foreign_key: "voter_id"
   has_one :profile
+  has_one :judge
   # Include default devise modules. Others available are:
   # Need to activate Omniauthabl to use FB still :omniauthable
   # Also need to reactivate :confirmable to resume email confirmations
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :lockable, :timeoutable#, :confirmable
+
+  def self.to_csv
+    attributes = %w{id email created_at}
+    CSV.generate(headers: true) do |csv|
+      csv << attributes
+      all.each do |user|
+        csv << attributes.map{ |attr| user.send(attr)}
+      end
+    end
+  end
 
   def time_since_created
     time_elapsed = ((Time.now - created_at.to_time) / (60*60*24)).round
@@ -25,4 +36,5 @@ class User < ActiveRecord::Base
       return self.profile.rank
     end
   end
+
 end

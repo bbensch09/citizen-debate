@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Debate Votes</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Vote for</th>
+      <th>Debate</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @debate_votes.each do |debate_vote| %>
+      <tr>
+        <td><%= debate_vote.user_id %></td>
+        <td><%= debate_vote.vote_for %></td>
+        <td><%= debate_vote.debate_id %></td>
+        <td><%= link_to 'Show', debate_vote %></td>
+        <td><%= link_to 'Edit', edit_debate_vote_path(debate_vote) %></td>
+        <td><%= link_to 'Destroy', debate_vote, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Debate vote', new_debate_vote_path %>
