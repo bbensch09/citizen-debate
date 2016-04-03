@@ -8,9 +8,7 @@ class CreateDebates < ActiveRecord::Migration
       t.string :status
       t.date :start_date
       t.datetime :start_time
-      t.integer :verdict_id
       t.integer :topic_id
-
       t.timestamps null: false
     end
   end

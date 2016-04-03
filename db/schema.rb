@@ -34,11 +34,13 @@ ActiveRecord::Schema.define(version: 20160402001708) do
   end
 
   create_table "debaters", force: :cascade do |t|
+    t.float    "debate_record"
     t.integer  "user_id"
-    t.float    "record"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
+
+  add_index "debaters", ["user_id"], name: "index_debaters_on_user_id", using: :btree
 
   create_table "debates", force: :cascade do |t|
     t.integer  "affirmative_id"
@@ -48,19 +50,20 @@ ActiveRecord::Schema.define(version: 20160402001708) do
     t.string   "status"
     t.date     "start_date"
     t.datetime "start_time"
-    t.integer  "verdict_id"
     t.integer  "topic_id"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
   end
 
   create_table "judges", force: :cascade do |t|
-    t.integer  "user_id"
     t.string   "slant_profile"
     t.float    "slant_historical"
+    t.integer  "user_id"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
   end
+
+  add_index "judges", ["user_id"], name: "index_judges_on_user_id", using: :btree
 
   create_table "messages", force: :cascade do |t|
     t.integer  "author_id"
@@ -110,17 +113,6 @@ ActiveRecord::Schema.define(version: 20160402001708) do
     t.datetime "updated_at",   null: false
   end
 
-  create_table "snippets", force: :cascade do |t|
-    t.string   "email"
-    t.string   "body"
-    t.integer  "rating"
-    t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_index "snippets", ["user_id"], name: "index_snippets_on_user_id", using: :btree
-
   create_table "topic_votes", force: :cascade do |t|
     t.integer  "value"
     t.integer  "voter_id",   null: false
@@ -168,11 +160,14 @@ ActiveRecord::Schema.define(version: 20160402001708) do
     t.string   "status"
     t.string   "opinion_left"
     t.string   "opinion_right"
-    t.integer  "winner"
+    t.integer  "winner_id"
     t.string   "confirmed_judges"
     t.string   "confirmed_public"
+    t.integer  "debate_id"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
   end
+
+  add_index "verdicts", ["debate_id"], name: "index_verdicts_on_debate_id", using: :btree
 
 end

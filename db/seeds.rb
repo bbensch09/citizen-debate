@@ -8,9 +8,16 @@
 
 User.delete_all
 Profile.delete_all
-Snippet.delete_all
 Topic.delete_all
 TopicVote.delete_all
+Judge.delete_all
+Debater.delete_all
+Debate.delete_all
+Verdict.delete_all
+Round.delete_all
+Message.delete_all
+DebateVote.delete_all
+CivilityVote.delete_all
 
 #CREATE LIST OF OPTIONS TO RANDOMLY SELECT FROM
 age_array = (18...65).to_a
@@ -37,7 +44,7 @@ User.create!({
       verification_status: ["not yet verified","verified"].sample
     })
 
-3.times do
+5.times do
   number = User.count + 1
   User.create!({
       email: "citizen.debate.16+test#{number}@gmail.com",
@@ -88,7 +95,7 @@ end
 
 puts "Seed file users & profiles complete!"
 
-#Example debate
+#Seed Judges
 Judge.create!({
   id:1,
   user_id:1,
@@ -103,12 +110,23 @@ Judge.create!({
   slant_historical: "None"
   })
 
+#Seed debaters
+Debater.create!({
+  id:1,
+  user_id:3
+  })
+Debater.create!({
+  id:2,
+  user_id:4
+  })
+
+#Seed debate #1
 Debate.create!({
-  affirmative_id: 3,
-  negative_id: 4,
+  affirmative_id: 1,
+  negative_id: 2,
   judge_left_id: 1,
   judge_right_id: 2,
-  status: "Upcoming - schedule unconfirmed",
+  status: "Completed",
   topic_id: 1
   })
 
@@ -116,26 +134,128 @@ Round.create!({
   debate_id: 1,
   round_number: 1,
   start_time: Time.now,
-  status: "upcoming"
+  status: "Completed"
   })
 
 Round.create!({
   debate_id: 1,
   round_number: 2,
   start_time: Time.now,
-  status: "upcoming"
+  status: "Completed"
   })
 
 Round.create!({
   debate_id: 1,
   round_number: 3,
   start_time: Time.now,
-  status: "upcoming"
+  status: "Completed"
+  })
+
+Message.create!({
+  author_id:1,
+  message_content: "By the time the CA primary occurs in CA, Hillary will be the presumptive nominee with a majority of pledged delegates. Therefore CA democrats would be 'wasting' their vote to cast it for Sanders. Instead, concerned voters should vote strategically and cast their preference in the GOP primary.",
+  round_id: 1
+  })
+
+Message.create!({
+  author_id:2,
+  message_content: "Voters should vote their conscience, plain and simple.",
+  round_id: 2
+  })
+
+Message.create!({
+  author_id:1,
+  message_content: "Democracy functions best when voters are informed and maximizing their individual preferences. The way for democratic voters to do that come June 7th is to cast their vote in the GOP primary.",
+  round_id: 3
   })
 
 Verdict.create!({
-  status: "Pending",
+  debate_id: 1,
+  status: "Unanimous, pending voter confirmation.",
   opinion_left: "The affirmative was great!",
-  opinion_right: "The affirmative was very well prepared!",
-  winner: nil
+  opinion_right: "The affirmative was civil, but didn't make many compelling points.",
+  winner_id: 1
+  })
+
+#Civility votes for debater #1 (from judges and debate participants)
+CivilityVote.create!({
+  debate_id: 1,
+  debater_id: 1,
+  voter_id: 2,
+  rating: 4
+  })
+CivilityVote.create!({
+  debate_id: 1,
+  debater_id: 1,
+  voter_id: 3,
+  rating: 5
+  })
+CivilityVote.create!({
+  debate_id: 1,
+  debater_id: 1,
+  voter_id: 4,
+  rating: 4
+  })
+#Civility votes for debater #2 (from judges and debate participants)
+CivilityVote.create!({
+  debate_id: 1,
+  debater_id: 2,
+  voter_id: 1,
+  rating: 3
+  })
+CivilityVote.create!({
+  debate_id: 1,
+  debater_id: 2,
+  voter_id: 3,
+  rating: 4
+  })
+CivilityVote.create!({
+  debate_id: 1,
+  debater_id: 2,
+  voter_id: 4,
+  rating: 3
+  })
+
+#Debate votes (from non-participant users)
+DebateVote.create!({
+  user_id: 5,
+  debate_id: 1,
+  vote_for: 1
+  })
+DebateVote.create!({
+  user_id: 6,
+  debate_id: 1,
+  vote_for: 1
+  })
+
+puts "Sample debate #1 complete with judges, debaters, rounds, verdict created."
+
+###################Seed debate #2
+Debate.create!({
+  id:2,
+  affirmative_id: 1,
+  negative_id: 2,
+  judge_left_id: 1,
+  judge_right_id: 2,
+  status: "In progress",
+  topic_id: 2
+  })
+
+Round.create!({
+  debate_id: 2,
+  round_number: 1,
+  start_time: Time.now,
+  status: "In progress"
+  })
+
+Round.create!({
+  debate_id: 2,
+  round_number: 2,
+  start_time: Time.now,
+  status: "In progress"
+  })
+
+Verdict.create!({
+  debate_id: 2,
+  status: "Pending",
   })
