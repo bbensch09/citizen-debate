@@ -69,6 +69,6 @@ class DebatersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def debater_params
-      params.require(:debater).permit(:user_id, :record)
+      params.require(:debater).permit(:user_id, :debate_record)
     end
 end
