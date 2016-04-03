@@ -1,23 +1,23 @@
 <p id="notice"><%= notice %></p>
-
+<h2>Debate Details</h2>
 <p>
   <strong>Affirmative:</strong>
-  <%= @debate.affirmative_id %>
+  <%= @debate.affirmative_debater.user.profile.display_name %>
 </p>
 
 <p>
   <strong>Negative:</strong>
-  <%= @debate.negative_id %>
+  <%= @debate.negative_debater.user.profile.display_name %>
 </p>
 
 <p>
   <strong>Judge left:</strong>
-  <%= @debate.judge_left_id %>
+  <%= @debate.judge_left.user.profile.display_name %>
 </p>
 
 <p>
   <strong>Judge right:</strong>
-  <%= @debate.judge_right_id %>
+  <%= @debate.judge_left.user.profile.display_name %>
 </p>
 
 <p>
@@ -26,19 +26,23 @@
 </p>
 
 <p>
-  <strong>Start date:</strong>
+  <strong>Date:</strong>
   <%= @debate.start_date %>
 </p>
 
 <p>
-  <strong>Start time:</strong>
-  <%= @debate.start_time %>
+  <strong>Topic:</strong>
+  <%= @debate.topic.title %>
 </p>
 
-<p>
-  <strong>Topic:</strong>
-  <%= @debate.topic_id %>
-</p>
+<% @debate.rounds.each do |round| %>
+  <hr> <h3> Round #<%= round.round_number %> </h3>
+  <% round.messages.each do |message| %>
+    <h4> Author: <%= message.author.user.profile.display_name %> </h4>
+    <p> <%= message.message_content %> </p>
+  <% end %>
+<% end %>
+
 
 <%= link_to 'Edit', edit_debate_path(@debate) %> |
 <%= link_to 'Back', debates_path %>
