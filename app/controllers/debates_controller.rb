@@ -69,6 +69,6 @@ class DebatesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def debate_params
-      params.require(:debate).permit(:affirmative_id, :negative_id, :judge_left_id, :judge_right_id, :status, :start_date, :start_time, :verdict_id, :topic_id)
+      params.require(:debate).permit(:affirmative_id, :negative_id, :judge_left_id, :judge_right_id, :status, :start_date, :start_time, :topic_id)
     end
 end
