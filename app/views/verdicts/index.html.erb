@@ -8,6 +8,7 @@
       <th>Status</th>
       <th>Opinion left</th>
       <th>Opinion right</th>
+      <th>WinnerID</th>
       <th>Winner</th>
       <th>Confirmed judges</th>
       <th>Confirmed public</th>
@@ -21,7 +22,12 @@
         <td><%= verdict.status %></td>
         <td><%= verdict.opinion_left %></td>
         <td><%= verdict.opinion_right %></td>
-        <td><%= verdict.winner %></td>
+        <td><%= verdict.winner_id %></td>
+        <% if verdict.winner_id %>
+        <td><%= verdict.winner.user.profile.display_name %></td>
+        <% else %>
+        <td>TBD</td>
+        <% end %>
         <td><%= verdict.confirmed_judges %></td>
         <td><%= verdict.confirmed_public %></td>
         <td><%= link_to 'Show', verdict %></td>

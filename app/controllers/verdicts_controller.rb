@@ -69,6 +69,6 @@ class VerdictsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def verdict_params
-      params.require(:verdict).permit(:status, :opinion_left, :opinion_right, :winner, :confirmed_judges, :confirmed_public)
+      params.require(:verdict).permit(:status, :opinion_left, :opinion_right, :winner_id, :confirmed_judges, :confirmed_public)
     end
 end

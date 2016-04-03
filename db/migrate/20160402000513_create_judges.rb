@@ -4,7 +4,6 @@ class CreateJudges < ActiveRecord::Migration
       t.string :slant_profile
       t.float :slant_historical
       t.belongs_to :user, index: true
-
       t.timestamps null: false
     end
   end

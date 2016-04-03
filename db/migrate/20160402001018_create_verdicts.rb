@@ -4,9 +4,10 @@ class CreateVerdicts < ActiveRecord::Migration
       t.string :status
       t.string :opinion_left
       t.string :opinion_right
-      t.integer :winner
+      t.integer :winner_id
       t.string :confirmed_judges
       t.string :confirmed_public
+      t.belongs_to :debate, index: true
 
       t.timestamps null: false
     end

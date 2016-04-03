@@ -1,7 +1,10 @@
 // Place all the styles related to the welcome controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-
+.nav-buffer{
+    height:50px;
+    width:100%;
+}
 .lead {
     font-size: 24px;
     font-weight: 400;
@@ -26,7 +29,7 @@
 
 .intro-message {
     position: relative;
-    padding-top: 15vh;
+    padding-top: 5vh;
     color:#fff;
 }
 
@@ -681,5 +684,8 @@ a.btn{
     background-color: rgba(66, 133, 244, .3);
     color: #fff;
     max-width: 50vw;
-    margin-left: 20vw;
+}
+.civility-quote h3 {
+    text-align: left;
+    min-height: 140px;
 }

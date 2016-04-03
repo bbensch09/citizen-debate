@@ -1,6 +1,7 @@
 class Topic < ActiveRecord::Base
   belongs_to :user
   has_many :votes, :class_name => "TopicVote"
+  has_many :debates
 
   def score
     collected_votes = self.votes

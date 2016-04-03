@@ -4,7 +4,7 @@
 Rails.application.config.assets.version = '1.0'
 
 # Add additional assets to the asset load path
-%w(profiles topic_votes topics welcome application about).each do |controller|
+%w(about application civility_votes debate_votes debaters debates judges messages profiles rounds topic_votes topics verdicts welcome).each do |controller|
   Rails.application.config.assets.precompile += ["#{controller}.js", "#{controller}.css"]
 end
 
