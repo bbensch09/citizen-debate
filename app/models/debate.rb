@@ -17,4 +17,20 @@ class Debate < ActiveRecord::Base
         Judge.where("id = ? OR id = ?", self.judge_left_id, self.judge_right_id)
     end
 
+    def update_status
+        if self.rounds.count == 1 && self.rounds.first.status =="Pending"
+            self.status = "Pending"
+            self.save
+            return "This debate has not yet started."
+        elsif self.rounds.count >=7 && self.rounds.last.status =="Completed"
+            self.status = "Completed"
+            self.save
+            return "This debate has ended."
+        else
+            self.status = "Active"
+            self.save
+            return "This debate is still on-going."
+        end
+    end
+
 end
