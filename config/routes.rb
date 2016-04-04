@@ -2,7 +2,11 @@ Rails.application.routes.draw do
   resources :civility_votes
   resources :debate_votes
   resources :messages
-  resources :rounds
+  resources :rounds do
+    member do
+      post :start_first_round
+    end
+  end
   resources :verdicts
   resources :debates
   resources :debaters

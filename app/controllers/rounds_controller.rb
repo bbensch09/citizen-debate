@@ -1,6 +1,14 @@
 class RoundsController < ApplicationController
   before_action :set_round, only: [:show, :edit, :update, :destroy]
 
+  def start_first_round
+    @round = Round.find(params[:id])
+    @round.start_time = Time.now
+    @round.status = "Active"
+    @round.save
+    redirect_to @round.debate
+  end
+
   # GET /rounds
   # GET /rounds.json
   def index
