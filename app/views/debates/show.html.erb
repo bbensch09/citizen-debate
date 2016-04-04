@@ -40,8 +40,14 @@
 <% @debate.rounds.each do |round| %>
   <hr> <h3> Round #<%= round.round_number %> </h3>
   <% round.messages.each do |message| %>
+    <% if message.author.user.id = current_user.id %>
+          <div class="highlight">
+      <% else %>
+          <div>
+    <% end %>
     <h4> Author: <%= message.author.user.profile.display_name %> </h4>
     <p> <%= message.message_content %> </p>
+    </div>
   <% end %>
 <% end %>
 

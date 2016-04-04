@@ -77,7 +77,8 @@
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <% if user_signed_in? %>
-          <li>  <a class="signed-in-nav" href=# ><%= current_user.email %></a> </li>
+          <li>  <%= image_tag current_user.profile.avatar.url(:thumb), alt:"update-profile", class:"avatar-nav" %> </li>
+          <li>  <a class="signed-in-nav" href='/profiles/new' ><%= current_user.profile.display_name %></a> </li>
           <li> <%= link_to "Log out", destroy_user_session_path, :method => :delete %></li>
           <%else%>
           <li> <%= link_to 'Sign up', new_user_registration_path %></li>

@@ -1,5 +1,6 @@
 class DebatesController < ApplicationController
   before_action :set_debate, only: [:show, :edit, :update, :destroy]
+  after_action :create_first_round, only: [:create]
 
   # GET /debates
   # GET /debates.json
@@ -35,6 +36,14 @@ class DebatesController < ApplicationController
         format.json { render json: @debate.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def create_first_round
+    Round.create!({
+        debate_id: Debate.last.id,
+        round_number: 1,
+        status: "Pending"
+      })
   end
 
   # PATCH/PUT /debates/1
