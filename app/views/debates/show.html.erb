@@ -1,7 +1,5 @@
 <div class="profile-container">
-
-<p id="notice"><%= notice %></p>
-<h2>Debate Details</h2>
+  <h2>Debate Details</h2>
 <p>
   <strong>Affirmative:</strong>
   <%= @debate.affirmative_debater.user.profile.display_name %>
@@ -48,20 +46,19 @@
 <% end %>
 
 <% if current_user && (current_user == @debate.affirmative_debater.user || current_user == @debate.negative_debater.user) %>
-  <h1> Enter your response </h1>
+  <h1> Enter your response. <%= @debate.rounds.last.time_remaining %> </h1>
   <% @message = Message.new %>
   <%= form_for(@message) do |f| %>
-  <% if @message.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@message.errors.count, "error") %> prohibited this message from being saved:</h2>
-      <ul>
-      <% @message.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+      <% if @message.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@message.errors.count, "error") %> prohibited this message from being saved:</h2>
+          <ul>
+          <% @message.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
+        </div>
       <% end %>
-      </ul>
-    </div>
-  <% end %>
-
   <div class="field">
     <%= f.label :message_content %><br>
     <%= f.text_area :message_content, size: "50x2" %>
@@ -72,9 +69,21 @@
   <div class="actions">
     <%= f.submit %>
   </div>
-<% end %>
+  <% end %> <!-- End form for @messages -->
+  <% @round = Round.new %>
+  <%= form_for(@round) do |f| %>
+  <div class="field hidden">
+    <%= f.label :debate_id %>
+    <%= f.number_field :debate_id, value: @debate.id %>
+    <%= f.label :round_number %>
+    <%= f.number_field :round_number, value: (@debate.rounds.last.round_number + 1) %>
+  </div>
+  <div class="actions">
+    <%= f.submit "Start next round" %>
+  </div>
+<% end %> End form for starting next round
 
-<% end %>
+<% end %> <!-- End if statement for current debate participants -->
 
 <%= link_to 'Back to All Debates', debates_path %>
 </div>

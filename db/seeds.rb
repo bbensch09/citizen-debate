@@ -58,7 +58,7 @@ User.create!({
       state: Faker::Address.state_abbr,
       age: age_array.sample,
       about_me: Faker::Hacker.say_something_smart,
-      display_name: Faker::Internet.user_name,
+      display_name: "seed_user_#{number}",
       political_affiliation: political_affiliation_array.sample,
       snippets: Faker::Hacker.say_something_smart,
       nps: rand(1..10),
