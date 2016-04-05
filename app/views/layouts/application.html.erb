@@ -43,11 +43,11 @@
 
 </head>
 <body>
-  <div class="warning-overlays">
+<!--   <div class="warning-overlays">
     <h3 class="alert-danger">
       Attention - Citizen Debate is actively under development. Any profile information you create now may be removed when we launch our upcoming public beta in the coming weeks.
     </h3>
-  </div>
+  </div> -->
 
  <nav class="navbar navbar-default sticky-header">
     <div class="container-nav">
@@ -68,16 +68,17 @@
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
           <li><a href="/pre_launch">Early Adopter Program</a></li>
-          <li><a href="/profiles">The Wait List</a></li>
+          <li><a href="/profiles">Leaderboard</a></li>
           <li><a href="/profiles/new">Your Profile </a></li>
           <li> <a href="/topics" > Topics</a></li>
-          <li> <a href="/debate_format" > Debate Format</a></li>
+          <li> <a href="/debates" > Popular Debates</a></li>
           <li> <a href="/reputation" > Reputation points</a></li>
           <li><a href="/faqs">FAQs</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <% if user_signed_in? %>
-          <li>  <a class="signed-in-nav" href=# ><%= current_user.email %></a> </li>
+          <li>  <%= image_tag current_user.profile.avatar.url(:thumb), alt:"update-profile", class:"avatar-nav" %> </li>
+          <li>  <a class="signed-in-nav" href='/profiles/new' ><%= current_user.profile.display_name %></a> </li>
           <li> <%= link_to "Log out", destroy_user_session_path, :method => :delete %></li>
           <%else%>
           <li> <%= link_to 'Sign up', new_user_registration_path %></li>

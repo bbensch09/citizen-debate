@@ -1,3 +1,10 @@
 // Place all the styles related to the Debates controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.highlight-current-user{
+  background-color: rgba(66, 133, 244, .2);
+  font-style: bold;
+}
+.highlight-opponent{
+ }

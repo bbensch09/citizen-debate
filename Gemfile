@@ -65,6 +65,10 @@ gem 'omniauth-facebook'
 gem 'faker'
 gem 'hirb'
 
+# Thin web server and Faye for real-time websockets
+gem 'thin'
+gem 'faye-rails', '~> 2.0'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'

@@ -1,5 +1,18 @@
 class RoundsController < ApplicationController
   before_action :set_round, only: [:show, :edit, :update, :destroy]
+  after_action :update_debate_status, only: [:update]
+
+  def start_first_round
+    @round = Round.find(params[:id])
+    @round.start_time = Time.now
+    @round.status = "Active"
+    @round.save
+    redirect_to @round.debate
+  end
+
+  def update_debate_status
+    @round = Round.last.debate.update_status
+  end
 
   # GET /rounds
   # GET /rounds.json
@@ -28,7 +41,7 @@ class RoundsController < ApplicationController
 
     respond_to do |format|
       if @round.save
-        format.html { redirect_to @round, notice: 'Round was successfully created.' }
+        format.html { redirect_to @round.debate, notice: 'You have begun the next round.' }
         format.json { render :show, status: :created, location: @round }
       else
         format.html { render :new }
@@ -42,7 +55,7 @@ class RoundsController < ApplicationController
   def update
     respond_to do |format|
       if @round.update(round_params)
-        format.html { redirect_to @round, notice: 'Round was successfully updated.' }
+        format.html { redirect_to @round.debate, notice: 'Round was successfully updated.' }
         format.json { render :show, status: :ok, location: @round }
       else
         format.html { render :edit }

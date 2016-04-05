@@ -1,44 +1,119 @@
-<p id="notice"><%= notice %></p>
+<div class="profile-container">
+  <h2>Debate Details</h2>
 
-<p>
-  <strong>Affirmative:</strong>
-  <%= @debate.affirmative_id %>
-</p>
+  <%= render 'details' %>
 
-<p>
-  <strong>Negative:</strong>
-  <%= @debate.negative_id %>
-</p>
+<% @debate.rounds.each do |round| %>
+    <% if current_user && round.eligible_speakers.first == current_user.id %>
+          <div class="highlight-current-user">
+      <% else %>
+          <div class="highlight-opponent">
+    <% end %>
+  <hr>
+    <h3><%= round.name %> </h3>
+  <% round.messages.each do |message| %>
+    <h4>
+       <%= image_tag message.author.user.profile.avatar.url(:thumb), alt:"avatar-img", class:"avatar-nav" %>
+       <%= message.author.user.profile.display_name %>
+     </h4>
+      <%= raw(message.message_content) %>
+    </div>
+  <% end %>
+<% end %>
 
-<p>
-  <strong>Judge left:</strong>
-  <%= @debate.judge_left_id %>
-</p>
+<% if current_user && (current_user == @debate.affirmative_debater.user || current_user == @debate.negative_debater.user) %>
+  <h4>
+    <% if @debate.status == "Active" %>
+      <%= @debate.rounds.last.time_remaining %>
+    <% else %>
+      <%=@debate.update_status %>
+    <% end %>
+  </h4>
 
-<p>
-  <strong>Judge right:</strong>
-  <%= @debate.judge_right_id %>
-</p>
+<!-- Show button to affirmative debater to begin first round if debate has not yet begun -->
+  <% if @debate.rounds.last.round_number == 1  && @debate.rounds.last.status == "Pending" && @debate.affirmative_debater.user_id == current_user.id %>
+      <%= link_to 'Begin first round', start_first_round_round_path(@debate.rounds.first), method: :post, class: "btn btn-default" %>
+  <% end %>
 
-<p>
-  <strong>Status:</strong>
-  <%= @debate.status %>
-</p>
+<!-- Show input field for participant to enter their argument(s) or to finish their round if it is cross-examination -->
+  <% if @debate.rounds.last.status == "Active" && @debate.rounds.last.eligible_speakers.include?(current_user.id) %>
 
-<p>
-  <strong>Start date:</strong>
-  <%= @debate.start_date %>
-</p>
+      <!-- Only allow new messages if it is cross-examination, or if no messages have yet been submitted -->
+      <% if @debate.rounds.last.multiple_messages_per_round? || @debate.rounds.last.messages.count == 0 %>
+          <!-- Begin form for creating a new messages -->
+          <% @message = Message.new %>
+          <%= form_for(@message) do |f| %>
+              <% if @message.errors.any? %>
+                <div id="error_explanation">
+                  <h2><%= pluralize(@message.errors.count, "error") %> prohibited this message from being saved:</h2>
+                  <ul>
+                  <% @message.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                  <% end %>
+                  </ul>
+                </div>
+              <% end %>
+          <div class="field">
+            <%= f.label :message_content %><br>
+            <%= f.cktext_area :message_content, :class => "ckeditor-content", :ckeditor => {:language => 'us'} %>
+          </div>
+          <div class="hidden">
+            <%= f.number_field :round_id, value: @debate.rounds.last.id %>
+          </div>
+          <div class="actions">
+            <%= f.submit "Preview message" %>
+          </div>
+          <% end %> <!-- End form for @messages -->
+      <% else %>
+          <a href="#" class="btn btn-default">TBD: edit your message before moving on to the next round</a>
+      <% end %>
 
-<p>
-  <strong>Start time:</strong>
-  <%= @debate.start_time %>
-</p>
+      <!-- Only the initiator of a round can can end the cross examination round -->
+      <% if @debate.rounds.last.eligible_speakers.first == current_user.id %>
+          <!-- Begin form for finishing the current next round -->
+          <% @current_round = @debate.rounds.last %>
+            <%= form_for(@current_round) do |f| %>
+            <div class="field hidden">
+              <%= f.label :debate_id %>
+              <%= f.number_field :debate_id, value: @debate.id %>
+              <%= f.label :status %><br>
+              <%= f.text_field :status, value: "Completed" %>
+            </div>
+            <div class="actions">
+              <%= f.submit "Finish this round" %>
+            </div>
+            <% end %> <!-- End form for starting next round -->
+      <% end %>
+  <% end %>
 
-<p>
-  <strong>Topic:</strong>
-  <%= @debate.topic_id %>
-</p>
+<!-- Show option to start the next round if the debate is still active and the most recent round has been completed. -->
+  <% if @debate.status == "Active" && @debate.rounds.last.status == "Completed" %>
+      <% if @debate.rounds.last.next_speaker == current_user.id %>
+          <!-- Begin form for initiating the next round -->
+          <% @round = Round.new %>
+            <%= form_for(@round) do |f| %>
+            <div class="field hidden">
+              <%= f.label :debate_id %>
+              <%= f.number_field :debate_id, value: @debate.id %>
+              <%= f.label :start_time %>
+              <%= f.datetime_select :start_time, value: Time.now %>
+              <%= f.label :status %><br>
+              <%= f.text_field :status, value: "Active" %>
+              <%= f.label :round_number %>
+              <%= f.number_field :round_number, value: (@debate.rounds.last.round_number + 1) %>
+            </div>
+            <div class="actions">
+              <%= f.submit "Start next round" %>
+            </div>
+          <% end %> <!-- End form for starting next round -->
+      <% else %>
+          <h4>It is your opponent's turn next. <a href="#">Remind them</a> to start the next round.</h4>
+      <% end %>
+  <% end %>
 
-<%= link_to 'Edit', edit_debate_path(@debate) %> |
-<%= link_to 'Back', debates_path %>
+
+
+<% end %> <!-- End if statement for current debate participants -->
+
+<%= link_to 'Back to All Debates', debates_path %>
+</div>

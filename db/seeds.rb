@@ -58,7 +58,7 @@ User.create!({
       state: Faker::Address.state_abbr,
       age: age_array.sample,
       about_me: Faker::Hacker.say_something_smart,
-      display_name: Faker::Internet.user_name,
+      display_name: "seed_user_#{number}",
       political_affiliation: political_affiliation_array.sample,
       snippets: Faker::Hacker.say_something_smart,
       nps: rand(1..10),
@@ -73,6 +73,7 @@ end
 Profile.last.update_rank
 
 topics_array = [
+  "Should wealthy Americans earning >$250k per year pay more in tax?",
   "Should Bernie Sanders supporters in California register for the Republican primary to vote against Trump?",
   "Should the Senate hold confirmation hearings for Merrick Garland as the next Supreme Court justice?",
   "Would raising the minimum wage to $15 have a positive impact on GDP?",
@@ -153,19 +154,19 @@ Round.create!({
 
 Message.create!({
   author_id:1,
-  message_content: "By the time the CA primary occurs in CA, Hillary will be the presumptive nominee with a majority of pledged delegates. Therefore CA democrats would be 'wasting' their vote to cast it for Sanders. Instead, concerned voters should vote strategically and cast their preference in the GOP primary.",
+  message_content: "TO-DO: INSERT seed args from http://debatewise.org/debates/1013-we-should-dramatically-increase-the-rate-of-income-tax-paid-by-the-rich/",
   round_id: 1
   })
 
 Message.create!({
   author_id:2,
-  message_content: "Voters should vote their conscience, plain and simple.",
+  message_content: "TO-DO: INSERT seed args from http://debatewise.org/debates/1013-we-should-dramatically-increase-the-rate-of-income-tax-paid-by-the-rich/",
   round_id: 2
   })
 
 Message.create!({
   author_id:1,
-  message_content: "Democracy functions best when voters are informed and maximizing their individual preferences. The way for democratic voters to do that come June 7th is to cast their vote in the GOP primary.",
+  message_content: "TO-DO: INSERT seed args from http://debatewise.org/debates/1013-we-should-dramatically-increase-the-rate-of-income-tax-paid-by-the-rich/",
   round_id: 3
   })
 
@@ -244,18 +245,5 @@ Debate.create!({
 Round.create!({
   debate_id: 2,
   round_number: 1,
-  start_time: Time.now,
-  status: "In progress"
-  })
-
-Round.create!({
-  debate_id: 2,
-  round_number: 2,
-  start_time: Time.now,
-  status: "In progress"
-  })
-
-Verdict.create!({
-  debate_id: 2,
-  status: "Pending",
+  status: "Pending"
   })
