@@ -46,7 +46,7 @@
           <div>
     <% end %>
     <h4> Author: <%= message.author.user.profile.display_name %> </h4>
-    <p> <%= message.message_content %> </p>
+    <p> <%= raw(message.message_content) %> </p>
     </div>
   <% end %>
 <% end %>
@@ -85,13 +85,13 @@
               <% end %>
           <div class="field">
             <%= f.label :message_content %><br>
-            <%= f.text_area :message_content, size: "50x2" %>
+            <%= f.cktext_area :message_content, :class => "ckeditor-content", :ckeditor => {:language => 'us'} %>
           </div>
           <div class="hidden">
             <%= f.number_field :round_id, value: @debate.rounds.last.id %>
           </div>
           <div class="actions">
-            <%= f.submit "Submit message" %>
+            <%= f.submit "Preview message" %>
           </div>
           <% end %> <!-- End form for @messages -->
       <% else %>
