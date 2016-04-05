@@ -1,52 +1,22 @@
 <div class="profile-container">
   <h2>Debate Details</h2>
-<p>
-  <strong>Affirmative:</strong>
-  <%= @debate.affirmative_debater.user.profile.display_name %>
-  <%= image_tag @debate.affirmative_debater.user.profile.avatar.url(:thumb), alt:"avatar-img", class:"img-responsive" %>
-</p>
 
-<p>
-  <strong>Negative:</strong>
-  <%= @debate.negative_debater.user.profile.display_name %>
-  <%= image_tag @debate.negative_debater.user.profile.avatar.url(:thumb), alt:"avatar-img", class:"img-responsive" %>
-</p>
-
-<p>
-  <strong>Judge left:</strong>
-  <%= @debate.judge_left.user.profile.display_name %>
-</p>
-
-<p>
-  <strong>Judge right:</strong>
-  <%= @debate.judge_right.user.profile.display_name %>
-</p>
-
-<p>
-  <strong>Status:</strong>
-  <%= @debate.status %>
-</p>
-
-<p>
-  <strong>Date:</strong>
-  <%= @debate.start_date %>
-</p>
-
-<p>
-  <strong>Topic:</strong>
-  <%= @debate.topic.title %>
-</p>
+  <%= render 'details' %>
 
 <% @debate.rounds.each do |round| %>
-  <hr> <h3> Round #<%= round.round_number %> </h3>
-  <% round.messages.each do |message| %>
-    <% if current_user && message.author.user.id == current_user.id %>
-          <div class="highlight">
+    <% if current_user && round.eligible_speakers.first == current_user.id %>
+          <div class="highlight-current-user">
       <% else %>
-          <div>
+          <div class="highlight-opponent">
     <% end %>
-    <h4> Author: <%= message.author.user.profile.display_name %> </h4>
-    <p> <%= raw(message.message_content) %> </p>
+  <hr>
+    <h3><%= round.name %> </h3>
+  <% round.messages.each do |message| %>
+    <h4>
+       <%= image_tag message.author.user.profile.avatar.url(:thumb), alt:"avatar-img", class:"avatar-nav" %>
+       <%= message.author.user.profile.display_name %>
+     </h4>
+      <%= raw(message.message_content) %>
     </div>
   <% end %>
 <% end %>

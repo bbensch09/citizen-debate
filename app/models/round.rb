@@ -20,6 +20,26 @@ class Round < ActiveRecord::Base
     end
   end
 
+def name
+  case round_number
+  when 1
+    return "Round #1 - Affirmative opening"
+  when 2
+    return "Round #2 - Negative cross-examination"
+  when 3
+    return "Round #3 - Negative opening"
+  when 4
+    return "Round #4 - Affirmative cross-examination"
+  when 5
+    return "Round #1 - Affirmative rebuttal"
+  when 6
+    return "Round #1 - Negative rebuttal and closing"
+  when 7
+    return "Round #1 - Affirmative closing"
+  end
+
+end
+
 def multiple_messages_per_round?
   case round_number
   when 1
