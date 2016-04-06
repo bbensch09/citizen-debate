@@ -9,15 +9,17 @@
 <hr>
 <div class="panel panel-default" id="comments">
     <div class="panel-body">
-      <h3>Real-time comments</h3>
+      <h3>Current Round (real-time comments)</h3>
       <ul class="media-list">
         <li></li>
-        <%= render partial: 'debates/message', collection: @messages %>
+        <%= render partial: 'message', collection: @messages %>
       </ul>
     </div>
 </div>
-<!-- END REAL-TIME CRAP
+<!-- END REAL-TIME CRAP -->
 
+<hr>
+<h1>PREVIOUS ROUNDS BELOW (not real-time)</h1>
 <hr>
 <% @debate.rounds.each do |round| %>
     <% if current_user && round.eligible_speakers.first == current_user.id %>
@@ -28,7 +30,7 @@
   <hr>
     <h3><%= round.name %> </h3>
   <% round.messages.each do |message| %>
-    <%= render partial: 'messages/messages', locals: {message: message} %>
+    <%= render partial: 'debates/message', locals: {message: message} %>
   <% end %>
   </div>
 <% end %>

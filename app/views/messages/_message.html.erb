@@ -1,10 +1,10 @@
-<!-- HACKY SHIT - THIS PARTIAL EXISTS FOR TESTING ON THE COMMENTS#NEW VIEW AND CAN LIKELY BE DELETED LATER -->
+<!-- HACKY SHIT: Identical partial for Messages in Messages directory -->
 <li class="media comment">
-  <%= link_to image_tag(message.author.user.profile.avatar.url(:thumb), alt: "image not found", class: "media-object"),
-              message.author.user.profile.display_name, target: '_blank', class: 'pull-left' %>
   <div class="media-body">
-    <h4 class="media-heading"><%= link_to message.author.user.profile.display_name, target: '_blank' %> replied
-      <small class="text-muted">[timestamp: <%= message.created_at.strftime('%-d %B %Y, %H:%M:%S') %>]</small></h4>
+    <h4 class="media-heading">
+    <%= image_tag(message.author.user.profile.avatar.url(:thumb), alt: "image not found", class: "avatar-nav") %>
+    <%= message.author.user.profile.display_name %>
+      <small class="text-muted">posted <%= message.time_since_written %></small></h4>
     <p><%= raw(message.message_content) %></p>
   </div>
 </li>

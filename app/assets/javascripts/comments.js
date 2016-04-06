@@ -27,6 +27,7 @@ jQuery(function() {
     if (payload.message) {
       var sound_notification = new Audio('http://www.oringz.com/oringz-uploads/sounds-948-just-like-magic.mp3')
       sound_notification.play();
+      // console.log("The payload is: "+payload.message)
       return $('#comments').find('.media-list').prepend(payload.message);
     }
   });

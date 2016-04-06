@@ -1,8 +1,9 @@
 <li class="media comment">
-<%= image_tag comment.user.profile.avatar.url(:thumb), alt:"avatar-img", class:"avatar-nav" %>
   <div class="media-body">
-    <h4 class="media-heading"><%= comment.user.profile.display_name %> replied
-      <small class="text-muted">[timestamp: <%= comment.created_at.strftime('%-d %B %Y, %H:%M:%S') %>]</small></h4>
+    <h4 class="media-heading">
+      <%= image_tag comment.user.profile.avatar.url(:thumb), alt:"avatar-img", class:"avatar-nav" %>
+      <%= comment.user.profile.display_name %>
+      <small class="text-muted">posted <%= comment.time_since_written %></small></h4>
     <p><%= comment.body %></p>
   </div>
 </li>

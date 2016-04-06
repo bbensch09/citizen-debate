@@ -13,6 +13,7 @@ class DebatesController < ApplicationController
   def show
     @message = Message.new
     @messages  = Debate.last.rounds.last.messages
+    render 'show_debate'
   end
 
   # GET /debates/new

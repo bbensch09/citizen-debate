@@ -1,15 +1,15 @@
 
 <% if current_user %>
   <div class="page-header">
-    <h1>Join the discussion!</h1>
+    <h1>Easter Egg Found!</h1>
+    <h4>While the majority of this site is reservered for structured, civil conversation, this page meant for anyone and everyone to share their thoughts. Note that the admins do not regularly review this forum, so the best way to report bugs or issues is via email to <a href="citizen.debate.16@gmail.com">citizen.debate.16@gmail.com </a>, but we will monitor this page from time to time. </h4>
   </div>
 
   <%= render 'form' %>
   <div class="panel panel-default" id="comments">
     <div class="panel-body">
       <ul class="media-list">
-        <!-- %= render @comments %> -->
-        <%= render partial: 'messages/message', collection: @messages %>
+        <%= render @comments %>
       </ul>
     </div>
   </div>
