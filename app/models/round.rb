@@ -31,11 +31,11 @@ def name
   when 4
     return "Round #4 - Affirmative cross-examination"
   when 5
-    return "Round #1 - Affirmative rebuttal"
+    return "Round #5 - Affirmative rebuttal"
   when 6
-    return "Round #1 - Negative rebuttal and closing"
+    return "Round #6 - Negative rebuttal and closing"
   when 7
-    return "Round #1 - Affirmative closing"
+    return "Round #7 - Affirmative closing"
   end
 
 end

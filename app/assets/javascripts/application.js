@@ -15,4 +15,4 @@
 //= require bootstrap-sprockets
 //= require ckeditor/init
 //= require faye
-//= require messages
+//= require comments

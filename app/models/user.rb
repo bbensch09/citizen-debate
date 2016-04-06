@@ -13,6 +13,9 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :lockable, :timeoutable#, :confirmable
 
+  # HACKY SHIT
+  has_many :comments, dependent: :delete_all
+
   def self.to_csv
     attributes = %w{id email created_at}
     CSV.generate(headers: true) do |csv|

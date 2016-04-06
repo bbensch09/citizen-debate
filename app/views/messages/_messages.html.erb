@@ -1,0 +1,7 @@
+<h4>
+   <%= image_tag message.author.user.profile.avatar.url(:thumb), alt:"avatar-img", class:"avatar-nav" %>
+   <%= message.author.user.profile.display_name %>
+</h4>
+  <p>
+    <%= raw(message.message_content) %>
+  </p>

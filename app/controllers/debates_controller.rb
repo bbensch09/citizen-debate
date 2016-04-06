@@ -11,6 +11,7 @@ class DebatesController < ApplicationController
   # GET /debates/1
   # GET /debates/1.json
   def show
+    @messages  = @debate.rounds.last.messages
   end
 
   # GET /debates/new

@@ -1,0 +1,14 @@
+<div class="well">
+  <%= form_for @comment, remote: true do |f| %>
+    <div class="form-group">
+            <%= f.label :message_content %><br>
+            <%= f.text_field :message_content %>
+          </div>
+          <div class="hidden">
+            <%= f.number_field :round_id, value: @debate.rounds.last.id %>
+          </div>
+      <small class="label label-warning">Comments must be at least 10 characters.</small>
+    <%= f.submit 'Post', class: 'btn btn-primary btn-lg' %>
+    </div>
+  <% end %>
+</div>

@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :comments, only: [:new, :create]
+  get 'comments' => 'comments#new'
+
   mount Ckeditor::Engine => '/ckeditor'
   resources :civility_votes
   resources :debate_votes

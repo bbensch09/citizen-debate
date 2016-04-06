@@ -1,31 +1,26 @@
-<p>
+<div class="col-lg-6 col-md-3">
   <strong>Affirmative:</strong>
   <%= @debate.affirmative_debater.user.profile.display_name %>
   <%= image_tag @debate.affirmative_debater.user.profile.avatar.url(:thumb), alt:"avatar-img", class:"img-responsive" %>
-</p>
+</div>
 
-<p>
+<div class="col-lg-6 col-md-3">
   <strong>Negative:</strong>
   <%= @debate.negative_debater.user.profile.display_name %>
   <%= image_tag @debate.negative_debater.user.profile.avatar.url(:thumb), alt:"avatar-img", class:"img-responsive" %>
-</p>
+</div>
 
 <p>
   <strong>Judge left:</strong>
   <%= @debate.judge_left.user.profile.display_name %>
-</p>
-
-<p>
+  <br>
   <strong>Judge right:</strong>
   <%= @debate.judge_right.user.profile.display_name %>
 </p>
-
 <p>
   <strong>Status:</strong>
   <%= @debate.status %>
-</p>
-
-<p>
+  <br>
   <strong>Date:</strong>
   <%= @debate.start_date %>
 </p>
