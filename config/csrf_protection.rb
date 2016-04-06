@@ -1,3 +1,4 @@
+# HACKY SHIT --> THIS FILE ISNT BEING USED BECAUSE IT RELIES ON SESSONS WHICH WE MANAGE WITH DEVISE
 class CsrfProtection
   def incoming(message, request, callback)
     session_token = request.session['_csrf_token']

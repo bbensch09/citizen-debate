@@ -28,6 +28,7 @@ module LeanDeveloper
 
     config.middleware.delete Rack::Lock
     config.middleware.use FayeRails::Middleware, mount: '/faye', :timeout => 25
+    # HACKY SHIT --> removed Csrf protection while debugging, need to reconfigure to work with devise
     # config.middleware.use FayeRails::Middleware, extensions: [CsrfProtection.new], mount: '/faye', :timeout => 25
 
     #LOAD local ENV variables
