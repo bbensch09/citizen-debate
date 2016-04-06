@@ -1,5 +1,6 @@
+console.log("rendering create.js.erb within comments controller.")
 publisher = client.publish('/comments', {
-  message: '<%= j render @comment %>'
+  message: '<%= j render @comment %>' //replace @message with @comment
 });
 
 publisher.callback(function() {

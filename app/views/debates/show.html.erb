@@ -1,23 +1,22 @@
-<div class="profile-container">
+<div class="debate-container">
   <h2>Debate Details</h2>
 
   <%= render 'details' %>
 
 <!-- BEGIN REAL-TIME PLAYGROUND CRAP -->
-<!-- <hr>
-  % @comment = Message.new %>
-  %= render 'add_comment' %>
+<hr>
+  <%= render 'add_comment' %>
 <hr>
 <div class="panel panel-default" id="comments">
     <div class="panel-body">
       <h3>Real-time comments</h3>
       <ul class="media-list">
-        <li> </li>
-        %= render partial: 'message', collection: @messages %>
+        <li></li>
+        <%= render partial: 'debates/message', collection: @messages %>
       </ul>
     </div>
 </div>
- --><!-- END REAL-TIME CRAP -->
+<!-- END REAL-TIME CRAP
 
 <hr>
 <% @debate.rounds.each do |round| %>

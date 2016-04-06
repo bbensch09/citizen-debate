@@ -2,6 +2,8 @@ class CommentsController < ApplicationController
   def new
     @comment = Comment.new
     @comments = Comment.order('created_at DESC')
+    @message = Message.new
+    @messages  = Debate.last.rounds.last.messages
   end
 
   def create
