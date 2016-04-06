@@ -20,17 +20,8 @@
     <%= f.number_field :negative_id %>
   </div>
   <div class="field">
-    <%= f.label :judge_left_id %><br>
-    <%= f.number_field :judge_left_id %>
-  </div>
-  <div class="field">
-    <%= f.label :judge_right_id %><br>
-    <%= f.number_field :judge_right_id %>
-  </div>
-  </div>
-  <div class="field">
     <%= f.label :topic_id %><br>
-    <%= f.number_field :topic_id %>
+    <%= f.collection_select :topic_id, Topic.all, :id, :title %>
   </div>
   <div class="actions">
     <%= f.submit %>
