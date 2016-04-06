@@ -1,6 +1,7 @@
+
+<% if current_user %>
   <div class="page-header">
-    <h1>Real-time comments</h1>
-    <h2>Example image</h2>
+    <h1>Join the discussion!</h1>
   </div>
 
   <%= render 'form' %>
@@ -11,3 +12,6 @@
       </ul>
     </div>
   </div>
+<% else %>
+    <h1>You must first be sure to be logged in!</h1>
+<% end %>
