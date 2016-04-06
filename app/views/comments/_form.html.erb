@@ -2,7 +2,7 @@
   <%= form_for @comment, remote: true do |f| %>
     <div class="form-group">
       <%= f.label :body, 'Enter your comment:' %>
-      <%= f.text_area :body, rows: 4, class: 'form-control', required: true, minlength: 10 %>
+      <%= f.text_area :body, rows: 4, class: 'form-control', required: true, minlength: 2 %>
       <small class="label label-warning">Comments must be at least 10 characters.</small>
     </div>
 
