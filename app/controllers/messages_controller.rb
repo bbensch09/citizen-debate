@@ -27,7 +27,7 @@ class MessagesController < ApplicationController
     @message = Message.new(message_params)
     @message.author_id = current_user.debater.id
 
-    if @message #.round.cross_ex?
+    if @message #.round.cross_ex? #HACKY SHIT
         respond_to do |format|
           if @message.save
             format.html { redirect_to @message.round.debate, notice: 'Message was successfully created.' }
