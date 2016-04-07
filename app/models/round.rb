@@ -3,7 +3,6 @@ class Round < ActiveRecord::Base
   has_many :messages
 
   def time_remaining
-    return "The debate start time has not yet been confirmed." if start_time.nil?
     round_length = 300 #300 seconds, 5 minutes
     time_elapsed = Time.now - start_time
     time_remaining = (round_length - time_elapsed)
@@ -19,6 +18,27 @@ class Round < ActiveRecord::Base
       return "There are #{time_remaining_in_minutes} minutes and #{time_remaining_in_seconds} seconds left in this round."
     end
   end
+
+def ends_at
+  case round_number
+  when 1
+    self.end_time = self.start_time + 360 #6minutes
+  when 2
+    self.end_time = self.start_time + 120 #2minutes
+  when 3
+    self.end_time = self.start_time + 420 #7minutes
+  when 4
+    self.end_time = self.start_time + 120 #2minutes
+  when 5
+    self.end_time = self.start_time + 240 #4minutes
+  when 6
+    self.end_time = self.start_time + 360 #6minutes
+  when 7
+    self.end_time = self.start_time + 180 #3minutes
+  end
+  self.save
+  return self.end_time
+end
 
 def name
   case round_number
@@ -40,7 +60,7 @@ def name
 
 end
 
-def multiple_messages_per_round?
+def cross_ex?
   case round_number
   when 1
     return false

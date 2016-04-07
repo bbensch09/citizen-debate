@@ -1,0 +1,14 @@
+<% @round = Round.new %>
+  <%= form_for(@round) do |f| %>
+  <div class="field hidden">
+    <%= f.label :debate_id %>
+    <%= f.number_field :debate_id, value: @debate.id %>
+    <%= f.label :status %><br>
+    <%= f.text_field :status, value: "Active" %>
+    <%= f.label :round_number %>
+    <%= f.number_field :round_number, value: (@debate.rounds.last.round_number + 1) %>
+  </div>
+  <div class="actions">
+    <%= f.submit "Start next round" %>
+  </div>
+<% end %>

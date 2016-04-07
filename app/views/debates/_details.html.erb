@@ -17,15 +17,14 @@
   <strong>Judge right:</strong>
   %= @debate.judge_right.user.profile.display_name %>
 </p> -->
- <p>
-  <strong>Status:</strong>
-  <%= @debate.status %>
+ <h4>
+  <strong>Debate Status:</strong>
+  <%=@debate.update_status %>
   <br>
   <strong>Date:</strong>
   <%= @debate.start_date %>
-</p>
+</h4>
 
-<p>
-  <strong>Topic:</strong>
+<h1>
   <%= @debate.topic.title %>
-</p>
+</h1>

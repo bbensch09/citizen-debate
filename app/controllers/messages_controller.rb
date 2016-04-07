@@ -27,16 +27,27 @@ class MessagesController < ApplicationController
     @message = Message.new(message_params)
     @message.author_id = current_user.debater.id
 
-    respond_to do |format|
-      if @message.save
-        format.html { redirect_to @message.round.debate, notice: 'Message was successfully created.' }
-        format.json { render :show, status: :created, location: @message }
-        format.js
-      else
-        format.html { render :new }
-        format.json { render json: @message.errors, status: :unprocessable_entity }
-        format.js {render nothing: true}
-      end
+    if @message #.round.cross_ex?
+        respond_to do |format|
+          if @message.save
+            format.html { redirect_to @message.round.debate, notice: 'Message was successfully created.' }
+            format.json { render :show, status: :created, location: @message }
+            format.js
+          else
+            format.html { render :new }
+            format.json { render json: @message.errors, status: :unprocessable_entity }
+            format.js {render nothing: true}
+          end
+        end
+      else #for non cross_ex rounds
+        respond_to do |format|
+          if @message.save
+            format.html { redirect_to @message.round.debate, notice: 'Message was successfully created.' }
+            format.js  { redirect_to @message.round.debate, notice: 'Message was successfully created.' }
+          else
+            format.html { render :new }
+          end
+        end
     end
   end
 

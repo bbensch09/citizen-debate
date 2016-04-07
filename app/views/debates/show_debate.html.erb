@@ -3,32 +3,25 @@
 
   <%= render 'details' %>
 
-<!-- BEGIN REAL-TIME PLAYGROUND CRAP -->
-
+<!-- BEGIN LOGIC BASED ON SIGNED IN USERS & DEBATE/ROUND STAGE -->
+<% if current_user && (current_user == @debate.affirmative_debater.user || current_user == @debate.negative_debater.user) %>
+<div class="debugging">
+  <h1>The section below should only be visible to signed in users</h1>
+<!-- BEGIN REAL-TIME CONTAINER -->
 <div class="panel panel-default" id="comments">
     <div class="panel-body">
-      <h3>Current Round (real-time comments)</h3>
+      <h3><%= @debate.rounds.last.name %>
+          <% if @debate.rounds.last.end_time %>
+          ends at <%= @debate.rounds.last.ends_at.strftime('%l:%M %p') %>
+          <% end %>
+      </h3>
       <ul class="media-list">
         <li></li>
         <%= render partial: 'message', collection: @messages %>
       </ul>
     </div>
 </div>
-<!-- END REAL-TIME CRAP -->
-
-
-<!-- BEGIN LOGIC BASED ON SIGNED IN USERS & DEBATE/ROUND STAGE -->
-<div class="debugging">
-  <h1>The section below should only be visible to signed in users</h1>
-
-<% if current_user && (current_user == @debate.affirmative_debater.user || current_user == @debate.negative_debater.user) %>
-  <h4>
-    <% if @debate.status == "Active" %>
-      <%= @debate.rounds.last.time_remaining %>
-    <% else %>
-      <%=@debate.update_status %>
-    <% end %>
-  </h4>
+<!-- END REAL-TIME CONTAINTER -->
 
 <!-- Show button to affirmative debater to begin first round if debate has not yet begun -->
   <% if @debate.rounds.last.round_number == 1  && @debate.rounds.last.status == "Pending" && @debate.affirmative_debater.user_id == current_user.id %>
@@ -39,56 +32,28 @@
   <% if @debate.rounds.last.status == "Active" && @debate.rounds.last.eligible_speakers.include?(current_user.id) %>
 
       <!-- Only allow new messages if it is cross-examination, or if no messages have yet been submitted -->
-      <% if @debate.rounds.last.multiple_messages_per_round? || @debate.rounds.last.messages.count == 0 %>
-          <!-- Begin form for creating a new messages -->
-          <%= render 'add_comment' %>
-          <!-- End form for @messages -->
+      <% if @debate.rounds.last.cross_ex? || @debate.rounds.last.messages.count == 0 %>
+          <% if @debate.rounds.last.cross_ex? %>
+            <%= render 'short_response' %>
+          <% else %>
+            <%= render 'full_response' %>
+          <% end %>
       <% end %>
 
       <!-- Only the initiator of a round can can end the cross examination round -->
       <% if @debate.rounds.last.eligible_speakers.first == current_user.id %>
-          <!-- Begin form for finishing the current next round -->
-          <% @current_round = @debate.rounds.last %>
-            <%= form_for(@current_round) do |f| %>
-            <div class="field hidden">
-              <%= f.label :debate_id %>
-              <%= f.number_field :debate_id, value: @debate.id %>
-              <%= f.label :status %><br>
-              <%= f.text_field :status, value: "Completed" %>
-            </div>
-            <div class="actions">
-              <%= f.submit "Finish this round" %>
-            </div>
-            <% end %> <!-- End form for starting next round -->
+          <%= render 'finish_round' %>
       <% end %>
   <% end %>
 
 <!-- Show option to start the next round if the debate is still active and the most recent round has been completed. -->
   <% if @debate.status == "Active" && @debate.rounds.last.status == "Completed" %>
       <% if @debate.rounds.last.next_speaker == current_user.id %>
-          <!-- Begin form for initiating the next round -->
-          <% @round = Round.new %>
-            <%= form_for(@round) do |f| %>
-            <div class="field hidden">
-              <%= f.label :debate_id %>
-              <%= f.number_field :debate_id, value: @debate.id %>
-              <%= f.label :start_time %>
-              <%= f.datetime_select :start_time, value: Time.now %>
-              <%= f.label :status %><br>
-              <%= f.text_field :status, value: "Active" %>
-              <%= f.label :round_number %>
-              <%= f.number_field :round_number, value: (@debate.rounds.last.round_number + 1) %>
-            </div>
-            <div class="actions">
-              <%= f.submit "Start next round" %>
-            </div>
-          <% end %> <!-- End form for starting next round -->
-      <% else %>
-          It is your opponent's turn. If you're not sure if his turn is over, you can always <%= link_to "refresh the page", debate_path %> and you will be able to begin the next round.</h4>
+          <%= render 'start_round' %>
       <% end %>
   <% end %>
 
-  <h4>If your opponent has already responded but you don't see the message box for your next round, you simply need to <%= link_to "refresh the page", debate_path %> and you will be able to begin the next round.</h4>
+  <h4><%= link_to "Refresh page", debate_path, class: "btn btn-default" %></h4>
 
 <% end %> <!-- End if statement for current debate participants -->
 

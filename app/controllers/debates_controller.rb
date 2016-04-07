@@ -12,7 +12,7 @@ class DebatesController < ApplicationController
   # GET /debates/1.json
   def show
     @message = Message.new
-    @messages  = Debate.last.rounds.last.messages
+    @messages = @debate.rounds.last.messages
     render 'show_debate'
   end
 
@@ -29,6 +29,7 @@ class DebatesController < ApplicationController
   # POST /debates.json
   def create
     @debate = Debate.new(debate_params)
+    @debate.start_date = Date.today
 
     respond_to do |format|
       if @debate.save
