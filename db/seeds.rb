@@ -96,154 +96,137 @@ end
 
 puts "Seed file users & profiles complete!"
 
-#Seed Judges
-Judge.create!({
-  id:1,
-  user_id:1,
-  slant_profile: "Liberal",
-  slant_historical: "None"
-  })
+# #Seed Judges
+# Judge.create!({
+#   id:1,
+#   user_id:1,
+#   slant_profile: "Liberal",
+#   slant_historical: "None"
+#   })
 
-Judge.create!({
-  id:2,
-  user_id:2,
-  slant_profile: "Conservative",
-  slant_historical: "None"
-  })
+# Judge.create!({
+#   id:2,
+#   user_id:2,
+#   slant_profile: "Conservative",
+#   slant_historical: "None"
+#   })
 
-#Seed debaters
-Debater.create!({
-  id:1,
-  user_id:3
-  })
-Debater.create!({
-  id:2,
-  user_id:4
-  })
+# #Seed debaters
+# Debater.create!({
+#   id:1,
+#   user_id:3
+#   })
+# Debater.create!({
+#   id:2,
+#   user_id:4
+#   })
 
-#Seed debate #1
-Debate.create!({
-  affirmative_id: 1,
-  negative_id: 2,
-  judge_left_id: 1,
-  judge_right_id: 2,
-  status: "Completed",
-  topic_id: 1
-  })
+# #Seed debate #1
+# Debate.create!({
+#   affirmative_id: 1,
+#   negative_id: 2,
+#   judge_left_id: 1,
+#   judge_right_id: 2,
+#   status: "Completed",
+#   topic_id: 1
+#   })
 
-Round.create!({
-  debate_id: 1,
-  round_number: 1,
-  start_time: Time.now,
-  status: "Completed"
-  })
+# Round.create!({
+#   debate_id: 1,
+#   round_number: 1,
+#   start_time: Time.now,
+#   status: "Completed"
+#   })
 
-Round.create!({
-  debate_id: 1,
-  round_number: 2,
-  start_time: Time.now,
-  status: "Completed"
-  })
+# Round.create!({
+#   debate_id: 1,
+#   round_number: 2,
+#   start_time: Time.now,
+#   status: "Completed"
+#   })
 
-Round.create!({
-  debate_id: 1,
-  round_number: 3,
-  start_time: Time.now,
-  status: "Completed"
-  })
+# Round.create!({
+#   debate_id: 1,
+#   round_number: 3,
+#   start_time: Time.now,
+#   status: "Completed"
+#   })
 
-Message.create!({
-  author_id:1,
-  message_content: "TO-DO: INSERT seed args from http://debatewise.org/debates/1013-we-should-dramatically-increase-the-rate-of-income-tax-paid-by-the-rich/",
-  round_id: 1
-  })
+# Message.create!({
+#   author_id:1,
+#   message_content: "TO-DO: INSERT seed args from http://debatewise.org/debates/1013-we-should-dramatically-increase-the-rate-of-income-tax-paid-by-the-rich/",
+#   round_id: 1
+#   })
 
-Message.create!({
-  author_id:2,
-  message_content: "TO-DO: INSERT seed args from http://debatewise.org/debates/1013-we-should-dramatically-increase-the-rate-of-income-tax-paid-by-the-rich/",
-  round_id: 2
-  })
+# Message.create!({
+#   author_id:2,
+#   message_content: "TO-DO: INSERT seed args from http://debatewise.org/debates/1013-we-should-dramatically-increase-the-rate-of-income-tax-paid-by-the-rich/",
+#   round_id: 2
+#   })
 
-Message.create!({
-  author_id:1,
-  message_content: "TO-DO: INSERT seed args from http://debatewise.org/debates/1013-we-should-dramatically-increase-the-rate-of-income-tax-paid-by-the-rich/",
-  round_id: 3
-  })
+# Message.create!({
+#   author_id:1,
+#   message_content: "TO-DO: INSERT seed args from http://debatewise.org/debates/1013-we-should-dramatically-increase-the-rate-of-income-tax-paid-by-the-rich/",
+#   round_id: 3
+#   })
 
-Verdict.create!({
-  debate_id: 1,
-  status: "Unanimous, pending voter confirmation.",
-  opinion_left: "The affirmative was great!",
-  opinion_right: "The affirmative was civil, but didn't make many compelling points.",
-  winner_id: 1
-  })
+# Verdict.create!({
+#   debate_id: 1,
+#   status: "Unanimous, pending voter confirmation.",
+#   opinion_left: "The affirmative was great!",
+#   opinion_right: "The affirmative was civil, but didn't make many compelling points.",
+#   winner_id: 1
+#   })
 
-#Civility votes for debater #1 (from judges and debate participants)
-CivilityVote.create!({
-  debate_id: 1,
-  debater_id: 1,
-  voter_id: 2,
-  rating: 4
-  })
-CivilityVote.create!({
-  debate_id: 1,
-  debater_id: 1,
-  voter_id: 3,
-  rating: 5
-  })
-CivilityVote.create!({
-  debate_id: 1,
-  debater_id: 1,
-  voter_id: 4,
-  rating: 4
-  })
-#Civility votes for debater #2 (from judges and debate participants)
-CivilityVote.create!({
-  debate_id: 1,
-  debater_id: 2,
-  voter_id: 1,
-  rating: 3
-  })
-CivilityVote.create!({
-  debate_id: 1,
-  debater_id: 2,
-  voter_id: 3,
-  rating: 4
-  })
-CivilityVote.create!({
-  debate_id: 1,
-  debater_id: 2,
-  voter_id: 4,
-  rating: 3
-  })
+# #Civility votes for debater #1 (from judges and debate participants)
+# CivilityVote.create!({
+#   debate_id: 1,
+#   debater_id: 1,
+#   voter_id: 2,
+#   rating: 4
+#   })
+# CivilityVote.create!({
+#   debate_id: 1,
+#   debater_id: 1,
+#   voter_id: 3,
+#   rating: 5
+#   })
+# CivilityVote.create!({
+#   debate_id: 1,
+#   debater_id: 1,
+#   voter_id: 4,
+#   rating: 4
+#   })
+# #Civility votes for debater #2 (from judges and debate participants)
+# CivilityVote.create!({
+#   debate_id: 1,
+#   debater_id: 2,
+#   voter_id: 1,
+#   rating: 3
+#   })
+# CivilityVote.create!({
+#   debate_id: 1,
+#   debater_id: 2,
+#   voter_id: 3,
+#   rating: 4
+#   })
+# CivilityVote.create!({
+#   debate_id: 1,
+#   debater_id: 2,
+#   voter_id: 4,
+#   rating: 3
+#   })
 
-#Debate votes (from non-participant users)
-DebateVote.create!({
-  user_id: 5,
-  debate_id: 1,
-  vote_for: 1
-  })
-DebateVote.create!({
-  user_id: 6,
-  debate_id: 1,
-  vote_for: 1
-  })
+# #Debate votes (from non-participant users)
+# DebateVote.create!({
+#   user_id: 5,
+#   debate_id: 1,
+#   vote_for: 1
+#   })
+# DebateVote.create!({
+#   user_id: 6,
+#   debate_id: 1,
+#   vote_for: 1
+#   })
 
-puts "Sample debate #1 complete with judges, debaters, rounds, verdict created."
-
-###################Seed debate #2
-Debate.create!({
-  id:2,
-  affirmative_id: 1,
-  negative_id: 2,
-  judge_left_id: 1,
-  judge_right_id: 2,
-  status: "In progress",
-  topic_id: 2
-  })
-
-Round.create!({
-  debate_id: 2,
-  round_number: 1,
-  status: "Pending"
-  })
+# puts "Sample debate #1 complete with judges, debaters, rounds, verdict created."
