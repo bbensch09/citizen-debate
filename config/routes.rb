@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :closing_statements
+  resources :opening_statements
   resources :comments, only: [:new, :create]
   get 'comments' => 'comments#new'
 

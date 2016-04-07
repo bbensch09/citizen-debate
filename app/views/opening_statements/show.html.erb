@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Author:</strong>
+  <%= @opening_statement.author_id %>
+</p>
+
+<p>
+  <strong>Content:</strong>
+  <%= raw(@opening_statement.content) %>
+</p>
+
+<p>
+  <strong>Round:</strong>
+  <%= @opening_statement.round_id %>
+</p>
+
+<p>
+  <strong>Debate:</strong>
+  <%= @opening_statement.debate_id %>
+</p>
+
+<p>
+  <strong>Unread:</strong>
+  <%= @opening_statement.unread %>
+</p>
+
+<%= link_to 'Edit', edit_opening_statement_path(@opening_statement) %> |
+<%= link_to 'Back', opening_statements_path %>

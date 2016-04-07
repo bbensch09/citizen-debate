@@ -23,6 +23,9 @@
     <%= f.label :topic_id %><br>
     <%= f.collection_select :topic_id, Topic.all, :id, :title %>
   </div>
+  <div class="hidden">
+    <%= f.text_field :status, value: "Active" %>
+  </div>
   <div class="actions">
     <%= f.submit %>
   </div>

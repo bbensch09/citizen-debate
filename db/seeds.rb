@@ -112,14 +112,14 @@ puts "Seed file users & profiles complete!"
 #   })
 
 # #Seed debaters
-# Debater.create!({
-#   id:1,
-#   user_id:3
-#   })
-# Debater.create!({
-#   id:2,
-#   user_id:4
-#   })
+Debater.create!({
+  id:1,
+  user_id:3
+  })
+Debater.create!({
+  id:2,
+  user_id:4
+  })
 
 # #Seed debate #1
 # Debate.create!({

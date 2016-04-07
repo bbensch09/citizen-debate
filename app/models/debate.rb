@@ -8,6 +8,8 @@ class Debate < ActiveRecord::Base
     has_one :verdict
     has_many :civility_votes
     has_many :debate_votes
+    has_many :opening_statements
+    has_many :closing_statements
 
     def participants
         Debater.where("id = ? OR id = ?", self.affirmative_id, self.negative_id)
@@ -17,10 +19,12 @@ class Debate < ActiveRecord::Base
         Judge.where("id = ? OR id = ?", self.judge_left_id, self.judge_right_id)
     end
 
+    def cross_ex_messages
+        Message.where("debate_id = ?",self.id)
+    end
+
     def update_status
         if self.rounds.count == 1 && self.rounds.first.status =="Pending"
-            self.status = "Pending"
-            self.save
             return "This debate has not yet started."
         elsif self.rounds.count >=7 && self.rounds.last.status =="Completed"
             self.status = "Completed"

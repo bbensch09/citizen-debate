@@ -3,79 +3,73 @@
 
   <%= render 'details' %>
 
-<!-- BEGIN LOGIC BASED ON SIGNED IN USERS & DEBATE/ROUND STAGE -->
+<!-- BEGIN LOGIC FOR CURRENT DEBATERS -->
 <% if current_user && (current_user == @debate.affirmative_debater.user || current_user == @debate.negative_debater.user) %>
 <div class="debugging">
   <h1>The section below should only be visible to signed in users</h1>
-<!-- BEGIN REAL-TIME CONTAINER -->
-<div class="panel panel-default" id="comments">
-    <div class="panel-body">
-      <h3><%= @debate.rounds.last.name %>
-          <% if @debate.rounds.last.end_time %>
-          ends at <%= @debate.rounds.last.ends_at.strftime('%l:%M %p') %>
-          <% end %>
-      </h3>
-      <ul class="media-list">
-        <li></li>
-        <%= render partial: 'message', collection: @messages %>
-      </ul>
+
+    <!-- BEGIN REAL-TIME CONTAINER FOR ROUND 2 -->
+    <div class="round2" >
+      <% if @debate.rounds.last.round_number == 2 %>
+      <div class="panel panel-default" id="comments">
+          <%= render 'short_response' %>
+          <div class="panel-body">
+            <h3><%= @debate.rounds.last.name %>
+                <% if @debate.rounds.last.end_time %>
+                ends at <%= @debate.rounds.last.ends_at.strftime('%l:%M %p') %>
+                <% end %>
+            </h3>
+            <ul class="media-list">
+              <li></li>
+              <%= render partial: 'message', collection: @messages %>
+            </ul>
+          </div>
+      </div>
+      <% end %>
     </div>
-</div>
-<!-- END REAL-TIME CONTAINTER -->
+    <!-- END REAL-TIME CONTAINTER -->
 
-<!-- Show button to affirmative debater to begin first round if debate has not yet begun -->
-  <% if @debate.rounds.last.round_number == 1  && @debate.rounds.last.status == "Pending" && @debate.affirmative_debater.user_id == current_user.id %>
-      <%= link_to 'Begin first round', start_first_round_round_path(@debate.rounds.first), method: :post, class: "btn btn-default" %>
-  <% end %>
+    <!-- BEGIN CONTAINER FOR OPENING & CLOSING STATEMENTS -->
+    <div class="statments">
+      <% if @debate.status == "Active" && @debate.rounds.last.status != "Completed" %>
 
-<!-- Show input field for participant to enter their argument(s) or to finish their round if it is cross-examination -->
-  <% if @debate.rounds.last.status == "Active" && @debate.rounds.last.eligible_speakers.include?(current_user.id) %>
-
-      <!-- Only allow new messages if it is cross-examination, or if no messages have yet been submitted -->
-      <% if @debate.rounds.last.cross_ex? || @debate.rounds.last.messages.count == 0 %>
-          <% if @debate.rounds.last.cross_ex? %>
-            <%= render 'short_response' %>
-          <% else %>
-            <%= render 'full_response' %>
+          <% if @debate.opening_statements.count == 0 %>
+            <%= render 'enter_statement' %>
+            <% else %>
+              <%= raw(@debate.opening_statements.first.content) %>
+              <%= link_to 'Edit your statement', edit_opening_statement_path(@debate.opening_statements.first) %>
+            <%= render 'finish_round' %>
           <% end %>
+
       <% end %>
 
-      <!-- Only the initiator of a round can can end the cross examination round -->
-      <% if @debate.rounds.last.eligible_speakers.first == current_user.id %>
-          <%= render 'finish_round' %>
+    <!-- Show option to start the next round if the debate is still active and the most recent round has been completed. -->
+      <% if @debate.status == "Active" && @debate.rounds.last.status == "Completed" %>
+              <%= render 'start_round' %>
       <% end %>
-  <% end %>
 
-<!-- Show option to start the next round if the debate is still active and the most recent round has been completed. -->
-  <% if @debate.status == "Active" && @debate.rounds.last.status == "Completed" %>
-      <% if @debate.rounds.last.next_speaker == current_user.id %>
-          <%= render 'start_round' %>
-      <% end %>
-  <% end %>
+      <h4><%= link_to "Refresh page", debate_path, class: "btn btn-default" %></h4>
+    </div>
+    <!-- END CONTAINER FOR STATEMENTS -->
 
-  <h4><%= link_to "Refresh page", debate_path, class: "btn btn-default" %></h4>
-
-<% end %> <!-- End if statement for current debate participants -->
-
+<% end %>
+<!-- END LOGIC FOR CURRENT DEBATERS -->
 </div>
 
 <!-- BEGIN DEBATE ARCHIVE FOR ALL USERS TO SEE -->
-<hr>
 <h1>PREVIOUS ROUNDS BELOW (not real-time)</h1>
 <hr>
-<% @debate.rounds.each do |round| %>
-    <% if current_user && round.eligible_speakers.first == current_user.id %>
-          <div class="highlight-current-user">
-      <% else %>
-          <div class="highlight-opponent">
-    <% end %>
-  <hr>
-    <h3><%= round.name %> </h3>
-  <% round.messages.each do |message| %>
-    <%= render partial: 'debates/message', locals: {message: message} %>
-  <% end %>
+  <div class="opening_round">
+    <%= render partial: 'debates/opening', locals: {messages: @debate.opening_statements} %>
   </div>
-<% end %>
-
+<hr>
+  <div class="middle_round">
+    <%= render partial: 'debates/middle' %>
+  </div>
+<hr>
+  <div class="closing_round">
+    <%= render partial: 'debates/closing', locals: {messages: @debate.closing_statements} %>
+  </div>
+<hr>
 <%= link_to 'Back to All Debates', debates_path %>
 </div>

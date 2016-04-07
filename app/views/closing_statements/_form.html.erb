@@ -1,0 +1,37 @@
+<%= form_for(@closing_statement) do |f| %>
+  <% if @closing_statement.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@closing_statement.errors.count, "error") %> prohibited this closing_statement from being saved:</h2>
+
+      <ul>
+      <% @closing_statement.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :author_id %><br>
+    <%= f.number_field :author_id %>
+  </div>
+  <div class="field">
+    <%= f.label :content %><br>
+    <%= f.text_field :content %>
+  </div>
+  <div class="field">
+    <%= f.label :round_id %><br>
+    <%= f.number_field :round_id %>
+  </div>
+  <div class="field">
+    <%= f.label :debate_id %><br>
+    <%= f.number_field :debate_id %>
+  </div>
+  <div class="field">
+    <%= f.label :unread %><br>
+    <%= f.check_box :unread %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

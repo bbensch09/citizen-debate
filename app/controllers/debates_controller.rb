@@ -12,7 +12,8 @@ class DebatesController < ApplicationController
   # GET /debates/1.json
   def show
     @message = Message.new
-    @messages = @debate.rounds.last.messages
+    @messages = @debate.cross_ex_messages
+    @opening_statement = OpeningStatement.new
     render 'show_debate'
   end
 
