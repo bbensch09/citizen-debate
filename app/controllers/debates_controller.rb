@@ -14,6 +14,7 @@ class DebatesController < ApplicationController
     @message = Message.new
     @messages = @debate.cross_ex_messages
     @opening_statement = OpeningStatement.new
+    @closing_statement = ClosingStatement.new
     render 'show_debate'
   end
 

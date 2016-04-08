@@ -23,10 +23,26 @@ class Debate < ActiveRecord::Base
         Message.where("debate_id = ?",self.id)
     end
 
+    def opening_affirmative
+        OpeningStatement.where("author_id = ? AND debate_id = ?",self.affirmative_debater.user_id, self.id).first
+    end
+
+    def opening_negative
+        OpeningStatement.where("author_id = ? AND debate_id = ?",self.negative_debater.user_id, self.id).first
+    end
+
+    def closing_affirmative
+        ClosingStatement.where("author_id = ? AND debate_id = ?",self.affirmative_debater.user_id, self.id).first
+    end
+
+    def closing_negative
+        ClosingStatement.where("author_id = ? AND debate_id = ?",self.negative_debater.user_id, self.id).first
+    end
+
     def update_status
         if self.rounds.count == 1 && self.rounds.first.status =="Pending"
             return "This debate has not yet started."
-        elsif self.rounds.count >=7 && self.rounds.last.status =="Completed"
+        elsif self.rounds.count >=3 && self.rounds.last.status =="Completed"
             self.status = "Completed"
             self.save
             return "This debate has ended."

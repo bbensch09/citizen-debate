@@ -28,7 +28,7 @@ class ClosingStatementsController < ApplicationController
 
     respond_to do |format|
       if @closing_statement.save
-        format.html { redirect_to @closing_statement, notice: 'Closing statement was successfully created.' }
+        format.html { redirect_to @closing_statement.debate notice: 'closing statement was successfully created.' }
         format.json { render :show, status: :created, location: @closing_statement }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class ClosingStatementsController < ApplicationController
   def update
     respond_to do |format|
       if @closing_statement.update(closing_statement_params)
-        format.html { redirect_to @closing_statement, notice: 'Closing statement was successfully updated.' }
+        format.html { redirect_to @closing_statement.debate notice: 'closing statement was successfully updated.' }
         format.json { render :show, status: :ok, location: @closing_statement }
       else
         format.html { render :edit }

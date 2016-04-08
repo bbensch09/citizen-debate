@@ -1,11 +1,12 @@
 <div class="well">
   <%= form_for @message, remote: true do |f| %>
     <div class="form-group">
-            <%= f.label :message_content, "Post your next argument." %><br>
-            <%= f.text_field :message_content, rows: 2, class: 'form-control', required: true, minlength: 2 %>
+            <%= f.label :message_content, "Enter your messages in the box below. During the cross-examination round, either side can begin first. Please ask one question at a time, and please respond to questions as directly and succinctly as possible." %><br>
+            <%= f.text_field :message_content, rows: 2, class: 'form-control', required: true, maxlength: 200 %>
           </div>
           <div class="hidden">
             <%= f.number_field :round_id, value: @debate.rounds.last.id %>
+            <%= f.number_field :debate_id, value: @debate.id %>
           </div>
     <%= f.submit 'Submit message for cross-examination', class: 'btn btn-primary btn-lg' %>
     </div>

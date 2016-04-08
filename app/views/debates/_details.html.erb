@@ -1,13 +1,25 @@
+<h1>
+  <%= @debate.topic.title %>
+</h1>
+
+<h3>About the debaters</h2>
+
 <div class="col-lg-6 col-md-3">
   <strong>Affirmative:</strong>
-  <%= @debate.affirmative_debater.user.profile.display_name %>
   <%= image_tag @debate.affirmative_debater.user.profile.avatar.url(:thumb), alt:"avatar-img", class:"img-responsive" %>
+  About <%= @debate.affirmative_debater.user.profile.display_name %>:
+  <h4>
+      <%=@debate.affirmative_debater.user.profile.about_me %>
+  </h4>
 </div>
 
 <div class="col-lg-6 col-md-3">
   <strong>Negative:</strong>
-  <%= @debate.negative_debater.user.profile.display_name %>
   <%= image_tag @debate.negative_debater.user.profile.avatar.url(:thumb), alt:"avatar-img", class:"img-responsive" %>
+  About <%= @debate.negative_debater.user.profile.display_name %>:
+  <h4>
+      <%=@debate.negative_debater.user.profile.about_me %>
+  </h4>
 </div>
 
 <!-- <p>
@@ -18,13 +30,9 @@
   %= @debate.judge_right.user.profile.display_name %>
 </p> -->
  <h4>
-  <strong>Debate Status:</strong>
+  <strong>Status:</strong>
   <%=@debate.update_status %>
   <br>
   <strong>Date:</strong>
   <%= @debate.start_date %>
 </h4>
-
-<h1>
-  <%= @debate.topic.title %>
-</h1>

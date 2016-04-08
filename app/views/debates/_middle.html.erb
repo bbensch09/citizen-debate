@@ -1,11 +1,21 @@
 <!-- THIS IS THE PARTIAL TO RENDER THE CROSS_EX MIDDLE ROUND -->
-<li class="media comment">
-  <div class="media-body">
-    <h4 class="media-heading">
-    TBD
-    <!-- %= image_tag(message.author.user.profile.avatar.url(:thumb), alt: "image not found", class: "avatar-nav") %> -->
-    <!-- %= message.author.user.profile.display_name %> -->
-      <!-- <small class="text-muted">posted %= message.time_since_written %></small></h4> -->
-    <!-- <p>%= raw(message.message_content) %></p> -->
-  </div>
-</li>
+
+<div class="middle-round">
+
+    <h2 class="center">Cross-examination</h2>
+
+    <div class="col-lg-12 col-md-6 cross-examination-round">
+
+    <% @messages.each do |message| %>
+      <div class="cross-ex-messages">
+        <h4 class="media-heading">
+        <%= image_tag(message.author.user.profile.avatar.url(:thumb), alt: "image not found", class: "avatar-nav") %>
+        <%= message.author.user.profile.display_name %>
+          <small class="text-muted">posted <%= message.time_since_written %></small></h4>
+        <p><%= raw(message.message_content) %></p>
+      </div>
+    <% end %>
+
+    </div>
+
+</div>

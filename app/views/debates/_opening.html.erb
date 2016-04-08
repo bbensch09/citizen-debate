@@ -1,13 +1,27 @@
 <!-- THIS IS THE PARTIAL TO RENDER OPENING STATEMENTS -->
-<li class="media comment">
-  <div class="media-body">
-    <h4 class="media-heading">
-    <%= image_tag(@debate.affirmative_debater.user.profile.avatar.url(:thumb), alt: "image not found", class: "avatar-nav") %>
-    Count of statements submitted: <%= @debate.opening_statements.count %>
-      <small class="text-muted">
-        posted some time ago<!-- %= message.time_since_written %> -->
-      </small>
-    </h4>
-    <p><%= raw(@debate.opening_statements.count) %></p>
-  </div>
-</li>
+
+<div class="opening-round">
+
+    <h2 class="center">Opening Statements</h2>
+
+    <div class="col-lg-6 col-md-6 affirmative-opening">
+      <%= image_tag(@debate.affirmative_debater.user.profile.avatar.url(:thumb), alt: "image not found", class: "avatar-nav") %>
+      <b> <%=@debate.affirmative_debater.user.profile.display_name %></b>
+      <br>
+      <small class="text-muted"> posted <%=@debate.opening_affirmative.time_since_written %> </small>
+      <div class="media-body">
+          <%= raw(@debate.opening_affirmative.content) %>
+      </div>
+    </div>
+
+    <div class="col-lg-6 col-md-6 negative-opening">
+      <%= image_tag(@debate.negative_debater.user.profile.avatar.url(:thumb), alt: "image not found", class: "avatar-nav") %>
+      <b> <%=@debate.negative_debater.user.profile.display_name %></b>
+      <br>
+      <small class="text-muted"> posted <%=@debate.opening_negative.time_since_written %> </small>
+      <div class="media-body">
+          <%= raw(@debate.opening_negative.content) %>
+      </div>
+    </div>
+
+</div>

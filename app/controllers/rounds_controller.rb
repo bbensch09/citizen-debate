@@ -2,16 +2,21 @@ class RoundsController < ApplicationController
   before_action :set_round, only: [:show, :edit, :update, :destroy]
   after_action :update_debate_status, only: [:update]
 
-  def start_first_round
-    @round = Round.find(params[:id])
-    @round.start_time = Time.now
-    @round.status = "Active"
-    @round.save
-    redirect_to @round.debate
-  end
+  # def start_first_round
+  #   @round = Round.find(params[:id])
+  #   @round.start_time = Time.now
+  #   @round.status = "Active"
+  #   @round.save
+  #   redirect_to @round.debate
+  # end
 
   def update_debate_status
-    @round = Round.last.debate.update_status
+    Round.last.debate.update_status
+    # Round.create!({
+    #     debate_id: Debate.last.id,
+    #     round_number: Round.last.round_number + 1,
+    #     status: "Pending"
+    #   })
   end
 
   # GET /rounds
@@ -58,7 +63,7 @@ class RoundsController < ApplicationController
         format.html { redirect_to @round.debate, notice: 'Round was successfully updated.' }
         format.json { render :show, status: :ok, location: @round }
       else
-        format.html { render :edit }
+        format.html { redirect_to @round.debate, notice: 'Round still in-progress. You will be notified when your opponent submits his statement.'}
         format.json { render json: @round.errors, status: :unprocessable_entity }
       end
     end

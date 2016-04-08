@@ -1,12 +1,27 @@
 <!-- THIS IS THE PARTIAL TO RENDER CLOSING STATEMENTS -->
-<li class="media comment">
-  <div class="media-body">
-    <h4 class="media-heading">
-    <%= image_tag(@debate.affirmative_debater.user.profile.avatar.url(:thumb), alt: "image not found", class: "avatar-nav") %>
-    Count of statements submitted: <%= @debate.closing_statements.count %>
-      <small class="text-muted">
-        posted some time ago<!-- %= message.time_since_written %> -->
-      </small>
-    </h4>
-    <p><%= raw(@debate.closing_statements.count) %></p>  </div>
-</li>
+
+<div class="closing-round">
+
+    <h2 class="center">Closing Statements</h2>
+
+    <div class="col-lg-6 col-md-6 affirmative-closing">
+      <%= image_tag(@debate.affirmative_debater.user.profile.avatar.url(:thumb), alt: "image not found", class: "avatar-nav") %>
+      <b> <%=@debate.affirmative_debater.user.profile.display_name %></b>: <%=@debate.affirmative_debater.user.profile.about_me %>
+      <br>
+      <small class="text-muted"> posted <%=@debate.closing_affirmative.time_since_written %> </small>
+      <div class="media-body">
+          <%= raw(@debate.closing_affirmative.content) %>
+      </div>
+    </div>
+
+    <div class="col-lg-6 col-md-6 negative-closing">
+      <%= image_tag(@debate.negative_debater.user.profile.avatar.url(:thumb), alt: "image not found", class: "avatar-nav") %>
+      <b> <%=@debate.negative_debater.user.profile.display_name %></b>: <%=@debate.negative_debater.user.profile.about_me %>
+      <br>
+      <small class="text-muted"> posted <%=@debate.closing_negative.time_since_written %> </small>
+      <div class="media-body">
+          <%= raw(@debate.closing_negative.content) %>
+      </div>
+    </div>
+
+</div>

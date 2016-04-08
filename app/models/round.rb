@@ -1,6 +1,24 @@
 class Round < ActiveRecord::Base
   belongs_to :debate
   has_many :messages
+  validates :debate_id, :round_number, presence: true
+
+  validate :confirm_both_sides_finished, on: :update
+
+  def confirm_both_sides_finished
+    debate = self.debate
+    case round_number
+    when 1
+      errors.add(:status,"Please wait until your opponent has finished their statement.") unless (debate.opening_affirmative && debate.opening_negative)
+    when 2
+      errors.add(:status,"You may not end the cross-examination early.") unless self.status == "Completed"
+
+    when 3
+      errors.add(:status,"Please wait until your opponent has finished their statement.") unless (debate.closing_affirmative && debate.closing_negative)
+    end
+
+  end
+
 
   def time_remaining
     round_length = 300 #300 seconds, 5 minutes
@@ -22,19 +40,11 @@ class Round < ActiveRecord::Base
 def ends_at
   case round_number
   when 1
-    self.end_time = self.start_time + 360 #6minutes
+    self.end_time = self.start_time + 300 #5minutes
   when 2
-    self.end_time = self.start_time + 120 #2minutes
+    self.end_time = self.start_time + 900 #15minutes
   when 3
-    self.end_time = self.start_time + 420 #7minutes
-  when 4
-    self.end_time = self.start_time + 120 #2minutes
-  when 5
-    self.end_time = self.start_time + 240 #4minutes
-  when 6
-    self.end_time = self.start_time + 360 #6minutes
-  when 7
-    self.end_time = self.start_time + 180 #3minutes
+    self.end_time = self.start_time + 300 #5minutes
   end
   self.save
   return self.end_time
