@@ -6,6 +6,7 @@ class CreateDebates < ActiveRecord::Migration
       t.integer :creator_id
       t.integer :challenger_id
       t.string :challenger_email
+      t.boolean :challenge_accepted, default: false
       t.string :status
       t.date :start_date
       t.datetime :start_time

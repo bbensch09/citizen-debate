@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
+
+  mount Ckeditor::Engine => '/ckeditor'
+
   resources :closing_statements
   resources :opening_statements
   resources :comments, only: [:new, :create]
-  get 'comments' => 'comments#new'
-
-  mount Ckeditor::Engine => '/ckeditor'
   resources :civility_votes
   resources :debate_votes
   resources :messages
@@ -29,8 +29,11 @@ Rails.application.routes.draw do
       post :downvote
     end
   end
+
   devise_for :users
 
+  get 'accept_challenge/:id' => 'debates#accept_challenge'
+  get 'comments' => 'comments#new'
   get '/admin_index' => 'profiles#admin_index'
   get '/admin_users' => 'profiles#admin_users'
   get '/pre_launch' => 'welcome#pre_launch'

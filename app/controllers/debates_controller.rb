@@ -1,5 +1,5 @@
 class DebatesController < ApplicationController
-  before_action :set_debate, only: [:show, :edit, :update, :destroy]
+  before_action :set_debate, only: [:show, :edit, :update, :destroy, :accept_challenge]
   after_action :create_first_round, only: [:create]
   before_action :authenticate_user!, except: [:show]
 
@@ -68,6 +68,13 @@ class DebatesController < ApplicationController
         round_number: 1,
         status: "Pending"
       })
+  end
+
+  def accept_challenge
+    puts "logging challenge accepted action"
+    @debate.challenge_accepted = true
+    @debate.save
+    redirect_to @debate, notice: "You've accepted the debate challenge."
   end
 
   # PATCH/PUT /debates/1

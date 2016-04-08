@@ -37,7 +37,7 @@
 
 <hr>
 
-<h1 class="center debate-list-header">Active Debates</h1>
+<h1 class="center debate-list-header">Ongoing Debates</h1>
 
 <table class="col-lg-12 col-sm-12 waitlist-table">
   <thead>
@@ -70,7 +70,7 @@
 
 <hr>
 
-<h1 class="center debate-list-header">Upcoming Debates</h1>
+<h1 class="center debate-list-header">Your Pending Debate Challenges</h1>
 
 <table class="col-lg-12 col-sm-12 waitlist-table">
   <thead>
@@ -88,9 +88,15 @@
     <% @upcoming_debates.each do |debate| %>
       <tr>
         <td><%= debate.topic_id %></td>
-        <td><%= debate.creator_id.user.profile.display_name %></td>
-        <td><%= debate.challenger_id.user.profile.display_name %></td>
-        <td> <b> debate.status </b> </td>
+        <td><%= debate.creator.profile.display_name %></td>
+        <td>
+          <% if debate.challenger.profile %>
+              <%= debate.challenger.profile.display_name %>
+            <% else %>
+            "TBD"
+          <% end %>
+        </td>
+        <td> <b> <%= debate.status %> </b> </td>
         <td><%= debate.time_since_updated %></td>
 <!-- INSERT LOGIC FOR ADMIN ONLY       -->
         <td><%= link_to 'Show', debate %></td>

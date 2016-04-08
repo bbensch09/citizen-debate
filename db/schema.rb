@@ -82,12 +82,13 @@ ActiveRecord::Schema.define(version: 20160407180036) do
     t.integer  "creator_id"
     t.integer  "challenger_id"
     t.string   "challenger_email"
+    t.boolean  "challenge_accepted", default: false
     t.string   "status"
     t.date     "start_date"
     t.datetime "start_time"
     t.integer  "topic_id"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
   end
 
   create_table "judges", force: :cascade do |t|

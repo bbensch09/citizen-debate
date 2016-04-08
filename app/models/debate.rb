@@ -4,6 +4,8 @@ class Debate < ActiveRecord::Base
     belongs_to :affirmative_debater, class_name: "Debater", foreign_key: "affirmative_id"
     belongs_to :negative_debater, class_name: "Debater", foreign_key: "negative_id"
     belongs_to :topic
+    belongs_to :creator, class_name: "User", foreign_key: "creator_id"
+    belongs_to :challenger, class_name: "User", foreign_key: "challenger_id"
     has_many :rounds
     has_one :verdict
     has_many :civility_votes

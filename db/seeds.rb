@@ -21,10 +21,33 @@ CivilityVote.delete_all
 
 #CREATE LIST OF OPTIONS TO RANDOMLY SELECT FROM
 age_array = (18...65).to_a
-political_affiliation_array = ['Democrat','Democrat','Republican','Republican','Independent']
+political_affiliation_array = ['Very liberal','Lean liberal','Moderate','Lean conservative','Very conservative']
 
 User.create!({
       email: "citizen.debate.16@gmail.com",
+      password: 'password'
+    })
+  Profile.create!({
+      user_id: User.last.id,
+      first_name: "Citizen",
+      last_name: "Debate",
+      city: "Santa Clara",
+      state: "CA",
+      age: 29,
+      about_me: "I believe that there is a fine line between optimism and naivety, and have created this site on the premise that everyday citizens are capable of effectively persuading their peers about politics, and pushing the dialog forward. ",
+      display_name: "citizen_debate_16",
+      political_affiliation: political_affiliation_array.sample,
+      snippets: Faker::Hacker.say_something_smart,
+      nps: 10,
+      # pmf: ["Very disappointed", "Somewhat disappointed", "Not disappointed", "N/A - I don't know since I haven't used it yet."].sample,
+      pmf: "Very disappointed",
+      linkedin_profile: "https://www.linkedin.com/in/bbensch09",
+      # verification_status: ["not yet verified","verified"].sample
+      verification_status: "verified"
+    })
+
+  User.create!({
+      email: "bbensch@gmail.com",
       password: 'password'
     })
   Profile.create!({
@@ -34,42 +57,18 @@ User.create!({
       city: "San Francisco",
       state: "CA",
       age: 29,
-      about_me: Faker::Hacker.say_something_smart,
+      about_me: "I am probably about as much of a SF yuppie as you can find. I worked in ad sales for 5+ years and then learned how to code, and am now relatively obsessed with entrepreneurship and learning what the Lean Startup means in practice. I lean fairly liberal politically, but love argumentation for its own sake, and often find myself arguing for conservative causes simply to better inform my overall perspective. t",
       display_name: "sf_skier2016",
-      political_affiliation: political_affiliation_array.sample,
+      political_affiliation: "Lean liberal",
       snippets: Faker::Hacker.say_something_smart,
-      nps: rand(1..10),
-      pmf: ["Very disappointed", "Somewhat disappointed", "Not disappointed", "N/A - I don't know since I haven't used it yet."].sample,
+      nps: 9,
+      pmf: "Very disappointed",
       linkedin_profile: "https://www.linkedin.com/in/bbensch09",
-      verification_status: ["not yet verified","verified"].sample
+      verification_status: "verified"
     })
 
-5.times do
-  number = User.count + 1
-  User.create!({
-      email: "citizen.debate.16+test#{number}@gmail.com",
-      password: 'password'
-    })
-  Profile.create!({
-      user_id: User.last.id,
-      first_name: Faker::Name.first_name,
-      last_name: Faker::Name.last_name,
-      city: Faker::Address.city,
-      state: Faker::Address.state_abbr,
-      age: age_array.sample,
-      about_me: Faker::Hacker.say_something_smart,
-      display_name: "seed_user_#{number}",
-      political_affiliation: political_affiliation_array.sample,
-      snippets: Faker::Hacker.say_something_smart,
-      nps: rand(1..10),
-      pmf: ["Very disappointed", "Somewhat disappointed", "Not disappointed", "I don't know"].sample,
-      linkedin_profile: "https://www.linkedin.com/in/example",
-      verification_status: ["not yet verified","verified"].sample
-    })
-  Profile.last.update_points
-end
-
-# Rank all profiles after last one is created.
+# Update points & rank all profiles after last one is created.
+Profile.last.update_points
 Profile.last.update_rank
 
 topics_array = [
@@ -114,11 +113,11 @@ puts "Seed file users & profiles complete!"
 # #Seed debaters
 Debater.create!({
   id:1,
-  user_id:3
+  user_id:1
   })
 Debater.create!({
   id:2,
-  user_id:4
+  user_id:2
   })
 
 # #Seed debate #1

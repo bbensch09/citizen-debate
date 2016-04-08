@@ -48,6 +48,7 @@
 
   <div class="hidden">
     <%= f.text_field :status, value: "Pending" %>
+    <%= f.text_field :creator_id, value: current_user.debater.id %>
   </div>
   <div class="actions">
     <%= f.submit "Issue debate challenge", :class => "btn btn-success" %>
