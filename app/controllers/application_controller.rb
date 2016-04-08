@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   def after_sign_in_path_for(user)
-    if user.sign_in_count <= 2
+    if user.sign_in_count <= 1
       '/profiles/new'
     else
       stored_location_for(resource) || root_path

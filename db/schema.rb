@@ -60,10 +60,11 @@ ActiveRecord::Schema.define(version: 20160407180036) do
 
   create_table "debate_votes", force: :cascade do |t|
     t.integer  "user_id"
-    t.integer  "vote_for"
     t.integer  "debate_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "vote_before"
+    t.string   "vote_after"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "debaters", force: :cascade do |t|

@@ -37,3 +37,13 @@
 .cross-ex-messages{
   padding-left: 100px;
 }
+.voting-options{
+  display: inline;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.voting-container{
+  min-height: 10vh;
+  background-color: rgba(52, 168, 83, .3);
+  clear: both;
+}

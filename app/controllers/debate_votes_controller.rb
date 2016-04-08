@@ -1,5 +1,7 @@
 class DebateVotesController < ApplicationController
   before_action :set_debate_vote, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
+
 
   # GET /debate_votes
   # GET /debate_votes.json
@@ -25,13 +27,14 @@ class DebateVotesController < ApplicationController
   # POST /debate_votes.json
   def create
     @debate_vote = DebateVote.new(debate_vote_params)
+    @debate_vote.user_id = current_user.id
 
     respond_to do |format|
       if @debate_vote.save
-        format.html { redirect_to @debate_vote, notice: 'Debate vote was successfully created.' }
+        format.html { redirect_to @debate_vote.debate, notice: 'Thanks! Your vote has been recorded.' }
         format.json { render :show, status: :created, location: @debate_vote }
       else
-        format.html { render :new }
+        format.html { redirect_to @debate_vote.debate, notice: "There was a problem recording your vote, please try again. Error: #{@debate_vote.errors.full_messages.first}" }
         format.json { render json: @debate_vote.errors, status: :unprocessable_entity }
       end
     end
@@ -42,10 +45,10 @@ class DebateVotesController < ApplicationController
   def update
     respond_to do |format|
       if @debate_vote.update(debate_vote_params)
-        format.html { redirect_to @debate_vote, notice: 'Debate vote was successfully updated.' }
+        format.html { redirect_to @debate_vote.debate, notice: 'Thanks! Your vote has been recorded.' }
         format.json { render :show, status: :ok, location: @debate_vote }
       else
-        format.html { render :edit }
+        format.html { redirect_to @debate_vote.debate, notice: "There was a problem recording your vote, please try again. Error: #{@debate_vote.errors.full_messages.first}" }
         format.json { render json: @debate_vote.errors, status: :unprocessable_entity }
       end
     end
@@ -69,6 +72,6 @@ class DebateVotesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def debate_vote_params
-      params.require(:debate_vote).permit(:user_id, :vote_for, :debate_id)
+      params.require(:debate_vote).permit(:user_id, :vote_before, :vote_after, :debate_id)
     end
 end

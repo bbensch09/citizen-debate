@@ -2,6 +2,13 @@ class DebatesController < ApplicationController
   before_action :set_debate, only: [:show, :edit, :update, :destroy]
   after_action :create_first_round, only: [:create]
 
+# HACKY SHIT
+  # before_action :current_user_must_vote_first?, only: [:show]
+
+  # def current_user_must_vote_first?
+  #     DebateVote.where("user_id = ? AND debate_id = ?",current_user.id, @debate.id).count == 0 ? true : false
+  # end
+
   # GET /debates
   # GET /debates.json
   def index
@@ -11,10 +18,17 @@ class DebatesController < ApplicationController
   # GET /debates/1
   # GET /debates/1.json
   def show
+    @current_user = current_user
     @message = Message.new
     @messages = @debate.cross_ex_messages
     @opening_statement = OpeningStatement.new
     @closing_statement = ClosingStatement.new
+    if current_user.eligible_after_votes.include?(@debate.id)
+        @debate_vote = DebateVote.where("debate_id =? AND user_id = ?",@debate.id,current_user.id).first
+      else
+        @debate_vote = DebateVote.new
+    end
+
     render 'show_debate'
   end
 

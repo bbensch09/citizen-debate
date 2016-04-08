@@ -5,6 +5,7 @@
 <!-- BEGIN LOGIC FOR CURRENT DEBATERS -->
 <% if current_user && (current_user == @debate.affirmative_debater.user || current_user == @debate.negative_debater.user) %>
 <div class="live-debate-container">
+  <small class="text-muted">Note: if you hear a notification sound but do not see any new messages, please simply refresh the page.</small>
 
     <!-- BEGIN REAL-TIME CONTAINER FOR ROUND 2 -->
     <div class="round2" >
@@ -106,6 +107,8 @@
 </div>
 
 <!-- BEGIN DEBATE ARCHIVE FOR ALL USERS TO SEE -->
+<% if current_user && current_user.before_votes.include?(@debate.id) %>
+
 <hr>
     <% if @debate.opening_affirmative && @debate.opening_negative %>
       <%= render partial: 'opening' %>
@@ -119,5 +122,19 @@
       <%= render partial: 'closing' %>
     <% end %>
 <hr>
+    <% if current_user.eligible_after_votes.include?(@debate.id) %>
+    <div class="voting-container">
+      <%= render partial: 'debate_votes/after_form' %>
+    </div>
+    <% end %>
+<hr>
+
+<% else %>
+
+    <div class="voting-container">
+      <%= render partial: 'debate_votes/before_form' %>
+    </div>
+
+<% end %>
 <%= link_to 'Back to All Debates', debates_path %>
 </div>

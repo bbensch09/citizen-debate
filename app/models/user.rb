@@ -43,4 +43,22 @@ class User < ActiveRecord::Base
     end
   end
 
+  def before_votes
+    all_before_votes = DebateVote.where("user_id = ?",self.id)
+    before_debate_ids = []
+    all_before_votes.each do |vote|
+      before_debate_ids << vote.debate_id
+    end
+    return before_debate_ids
+  end
+
+  def eligible_after_votes
+    eligible_after_votes = DebateVote.where("user_id = ? AND vote_after is null",self.id)
+    eligible_debate_ids = []
+    eligible_after_votes.each do |vote|
+      eligible_debate_ids << vote.debate_id
+    end
+    return eligible_debate_ids
+  end
+
 end
