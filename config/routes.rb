@@ -14,7 +14,11 @@ Rails.application.routes.draw do
     end
   end
   resources :verdicts
-  resources :debates
+  resources :debates do
+    member do
+      post :accept_challenge
+    end
+  end
   resources :debaters
   resources :judges
   resources :profiles do
@@ -32,7 +36,6 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  get 'accept_challenge/:id' => 'debates#accept_challenge'
   get 'comments' => 'comments#new'
   get '/admin_index' => 'profiles#admin_index'
   get '/admin_users' => 'profiles#admin_users'

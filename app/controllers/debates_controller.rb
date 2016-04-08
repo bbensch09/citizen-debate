@@ -1,7 +1,7 @@
 class DebatesController < ApplicationController
   before_action :set_debate, only: [:show, :edit, :update, :destroy, :accept_challenge]
   after_action :create_first_round, only: [:create]
-  before_action :authenticate_user!, except: [:show]
+  before_action :authenticate_user!, except: [:show, :index]
 
 
 # HACKY SHIT
@@ -16,7 +16,11 @@ class DebatesController < ApplicationController
   def index
     @completed_debates = Debate.where("status = 'Completed'")
     @active_debates = Debate.where("status = 'Active'")
-    @upcoming_debates = Debate.where("status = 'Pending'")
+    if current_user
+      @upcoming_debates = Debate.where("status = 'Pending' AND challenger_id = ?",current_user.id)
+    else
+      @upcoming_debates = []
+    end
   end
 
   # GET /debates/1
@@ -27,7 +31,7 @@ class DebatesController < ApplicationController
     @messages = @debate.cross_ex_messages
     @opening_statement = OpeningStatement.new
     @closing_statement = ClosingStatement.new
-    if current_user.eligible_after_votes.include?(@debate.id)
+    if current_user && current_user.eligible_after_votes.include?(@debate.id)
         @debate_vote = DebateVote.where("debate_id =? AND user_id = ?",@debate.id,current_user.id).first
       else
         @debate_vote = DebateVote.new
@@ -73,6 +77,8 @@ class DebatesController < ApplicationController
   def accept_challenge
     puts "logging challenge accepted action"
     @debate.challenge_accepted = true
+    @debate.negative_id = current_user.id
+    @debate.status = "Active"
     @debate.save
     redirect_to @debate, notice: "You've accepted the debate challenge."
   end
