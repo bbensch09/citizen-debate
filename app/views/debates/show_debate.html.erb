@@ -3,7 +3,7 @@
   <%= render 'details' %>
 
 <!-- BEGIN LOGIC FOR CURRENT DEBATERS -->
-<% if current_user && (current_user == @debate.affirmative_debater.user || current_user == @debate.negative_debater.user) %>
+<% if current_user && @debate.status == "Active" && (current_user == @debate.affirmative_debater.user || current_user == @debate.negative_debater.user) %>
 <div class="live-debate-container">
   <small class="text-muted">Note: if you hear a notification sound but do not see any new messages, please simply refresh the page.</small>
 

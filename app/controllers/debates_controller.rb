@@ -1,6 +1,8 @@
 class DebatesController < ApplicationController
   before_action :set_debate, only: [:show, :edit, :update, :destroy]
   after_action :create_first_round, only: [:create]
+  before_action :authenticate_user!, except: [:show]
+
 
 # HACKY SHIT
   # before_action :current_user_must_vote_first?, only: [:show]
@@ -12,7 +14,9 @@ class DebatesController < ApplicationController
   # GET /debates
   # GET /debates.json
   def index
-    @debates = Debate.all
+    @completed_debates = Debate.where("status = 'Completed'")
+    @active_debates = Debate.where("status = 'Active'")
+    @upcoming_debates = Debate.where("status = 'Pending'")
   end
 
   # GET /debates/1
@@ -98,6 +102,6 @@ class DebatesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def debate_params
-      params.require(:debate).permit(:affirmative_id, :negative_id, :judge_left_id, :judge_right_id, :status, :start_date, :start_time, :topic_id)
+      params.require(:debate).permit(:affirmative_id, :negative_id, :creator_id, :challenger_id, :challenger_email, :status, :start_date, :start_time, :topic_id)
     end
 end

@@ -8,7 +8,7 @@
   min-height: 80vh;
   margin: auto;
   position: relative;
-  margin-top: 80px;
+  margin-top: 30px;
   padding-right: 10vw !important;
   padding-left: 10vw !important;
   font-color: #000;
@@ -41,6 +41,8 @@
 .waitlist-table{
   padding: 5 5 5 5px;
   border: 1px solid gray;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 .waitlist-table tbody tr td, .waitlist-table thead tr th {
     padding-left: 20px;

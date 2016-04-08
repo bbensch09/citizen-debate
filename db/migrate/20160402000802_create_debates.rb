@@ -3,8 +3,9 @@ class CreateDebates < ActiveRecord::Migration
     create_table :debates do |t|
       t.integer :affirmative_id
       t.integer :negative_id
-      t.integer :judge_left_id
-      t.integer :judge_right_id
+      t.integer :creator_id
+      t.integer :challenger_id
+      t.string :challenger_email
       t.string :status
       t.date :start_date
       t.datetime :start_time

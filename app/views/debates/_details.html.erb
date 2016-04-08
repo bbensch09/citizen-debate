@@ -6,20 +6,28 @@
 
 <div class="col-lg-6 col-md-3">
   <strong>Affirmative:</strong>
+  <% if @debate.affirmative_debater %>
   <%= image_tag @debate.affirmative_debater.user.profile.avatar.url(:thumb), alt:"avatar-img", class:"img-responsive" %>
   About <%= @debate.affirmative_debater.user.profile.display_name %>:
   <h4>
       <%=@debate.affirmative_debater.user.profile.about_me %>
   </h4>
+  <% else %>
+  <h4>Challenge awaiting acceptance</h4>
+  <% end %>
 </div>
 
 <div class="col-lg-6 col-md-3">
   <strong>Negative:</strong>
+  <% if @debate.negative_debater %>
   <%= image_tag @debate.negative_debater.user.profile.avatar.url(:thumb), alt:"avatar-img", class:"img-responsive" %>
   About <%= @debate.negative_debater.user.profile.display_name %>:
   <h4>
       <%=@debate.negative_debater.user.profile.about_me %>
   </h4>
+  <% else %>
+  <h4>Challenge awaiting acceptance</h4>
+  <% end %>
 </div>
 
  <h4>

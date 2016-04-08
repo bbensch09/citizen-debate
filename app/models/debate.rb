@@ -53,4 +53,17 @@ class Debate < ActiveRecord::Base
         end
     end
 
+    def time_since_updated
+        days_elapsed = ((Time.now - updated_at.to_time) / (60*60*24)).round
+        hours_elapsed = ((Time.now - updated_at.to_time) / (60*60)).round
+        minutes_elapsed = ((Time.now - updated_at.to_time) / (60)).round
+        if minutes_elapsed < 60
+            return "#{minutes_elapsed} minutes ago."
+        elsif hours_elapsed < 24
+            return "#{hours_elapsed} hours ago."
+        else
+            return "#{days_elapsed} days ago."
+        end
+    end
+
 end

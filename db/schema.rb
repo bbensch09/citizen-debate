@@ -79,14 +79,15 @@ ActiveRecord::Schema.define(version: 20160407180036) do
   create_table "debates", force: :cascade do |t|
     t.integer  "affirmative_id"
     t.integer  "negative_id"
-    t.integer  "judge_left_id"
-    t.integer  "judge_right_id"
+    t.integer  "creator_id"
+    t.integer  "challenger_id"
+    t.string   "challenger_email"
     t.string   "status"
     t.date     "start_date"
     t.datetime "start_time"
     t.integer  "topic_id"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
   end
 
   create_table "judges", force: :cascade do |t|
