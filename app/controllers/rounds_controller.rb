@@ -60,10 +60,10 @@ class RoundsController < ApplicationController
   def update
     respond_to do |format|
       if @round.update(round_params)
-        format.html { redirect_to @round.debate, notice: 'Round was successfully updated.' }
+        format.html { redirect_to @round.debate, notice: 'The previous round is now complete.' }
         format.json { render :show, status: :ok, location: @round }
       else
-        format.html { redirect_to @round.debate, notice: 'Round still in-progress. You will be notified when your opponent submits his statement.'}
+        format.html { redirect_to @round.debate, notice: "Unable to finish round. #{@round.errors.full_messages.first}"}
         format.json { render json: @round.errors, status: :unprocessable_entity }
       end
     end

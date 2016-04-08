@@ -10,6 +10,7 @@
     <div class="round2" >
       <% if @debate.rounds.last.round_number == 2 && @debate.rounds.last.status != "Completed" %>
           <%= render 'short_response' %>
+          <%= render 'finish_round' %>
       <div class="panel panel-default" id="comments">
           <div class="panel-body">
             <h3><%= @debate.rounds.last.name %>

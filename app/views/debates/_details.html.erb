@@ -22,17 +22,13 @@
   </h4>
 </div>
 
-<!-- <p>
-  <strong>Judge left:</strong>
-  %= @debate.judge_left.user.profile.display_name %>
-  <br>
-  <strong>Judge right:</strong>
-  %= @debate.judge_right.user.profile.display_name %>
-</p> -->
  <h4>
   <strong>Status:</strong>
   <%=@debate.update_status %>
   <br>
   <strong>Date:</strong>
   <%= @debate.start_date %>
+  <br>
+  <small class="text-muted">Note: if you hear a notification sound but do not see any new messages, please simply refresh the page.</small>
 </h4>
+

@@ -11,8 +11,7 @@ class Round < ActiveRecord::Base
     when 1
       errors.add(:status,"Please wait until your opponent has finished their statement.") unless (debate.opening_affirmative && debate.opening_negative)
     when 2
-      errors.add(:status,"You may not end the cross-examination early.") unless self.status == "Completed"
-
+      errors.add(:status,"You may not end cross examination early unless each side has had the chance to ask at least one question.") unless self.messages.count > 2
     when 3
       errors.add(:status,"Please wait until your opponent has finished their statement.") unless (debate.closing_affirmative && debate.closing_negative)
     end
