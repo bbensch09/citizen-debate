@@ -11,13 +11,11 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="hidden">
     <%= f.label :voter_id %><br>
-    <%= f.number_field :voter_id %>
-  </div>
-  <div class="field">
+    <%= f.number_field :voter_id, value: current_user.id %>
     <%= f.label :debate_id %><br>
-    <%= f.number_field :debate_id %>
+    <%= f.number_field :debate_id, value: 1 %>
   </div>
   <div class="field">
     <%= f.label :debater_id %><br>
@@ -27,6 +25,20 @@
     <%= f.label :rating %><br>
     <%= f.number_field :rating %>
   </div>
+
+  <div class="field">
+    <h3> Please rate the affirmative debater's civility</h3>
+    <%= label_tag(:one, "Terribly unprofessional", :class=> "nps") %>
+    <i class="glyphicon glyphicon-star-empty"></i>
+    <%= f.radio_button :rating, 1, :class=>"star" %>
+    <%= f.radio_button :rating, 2  %>
+    <%= f.radio_button :rating, 3  %>
+    <%= f.radio_button :rating, 4  %>
+    <%= f.radio_button :rating, 5  %>
+    <%= label_tag(:five, "Charismatically civil", :class=> "nps") %>
+  </div>
+
+
   <div class="actions">
     <%= f.submit %>
   </div>
