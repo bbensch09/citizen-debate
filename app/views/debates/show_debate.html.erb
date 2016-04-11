@@ -128,6 +128,12 @@
     </div>
     <% end %>
 <hr>
+    <% if current_user.eligible_civility_votes.include?(@debate.id) %>
+      <div class="voting-container">
+      <%= render partial: 'civility_votes/form' %>
+    </div>
+    <% end %>
+<hr>
 
 <% else %>
 

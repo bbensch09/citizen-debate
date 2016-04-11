@@ -36,6 +36,7 @@ class DebatesController < ApplicationController
       else
         @debate_vote = DebateVote.new
     end
+    @civility_vote = CivilityVote.new
 
     render 'show_debate'
   end

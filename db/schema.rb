@@ -19,10 +19,12 @@ ActiveRecord::Schema.define(version: 20160407180036) do
   create_table "civility_votes", force: :cascade do |t|
     t.integer  "voter_id"
     t.integer  "debate_id"
-    t.integer  "debater_id"
-    t.integer  "rating"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "affirmative_id"
+    t.integer  "negative_id"
+    t.integer  "affirmative_rating"
+    t.integer  "negative_rating"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
   end
 
   create_table "ckeditor_assets", force: :cascade do |t|

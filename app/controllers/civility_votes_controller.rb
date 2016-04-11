@@ -30,7 +30,7 @@ class CivilityVotesController < ApplicationController
 
     respond_to do |format|
       if @civility_vote.save
-        format.html { redirect_to @civility_vote, notice: 'Civility vote was successfully created.' }
+        format.html { redirect_to @civility_vote.debate, notice: 'Your votes have been recorded. Thank you for rating our debaters!' }
         format.json { render :show, status: :created, location: @civility_vote }
       else
         format.html { render :new }
@@ -71,6 +71,6 @@ class CivilityVotesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def civility_vote_params
-      params.require(:civility_vote).permit(:voter_id, :debate_id, :debater_id, :rating)
+      params.require(:civility_vote).permit(:voter_id, :debate_id, :affirmative_id, :negative_id, :affirmative_rating, :negative_rating)
     end
 end

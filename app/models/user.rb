@@ -61,4 +61,19 @@ class User < ActiveRecord::Base
     return eligible_debate_ids
   end
 
+  def eligible_civility_votes
+    previous_votes = CivilityVote.where("voter_id = ?",self.id)
+    previous_vote_debate_ids = []
+    previous_votes.each do |vote|
+      previous_vote_debate_ids << vote.debate_id
+    end
+    all_completed_debates = Debate.select(:id).where("status='Completed'")
+    all_debate_ids = []
+    all_completed_debates.each do |debate|
+      all_debate_ids << debate.id
+    end
+    eligible_to_vote_debates = all_debate_ids - previous_vote_debate_ids
+    return eligible_to_vote_debates
+  end
+
 end
