@@ -14,7 +14,12 @@ class Debate < ActiveRecord::Base
     has_many :closing_statements
 
     def participants
-        Debater.where("id = ? OR id = ?", self.affirmative_id, self.negative_id)
+        debaters = Debater.where("id = ? OR id = ? OR id = ?", self.affirmative_id, self.negative_id, self.challenger_id)
+        participant_user_ids = []
+        debaters.each do |debater|
+            participant_user_ids << debater.user_id
+        end
+        participant_user_ids
     end
 
     def judges

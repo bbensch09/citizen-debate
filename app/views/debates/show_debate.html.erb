@@ -107,7 +107,7 @@
 </div>
 
 <!-- BEGIN DEBATE ARCHIVE FOR ALL USERS TO SEE -->
-<% if current_user && (current_user.before_votes.include?(@debate.id) ||( current_user == @debate.affirmative_debater.user || current_user == @debate.negative_debater.user)) %>
+<% if current_user && (current_user.before_votes.include?(@debate.id) ||( @debate.participants.include?(current_user.id))) && @debate.status != "Pending" %>
 
 <hr>
     <% if @debate.opening_affirmative && @debate.opening_negative %>
