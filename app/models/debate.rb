@@ -12,6 +12,7 @@ class Debate < ActiveRecord::Base
     has_many :debate_votes
     has_many :opening_statements
     has_many :closing_statements
+    # after_create :confirm_new_challengers
 
     def participants
         debaters = Debater.where("id = ? OR id = ? OR id = ?", self.affirmative_id, self.negative_id, self.challenger_id)
@@ -70,6 +71,16 @@ class Debate < ActiveRecord::Base
             return "#{hours_elapsed} hours ago."
         else
             return "#{days_elapsed} days ago."
+        end
+    end
+
+    def confirm_new_challengers
+        confirmable_debates = Debate.where("challenger_id IS NULL")
+        confirmable_debates.each do |debate|
+            if User.where("email = ?",debate.challenger_email).count >=1
+                debate.challenger_id = User.where("email = ?",debate.challenger_email).first.email
+                debate.save
+            end
         end
     end
 

@@ -1,6 +1,6 @@
 class CivilityVotesController < ApplicationController
   before_action :set_civility_vote, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, except: [:show, :index]
+  before_action :authenticate_user!
 
 
   # GET /civility_votes

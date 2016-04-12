@@ -2,6 +2,12 @@
 
 <div class="profile-container">
 
+<% if current_user.profile.nil? %>
+    <h2>
+      In order to accept debate challenges, please first <a class="signed-in-nav" href='/profiles/new' >complete your profile</a>
+    </h2>
+<% else %>
+
 <%= link_to 'New Debate', new_debate_path %>
 
 <h1 class="center debate-list-header">Your Pending Debate Challenges</h1>
@@ -112,6 +118,6 @@
 <hr>
 
 
-
+<% end %>
 
 </div>

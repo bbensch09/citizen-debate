@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+</head>
+<body>
+  <h3>Greetings!</h3>
+  <p>
+  You've just been invited to join <b> Citizen Debate</b>, a new online platform for head-to-head, civilized political discourse. <%= @debate.creator.profile.display_name %> has challenged you to debate them on the topic below, and has challenged you to defend the <b> <%= @challenger_side %> </b> of the debate.
+  </p>
+  <h3><%=@debate.topic.title%> </h3>
+  <p>
+    To accept this challenge, you'll first need to create an account using this email address. Do so, simply click the link below to sign up.
+  </p>
+  <ul>
+    <li>
+      <a href="http://localhost:3000/users/sign_up" class="btn btn-default"> Create your account </a>
+    </li>
+<!--     <li>
+      <b> Temp password:</b><%= @challenger_temp_password %>
+    </li> -->
+  </ul>
+
+  <p>If you ever have any questions about how the site works or what's in store for the future of the community, please feel free to reach out to us at <a href="mailto:citize.ndebate.16@gmail.com"> citize.ndebate.16@gmail.com</a>. Thanks for signing up, and happy debating!</p>
+</body>
+</html>

@@ -31,7 +31,7 @@ class DebateVotesController < ApplicationController
 
     respond_to do |format|
       if @debate_vote.save
-        format.html { redirect_to @debate_vote.debate, notice: 'Thanks! Your vote has been recorded.' }
+        format.html { redirect_to @debate_vote.debate, notice: 'Thanks! Your initial vote has been recorded.' }
         format.json { render :show, status: :created, location: @debate_vote }
       else
         format.html { redirect_to @debate_vote.debate, notice: "There was a problem recording your vote, please try again. Error: #{@debate_vote.errors.full_messages.first}" }
@@ -45,7 +45,7 @@ class DebateVotesController < ApplicationController
   def update
     respond_to do |format|
       if @debate_vote.update(debate_vote_params)
-        format.html { redirect_to @debate_vote.debate, notice: 'Thanks! Your vote has been recorded.' }
+        format.html { redirect_to @debate_vote.debate, notice: 'Thanks! Your final vote has been recorded.'}
         format.json { render :show, status: :ok, location: @debate_vote }
       else
         format.html { redirect_to @debate_vote.debate, notice: "There was a problem recording your vote, please try again. Error: #{@debate_vote.errors.full_messages.first}" }

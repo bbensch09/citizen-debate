@@ -49,3 +49,11 @@
   clear:both;
   display: block;
 }
+.civility-container{
+  position:fixed;
+  top:100px;
+  width:100vw;
+  height: 40vh;
+  background-color: white;
+  z-index: 2
+}

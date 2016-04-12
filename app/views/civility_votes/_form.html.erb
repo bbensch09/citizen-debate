@@ -1,3 +1,5 @@
+<div class="civility-container">
+
 <%= form_for(@civility_vote) do |f| %>
   <% if @civility_vote.errors.any? %>
     <div id="error_explanation">
@@ -20,11 +22,9 @@
     <%= f.number_field :negative_id, value: 2 %>
   </div>
 
-
-
-
+<h2 class="center" id="civility-anchor">Finally, please rate the civility of both debaters.</h2>
 <div class="affirmative-field">
-<h2>Please rate the civility of the affirmative advocate in this debate.</h2>
+  <h4>Affirmative:</h4>
   <span class="affirmative-rating">
 
     <input type="radio" class="rating-input" id="civility_vote_affirmative_rating_5" name="civility_vote[affirmative_rating]" value="5" >
@@ -57,7 +57,7 @@
 
 
 <div class="negative-field">
-<h2>Please rate the civility of the negative advocate in this debate.</h2>
+<h4>Negative: </h4>
   <span class="affirmative-rating">
 
     <input type="radio" class="rating-input" id="civility_vote_negative_rating_5" name="civility_vote[negative_rating]" value="5" >
@@ -92,3 +92,4 @@
     <%= f.submit "Submit Ratings" %>
   </div>
 <% end %>
+</div>

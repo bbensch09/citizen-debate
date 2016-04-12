@@ -17,7 +17,7 @@ class DebatesController < ApplicationController
     @completed_debates = Debate.where("status = 'Completed'")
     @active_debates = Debate.where("status = 'Active'")
     if current_user
-      @upcoming_debates = Debate.where("status = 'Pending' AND challenger_id = ?",current_user.id)
+      @upcoming_debates = Debate.where("challenger_id = ? OR challenger_email=?",current_user.id,current_user.email)
     else
       @upcoming_debates = []
     end
@@ -56,15 +56,40 @@ class DebatesController < ApplicationController
     @debate = Debate.new(debate_params)
     @debate.start_date = Date.today
 
-    respond_to do |format|
-      if @debate.save
-        format.html { redirect_to @debate, notice: 'Debate was successfully created.' }
-        format.json { render :show, status: :created, location: @debate }
-      else
-        format.html { render :new }
-        format.json { render json: @debate.errors, status: :unprocessable_entity }
-      end
+    if @debate.challenger_id
+        respond_to do |format|
+          if @debate.save
+            UserMailer.challenge_existing_user(@debate).deliver_now
+            format.html { redirect_to @debate, notice: 'Your debate challenge has successfully been created and an invitation has been sent to the challenger.' }
+            format.json { render :show, status: :created, location: @debate }
+          else
+            format.html { render :new }
+            format.json { render json: @debate.errors, status: :unprocessable_entity }
+          end
+        end
     end
+
+    if @debate.challenger_email
+        respond_to do |format|
+          if @debate.save
+            # temp_password = (0...8).map { ('a'..'z').to_a[rand(26)] }.join
+            # User.create!({
+            #   email: @debate.challenger_email,
+            #   passwword: temp_password
+            # })
+            UserMailer.challenge_new_user(@debate).deliver_now
+            format.html { redirect_to @debate, notice: 'Your debate challenge has successfully been created and an invitation has been sent to the challenger.' }
+            format.json { render :show, status: :created, location: @debate }
+          else
+            format.html { render :new }
+            format.json { render json: @debate.errors, status: :unprocessable_entity }
+          end
+        end
+    end
+
+
+
+
   end
 
   def create_first_round
