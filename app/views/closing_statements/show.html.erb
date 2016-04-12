@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Author:</strong>
+  <%= @closing_statement.author_id %>
+</p>
+
+<p>
+  <strong>Content:</strong>
+  <%= @closing_statement.content %>
+</p>
+
+<p>
+  <strong>Round:</strong>
+  <%= @closing_statement.round_id %>
+</p>
+
+<p>
+  <strong>Debate:</strong>
+  <%= @closing_statement.debate_id %>
+</p>
+
+<p>
+  <strong>Unread:</strong>
+  <%= @closing_statement.unread %>
+</p>
+
+<%= link_to 'Edit', edit_closing_statement_path(@closing_statement) %> |
+<%= link_to 'Back', closing_statements_path %>

@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Opening Statements</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Author</th>
+      <th>Content</th>
+      <th>Round</th>
+      <th>Debate</th>
+      <th>Unread</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @opening_statements.each do |opening_statement| %>
+      <tr>
+        <td><%= opening_statement.author_id %></td>
+        <td><%= opening_statement.content %></td>
+        <td><%= opening_statement.round_id %></td>
+        <td><%= opening_statement.debate_id %></td>
+        <td><%= opening_statement.unread %></td>
+        <td><%= link_to 'Show', opening_statement %></td>
+        <td><%= link_to 'Edit', edit_opening_statement_path(opening_statement) %></td>
+        <td><%= link_to 'Destroy', opening_statement, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Opening statement', new_opening_statement_path %>

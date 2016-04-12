@@ -1,8 +1,26 @@
-<div class="profile-container">
+<div class="debate-container">
   <h2>Debate Details</h2>
 
   <%= render 'details' %>
 
+<!-- BEGIN REAL-TIME PLAYGROUND CRAP -->
+<hr>
+  <%= render 'add_comment' %>
+<hr>
+<div class="panel panel-default" id="comments">
+    <div class="panel-body">
+      <h3>Current Round (real-time comments)</h3>
+      <ul class="media-list">
+        <li></li>
+        <%= render partial: 'message', collection: @messages %>
+      </ul>
+    </div>
+</div>
+<!-- END REAL-TIME CRAP -->
+
+<hr>
+<h1>PREVIOUS ROUNDS BELOW (not real-time)</h1>
+<hr>
 <% @debate.rounds.each do |round| %>
     <% if current_user && round.eligible_speakers.first == current_user.id %>
           <div class="highlight-current-user">
@@ -12,14 +30,14 @@
   <hr>
     <h3><%= round.name %> </h3>
   <% round.messages.each do |message| %>
-    <h4>
-       <%= image_tag message.author.user.profile.avatar.url(:thumb), alt:"avatar-img", class:"avatar-nav" %>
-       <%= message.author.user.profile.display_name %>
-     </h4>
-      <%= raw(message.message_content) %>
-    </div>
+    <%= render partial: 'debates/message', locals: {message: message} %>
   <% end %>
+  </div>
 <% end %>
+
+<!-- END CORE DEBATE ARCHIVE WHICH ALL USERS CAN SEE -->
+<div class="debugging">
+  <h1>The section below should only be visible to signed in users</h1>
 
 <% if current_user && (current_user == @debate.affirmative_debater.user || current_user == @debate.negative_debater.user) %>
   <h4>
@@ -65,7 +83,7 @@
           </div>
           <% end %> <!-- End form for @messages -->
       <% else %>
-          <a href="#" class="btn btn-default">TBD: edit your message before moving on to the next round</a>
+          <!-- <a href="#" class="btn btn-default">TBD: edit your message before moving on to the next round</a> -->
       <% end %>
 
       <!-- Only the initiator of a round can can end the cross examination round -->
@@ -111,9 +129,9 @@
       <% end %>
   <% end %>
 
-
-
 <% end %> <!-- End if statement for current debate participants -->
+
+</div>
 
 <%= link_to 'Back to All Debates', debates_path %>
 </div>

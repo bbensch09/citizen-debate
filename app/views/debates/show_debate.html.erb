@@ -1,0 +1,150 @@
+<div class="debate-container">
+
+  <%= render 'details' %>
+
+<!-- BEGIN LOGIC FOR CURRENT DEBATERS -->
+<% if current_user && @debate.status == "Active" && (current_user == @debate.affirmative_debater.user || current_user == @debate.negative_debater.user) %>
+<div class="live-debate-container">
+  <small class="text-muted">Note: if you hear a notification sound but do not see any new messages, please simply refresh the page.</small>
+
+    <!-- BEGIN REAL-TIME CONTAINER FOR ROUND 2 -->
+    <div class="round2" >
+      <% if @debate.rounds.last.round_number == 2 && @debate.rounds.last.status != "Completed" %>
+          <%= render 'short_response' %>
+          <%= render 'finish_round' %>
+      <div class="panel panel-default" id="comments">
+          <div class="panel-body">
+            <h3><%= @debate.rounds.last.name %>
+                <% if @debate.rounds.last.end_time %>
+                ends at <%= @debate.rounds.last.ends_at.strftime('%l:%M %p') %>
+                <% end %>
+            </h3>
+            <ul class="media-list">
+              <%= render partial: 'message', collection: @messages %>
+            </ul>
+          </div>
+      </div>
+      <% end %>
+    </div>
+    <!-- END REAL-TIME CONTAINTER -->
+
+    <!-- BEGIN CONTAINER FOR OPENING STATEMENTS -->
+    <div class="statments">
+      <% if @debate.status == "Active" && @debate.rounds.last.round_number == 1 && @debate.rounds.last.status != "Completed" %>
+
+          <% if current_user.id == @debate.affirmative_debater.user_id %>
+
+              <% if @debate.opening_affirmative %>
+
+                  <%= raw(@debate.opening_affirmative.content) %>
+                  <%= link_to 'Edit your statement', edit_opening_statement_path(@debate.opening_affirmative.id) %>
+                  <%= render 'finish_round' %>
+                <% else %>
+                  <%= render 'compose_opening' %>
+              <% end %>
+
+          <% end %>
+
+          <% if current_user.id == @debate.negative_debater.user_id %>
+
+              <% if @debate.opening_negative %>
+
+                  <%= raw(@debate.opening_negative.content) %>
+                  <%= link_to 'Edit your statement', edit_opening_statement_path(@debate.opening_negative.id) %>
+                  <%= render 'finish_round' %>
+                <% else %>
+                  <%= render 'compose_opening' %>
+              <% end %>
+
+          <% end %>
+
+      <% end %>
+
+    <!-- BEGIN CONTAINER FOR CLOSING STATEMENTS -->
+    <div class="statments">
+      <% if @debate.status == "Active" && @debate.rounds.last.round_number == 3 && @debate.rounds.last.status != "Completed" %>
+
+          <% if current_user.id == @debate.affirmative_debater.user_id %>
+
+              <% if @debate.closing_affirmative %>
+
+                  <%= raw(@debate.closing_affirmative.content) %>
+                  <%= link_to 'Edit your statement', edit_closing_statement_path(@debate.closing_affirmative.id) %>
+                  <%= render 'finish_round' %>
+                <% else %>
+                  <%= render 'compose_closing' %>
+              <% end %>
+
+          <% end %>
+
+          <% if current_user.id == @debate.negative_debater.user_id %>
+
+              <% if @debate.closing_negative %>
+
+                  <%= raw(@debate.closing_negative.content) %>
+                  <%= link_to 'Edit your statement', edit_closing_statement_path(@debate.closing_negative.id) %>
+                  <%= render 'finish_round' %>
+                <% else %>
+                  <%= render 'compose_closing' %>
+              <% end %>
+
+          <% end %>
+
+      <% end %>
+
+
+    <!-- Show option to start the next round if the debate is still active and the most recent round has been completed. -->
+      <% if @debate.status == "Active" && @debate.rounds.last.status == "Completed" %>
+              <%= render 'start_round' %>
+      <% end %>
+
+      <!-- <h4><%= link_to "Refresh page", debate_path, class: "btn btn-default" %></h4> -->
+    </div>
+    <!-- END CONTAINER FOR STATEMENTS -->
+
+<% end %>
+<!-- END LOGIC FOR CURRENT DEBATERS -->
+</div>
+
+<!-- BEGIN DEBATE ARCHIVE FOR ALL USERS TO SEE -->
+<% if current_user && (current_user.before_votes.include?(@debate.id) ||( @debate.participants.include?(current_user.id))) && @debate.status != "Pending" %>
+
+<hr>
+    <% if @debate.opening_affirmative && @debate.opening_negative %>
+      <div class="debate-recap-container">
+      <%= render partial: 'opening' %>
+      </div>
+    <% end %>
+<hr>
+    <% if @debate.rounds.last.round_number > 2 %>
+      <div class="debate-recap-container">
+      <%= render partial: 'middle' %>
+      </div>
+    <% end %>
+<hr>
+    <% if @debate.closing_affirmative && @debate.closing_negative %>
+      <div class="debate-recap-container">
+      <%= render partial: 'closing' %>
+      </div>
+    <% end %>
+<hr>
+    <% if current_user.eligible_after_votes.include?(@debate.id) %>
+    <div class="voting-container">
+      <%= render partial: 'debate_votes/after_form' %>
+    </div>
+    <% elsif current_user.eligible_civility_votes.include?(@debate.id) %>
+      <div class="voting-container">
+      <%= render partial: 'civility_votes/form' %>
+    </div>
+    <% end %>
+<hr>
+
+<% else %>
+
+    <div class="voting-container">
+      <%= render partial: 'debate_votes/before_form' %>
+    </div>
+
+<% end %>
+<%= link_to 'Back to All Debates', debates_path %>
+</div>

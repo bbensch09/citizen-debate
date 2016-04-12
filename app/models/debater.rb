@@ -4,6 +4,9 @@ class Debater < ActiveRecord::Base
       has_many :negative_debates, class_name: "Debate", foreign_key: "negative_id"
       has_many :civility_votes
       has_many :messages, foreign_key: "author_id"
+      has_many :opening_statements
+      has_many :closing_statements
+
 
       def debates
           Debate.where("affirmative_id = ? OR negative_id = ?", self.id, self.id)

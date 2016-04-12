@@ -11,13 +11,23 @@
 </p>
 
 <p>
-  <strong>Debater:</strong>
-  <%= @civility_vote.debater_id %>
+  <strong>Affirmative Debater:</strong>
+  <%= @civility_vote.affirmative_id %>
 </p>
 
 <p>
-  <strong>Rating:</strong>
-  <%= @civility_vote.rating %>
+  <strong>Affirmative Rating:</strong>
+  <%= @civility_vote.affirmative_rating %>
+</p>
+
+<p>
+  <strong>Negative Debater:</strong>
+  <%= @civility_vote.negative_id %>
+</p>
+
+<p>
+  <strong>Negative Rating:</strong>
+  <%= @civility_vote.negative_rating %>
 </p>
 
 <%= link_to 'Edit', edit_civility_vote_path(@civility_vote) %> |

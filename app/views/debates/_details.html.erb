@@ -1,36 +1,43 @@
-<p>
-  <strong>Affirmative:</strong>
-  <%= @debate.affirmative_debater.user.profile.display_name %>
-  <%= image_tag @debate.affirmative_debater.user.profile.avatar.url(:thumb), alt:"avatar-img", class:"img-responsive" %>
-</p>
-
-<p>
-  <strong>Negative:</strong>
-  <%= @debate.negative_debater.user.profile.display_name %>
-  <%= image_tag @debate.negative_debater.user.profile.avatar.url(:thumb), alt:"avatar-img", class:"img-responsive" %>
-</p>
-
-<p>
-  <strong>Judge left:</strong>
-  <%= @debate.judge_left.user.profile.display_name %>
-</p>
-
-<p>
-  <strong>Judge right:</strong>
-  <%= @debate.judge_right.user.profile.display_name %>
-</p>
-
-<p>
-  <strong>Status:</strong>
-  <%= @debate.status %>
-</p>
-
-<p>
-  <strong>Date:</strong>
-  <%= @debate.start_date %>
-</p>
-
-<p>
-  <strong>Topic:</strong>
+<h1>
   <%= @debate.topic.title %>
-</p>
+</h1>
+
+<h3>About the debaters</h2>
+
+<div class="col-lg-6 col-md-3">
+  <strong>Affirmative:</strong>
+  <% if @debate.affirmative_debater %>
+  <%= image_tag @debate.affirmative_debater.user.profile.avatar.url(:thumb), alt:"avatar-img", class:"img-debate-details" %>
+  <br>
+  About <%= @debate.affirmative_debater.user.profile.display_name %>:
+  <h4>
+      <%=@debate.affirmative_debater.user.profile.about_me %>
+  </h4>
+  <% else %>
+  <h4>Challenge awaiting acceptance</h4>
+  <% end %>
+</div>
+
+<div class="col-lg-6 col-md-3">
+  <strong>Negative:</strong>
+  <% if @debate.negative_debater %>
+  <%= image_tag @debate.negative_debater.user.profile.avatar.url(:thumb), alt:"avatar-img", class:"img-debate-details" %>
+  <br>
+  About <%= @debate.negative_debater.user.profile.display_name %>:
+  <h4>
+      <%=@debate.negative_debater.user.profile.about_me %>
+  </h4>
+  <% else %>
+  <h4>Challenge awaiting acceptance</h4>
+  <% end %>
+</div>
+
+ <h4 class="col-lg-12 col-md-3">
+  <strong>Debate Status:</strong>
+  <%=@debate.update_status %>
+  <br>
+  <strong>Last Update:</strong>
+  <%= @debate.time_since_updated %>
+  <br>
+</h4>
+

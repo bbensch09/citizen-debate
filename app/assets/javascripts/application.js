@@ -12,7 +12,11 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require bootstrap-sprockets
-//= require ckeditor/init
+//= require turbolinks
+//= require bootstrap
 //= require faye
-//= require messages
+//= require bootstrap-sprockets
+//= require comments
+//= require civility_votes
+//= require ckeditor/init
+= require tree .

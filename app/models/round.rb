@@ -1,9 +1,25 @@
 class Round < ActiveRecord::Base
   belongs_to :debate
   has_many :messages
+  validates :debate_id, :round_number, presence: true
+
+  validate :confirm_both_sides_finished, on: :update
+
+  def confirm_both_sides_finished
+    debate = self.debate
+    case round_number
+    when 1
+      errors.add(:status,"Please wait until your opponent has finished their statement.") unless (debate.opening_affirmative && debate.opening_negative)
+    when 2
+      errors.add(:status,"You may not end cross examination early unless each side has had the chance to ask at least one question.") unless self.messages.count > 2
+    when 3
+      errors.add(:status,"Please wait until your opponent has finished their statement.") unless (debate.closing_affirmative && debate.closing_negative)
+    end
+
+  end
+
 
   def time_remaining
-    return "The debate start time has not yet been confirmed." if start_time.nil?
     round_length = 300 #300 seconds, 5 minutes
     time_elapsed = Time.now - start_time
     time_remaining = (round_length - time_elapsed)
@@ -20,6 +36,19 @@ class Round < ActiveRecord::Base
     end
   end
 
+def ends_at
+  case round_number
+  when 1
+    self.end_time = self.start_time + 300 #5minutes
+  when 2
+    self.end_time = self.start_time + 900 #15minutes
+  when 3
+    self.end_time = self.start_time + 300 #5minutes
+  end
+  self.save
+  return self.end_time
+end
+
 def name
   case round_number
   when 1
@@ -31,16 +60,16 @@ def name
   when 4
     return "Round #4 - Affirmative cross-examination"
   when 5
-    return "Round #1 - Affirmative rebuttal"
+    return "Round #5 - Affirmative rebuttal"
   when 6
-    return "Round #1 - Negative rebuttal and closing"
+    return "Round #6 - Negative rebuttal and closing"
   when 7
-    return "Round #1 - Affirmative closing"
+    return "Round #7 - Affirmative closing"
   end
 
 end
 
-def multiple_messages_per_round?
+def cross_ex?
   case round_number
   when 1
     return false

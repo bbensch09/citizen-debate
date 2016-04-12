@@ -1,3 +1,66 @@
 // Place all the styles related to the CivilityVotes controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.affirmative-rating {
+    /*overflow: hidden;*/
+    display: inline-block;
+    font-size: 10px;
+    position: relative;
+
+}
+.rating-input {
+    float: right;
+    width: 10px;
+    height: 80px;
+    padding: 0;
+    margin: 0 0 0 0px;
+    opacity: 0;
+}
+.affirmative-rating:hover .rating-star:hover,
+.affirmative-rating:hover .rating-star:hover ~ .rating-star,
+.rating-input:checked ~ .rating-star {
+    background: url('https://s3-us-west-2.amazonaws.com/citizen-debate/static_images/green-star.png');
+    background-size: contain;
+}
+.rating-star,
+.affirmative-rating:hover .rating-star {
+    position: relative;
+    float: right;
+    display: block;
+    width: 80px;
+    height: 80px;
+    background: url('https://s3-us-west-2.amazonaws.com/citizen-debate/static_images/gray-star.png') 0 0px;
+    background-size: contain;
+}
+
+.rating-text,
+.affirmative-rating:hover .rating-star .rating-text{
+  font-size: 14px;
+  top:80px;
+  color: gray;
+  position: relative;
+}
+
+.submit-ratings-button{
+  margin-top: 40px;
+}
+.affirmative-field, .negative-field{
+  display: inline-block;
+}
+.civility-container{
+  position:fixed;
+  top:100px;
+  width:100vw;
+  height: 45vh;
+  background-color: white;
+  z-index: 2;
+  border: 1px solid gray;
+}
+.submit-ratings-button{
+    clear: both;
+    display: block !important;
+    width: 150px;
+    margin-right: auto;
+    margin-left: auto;
+}

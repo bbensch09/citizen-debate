@@ -1,0 +1,57 @@
+<div class="profile-container">
+<%= form_for(@debate) do |f| %>
+  <% if @debate.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@debate.errors.count, "error") %> prohibited this debate from being saved:</h2>
+
+      <ul>
+      <% @debate.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<!--   <div class="field">
+    <%= f.label :affirmative_id %><br>
+    <%= f.number_field :affirmative_id %>
+  </div>
+  <div class="field">
+    <%= f.label :negative_id %><br>
+    <%= f.number_field :negative_id %>
+  </div> -->
+
+  <div class="field">
+    <h2> Select debate topic </h2>
+    <%= f.collection_select :topic_id, Topic.all, :id, :title %>
+  </div>
+
+  <div class="field">
+      <h2>Select your position</h2>
+      <li class="voting-options">
+        <%= f.label :affirmative_id, "I support the affirmative.", :class=> "voting-options" %>
+        <%= f.radio_button :affirmative_id, current_user.debater.id %>
+      </li>
+      <li class="voting-options">
+        <%= f.label :negative_id, "I support the negative.", :class=> "voting-options" %>
+        <%= f.radio_button :negative_id, current_user.debater.id %>
+      </li>
+  </div>
+
+  <div class="field">
+    <h2>Select your opponent</h2>
+      <%= f.label :challenger_id, "Challenge an existing citizen debater?" %>
+      <%= f.collection_select :challenger_id, Profile.all, :user_id, :display_name, :include_blank => true %>
+      <h4>Or challenge a friend by email</h4>
+      <%= f.text_field :challenger_email %>
+  </div>
+
+  <div class="hidden">
+    <%= f.text_field :status, value: "Pending" %>
+    <%= f.text_field :creator_id, value: current_user.debater.id %>
+  </div>
+  <div class="actions">
+    <%= f.submit "Issue debate challenge", :class => "btn btn-success" %>
+  </div>
+<% end %>
+</div>

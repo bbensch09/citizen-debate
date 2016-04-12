@@ -1,0 +1,9 @@
+<div class="well" id="message_body">
+  <%= form_for @comment, remote: true do |f| %>
+    <div class="form-group">
+      <%= f.label :body, 'Enter your comment:' %>
+      <%= f.text_area :body, rows: 2, class: 'form-control', required: true, minlength: 2 %>
+    </div>
+    <%= f.submit 'Post', class: 'btn btn-primary btn-lg' %>
+  <% end %>
+</div>

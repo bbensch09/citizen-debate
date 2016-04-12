@@ -1,0 +1,10 @@
+<!-- HACKY SHIT: Identical partial for Messages in Debates directory -->
+<li class="media comment">
+  <div class="media-body">
+    <h4 class="media-heading">
+    <%= image_tag(message.author.user.profile.avatar.url(:thumb), alt: "image not found", class: "avatar-nav") %>
+    <%= message.author.user.profile.display_name %>
+      <small class="text-muted">posted <%= message.time_since_written %></small></h4>
+    <p><%= raw(message.message_content) %></p>
+  </div>
+</li>

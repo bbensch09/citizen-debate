@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+</head>
+<body>
+  <h3>Hello <%= @debate.challenger.profile.display_name %>,</h3>
+  <p>
+  You've received a new debate invitation on <b> Citizen Debate</b>!
+  </p>
+  <p> <%= @debate.creator.profile.display_name %> has challenged you to debate them on the topic below. You've been challenged to defend the <b> <%= @challenger_side %> </b> of the debate.
+  </p>
+  <h3><%=@debate.topic.title%> </h3>
+  <p>
+    To accept this challenge, please simply login via the link below. You can accept this debate challenge and any others by visiting the <a href="www.citizendebate.org/debates">Debates</a> page and viewing your "Pending Debate Challenges" in your account.
+  </p>
+  <a href="www.citizendebate.org/debates" class="btn btn-default"> Accept Challenge: <%=@debate.topic.title%> </a>
+
+  <p>Thanks for debating!</p>
+</body>
+</html>

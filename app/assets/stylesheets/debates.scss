@@ -8,3 +8,64 @@
 }
 .highlight-opponent{
  }
+.debate-container{
+    width: 100vw;
+    max-width: 1600px;
+    margin: auto;
+    position: relative;
+    margin-top: 80px;
+    padding-right: 10vw !important;
+    padding-left: 10vw !important;
+}
+.debugging{
+  background-color: rgba(234, 67, 53, .3);
+  color:red;
+}
+.center{
+  text-align: center;
+}
+.opening-round{
+  min-height: 20vh;
+}
+.middle-round{
+  background-color: #fff;
+  min-height: 20vh;
+}
+.closing-round{
+  min-height: 20vh;
+}
+.cross-ex-messages{
+  padding-left: 100px;
+}
+.voting-options{
+  display: inline;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.voting-container{
+  min-height: 10vh;
+  background-color: rgba(52, 168, 83, .3);
+  clear: both;
+  display:block;
+  position: relative;
+}
+.debate-recap-container{
+  min-height: 10vh;
+  background-color: rgba(154, 156, 159, .31);
+  clear: both;
+  display:block;
+  position: relative;
+}
+.debate-list-header{
+  margin-top: 20px;
+}
+.img-debate-details{
+  max-height: 150px;
+}
+.live-debate-container{
+    width: 90vw;
+    max-width: 1600px;
+    margin: auto;
+    position: relative;
+    clear:both;
+}
