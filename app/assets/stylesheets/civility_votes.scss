@@ -46,14 +46,21 @@
   margin-top: 40px;
 }
 .affirmative-field, .negative-field{
-  clear:both;
-  display: block;
+  display: inline-block;
 }
 .civility-container{
   position:fixed;
   top:100px;
   width:100vw;
-  height: 40vh;
+  height: 45vh;
   background-color: white;
-  z-index: 2
+  z-index: 2;
+  border: 1px solid gray;
+}
+.submit-ratings-button{
+    clear: both;
+    display: block !important;
+    width: 150px;
+    margin-right: auto;
+    margin-left: auto;
 }

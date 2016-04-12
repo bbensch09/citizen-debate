@@ -1,15 +1,27 @@
 class DebatesController < ApplicationController
   before_action :set_debate, only: [:show, :edit, :update, :destroy, :accept_challenge]
-  after_action :create_first_round, only: [:create]
   before_action :authenticate_user!, except: [:show, :index]
+  before_action :confirm_new_challengers, only: [:index]
+  after_action :create_first_round, only: [:create]
 
 
-# HACKY SHIT
-  # before_action :current_user_must_vote_first?, only: [:show]
-
-  # def current_user_must_vote_first?
-  #     DebateVote.where("user_id = ? AND debate_id = ?",current_user.id, @debate.id).count == 0 ? true : false
-  # end
+  def confirm_new_challengers
+        puts "confirming new challengers"
+        confirmable_debates = Debate.where("challenger_id IS NULL")
+        confirmable_debates.each do |debate|
+            if User.where("email = ?",debate.challenger_email).count >=1
+                debate.challenger_id = User.where("email = ?",debate.challenger_email).first.id
+                  if debate.affirmative_id.nil?
+                    debate.affirmative_id = debate.challenger_id
+                  elsif debate.negative_id.nil?
+                    debate.negative_id = debate.challenger_id
+                  end
+                debate.update_status
+                debate.save
+                puts "challenger confirmed & appropriate ids now set."
+            end
+        end
+    end
 
   # GET /debates
   # GET /debates.json

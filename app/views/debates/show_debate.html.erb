@@ -111,15 +111,21 @@
 
 <hr>
     <% if @debate.opening_affirmative && @debate.opening_negative %>
+      <div class="debate-recap-container">
       <%= render partial: 'opening' %>
+      </div>
     <% end %>
 <hr>
     <% if @debate.rounds.last.round_number > 2 %>
+      <div class="debate-recap-container">
       <%= render partial: 'middle' %>
+      </div>
     <% end %>
 <hr>
     <% if @debate.closing_affirmative && @debate.closing_negative %>
+      <div class="debate-recap-container">
       <%= render partial: 'closing' %>
+      </div>
     <% end %>
 <hr>
     <% if current_user.eligible_after_votes.include?(@debate.id) %>

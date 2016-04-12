@@ -1,6 +1,6 @@
 class Profile < ActiveRecord::Base
   belongs_to :user
-  has_attached_file :avatar, styles: { large: "400x400>", thumb: "80x80>" },  default_url: "/images/:style/missing.png",
+  has_attached_file :avatar, styles: { large: "400x400>", thumb: "80x80>" },  default_url: "https://s3-us-west-2.amazonaws.com/citizen-debate/static_images/profile-blank.jpg",
           :storage => :s3,
            :url => ':s3_domain_url',
            :path => '/:class/:attachment/:id_partition/:style/:filename',
@@ -60,6 +60,116 @@ class Profile < ActiveRecord::Base
     return self.extra_info
   end
 
+  def debate_points
+
+  end
+
+  def civility_points
+      #affirmative debate ratings
+      aff_ratings = CivilityVote.where("affirmative_id = ?",self.user.debater.id)
+      #negative debate ratings
+      neg_ratings = CivilityVote.where("negative_id = ?",self.user.debater.id)
+      civility_points = 0
+      aff_ratings.each do |rating|
+        civility_points += rating.affirmative_rating
+      end
+      neg_ratings.each do |rating|
+        civility_points += rating.negative_rating
+      end
+      return civility_points
+  end
+
+  def civility_rating
+      #affirmative debate ratings
+      aff_ratings = CivilityVote.where("affirmative_id = ?",self.user.debater.id)
+      #negative debate ratings
+      neg_ratings = CivilityVote.where("negative_id = ?",self.user.debater.id)
+      civility_points = 0
+      aff_ratings.each do |rating|
+        civility_points += rating.affirmative_rating
+      end
+      neg_ratings.each do |rating|
+        civility_points += rating.negative_rating
+      end
+      debate_count = aff_ratings.count + neg_ratings.count
+      civility_rating = (civility_points.to_f / debate_count.to_f)
+      return civility_rating
+  end
+
+  def debate_points
+    # identify debates in which user was affirmative
+    participated_aff_debates = Debate.where("affirmative_id = ?",self.user.debater.id)
+    aff_debate_votes = []
+    participated_aff_debates.each do |debate|
+       each_aff_debates_votes = DebateVote.where("debate_id = ?",debate.id)
+       each_aff_debates_votes.each do |vote|
+        aff_debate_votes << vote
+       end
+    end
+    puts "user has received #{aff_debate_votes.count} votes in #{participated_aff_debates.count} affirmative debates."
+
+    # identify debates in which user was negative
+    participated_neg_debates = Debate.where("negative_id = ?",self.user.debater.id)
+    neg_debate_votes = []
+    participated_neg_debates.each do |debate|
+       each_neg_debates_votes = DebateVote.where("debate_id = ?",debate.id)
+       each_neg_debates_votes.each do |vote|
+        neg_debate_votes << vote
+       end
+     end
+    puts "user has received #{neg_debate_votes.count} votes in #{participated_neg_debates.count} affirmative debates."
+
+    #calculate aff points based on delta between before and after
+    aff_points = 0
+    aff_debate_votes.each do |vote|
+      if vote.vote_before == "I am not sure"
+          case vote.vote_after
+          when "I agree"
+            aff_points += 5
+          when "I am not sure"
+            aff_points += 0
+          end
+      elsif vote.vote_before == "I disagree"
+          case vote.vote_after
+          when "I agree"
+            aff_points += 10
+          when "I am not sure"
+            aff_points += 5
+          end
+      else
+        aff_points += 0
+      end
+    end
+    #calculate neg points based on delta between before and after
+    neg_points = 0
+    neg_debate_votes.each do |vote|
+      if vote.vote_before == "I am not sure"
+          case vote.vote_after
+          when "I disagree"
+            neg_points += 5
+          when "I am not sure"
+            neg_points += 0
+          end
+      elsif vote.vote_before == "I agree"
+          case vote.vote_after
+          when "I disagree"
+            neg_points += 10
+          when "I am not sure"
+            neg_points += 5
+          end
+      else
+        neg_points += 0
+      end
+    end
+
+  # calculate total points as sum of aff + neg points
+  debate_points = aff_points + neg_points
+  end
+
+  def minds_changed
+    return (self.debate_points / 10)
+  end
+
   def update_points
     #free points
     #users get more points for being earlier to sign up; how it works: all users get a point for every user that signs up after them, so with 10 users, the 1st user gets 10 points, and the last user gets zero. when 11th user signs up, each of those users gets one more point.
@@ -69,7 +179,7 @@ class Profile < ActiveRecord::Base
     else
       free_points = 0
     end
-    self.points = free_points + self.profile_bonus + self.snippet_bonus + self.topic_bonus + self.referral_bonus
+    self.points = free_points + self.profile_bonus + self.snippet_bonus + self.topic_bonus + self.referral_bonus + self.civility_points
     self.save
     puts "points updated and saved. Profile ID #{self.id} has #{self.points}"
   end

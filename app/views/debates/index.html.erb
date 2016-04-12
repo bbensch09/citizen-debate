@@ -2,54 +2,60 @@
 
 <div class="profile-container">
 
-<% if current_user.profile.nil? %>
-    <h2>
-      In order to accept debate challenges, please first <a class="signed-in-nav" href='/profiles/new' >complete your profile</a>
-    </h2>
-<% else %>
-
-<%= link_to 'New Debate', new_debate_path %>
-
 <h1 class="center debate-list-header">Your Pending Debate Challenges</h1>
 
-<table class="col-lg-12 col-sm-12 waitlist-table">
-  <thead>
-    <tr>
-      <th>Topic</th>
-      <th>Creator</th>
-      <th>Challenger</th>
-      <th>Status</th>
-      <th>Last Updated</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<% if current_user && current_user.profile %>
 
-  <tbody>
-    <% @upcoming_debates.each do |debate| %>
-      <tr>
-        <td><%= link_to debate.topic.title, debate %></td>
-        <td><%= debate.creator.profile.display_name %></td>
-        <td>
-          <% if debate.challenger.profile %>
-              <%= debate.challenger.profile.display_name %>
-            <% else %>
-            "TBD"
+<%= link_to 'Initiate a Debate', new_debate_path, class: "btn btn-default" %>
+
+    <table class="col-lg-12 col-sm-12 waitlist-table">
+      <thead>
+        <tr>
+          <th>Topic</th>
+          <th>Creator</th>
+          <th>Challenger</th>
+          <th>Status</th>
+          <th>Last Updated</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @upcoming_debates.each do |debate| %>
+          <tr>
+            <td><%= link_to debate.topic.title, debate %></td>
+            <td><%= debate.creator.profile.display_name %></td>
+            <td>
+              <% if debate.challenger.profile %>
+                  <%= debate.challenger.profile.display_name %>
+                <% else %>
+                "TBD"
+              <% end %>
+            </td>
+            <td> <b> <%= debate.status %> </b> </td>
+            <td><%= debate.time_since_updated %></td>
+            <td><%= link_to 'Accept Challenge', accept_challenge_debate_path(debate),  method: :post,  class: "btn btn-default" %></td>
+          <% if current_user && current_user.email == "citizen.debate.16@gmail.com" %>
+            <td><%= link_to 'Edit', edit_debate_path(debate) %></td>
+            <td><%= link_to 'Destroy', debate, method: :delete, data: { confirm: 'Are you sure?' } %></td>
           <% end %>
-        </td>
-        <td> <b> <%= debate.status %> </b> </td>
-        <td><%= debate.time_since_updated %></td>
-        <td><%= link_to 'Accept Challenge', accept_challenge_debate_path(debate),  method: :post,  class: "btn btn-default" %></td>
-      <% if current_user && current_user.email == "citizen.debate.16@gmail.com" %>
-        <td><%= link_to 'Edit', edit_debate_path(debate) %></td>
-        <td><%= link_to 'Destroy', debate, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      <% end %>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
 
+<% else %>
+  <h3 class="alert-warning"> You must be logged in to see pending debate challenges or to start a new debate. </h3>
+  <h4>
+    <%= link_to 'Sign up', new_user_registration_path, class: "btn btn-default" %>
+    <%= link_to 'Log in', new_user_session_path, class: "btn btn-default" %>
+  </h4>
+  <h3 class="alert-warning">
+      Additionally, in order to accept debate challenges, you must first <a class="signed-in-nav" href='/profiles/new' > complete your profile</a>, which includes selecting your user alias and choosing a profile photo.
+  </h3>
+<% end %>
 
-<h1 class="center debate-list-header">View Completed Debates</h1>
+<h1 class="center debate-list-header">Recently Completed Debates</h1>
 
 <table class="col-lg-12 col-sm-12 waitlist-table">
   <thead>
@@ -57,7 +63,9 @@
       <th>Topic</th>
       <th>Affirmative</th>
       <th>Negative</th>
-      <th>Minds Changed</th>
+      <th>Affirmative Minds Changed</th>
+      <th>Negative Minds Changed</th>
+      <th>Net Delta</th>
       <th>Posted</th>
       <th colspan="3"></th>
     </tr>
@@ -69,7 +77,9 @@
         <td><%= link_to debate.topic.title, debate %></td>
         <td><%= debate.affirmative_debater.user.profile.display_name %></td>
         <td><%= debate.negative_debater.user.profile.display_name %></td>
-        <td> <b> 15 </b> </td>
+        <td><%= debate.affirmative_debater.user.profile.minds_changed %></td>
+        <td><%= debate.negative_debater.user.profile.minds_changed %></td>
+        <td><%= (debate.affirmative_debater.user.profile.minds_changed - debate.negative_debater.user.profile.minds_changed) %> minds</td>
         <td><%= debate.time_since_updated %></td>
       <% if current_user && current_user.email == "citizen.debate.16@gmail.com" %>
         <td><%= link_to 'Show', debate %></td>
@@ -83,7 +93,7 @@
 
 <hr>
 
-<h1 class="center debate-list-header">Follow Ongoing Debates</h1>
+<h1 class="center debate-list-header">In-progress Debates</h1>
 
 <table class="col-lg-12 col-sm-12 waitlist-table">
   <thead>
@@ -103,7 +113,7 @@
         <td><%= link_to debate.topic.title, debate %></td>
         <td><%= debate.affirmative_debater.user.profile.display_name %></td>
         <td><%= debate.negative_debater.user.profile.display_name %></td>
-        <td> <b> debate.rounds.last.round_number </b> </td>
+        <td> <b> <%= debate.rounds.last.round_number %> </b> </td>
         <td><%= debate.time_since_updated %></td>
       <% if current_user && current_user.email == "citizen.debate.16@gmail.com" %>
         <td><%= link_to 'Show', debate %></td>
@@ -116,8 +126,5 @@
 </table>
 
 <hr>
-
-
-<% end %>
 
 </div>

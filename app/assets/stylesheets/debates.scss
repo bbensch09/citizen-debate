@@ -46,7 +46,26 @@
   min-height: 10vh;
   background-color: rgba(52, 168, 83, .3);
   clear: both;
+  display:block;
+  position: relative;
+}
+.debate-recap-container{
+  min-height: 10vh;
+  background-color: rgba(154, 156, 159, .31);
+  clear: both;
+  display:block;
+  position: relative;
 }
 .debate-list-header{
   margin-top: 20px;
+}
+.img-debate-details{
+  max-height: 150px;
+}
+.live-debate-container{
+    width: 90vw;
+    max-width: 1600px;
+    margin: auto;
+    position: relative;
+    clear:both;
 }

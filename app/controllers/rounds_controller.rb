@@ -12,11 +12,6 @@ class RoundsController < ApplicationController
 
   def update_debate_status
     Round.last.debate.update_status
-    # Round.create!({
-    #     debate_id: Debate.last.id,
-    #     round_number: Round.last.round_number + 1,
-    #     status: "Pending"
-    #   })
   end
 
   # GET /rounds

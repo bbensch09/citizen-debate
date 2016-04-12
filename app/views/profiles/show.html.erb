@@ -3,6 +3,7 @@
   <!-- <%= link_to "Example Anchor link", profile_path(@profile, :anchor=>"anchor") %> -->
 
   <%= link_to 'Edit Profile', edit_profile_path(@profile), :class => "btn btn-default" %>
+  <%= link_to 'Reset Password', edit_user_registration_path(@profile.user), :class => "btn btn-default" %>
   <% if current_user && current_user.email == "bbensch@gmail.com" %>
     <%= link_to 'Verify', verify_profile_path(@profile), method: :post, class: "btn btn-default glyphicon glyphicon-check" %>
   <% end %>
@@ -38,7 +39,7 @@
     <b>Name: </b><%= @profile.first_name %> <%= @profile.last_name %>
   </p>
   <p>
-    <b>Email</b><%= @profile.user.email %>
+    <b>Email: </b><%= @profile.user.email %>
   </p>
 
   <p>

@@ -62,17 +62,28 @@ class User < ActiveRecord::Base
   end
 
   def eligible_civility_votes
-    previous_votes = CivilityVote.where("voter_id = ?",self.id)
-    previous_vote_debate_ids = []
-    previous_votes.each do |vote|
-      previous_vote_debate_ids << vote.debate_id
-    end
+    # identify all completed debates that are accepting votes
     all_completed_debates = Debate.select(:id).where("status='Completed'")
     all_debate_ids = []
     all_completed_debates.each do |debate|
       all_debate_ids << debate.id
     end
-    eligible_to_vote_debates = all_debate_ids - previous_vote_debate_ids
+    # identify previous debates the user has voted on
+    previous_votes = CivilityVote.where("voter_id = ?",self.id)
+    previous_vote_debate_ids = []
+    previous_votes.each do |vote|
+      previous_vote_debate_ids << vote.debate_id
+    end
+    # identify debates in which the user was a participant
+    particpant_debate_ids = []
+    if self.debater
+      particpant_debates = Debate.where("affirmative_id = ? OR negative_id = ?",self.debater.id,self.debater.id)
+      particpant_debates.each do |debate|
+        particpant_debate_ids << debate.id
+      end
+    end
+    #calculate civility vote eligibility by subtracting #2 and #3 from #1
+    eligible_to_vote_debates = all_debate_ids - previous_vote_debate_ids - particpant_debate_ids
     return eligible_to_vote_debates
   end
 

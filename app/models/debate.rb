@@ -74,14 +74,4 @@ class Debate < ActiveRecord::Base
         end
     end
 
-    def confirm_new_challengers
-        confirmable_debates = Debate.where("challenger_id IS NULL")
-        confirmable_debates.each do |debate|
-            if User.where("email = ?",debate.challenger_email).count >=1
-                debate.challenger_id = User.where("email = ?",debate.challenger_email).first.email
-                debate.save
-            end
-        end
-    end
-
 end

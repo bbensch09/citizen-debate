@@ -1,6 +1,6 @@
 class Ckeditor::Picture < Ckeditor::Asset
   has_attached_file :data,
-          styles: { content: "800>", thumb: "120x80>" }, default_url: "/images/:style/missing.png",
+          styles: { content: "800>", thumb: "120x80>" }, default_url: "https://s3-us-west-2.amazonaws.com/citizen-debate/static_images/profile-blank.jpg",
           :storage => :s3,
           :s3_credentials => {
               :bucket => ENV['S3_BUCKET_NAME'],
