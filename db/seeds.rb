@@ -67,9 +67,6 @@ User.create!({
       verification_status: "verified"
     })
 
-# Update points & rank all profiles after last one is created.
-Profile.last.update_points
-Profile.last.update_rank
 
 topics_array = [
   "Should wealthy Americans earning >$250k per year pay more in tax?",
@@ -211,6 +208,11 @@ ClosingStatement.create!({
   round_id: 3,
   debate_id: 1,
   })
+
+# Update points & rank all profiles after last one is created.
+Profile.last.update_points
+Profile.last.update_rank
+
 
 # Verdict.create!({
 #   debate_id: 1,
