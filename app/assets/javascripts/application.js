@@ -19,4 +19,3 @@
 //= require comments
 //= require civility_votes
 //= require ckeditor/init
-= require tree .
