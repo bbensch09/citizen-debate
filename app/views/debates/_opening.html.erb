@@ -1,10 +1,10 @@
 <!-- THIS IS THE PARTIAL TO RENDER OPENING STATEMENTS -->
 
-<div class="opening-round">
+<div class="opening-round row">
 
     <h2 class="center">Opening Statements</h2>
 
-    <div class="col-lg-6 col-md-6 affirmative-opening">
+    <div class="col-lg-12 col-md-6 affirmative-opening">
       <%= image_tag(@debate.affirmative_debater.user.profile.avatar.url(:thumb), alt: "image not found", class: "avatar-nav") %>
       <b> <%=@debate.affirmative_debater.user.profile.display_name %></b>
       <br>
@@ -14,7 +14,7 @@
       </div>
     </div>
 
-    <div class="col-lg-6 col-md-6 negative-opening">
+    <div class="col-lg-12 col-md-6 negative-opening">
       <%= image_tag(@debate.negative_debater.user.profile.avatar.url(:thumb), alt: "image not found", class: "avatar-nav") %>
       <b> <%=@debate.negative_debater.user.profile.display_name %></b>
       <br>

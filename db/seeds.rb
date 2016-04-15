@@ -69,7 +69,7 @@ User.create!({
 
 
 topics_array = [
-  "Should wealthy Americans earning >$250k per year pay more in tax?",
+  "Should wealthy Americans earning at least $250k per year pay more in tax?",
   "Should Bernie Sanders supporters in California register for the Republican primary to vote against Trump?",
   "Should the Senate hold confirmation hearings for Merrick Garland as the next Supreme Court justice?",
   "Would raising the minimum wage to $15 have a positive impact on GDP?",

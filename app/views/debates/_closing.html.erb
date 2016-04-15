@@ -1,10 +1,10 @@
 <!-- THIS IS THE PARTIAL TO RENDER CLOSING STATEMENTS -->
 
-<div class="closing-round">
+<div class="closing-round row">
 
     <h2 class="center">Closing Statements</h2>
 
-    <div class="col-lg-6 col-md-6 affirmative-closing">
+    <div class="col-lg-12 col-md-6 affirmative-closing">
       <%= image_tag(@debate.affirmative_debater.user.profile.avatar.url(:thumb), alt: "image not found", class: "avatar-nav") %>
       <b> <%=@debate.affirmative_debater.user.profile.display_name %></b>: <%=@debate.affirmative_debater.user.profile.about_me %>
       <br>
@@ -14,7 +14,7 @@
       </div>
     </div>
 
-    <div class="col-lg-6 col-md-6 negative-closing">
+    <div class="col-lg-12 col-md-6 negative-closing">
       <%= image_tag(@debate.negative_debater.user.profile.avatar.url(:thumb), alt: "image not found", class: "avatar-nav") %>
       <b> <%=@debate.negative_debater.user.profile.display_name %></b>: <%=@debate.negative_debater.user.profile.about_me %>
       <br>
