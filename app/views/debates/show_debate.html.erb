@@ -144,7 +144,7 @@
         <% end %>
     <hr>
 
-    <% elsif not @debate.participants.include?(current_user.id) %>
+    <% else %>
 
         <div class="voting-container">
           <%= render partial: 'debate_votes/before_form' %>
