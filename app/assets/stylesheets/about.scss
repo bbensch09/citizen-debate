@@ -59,15 +59,15 @@ h4.section-sub-heading.border-green::after{
 }
 .faq-q,.faq-a {font-style: bold;}
 .faq-question{
-  font-size: 2em;
-  line-height: 2em;
+  font-size: 1.3em;
+  line-height: 1.3em;
   color: #006caf;
-  text-transform: uppercase;
+  text-transform: none;
+  padding-top: 60px;
 }
 .faq-answer{
-  font-size: 1.8em;
-  color: green;
-  font-style: bold;
+  font-size: 1.2em;
+  color: #000;
 }
 p.faq-text{
   font-size: 1.2em;
@@ -79,8 +79,10 @@ p.faq-text{
 .section-heading{
   font-size:1.6em;
 }
+.faq-section{
+padding-top: 10px;
+}
 footer, footer a, footer a:visited {
   color: #4285F4;
   z-index: 1 !important;
-
 }
