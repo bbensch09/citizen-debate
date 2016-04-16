@@ -20,17 +20,17 @@
   <div class="field">
     <h4 class="center"> Before viewing the debate, please first tell us how you feel about the topic. You will vote again at the end of the debate.</h4>
     <ul class="center">
-      <li class="voting-options">
-        <%= f.label :disagree, "I disagree", :class=> "voting-options" %>
-        <%= f.radio_button :vote_before, "I disagree" %>
+       <li class="voting-options">
+        <%= f.label :agree, "I agree", :class=> "voting-options" %>
+        <%= f.radio_button :vote_after, "I agree" %>
       </li>
       <li class="voting-options">
         <%= f.label :undecided, "I am not sure", :class=> "voting-options" %>
-        <%= f.radio_button :vote_before, "I am not sure" %>
+        <%= f.radio_button :vote_after, "I am not sure" %>
       </li>
       <li class="voting-options">
-        <%= f.label :agree, "I agree", :class=> "voting-options" %>
-        <%= f.radio_button :vote_before, "I agree" %>
+        <%= f.label :disagree, "I disagree", :class=> "voting-options" %>
+        <%= f.radio_button :vote_after, "I disagree" %>
       </li>
       <li class="voting-options">
         <%= f.submit "Cast my initial vote", :class=>"actions" %>

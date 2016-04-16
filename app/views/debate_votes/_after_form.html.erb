@@ -21,16 +21,16 @@
     <h4 class="center"> Please now vote again.</h4>
     <ul class="center">
       <li class="voting-options">
-        <%= f.label :disagree, "I disagree", :class=> "voting-options" %>
-        <%= f.radio_button :vote_after, "I disagree" %>
+        <%= f.label :agree, "I agree", :class=> "voting-options" %>
+        <%= f.radio_button :vote_after, "I agree" %>
       </li>
       <li class="voting-options">
         <%= f.label :undecided, "I am not sure", :class=> "voting-options" %>
         <%= f.radio_button :vote_after, "I am not sure" %>
       </li>
       <li class="voting-options">
-        <%= f.label :agree, "I agree", :class=> "voting-options" %>
-        <%= f.radio_button :vote_after, "I agree" %>
+        <%= f.label :disagree, "I disagree", :class=> "voting-options" %>
+        <%= f.radio_button :vote_after, "I disagree" %>
       </li>
       <li class="voting-options">
         <%= f.submit "Cast your second vote", :class=>"actions" %>

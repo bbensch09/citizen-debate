@@ -6,10 +6,10 @@
                 <div class="col-lg-6 col-sm-6">
                     <h2 class="section-heading">Ready to start debating?</h2>
                     <p class="slide-text-content">
-                      We're excited too! Unfortunately, we have to ask you for your patience. We are busily preparing for our upcoming launch on <b>April 15th, 2016</b>.
-                      <br> <br> Citizen Debate will initially be available to a select group of 20 registered users that will soon join us as part of the <b>Early Adopter Program</b>.
+                      We're excited too! Unfortunately, we may need to ask for your patience. Much like a few of our presidential candidates, this is our first time working on such a big project.
+                      <br> <br> As such, we will initially be <b> limiting the debater community </b> to a select group of 20 users that will join as part of the <b>Early Adopter Program</b>. Note that anyone will still be able to sign up to read, vote, and view results during this time.
                       <% if current_user && current_user.profile %>
-                        <br> <br>You are currently number <span class="rank"> <%= current_user.rank %> </span> on our <a href="/profiles" class="inline-link">wait list</a>. Learn below what you can do to move up on the wait list.
+                        <br> <br>You are currently number <span class="rank"> <%= current_user.rank %> </span> on our <a href="/profiles" class="inline-link">debate leader board</a>. Continue below to see what you can do to move up on the list.
                       <% else %>
                           To be considered for this program, please start by setting up your profile.
                           <h2><a href="/profiles/new" class="btn btn-default btn-large">Setup profile</a></h2>
@@ -26,7 +26,7 @@
           </div> <!-- end container -->
         </div> <!-- end content-section a -->
       <div class="scroll-icon">
-        <p>How to bump your spot in line
+        <p>Learn more
           <!-- <a href="#fifthSection/1" > </a>-->
             <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
         </p>

@@ -25,19 +25,19 @@ political_affiliation_array = ['Very liberal','Lean liberal','Moderate','Lean co
 
 User.create!({
       email: "citizen.debate.16@gmail.com",
-      password: 'password'
+      password: 'bb4cd109'
     })
   Profile.create!({
       user_id: User.last.id,
       first_name: "Citizen",
       last_name: "Debate",
-      city: "Santa Clara",
+      city: "San Francisco",
       state: "CA",
       age: 29,
-      about_me: "I believe that there is a fine line between optimism and naivety, and have created this site on the premise that everyday citizens are capable of effectively persuading their peers about politics, and pushing the dialog forward. ",
+      about_me: "I believe that there is a fine line between optimism and naivety, and have created this site on the premise that everyday citizens are capable of effectively persuading their peers about politics, and pushing the dialog forward. Personally, I am probably about as much of a SF yuppie as you can find. I worked in ad sales for 5+ years and then learned how to code, and am now relatively obsessed with entrepreneurship and learning what the Lean Startup means in practice. I lean fairly liberal , but love argumentation for its own sake, and often find myself arguing for conservative causes simply to better inform my overall perspective. ",
       display_name: "citizen_debate_16",
       political_affiliation: political_affiliation_array.sample,
-      snippets: Faker::Hacker.say_something_smart,
+      # snippets: Faker::Hacker.say_something_smart,
       nps: 10,
       # pmf: ["Very disappointed", "Somewhat disappointed", "Not disappointed", "N/A - I don't know since I haven't used it yet."].sample,
       pmf: "Very disappointed",
@@ -48,35 +48,52 @@ User.create!({
 
   User.create!({
       email: "bbensch@gmail.com",
-      password: 'password'
+      password: 'bb4cd109'
     })
   Profile.create!({
       user_id: User.last.id,
-      first_name: "Brian",
-      last_name: "Bensch",
-      city: "San Francisco",
-      state: "CA",
-      age: 29,
-      about_me: "I am probably about as much of a SF yuppie as you can find. I worked in ad sales for 5+ years and then learned how to code, and am now relatively obsessed with entrepreneurship and learning what the Lean Startup means in practice. I lean fairly liberal politically, but love argumentation for its own sake, and often find myself arguing for conservative causes simply to better inform my overall perspective. t",
-      display_name: "sf_skier2016",
+      first_name: "Warren",
+      last_name: "Schmidt",
+      city: "Salt Lake City",
+      state: "UT",
+      age: 59,
+      about_me: "I have worked across diverse industries ranging from insurance to e-commerce, and have led successful teams from just founders to hundreds of employees. While I am proud of my accomplishments that have landed me among the oft-criticized 1%, I just as readily acknowledge the privileges I enjoyed throughout my life, that many more of my fellow Americans did not enjoy. I believe in fiscal responsibility for both individuals and government, and across all issues, seek to maintain a glass half-full view of the world we live in. Looking forward to a healthy exchange of ideas with other members of the community.",
+      display_name: "ProgressNotPartisan",
       political_affiliation: "Lean liberal",
-      snippets: Faker::Hacker.say_something_smart,
-      nps: 9,
-      pmf: "Very disappointed",
+      linkedin_profile: "https://www.linkedin.com/in/bbensch09",
+      verification_status: "verified"
+    })
+
+  User.create!({
+      email: "rentmasters.sf@gmail.com",
+      password: 'bb4cd109'
+    })
+  Profile.create!({
+      user_id: User.last.id,
+      first_name: "Stephen",
+      last_name: "Kelley",
+      city: "Greenwich",
+      state: "CT",
+      age: 48,
+      about_me: "Since my first job as a newspaper boy at the age of 16, I've gratefully embraced the opportunities this great country continues to create for its citizens and the world. I believe in the American Dream and the constitution. I began my career as an bond trader in 1988, jumped around to a few firms in Chicago in the 1990s, and have been running the hedge found I founded in 2010 for the last six years. While I do not agree with all of the GOP leaders, particularly on social issues such as gay marriage, I have typically lean conservative and believe that free market capitalism is far preferable to the typical waste and inefficiency that comes with big government programs.",
+      display_name: "FreeTheMarkets",
+      political_affiliation: "Lean Conservative",
       linkedin_profile: "https://www.linkedin.com/in/bbensch09",
       verification_status: "verified"
     })
 
 
 topics_array = [
-  "Should wealthy Americans earning at least $250k per year pay more in tax?",
-  "Should Bernie Sanders supporters in California register for the Republican primary to vote against Trump?",
-  "Should the Senate hold confirmation hearings for Merrick Garland as the next Supreme Court justice?",
-  "Would raising the minimum wage to $15 have a positive impact on GDP?",
-  "Has the affordable care act caused measurable harm to small businesses?",
-  "Does the incidence of mass shootings decline in countries that have passed gun control legislation?",
-  "Has the NAFTA free trade agreement been harmful to the US employment rate?",
-  "Should the US build a wall along the Mexican border?",
+  "Taxes should be raised on Americans who earn at least $250k.",
+  "Bernie Sanders supporters in California should register for the Republican primary where their vote matters most.",
+  "The Senate should hold confirmation hearings for Merrick Garland as the next Supreme Court justice.",
+  "The federal minimum wage should be raised to $15",
+  "The affordable care act is harmful to small businesses.",
+  "Mass shootings in the United States would be prevented by passing new gun control legislation.",
+  "Free trade agreements such as NAFTA are harmful to the US employment rate.",
+  "The United States should build a wall along the Mexican border",
+  "The United States should temporarily ban Muslims entering the country until the threat from ISIS has been mitigated.",
+  "The government should increase environmental regulations on  emissions in order to reduce the impact of global warming."
 ]
 
 topics_array.each do |topic|
@@ -84,48 +101,49 @@ topics_array.each do |topic|
     title: topic
     })
   TopicVote.create!({
-    value: rand(0..15),
+    value: rand(1..3),
     voter_id: 1,
+    topic_id: Topic.last.id
+    })
+  TopicVote.create!({
+    value: rand(1..3),
+    voter_id: 2,
     topic_id: Topic.last.id
     })
 end
 
 puts "Seed file users & profiles complete!"
 
-# #Seed Judges
-# Judge.create!({
-#   id:1,
-#   user_id:1,
-#   slant_profile: "Liberal",
-#   slant_historical: "None"
-#   })
+# confirm seed debaters
+User.all.each do |user|
+  Debater.create!({
+      user_id: user.id
+    })
+end
+debater_count = Debater.count
+puts "There are now #{debater_count} active debaters in the seed setup."
 
-# Judge.create!({
-#   id:2,
-#   user_id:2,
-#   slant_profile: "Conservative",
-#   slant_historical: "None"
-#   })
+# Update points & rank all profiles after last one is created.
+Profile.last.update_points
+Profile.last.update_rank
+puts "Sample debate #1 complete with three users."
 
-# #Seed debaters
-Debater.create!({
-  id:1,
-  user_id:1
-  })
-Debater.create!({
-  id:2,
-  user_id:2
-  })
-
+=begin
 # #Seed debate #1
 Debate.create!({
-  affirmative_id: 1,
-  negative_id: 2,
+  affirmative_id: 2,
+  negative_id: 3,
   status: "Completed",
-  topic_id: 1
+  topic_id: 1,
+  creator_id: 2,
+  challenger_id: 3,
+  challenge_accepted: true,
+  status: "Completed",
+  start_date: Date.today
   })
 
-Round.create!({
+#first round should be created by default
+Round.first.update!({
   debate_id: 1,
   round_number: 1,
   start_time: Time.now,
@@ -209,9 +227,6 @@ ClosingStatement.create!({
   debate_id: 1,
   })
 
-# Update points & rank all profiles after last one is created.
-Profile.last.update_points
-Profile.last.update_rank
 
 
 # Verdict.create!({
@@ -273,4 +288,4 @@ Profile.last.update_rank
 #   vote_for: 1
 #   })
 
-puts "Sample debate #1 complete with judges, debaters, rounds created."
+=end

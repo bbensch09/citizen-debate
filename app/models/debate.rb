@@ -53,7 +53,7 @@ class Debate < ActiveRecord::Base
         elsif self.rounds.count >=3 && self.rounds.last.status =="Completed"
             self.status = "Completed"
             self.save
-            return "This debate has ended."
+            return "Completed"
         else
             self.status = "Active"
             self.save

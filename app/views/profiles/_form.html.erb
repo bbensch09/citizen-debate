@@ -35,6 +35,10 @@
       <%= f.label :state %><br>
       <%= f.text_field :state %>
     </div>
+    <div class="field">
+      <%= f.label :political_orientation %><br>
+      <%= f.select :political_affiliation, options_for_select(['Very liberal','Lean liberal','Moderate','Lean conservative','Very conservative']) %>
+    </div>
   </div>
   <div class="col-lg-12 col-sm-12 privately-visible">
     <h3 class="publicly-visible-warning">This part of your profile will always be kept private.</h3>
@@ -46,25 +50,21 @@
       <%= f.label :last_name %><br>
       <%= f.text_field :last_name %>
     </div>
-    <div class="field">
-      <%= f.label :political_orientation %><br>
-      <%= f.select :political_affiliation, options_for_select(["Independent","Liberal", "Conservative"]) %>
-    </div>
 
     <div class="field">
       <%= f.label :age %><br>
       <%= f.number_field :age %>
     </div>
   <div class="field">
-    <h4>To verify your account, we will send you a private message via LinkedIn. <br>(If you are uncomfortable sharing, please use this field to tell us why.) </h4>
       <%= f.label :linkedin_profile, "Link to LinkedIn Profile" %><br>
-      <%= f.text_field :linkedin_profile %>
+    <h4>To verify your account, we will send you a private message via LinkedIn. <br>If you do not have a LinkedIn profile, please simply emails us at <a href="mailto:citizen.debate.16@gmail.com">citizen.debate.16@gmail.com</a> and we can coordinate an alternate verification.</h4>
+      <%= f.text_field :linkedin_profile, class: "linkedin-field" %>
     </div>
   </div>
 
   <hr>
-    <div class="field">
-    <h3> Please tell us why you are you most excited to use Citizen Debate. Feel free to share any feedback you have about the <a href="/debate-format"> debate format</a> or our unique <a href="/reputation">reputation system </a>.</h3>
+    <div class="field feedback">
+    <h3> Finally, please tell us why you are you most excited to use Citizen Debate. Feel free to share any feedback you have about the <a href="/debate-format"> debate format</a> or our unique <a href="/reputation">reputation system </a>.</h3>
     <%= f.text_area :snippets, size:"100x4" %>
   </div>
   <div class="field">

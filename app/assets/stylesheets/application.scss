@@ -31,8 +31,17 @@ $black: #0F0F0D;
   box-sizing: border-box;
   /*Cannot define a font-family within umbrella CSS as it will overwrite any font-awesome or glyphicon abilities*/
   /*font-family: 'Raleway', sans-serif !important;*/
+  font-family: 'Chronicle SSm',serif;
 }
 
+h1,h2,h3,h4,p,li,div{
+  /*color: #4285F4;*/
+  font-family: 'Raleway', sans-serif !important;
+}
+p span {
+    font-size: 18px !important;
+    line-height: 28px !important;
+}
 
 .container {
   width: 100vw;
@@ -93,9 +102,9 @@ a.btn-hero {
     border-radius: 12px !important;
 }
 a.bottom-cta{
-  margin-left:20vw;
   font-size: 2.5em;
-  color: #34A853;
+  color: #fff;
+  margin-top: 20px;
 }
 .nps {
   padding: 10px 10px;

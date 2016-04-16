@@ -9,7 +9,7 @@
       <th>Display name</th>
       <th>Points </th>
       <th>State</th>
-    <% if current_user && current_user.email == "bbensch@gmail.com" %>
+    <% if current_user && current_user.email == "citizen.debate.16@gmail.com" %>
       <th>Political affiliation</th>
       <th>User ID </th>
       <th  colspan="1">Email </th>
@@ -29,7 +29,7 @@
         <td><%= profile.display_name %></td>
         <td><%= profile.points %></td>
         <td><%= profile.state %></td>
-        <% if current_user && current_user.email == "bbensch@gmail.com" %>
+        <% if current_user && current_user.email == "citizen.debate.16@gmail.com" %>
         <td><%= profile.political_affiliation %></td>
         <td><%= profile.id %></td>
         <td  colspan="1"><%= profile.user.email %></td>
@@ -45,7 +45,7 @@
 </table>
 
 <br>
-<% if current_user && current_user.email == "bbensch@gmail.com" %>
+<% if current_user && current_user.email == "citizen.debate.16@gmail.com" %>
 <%= link_to 'New Profile', new_profile_path %>
 <% end %>
 </div>

@@ -2,6 +2,10 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.affirmative-opening, .negative-opening, .affirmative-closing, .negative-closing{
+  border-bottom: 2px dotted gray;
+  padding-bottom: 30px;
+}
 .highlight-current-user{
   background-color: rgba(66, 133, 244, .2);
   font-style: bold;
@@ -30,6 +34,12 @@
 .row{
   height:auto !important;
   min-height: 20vh;
+}
+.round2{
+  max-width:1000px;
+}
+.form-control{
+  min-height: 10vh !important;
 }
 .opening-round{
   min-height: 20vh;
@@ -81,4 +91,10 @@
     margin: auto;
     position: relative;
     clear:both;
+}
+.media-body p span  {
+  font-size: 1.8em !important;
+  font-weight: 400;
+  line-height: 28px;
+  word-wrap: break-word;
 }

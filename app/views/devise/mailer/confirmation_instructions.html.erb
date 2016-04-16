@@ -1,5 +1,10 @@
-<p>Welcome <%= @email %>!</p>
+<p>Hi <%= @email %>,</p>
 
+<p>Welcome to Citizen Debate!</p>
 <p>You can confirm your account email through the link below:</p>
 
 <p><%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token) %></p>
+<p>Additionally, if your are interested in providing feedback during our early adopter program, please follow the link below to join our Slack channel.</p>
+<ul>
+  <li><a href="http://bit.ly/citizen-debate-slack">http://bit.ly/citizen-debate-slack </a></li>
+</ul>
