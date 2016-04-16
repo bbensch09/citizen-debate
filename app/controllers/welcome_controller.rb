@@ -2,6 +2,6 @@ class WelcomeController < ApplicationController
   def index
   end
 
-  def pre_launch
+  def early_adopter_program
   end
 end

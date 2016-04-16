@@ -67,12 +67,12 @@
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
-          <li><a href="/pre_launch">Early Adopter Program</a></li>
-          <li><a href="/profiles">Leaderboard</a></li>
-          <li> <a href="/topics" > Topics</a></li>
-          <li> <a href="/debates" > Debates</a></li>
-          <li> <a href="/reputation" > Reputation points</a></li>
-          <li><a href="/faqs">FAQs</a></li>
+          <li> <a href="/debates" class="nav-links" > Debates</a></li>
+          <li><a href="/early_adopter_program" class="nav-links">Early adopter program</a></li>
+          <li><a href="/profiles" class="nav-links">Leaderboard</a></li>
+          <li> <a href="/topics" class="nav-links"> Topics</a></li>
+          <li> <a href="/reputation" class="nav-links" > Reputation points</a></li>
+          <li><a href="/faqs" class="nav-links">FAQs</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <% if user_signed_in? && current_user.profile %>

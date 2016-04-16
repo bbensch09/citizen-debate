@@ -262,6 +262,7 @@ DEPENDENCIES
   pg (~> 0.15)
   rails (= 4.2.5.1)
   rails-assets-tether (>= 1.1.0)!
+  rails-html-sanitizer
   sass-rails (>= 3.2)
   sdoc (~> 0.4.0)
   sprockets-rails

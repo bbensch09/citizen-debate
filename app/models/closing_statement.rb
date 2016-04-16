@@ -2,6 +2,9 @@ class ClosingStatement < ActiveRecord::Base
   belongs_to :round
   belongs_to :debate
   belongs_to :author, class_name: "Debater", foreign_key: "author_id"
+  include ActionView::Helpers::SanitizeHelper
+  validate :check_word_count, on: [:update, :create]
+
 
   def time_since_written
     days_elapsed = ((Time.now - created_at.to_time) / (60*60*24)).round
@@ -15,6 +18,14 @@ class ClosingStatement < ActiveRecord::Base
         return "#{days_elapsed} days ago."
       end
   end
+
+  def check_word_count
+    raw_text = strip_tags(self.content)
+    word_count = raw_text.split(" ").length
+    puts "word_count is #{word_count}"
+    errors.add(:status,"Please shorten your statement to no more than 1,000 words. The current word count is #{word_count}.") unless (word_count <=1000)
+  end
+
 
 
 end

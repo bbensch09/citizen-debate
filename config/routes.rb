@@ -39,7 +39,7 @@ Rails.application.routes.draw do
   get 'comments' => 'comments#new'
   get '/admin_index' => 'profiles#admin_index'
   get '/admin_users' => 'profiles#admin_users'
-  get '/pre_launch' => 'welcome#pre_launch'
+  get '/early_adopter_program' => 'welcome#early_adopter_program'
   get '/debate_format' => 'about#debate_format'
   get '/reputation' => 'about#reputation'
   get '/faqs' => 'about#faqs'
