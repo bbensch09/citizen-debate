@@ -2,7 +2,7 @@
   <%= form_for (@closing_statement) do |f| %>
     <div class="form-group">
             <%= f.label :content, "Post your closing statement." %><br>
-            <%= f.cktext_area :content, rows: 4, class: 'ckeditor-content', required: true, :ckeditor => {:language => 'us'} %>
+            <%= f.cktext_area :content, rows: 12, class: 'ckeditor-content', required: true, :ckeditor => {:language => 'us'} %>
           </div>
           <div class="hidden">
             <%= f.number_field :round_id, value: 3 %>

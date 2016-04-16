@@ -49,6 +49,8 @@ gem 'aws-sdk', '~> 2'
 gem 'ckeditor'
 #paperclip for file upload management
 gem 'paperclip'
+# rails sanitizer to get word count for ckeditor fields
+gem 'rails-html-sanitizer'
 
 #Omniauth for eventual FB signup, NOT YET CONFIGURED WITH DEVISE
 gem 'omniauth-facebook'

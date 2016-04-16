@@ -6,10 +6,10 @@
                 <div class="col-lg-6 col-sm-6">
                     <h2 class="section-heading">Ready to start debating?</h2>
                     <p class="slide-text-content">
-                      We're excited too! Unfortunately, we have to ask you for your patience. We are busily preparing for our upcoming launch on <b>April 15th, 2016</b>.
-                      <br> <br> Citizen Debate will initially be available to a select group of 20 registered users that will soon join us as part of the <b>Early Adopter Program</b>.
+                      We're excited too! Unfortunately, we may need to ask for your patience. Much like a few of our presidential candidates, this is our first time working on such a big project.
+                      <br> <br> As such, we will initially be <b> limiting the debater community </b> to a select group of 20 users that will join as part of the <b>Early Adopter Program</b>. Note that anyone will still be able to sign up to read, vote, and view results during this time.
                       <% if current_user && current_user.profile %>
-                        <br> <br>You are currently number <span class="rank"> <%= current_user.rank %> </span> on our <a href="/profiles" class="inline-link">wait list</a>. Learn below what you can do to move up on the wait list.
+                        <br> <br>You are currently number <span class="rank"> <%= current_user.rank %> </span> on our <a href="/profiles" class="inline-link"> leader board</a>. Continue below to see what you can do to ensure your spot in the top 20.
                       <% else %>
                           To be considered for this program, please start by setting up your profile.
                           <h2><a href="/profiles/new" class="btn btn-default btn-large">Setup profile</a></h2>
@@ -26,7 +26,7 @@
           </div> <!-- end container -->
         </div> <!-- end content-section a -->
       <div class="scroll-icon">
-        <p>How to bump your spot in line
+        <p>Learn more
           <!-- <a href="#fifthSection/1" > </a>-->
             <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
         </p>
@@ -43,12 +43,12 @@
                 <div class="col-lg-7 col-sm-6">
                     <h2 class="section-heading">Step 1: Complete your profile</h2>
                     <p class="slide-text-content">
-                       The first required step for anyone interested in participating in the <b> early adopter program </b> is to complete your full profile. Once complete, we will verify your identity by sending you a secure message via LinkedIn. This step is to ensure the authenticity of all participants. Beyond this step, your <b> public profile can remain fully anonymous</b>.
+                       The first required step for anyone interested in participating as a debater in the <b> early adopter program </b> is to complete your profile. Once complete, we will verify your identity by sending you a secure message via LinkedIn. This step is to ensure the authenticity of all participants. Beyond this step, your <b> publicly visible profile can remain fully anonymous</b>.
                      </p>
                      <div class="lead">
                        <ul>
-                          <li class="full-page-bullets"> Earn 10 <a href="/reputation" class="inline-link">reputation points</a> when you complete your full profile.</li>
-                          <li class="full-page-bullets"> Earn an additional 10 <a href="/reputation" class="inline-link">reputation points</a> when you verify your identity.</li>
+                          <li class="full-page-bullets"> Earn <a href="/reputation" class="inline-link"> 5 reputation points</a> when you complete your full profile.</li>
+                          <li class="full-page-bullets"> Earn an additional <b>5 points</b> when you verify your identity.</li>
                         </ul>
                       </div>
                     <h2><a href="/profiles/new" class="btn btn-default btn-large">Complete profile</a></h2>
@@ -70,7 +70,7 @@
                      <div class="lead">
                        <ul>
                           <li class="full-page-bullets"> Earn <b> 5 points </b> for answering the quantitative feedback questions.</li>
-                          <li class="full-page-bullets"> Earn an <b> additional 10 points </b> for providing qualitative feedback. Additionally, if you encounter any bugs or security vulnerabilities, please feel free to email us directly at <a href="mailto:citizen.debate.16@gmail.com">citizen.debate.16@gmail.com</a>.</li>
+                          <li class="full-page-bullets"> Earn an <b> additional 5 points </b> for providing qualitative feedback. Additionally, if you encounter any bugs or security vulnerabilities, please feel free to email us directly at <a href="mailto:citizen.debate.16@gmail.com">citizen.debate.16@gmail.com</a>.</li>
                         </ul>
                       </div>
                     <h4><a href="/profiles/new" class="btn btn-default">Submit feedback</a></h4>
@@ -130,7 +130,7 @@
                     </div>
                 </div>
                 <div class="col-lg-6 col-sm-6">
-                    <h2 class="section-heading">Step 3: Browse debate topics</h2>
+                    <h2 class="section-heading">Step 3: Propose new debate topics</h2>
                     <p class="slide-text-content">
                        During the Early Adopter Program, users can submit up to two debate prompts, and can vote on previously submitted prompts. See what topics your fellow debaters have already proposed, and tell us what you are most passionate about.
                      </p>
@@ -150,18 +150,18 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-7 col-sm-6">
-                    <h2 class="section-heading">Invite your friends</h2>
+                    <h2 class="section-heading">Step 4: Invite your friends</h2>
                       <p class="slide-text-content">
-                       Help us spread the word by sharing Citizen Debate on your favorite social network. We anticipate expanding the Early Adopter Program to a full public beta in advance of the Democratic and Republican conventions in July. Be sure to tag @citizen_debate in your post so we can be sure to credit your account with the appropriate reputation points.
+                       Help us spread the word by sharing Citizen Debate on your favorite social network. We anticipate expanding the Early Adopter Program to a full public beta in advance of the Democratic and Republican conventions in July. Be sure to tag <a href="https://www.facebook.com/citizendebate16">@citizendebate16</a> in your post so we can be sure to credit your account with the appropriate reputation points.
                       </p>
                      <div class="lead">
                        <ul>
-                          <li class="full-page-bullets"> Earn <b> 15 points </b> for public posting to either Facebook, Twitter, or Instagram <br><em>(one per account, please don't spam your friends multiple times)</em>.</li>
-                          <li class="full-page-bullets"> Earn <b> ONE MILLION POINTS </b> for posting to Google+. <br> <em> (Jokes. We'll still give you  15 points, but let's focus on what matters.) </em></li>
+                          <li class="full-page-bullets"> Earn <b> 15 points </b> for posting to either Facebook or Twitter.</li>
+                          <li class="full-page-bullets"> Earn <b> ONE MILLION POINTS </b> for posting to Google+. <br> <em> (Jokes aside,we'll still give you the 15 points, but let's be real.) </em></li>
                         </ul>
                       </div>
-                    <a href="https://www.facebook.com/sharer/sharer.php?sdk=joey&u=http%3A%2F%2Fwww.citizendebate.org%2F&display=popup&ref=plugin&src=share_button" class="btn btn-default" target="_blank"> Share on Facebook </a>
-                    <div class="fb-share-button btn-default" data-href="http://www.citizendebate.org" data-layout="button"></div>
+                    <a href="https://www.facebook.com/sharer/sharer.php?sdk=joey&u=http%3A%2F%2Fwww.citizendebate.org%2F&display=popup&ref=plugin&src=share_button" class="btn btn-default btn-fb" target="_blank"> <i class="fa fa-facebook fa-fw"></i> Share on Facebook </a>
+                    <!-- <div class="btn-fb fb-share-button btn-default" data-href="http://www.citizendebate.org" data-layout="button"></div> -->
                 </div>
                 <div class="col-lg-5 col-sm-6">
                     <img class="img-responsive img-top-padding" src="https://s3-us-west-2.amazonaws.com/citizen-debate/static_images/CD-share.png" alt="">

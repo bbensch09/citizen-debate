@@ -12,7 +12,7 @@
 .rating-input {
     float: right;
     width: 10px;
-    height: 80px;
+    height: 70px;
     padding: 0;
     margin: 0 0 0 0px;
     opacity: 0;
@@ -28,8 +28,8 @@
     position: relative;
     float: right;
     display: block;
-    width: 80px;
-    height: 80px;
+    width: 70px;
+    height: 70px;
     background: url('https://s3-us-west-2.amazonaws.com/citizen-debate/static_images/gray-star.png') 0 0px;
     background-size: contain;
 }
@@ -37,7 +37,7 @@
 .rating-text,
 .affirmative-rating:hover .rating-star .rating-text{
   font-size: 14px;
-  top:80px;
+  top:70px;
   color: gray;
   position: relative;
 }
@@ -51,8 +51,9 @@
 .civility-container{
   position:fixed;
   top:100px;
-  width:100vw;
-  height: 45vh;
+  max-width: 1100px;
+  min-width: 50vw;
+  padding-bottom: 20px;
   background-color: white;
   z-index: 2;
   border: 1px solid gray;

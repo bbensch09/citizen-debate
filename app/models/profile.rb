@@ -9,8 +9,8 @@ class Profile < ActiveRecord::Base
 
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
 
-  validates :first_name, :last_name, :city, :state, :age, :about_me, :display_name, :political_affiliation, :linkedin_profile,
-    presence: true
+  validates :first_name, :last_name, :city, :state, :age, :about_me, :display_name, :political_affiliation,
+    presence: true #:linkedin_profile,
 
   def self.to_csv
     attributes = %w{id first_name last_name display_name email city state age political_affiliation points snippets nps pmf created_at}
@@ -29,23 +29,23 @@ class Profile < ActiveRecord::Base
   def profile_bonus
     profile_bonus = 0
     if self.about_me.length > 75
-      profile_bonus = 10
+      profile_bonus = 5
     end
     if self.verification_status == 'verified'
-      profile_bonus +=10
-    end
-    if self.nps && self.pmf
       profile_bonus +=5
     end
     profile_bonus
   end
 
-  def snippet_bonus
-    snippet_bonus = 0
+  def feedback_bonus
+    feedback_bonus = 0
     if self.snippets && self.snippets.length > 50
-      snippet_bonus = 10
+      feedback_bonus = 5
     end
-    snippet_bonus
+    if self.nps && self.pmf
+      feedback_bonus +=5
+    end
+    feedback_bonus
   end
 
   def topic_bonus
@@ -76,6 +76,7 @@ class Profile < ActiveRecord::Base
       neg_ratings.each do |rating|
         civility_points += rating.negative_rating
       end
+      #returns the total number of "stars" awarded to each debater.
       return civility_points
   end
 
@@ -93,6 +94,7 @@ class Profile < ActiveRecord::Base
       end
       debate_count = aff_ratings.count + neg_ratings.count
       civility_rating = (civility_points.to_f / debate_count.to_f)
+      # returns the average star rating for a given user
       return civility_rating
   end
 
@@ -167,7 +169,7 @@ class Profile < ActiveRecord::Base
   end
 
   def minds_changed
-    return (self.debate_points / 10)
+    return (self.debate_points / 5)
   end
 
   def update_points
@@ -179,7 +181,7 @@ class Profile < ActiveRecord::Base
     else
       free_points = 0
     end
-    self.points = free_points + self.profile_bonus + self.snippet_bonus + self.topic_bonus + self.referral_bonus + self.civility_points
+    self.points = free_points + self.profile_bonus + self.feedback_bonus + self.topic_bonus + self.referral_bonus + self.civility_points + self.debate_points
     self.save
     puts "points updated and saved. Profile ID #{self.id} has #{self.points}"
   end

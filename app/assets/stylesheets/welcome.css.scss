@@ -12,10 +12,8 @@
     line-height: 1.6;
 }
 .lead ul li {
-    font-size: 1.4em;
-    font-weight: 400;
     text-align: left;
-    line-height: 1.6;
+    line-height: 1.4;
 }
 
 .intro-header {
@@ -29,7 +27,7 @@
 
 .intro-message {
     position: relative;
-    padding-top: 5vh;
+    padding-top: 5px;
     color:#fff;
 }
 
@@ -82,12 +80,10 @@
 
 .content-section-a {
     padding: 20px 0;
-    height: 80vh;
 }
 
 .content-section-b {
     padding: 20px 0;
-    height: 80vh;
 }
 
 .section-heading {
@@ -406,7 +402,7 @@ p.copyright {
 }
 
 .scroll-icon {
-    position: absolute;
+    position: relative;
     left: 50%;
   bottom: 30px;
   padding: 0 10px;
@@ -585,7 +581,6 @@ a:visited {
 }
 a:hover {
     background-color: white;
-    color: #449d44 !important;
 }
 a.btn{
     color:#4285F4;
@@ -596,7 +591,7 @@ a.btn{
     color:#34A853 !important;
 }
 .slide-text-content{
-    font-size: 1.5em;
+    font-size: 1.2em;
     text-align: left;
     top: 0vh;
     margin-bottom: 20px;
@@ -608,7 +603,7 @@ a.btn{
     font-weight: bold;
 }
 .citations {
-    position: absolute;
+    position: relative;
     bottom:0px;
     padding-bottom: 50px;
     font-size:12px;
@@ -692,4 +687,8 @@ a.btn{
 .avatar-nav{
     height:40px;
     margin-top:5px;
+}
+.btn-fb{
+    background-color: #46629E !important;
+    color: #fff !important;
 }

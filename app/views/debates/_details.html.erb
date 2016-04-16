@@ -1,43 +1,44 @@
-<h1>
-  <%= @debate.topic.title %>
-</h1>
+<div class="debate-details ">
+  <h1>
+    <%= @debate.topic.title %>
+  </h1>
 
-<h3>About the debaters</h2>
+  <div class="col-lg-6 col-md-3 ">
+    <% if @debate.affirmative_debater %>
+    <h3>
+    <%= image_tag @debate.affirmative_debater.user.profile.avatar.url(:thumb), alt:"avatar-img", class:"img-debate-details" %>
+     <strong><%= @debate.affirmative_debater.user.profile.display_name %></strong> (Affirmative)
+    </h3>
+    <br>
+    <h4>
+        <b> Bio</b>: <%=@debate.affirmative_debater.user.profile.about_me %>
+    </h4>
+    <% else %>
+    <h4>Challenge awaiting acceptance</h4>
+    <% end %>
+  </div>
 
-<div class="col-lg-6 col-md-3">
-  <strong>Affirmative:</strong>
-  <% if @debate.affirmative_debater %>
-  <%= image_tag @debate.affirmative_debater.user.profile.avatar.url(:thumb), alt:"avatar-img", class:"img-debate-details" %>
-  <br>
-  About <%= @debate.affirmative_debater.user.profile.display_name %>:
-  <h4>
-      <%=@debate.affirmative_debater.user.profile.about_me %>
+  <div class="col-lg-6 col-md-3 ">
+    <% if @debate.negative_debater %>
+    <h3>
+    <%= image_tag @debate.negative_debater.user.profile.avatar.url(:thumb), alt:"avatar-img", class:"img-debate-details" %>
+     <strong><%= @debate.negative_debater.user.profile.display_name %></strong> (Negative)
+    </h3>
+    <br>
+    <h4>
+        <b> Bio </b>: <%=@debate.negative_debater.user.profile.about_me %>
+    </h4>
+    <% else %>
+    <h4>Challenge awaiting acceptance</h4>
+    <% end %>
+  </div>
+
+   <h4 class="col-lg-12 col-md-3 ">
+    <strong>Debate Status:</strong>
+    <%=@debate.update_status %>
+    <br>
+    <strong>Last Update:</strong>
+    <%= @debate.time_since_updated %>
+    <br>
   </h4>
-  <% else %>
-  <h4>Challenge awaiting acceptance</h4>
-  <% end %>
 </div>
-
-<div class="col-lg-6 col-md-3">
-  <strong>Negative:</strong>
-  <% if @debate.negative_debater %>
-  <%= image_tag @debate.negative_debater.user.profile.avatar.url(:thumb), alt:"avatar-img", class:"img-debate-details" %>
-  <br>
-  About <%= @debate.negative_debater.user.profile.display_name %>:
-  <h4>
-      <%=@debate.negative_debater.user.profile.about_me %>
-  </h4>
-  <% else %>
-  <h4>Challenge awaiting acceptance</h4>
-  <% end %>
-</div>
-
- <h4 class="col-lg-12 col-md-3">
-  <strong>Debate Status:</strong>
-  <%=@debate.update_status %>
-  <br>
-  <strong>Last Update:</strong>
-  <%= @debate.time_since_updated %>
-  <br>
-</h4>
-

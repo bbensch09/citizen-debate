@@ -2,7 +2,7 @@ class DebatesController < ApplicationController
   before_action :set_debate, only: [:show, :edit, :update, :destroy, :accept_challenge]
   before_action :authenticate_user!, except: [:show, :index]
   before_action :confirm_new_challengers, only: [:index]
-  after_action :create_first_round, only: [:create]
+  # after_action :create_first_round, only: [:create]
 
 
   def confirm_new_challengers
@@ -29,7 +29,7 @@ class DebatesController < ApplicationController
     @completed_debates = Debate.where("status = 'Completed'")
     @active_debates = Debate.where("status = 'Active'")
     if current_user
-      @upcoming_debates = Debate.where("challenger_id = ? OR challenger_email=?",current_user.id,current_user.email)
+      @upcoming_debates = Debate.where("challenge_accepted = false AND challenger_id = ? OR challenger_email=?",current_user.id,current_user.email)
     else
       @upcoming_debates = []
     end
@@ -71,27 +71,24 @@ class DebatesController < ApplicationController
     if @debate.challenger_id
         respond_to do |format|
           if @debate.save
+            create_first_round
             UserMailer.challenge_existing_user(@debate).deliver_now
             format.html { redirect_to @debate, notice: 'Your debate challenge has successfully been created and an invitation has been sent to the challenger.' }
-            format.json { render :show, status: :created, location: @debate }
+            format.json { render :show_debate, status: :created, location: @debate }
           else
-            format.html { render :new }
-            format.json { render json: @debate.errors, status: :unprocessable_entity }
+            # format.html { render :new }
+            # format.json { render json: @debate.errors, status: :unprocessable_entity }
           end
         end
     end
 
-    if @debate.challenger_email
+    if @debate.challenger_email.length > 5
         respond_to do |format|
           if @debate.save
-            # temp_password = (0...8).map { ('a'..'z').to_a[rand(26)] }.join
-            # User.create!({
-            #   email: @debate.challenger_email,
-            #   passwword: temp_password
-            # })
+            create_first_round
             UserMailer.challenge_new_user(@debate).deliver_now
             format.html { redirect_to @debate, notice: 'Your debate challenge has successfully been created and an invitation has been sent to the challenger.' }
-            format.json { render :show, status: :created, location: @debate }
+            format.json { render :show_debate, status: :created, location: @debate }
           else
             format.html { render :new }
             format.json { render json: @debate.errors, status: :unprocessable_entity }

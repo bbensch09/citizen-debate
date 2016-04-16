@@ -2,21 +2,16 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.affirmative-opening, .negative-opening, .affirmative-closing, .negative-closing{
+  border-bottom: 2px dotted gray;
+  padding-bottom: 30px;
+}
 .highlight-current-user{
   background-color: rgba(66, 133, 244, .2);
   font-style: bold;
 }
 .highlight-opponent{
  }
-.debate-container{
-    width: 100vw;
-    max-width: 1600px;
-    margin: auto;
-    position: relative;
-    margin-top: 80px;
-    padding-right: 10vw !important;
-    padding-left: 10vw !important;
-}
 .debugging{
   background-color: rgba(234, 67, 53, .3);
   color:red;
@@ -24,15 +19,43 @@
 .center{
   text-align: center;
 }
+.debate-container{
+    width: 100vw;
+    max-width: 1600px;
+    /*min-height: 80vh;*/
+    margin: auto;
+    margin-top: 80px;
+    padding-right: 10vw !important;
+    padding-left: 10vw !important;
+}
+.debate-details{
+  min-height: 10vh;
+}
+.row{
+  height:auto !important;
+  min-height: 20vh;
+}
+.round2{
+  max-width:1000px;
+}
+.form-control{
+  min-height: 10vh !important;
+}
 .opening-round{
   min-height: 20vh;
+  background-color: rgb(247, 247, 249);
+  border-top: 4px solid #4285F4;
 }
 .middle-round{
   background-color: #fff;
   min-height: 20vh;
+  border-top: 4px solid #4285F4;
+
 }
 .closing-round{
   min-height: 20vh;
+  border-top: 4px solid #4285F4;
+  background-color: rgb(247, 247, 249);
 }
 .cross-ex-messages{
   padding-left: 100px;
@@ -50,8 +73,8 @@
   position: relative;
 }
 .debate-recap-container{
-  min-height: 10vh;
-  background-color: rgba(154, 156, 159, .31);
+  /*min-height: 10vh;*/
+  /*background-color: rgba(154, 156, 159, .31);*/
   clear: both;
   display:block;
   position: relative;
@@ -68,4 +91,10 @@
     margin: auto;
     position: relative;
     clear:both;
+}
+.media-body p span  {
+  font-size: 1.8em !important;
+  font-weight: 400;
+  line-height: 28px;
+  word-wrap: break-word;
 }

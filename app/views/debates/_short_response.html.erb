@@ -2,7 +2,7 @@
   <%= form_for @message, remote: true do |f| %>
     <div class="form-group">
             <%= f.label :message_content, "Enter your messages in the box below. During the cross-examination round, either side can begin first. Please ask one question at a time, and please respond to questions as directly and succinctly as possible." %><br>
-            <%= f.text_field :message_content, rows: 2, class: 'form-control', required: true, maxlength: 200 %>
+            <%= f.text_area :message_content, rows: 4, class: 'form-control', required: true, maxlength: 1000 %>
           </div>
           <div class="hidden">
             <%= f.number_field :round_id, value: @debate.rounds.last.id %>
