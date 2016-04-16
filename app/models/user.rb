@@ -10,8 +10,7 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # Need to activate Omniauthabl to use FB still :omniauthable
   # Also need to reactivate :confirmable to resume email confirmations
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable, :lockable, :timeoutable#, :confirmable
+  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :lockable, :timeoutable, :omniauthable, :omniauth_providers => [:facebook] #,:confirmable
 
   # HACKY SHIT
   has_many :comments, dependent: :delete_all

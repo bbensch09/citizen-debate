@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160407180036) do
+ActiveRecord::Schema.define(version: 20160416044255) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -164,10 +164,11 @@ ActiveRecord::Schema.define(version: 20160407180036) do
 
   create_table "topic_votes", force: :cascade do |t|
     t.integer  "value"
-    t.integer  "voter_id",   null: false
-    t.integer  "topic_id",   null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "voter_id",                   null: false
+    t.integer  "topic_id",                   null: false
+    t.boolean  "following",  default: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
   end
 
   create_table "topics", force: :cascade do |t|
@@ -200,6 +201,8 @@ ActiveRecord::Schema.define(version: 20160407180036) do
     t.datetime "locked_at"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.string   "provider"
+    t.string   "uid"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

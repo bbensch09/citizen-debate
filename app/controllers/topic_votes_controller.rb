@@ -12,28 +12,40 @@ class TopicVotesController < ApplicationController
     if TopicVote.where(topic_id:topic.id,voter_id:current_user.id).empty?
       topic_vote.save
       redirect_to(topics_path, notice: 'Your up vote was successfully recorded.' )
-    elsif TopicVote.where(topic_id:topic.id,voter_id:current_user.id).last.value == -1
-      topic_vote.save
-      redirect_to(topics_path, notice: 'Your previous down vote was changed to an up vote.')
-    else
+    elsif TopicVote.where(topic_id:topic.id,voter_id:current_user.id,value:1).count >= 1
       redirect_to(topics_path, notice: 'You may only vote once, you have already voted for on this topic.')
+      # topic_vote.save
+      # redirect_to(topics_path, notice: 'Your previous down vote was changed to an up vote.')
+    else
     end
   end
 
-  def downvote
+  # def downvote
+  #   topic = Topic.find(params[:id])
+  #   topic_vote = TopicVote.new
+  #   topic_vote.value = -1
+  #   topic_vote.voter_id = current_user.id
+  #   topic_vote.topic_id = topic.id
+  #   if TopicVote.where(topic_id:topic.id,voter_id:current_user.id).empty?
+  #     topic_vote.save
+  #     redirect_to(topics_path, notice: 'Your down vote was successfully recorded.' )
+  #   elsif TopicVote.where(topic_id:topic.id,voter_id:current_user.id).last.value == 1
+  #     topic_vote.save
+  #     redirect_to(topics_path, notice: 'Your previous up vote was changed to a down vote.')
+  #   else
+  #     redirect_to(topics_path, notice: 'You may only vote once, you have already voted down on this topic.')
+  #   end
+  # end
+
+  def follow
     topic = Topic.find(params[:id])
-    topic_vote = TopicVote.new
-    topic_vote.value = -1
-    topic_vote.voter_id = current_user.id
-    topic_vote.topic_id = topic.id
     if TopicVote.where(topic_id:topic.id,voter_id:current_user.id).empty?
-      topic_vote.save
-      redirect_to(topics_path, notice: 'Your down vote was successfully recorded.' )
-    elsif TopicVote.where(topic_id:topic.id,voter_id:current_user.id).last.value == 1
-      topic_vote.save
-      redirect_to(topics_path, notice: 'Your previous up vote was changed to a down vote.')
+      redirect_to(topics_path, notice: 'You can only follow a topic once you have liked it.')
     else
-      redirect_to(topics_path, notice: 'You may only vote once, you have already voted down on this topic.')
+    topic_vote = TopicVote.where(topic_id:topic.id,voter_id:current_user.id).first
+    topic_vote.following = true
+    topic_vote.save
+    redirect_to(topics_path, notice: 'You are following this topic.' )
     end
   end
 

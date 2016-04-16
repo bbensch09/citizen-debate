@@ -4,6 +4,7 @@ class CreateTopicVotes < ActiveRecord::Migration
       t.integer :value
       t.integer :voter_id, null: false
       t.integer :topic_id, null: false
+      t.boolean :following, default: false
       t.timestamps null: false
     end
   end

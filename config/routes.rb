@@ -30,11 +30,11 @@ Rails.application.routes.draw do
   resources :topic_votes do
     member do
       post :upvote
-      post :downvote
+      post :follow
     end
   end
 
-  devise_for :users
+  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 
   get 'comments' => 'comments#new'
   get '/admin_index' => 'profiles#admin_index'

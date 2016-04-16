@@ -1,14 +1,13 @@
 class ProfilesController < ApplicationController
   before_action :set_profile, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
-  after_action :confirm_debater_exists, only: [:create, :update]
+  before_action :confirm_debater_exists, only: [:create, :update]
 
   def confirm_debater_exists
     if current_user.debater
       return true
     else
       Debater.create!({
-        id:Debater.last.id + 1,
         user_id: current_user.id
         })
     end
