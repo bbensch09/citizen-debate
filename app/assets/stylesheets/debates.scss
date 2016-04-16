@@ -92,9 +92,16 @@
     position: relative;
     clear:both;
 }
+.media-body {
+  max-width: 85vw;
+}
 .media-body p span  {
   font-size: 1.8em !important;
   font-weight: 400;
   line-height: 28px;
   word-wrap: break-word;
+}
+.media-body p img {
+    max-width: 85vw;
+    height: auto !important;
 }
