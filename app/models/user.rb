@@ -14,6 +14,13 @@ class User < ActiveRecord::Base
 
   # HACKY SHIT
   has_many :comments, dependent: :delete_all
+  after_create :send_admin_notification
+
+  def send_admin_notification
+      @user = User.last
+      UserMailer.new_user_signed_up(@user).deliver_now
+      puts "an admin notification has been sent."
+  end
 
   def self.to_csv
     attributes = %w{id email created_at}

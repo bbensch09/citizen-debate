@@ -28,4 +28,9 @@ class UserMailer < ApplicationMailer
     mail(to: @debate.challenger_email, cc: @debate.creator.email, bcc: "citizen.debate.16+notify@gmail.com", subject:"You've invited to join Citizen Debate!")
   end
 
+  def new_user_signed_up(user)
+    @user = user
+    mail(to: "bbensch@gmail.com", subject: "A new user has registered for Citizen Debate!")
+  end
+
 end
