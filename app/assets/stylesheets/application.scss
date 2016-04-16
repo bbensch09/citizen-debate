@@ -154,3 +154,11 @@ h3.alert-danger{
   margin-top:0;
   margin-bottom:0;
 }
+@media screen and (max-width:767px) {
+  .navbar-collapse{
+    background-color: #4285F4;
+  }
+  .navbar-nav li a {
+    color: white !important;
+  }
+}
