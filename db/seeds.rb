@@ -58,7 +58,7 @@ User.create!({
       state: "UT",
       age: 59,
       about_me: "I have worked across diverse industries ranging from insurance to e-commerce, and have led successful teams from just founders to hundreds of employees. While I am proud of my accomplishments that have landed me among the oft-criticized 1%, I just as readily acknowledge the privileges I enjoyed throughout my life, that many more of my fellow Americans did not enjoy. I believe in fiscal responsibility for both individuals and government, and across all issues, seek to maintain a glass half-full view of the world we live in. Looking forward to a healthy exchange of ideas with other members of the community.",
-      display_name: "LiberalProgress",
+      display_name: "LiberalLeader",
       political_affiliation: "Lean liberal",
       linkedin_profile: "https://www.linkedin.com/in/bbensch09",
       verification_status: "verified"
