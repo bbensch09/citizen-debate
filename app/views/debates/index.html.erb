@@ -43,16 +43,19 @@
         <% end %>
       </tbody>
     </table>
-
+<% elsif current_user %>
+  <h3 class="alert-warning">
+      In order to initiate or accept debate challenges, you must first complete your profile by selecting an alias and choosing a profile photo.
+  </h3>
+  <h4 class="center">
+    <a class="btn btn-default" href='/profiles/new' > Complete profile</a>
+  </h4>
 <% else %>
-  <h3 class="alert-warning"> You must be logged in to see pending debate challenges or to start a new debate. </h3>
+  <h3 class="alert-warning"> You must be logged in to see pending debate challenges or to initiate a new debate. </h3>
   <h4>
     <%= link_to 'Sign up', new_user_registration_path, class: "btn btn-default" %>
     <%= link_to 'Log in', new_user_session_path, class: "btn btn-default" %>
   </h4>
-  <h3 class="alert-warning">
-      Additionally, in order to accept debate challenges, you must first <a class="signed-in-nav" href='/profiles/new' > complete your profile</a>, which includes selecting your user alias and choosing a profile photo.
-  </h3>
 <% end %>
 
 <h1 class="center debate-list-header">Recently Completed Debates</h1>
