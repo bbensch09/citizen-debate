@@ -157,13 +157,13 @@ h3.alert-danger{
 
 .login{
   float:left;
-  width: 40vw;
+  max-width: 40vw;
   padding:3vw;
   border-left: 1px solid gray;
 }
 .signup{
   float:left;
-  width: 40vw;
+  max-width: 40vw;
   padding-left: 5vw;
 }
 .cl-b{
@@ -179,6 +179,12 @@ h3.alert-danger{
   }
   .navbar-nav li a {
     color: white !important;
+  }
+  a.btn{
+    font-size: 1em;
+  }
+  .small-buffer{
+      padding-top:80px;
   }
   .cross-ex-messages {
     padding-left: 0px;
