@@ -1,6 +1,69 @@
-<div class="container section-buffer">
-<h2>Log in</h2>
+<div class="container small-buffer">
+<div class="col-lg-12  col-md-6">
+  <h2 class="center">
+      <%= link_to " Sign in with Facebook", user_omniauth_authorize_path(:facebook), class: "btn btn-default fa fa-facebook" %>
+  </h2>
+</div>
+<div class="signup">
+  <h3>Or register with email:</h3>
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <%= devise_error_messages! %>
 
+      <div class="field">
+        <%= f.label :email %><br />
+        <%= f.email_field :email, autofocus: true %>
+      </div>
+
+      <div class="field">
+        <%= f.label :password %>
+        <% if @minimum_password_length %>
+        <em>(<%= @minimum_password_length %> characters minimum)</em>
+        <% end %><br />
+        <%= f.password_field :password, autocomplete: "off" %>
+      </div>
+
+      <div class="field">
+        <%= f.label :password_confirmation %><br />
+        <%= f.password_field :password_confirmation, autocomplete: "off" %>
+      </div>
+      <br>
+      <div class="actions">
+        <%= f.submit "Sign up" %>
+      </div>
+    <% end %>
+</div>
+
+<div class="login">
+  <h3>Returning Users - Login with email</h3>
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <div class="field">
+        <%= f.label :email %><br />
+        <%= f.email_field :email, autofocus: true %>
+      </div>
+
+      <div class="field">
+        <%= f.label :password %><br />
+        <%= f.password_field :password, autocomplete: "off" %>
+      </div>
+
+      <% if devise_mapping.rememberable? -%>
+        <div class="field">
+          <%= f.check_box :remember_me %>
+          <%= f.label :remember_me %>
+        </div>
+      <% end -%>
+
+      <div class="actions">
+        <%= f.submit "Log in" %>
+      </div>
+    <% end %>
+</div>
+<div class="cl-b"
+<%= render "devise/shared/links" %>
+</div>
+
+
+<!--
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="field">
     <%= f.label :email %><br />
@@ -26,3 +89,4 @@
 
 <%= render "devise/shared/links" %>
 </div>
+ -->
