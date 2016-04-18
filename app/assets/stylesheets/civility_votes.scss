@@ -65,3 +65,19 @@
     margin-right: auto;
     margin-left: auto;
 }
+@media screen and (max-width:767px) {
+.rating-star,
+.affirmative-rating:hover .rating-star {
+    width: 50px;
+    height: 50px;
+  }
+.rating-input {
+    width: 10px;
+    height: 50px;
+  }
+.rating-text,
+.affirmative-rating:hover .rating-star .rating-text{
+  font-size: 10px;
+  top:50px;
+  }
+}

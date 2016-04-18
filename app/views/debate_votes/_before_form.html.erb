@@ -18,22 +18,28 @@
     <%= f.number_field :debate_id, value: @debate.id %>
   </div>
   <div class="field">
-    <h4 class="center"> Before viewing the debate, please first tell us how you feel about the topic. You will vote again at the end of the debate.</h4>
+    <h4 class="center"> Before viewing the debate, please cast your initial. You will vote again at the end of the debate.</h4>
     <ul class="center">
+    <div class="col-lg-4 col-sm-6">
        <li class="voting-options">
         <%= f.label :agree, "I agree", :class=> "voting-options" %>
         <%= f.radio_button :vote_before, "I agree" %>
       </li>
+    </div>
+    <div class="col-lg-4 col-sm-6">
       <li class="voting-options">
         <%= f.label :undecided, "I am not sure", :class=> "voting-options" %>
         <%= f.radio_button :vote_before, "I am not sure" %>
       </li>
+    </div>
+    <div class="col-lg-4 col-sm-6">
       <li class="voting-options">
         <%= f.label :disagree, "I disagree", :class=> "voting-options" %>
         <%= f.radio_button :vote_before, "I disagree" %>
       </li>
+    </div>
       <li class="voting-options">
-        <%= f.submit "Cast my initial vote", :class=>"actions" %>
+        <%= f.submit "Cast initial vote", :class=>"actions btn btn-success" %>
       </li>
     </ul>
   </div>

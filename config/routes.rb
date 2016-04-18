@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 
   mount Ckeditor::Engine => '/ckeditor'
 
+  get '/taxes-should-be-raised-on-Americans-who-earn-at-least-250k' => 'debates#launch'
   resources :closing_statements
   resources :opening_statements
   resources :comments, only: [:new, :create]
