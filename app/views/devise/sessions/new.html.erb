@@ -1,10 +1,10 @@
 <div class="container small-buffer">
-<div class="col-lg-12  col-md-6">
+<div class="col-lg-12  col-md-6 col-sm-6">
   <h2 class="center">
       <%= link_to " Sign in with Facebook", user_omniauth_authorize_path(:facebook), class: "btn btn-default fa fa-facebook" %>
   </h2>
 </div>
-<div class="signup">
+<div class="col-lg-6  col-sm-6">
   <h3>Or register with email:</h3>
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
       <%= devise_error_messages! %>
@@ -33,7 +33,7 @@
     <% end %>
 </div>
 
-<div class="login">
+<div class="col-lg-6  col-sm-6">
   <h3>Returning Users - Login with email</h3>
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
       <div class="field">
