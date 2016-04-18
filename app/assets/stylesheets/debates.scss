@@ -67,10 +67,12 @@
 }
 .voting-container{
   min-height: 10vh;
-  background-color: rgba(52, 168, 83, .3);
+  background-color: rgba(66, 133, 244, .3);
   clear: both;
   display:block;
   position: relative;
+  border: 1px solid gray;
+  padding: 2px 2px 2px 2px;
 }
 .debate-recap-container{
   /*min-height: 10vh;*/

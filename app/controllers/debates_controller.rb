@@ -4,6 +4,9 @@ class DebatesController < ApplicationController
   before_action :confirm_new_challengers, only: [:index]
   # after_action :create_first_round, only: [:create]
 
+  def launch
+    redirect_to '/debates/1'
+  end
 
   def confirm_new_challengers
         puts "confirming new challengers"
