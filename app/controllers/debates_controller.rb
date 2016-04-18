@@ -1,6 +1,6 @@
 class DebatesController < ApplicationController
   before_action :set_debate, only: [:show, :edit, :update, :destroy, :accept_challenge]
-  before_action :authenticate_user!, except: [:show, :index]
+  before_action :authenticate_user!, except: [:show, :index, :launch]
   before_action :confirm_new_challengers, only: [:index]
   # after_action :create_first_round, only: [:create]
 
