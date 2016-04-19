@@ -6,4 +6,7 @@ class AboutController < ApplicationController
   def debate_format
     render 'debate_format'
   end
+
+  def BingSiteAuth
+  end
 end
