@@ -87,10 +87,14 @@ class Profile < ActiveRecord::Base
       neg_ratings = CivilityVote.where("negative_id = ?",self.user.debater.id)
       civility_points = 0
       aff_ratings.each do |rating|
-        civility_points += rating.affirmative_rating
+        if rating.affirmative_rating
+          civility_points += rating.affirmative_rating
+        end
       end
       neg_ratings.each do |rating|
-        civility_points += rating.negative_rating
+        if rating.negative_rating
+          civility_points += rating.negative_rating
+        end
       end
       debate_count = aff_ratings.count + neg_ratings.count
       civility_rating = (civility_points.to_f / debate_count.to_f)
