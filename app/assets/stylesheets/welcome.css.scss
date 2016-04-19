@@ -24,11 +24,16 @@
     background: url("https://s3-us-west-2.amazonaws.com/citizen-debate/static_images/obama-romney-blurred.jpeg") no-repeat center center;
     background-size: cover;
 }
-
-.intro-message {
+.intro-container{
     position: relative;
     padding-top: 5px;
     color:#fff;
+}
+.intro-message {
+    font-size: 5em;
+}
+.intro-tagline{
+    font-size: 2em;
 }
 
 .intro-message > h1 {
