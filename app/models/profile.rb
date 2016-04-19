@@ -97,7 +97,7 @@ class Profile < ActiveRecord::Base
         end
       end
       debate_count = aff_ratings.count + neg_ratings.count
-      civility_rating = (civility_points.to_f / debate_count.to_f)
+      civility_rating = (civility_points.to_f / debate_count.to_f).round(2)
       # returns the average star rating for a given user
       return civility_rating
   end
