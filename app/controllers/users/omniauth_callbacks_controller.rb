@@ -8,6 +8,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       # sign_in_and_redirect_to root_path @user, :event => :authentication #this will throw if @user is not activated
       set_flash_message(:notice, :success, :kind => "Facebook") if is_navigational_format?
       sign_in(@user)
+      flash[:notice] = "Thanks for logging in with Facebook. Please scroll back to the bottom of the page to confirm your vote."
       redirect_to (session[:previous_url] || root_path)
     else
       session["devise.facebook_data"] = request.env["omniauth.auth"]
@@ -43,6 +44,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
       sign_in(user)
       # @activity_blub = ActivityBlurb.new
+      flash[:notice] = "Thanks for logging in with Facebook. Please scroll back to the bottom of the page to confirm your vote."
       redirect_to (session[:previous_url] || root_path)
     end
 

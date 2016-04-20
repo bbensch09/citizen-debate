@@ -30,7 +30,7 @@ class UserMailer < ApplicationMailer
 
   def new_user_signed_up(user)
     @user = user
-    mail(to: "bbensch@gmail.com", subject: "A new user has registered for Citizen Debate!")
+    mail(to: "bbensch@gmail.com", subject: "#{user.email} has registered for Citizen Debate!")
   end
 
 end

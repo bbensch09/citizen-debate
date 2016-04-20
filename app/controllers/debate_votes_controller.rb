@@ -1,6 +1,6 @@
 class DebateVotesController < ApplicationController
   before_action :set_debate_vote, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:create]
 
 
   # GET /debate_votes
@@ -10,6 +10,7 @@ class DebateVotesController < ApplicationController
   end
 
   # GET /debate_votes/1
+
   # GET /debate_votes/1.json
   def show
   end
@@ -25,18 +26,37 @@ class DebateVotesController < ApplicationController
 
   # POST /debate_votes
   # POST /debate_votes.json
+#HACKY SHIT: session storage of before votes could use some cleanup
   def create
     @debate_vote = DebateVote.new(debate_vote_params)
-    @debate_vote.user_id = current_user.id
+    if @debate_vote.vote_after
+        if current_user.nil?
+          puts "user not yet signed in"
+          authenticate_user!
+        end
+        if session[:vote_before]
+        puts "checking to see if there is a session variable that exists..."
+        puts  "the session variable for vote_before is #{session[:vote_before]}"
+        @debate_vote.vote_before = session[:vote_before]
+        puts "successfully retrieved temp_vote value post-authentication"
+        end
+        @debate_vote.user_id = current_user.id
 
-    respond_to do |format|
-      if @debate_vote.save
-        format.html { redirect_to @debate_vote.debate, notice: 'Thanks! Your initial vote has been recorded.' }
-        format.json { render :show, status: :created, location: @debate_vote }
+        respond_to do |format|
+          if @debate_vote.save
+            session[:vote_before] = nil
+            format.html { redirect_to @debate_vote.debate, notice: "Thanks! Your debate vote has successfully been recorded. Your initial vote was '#{@debate_vote.vote_before},' and your final vote was '#{@debate_vote.vote_after}'." }
+            format.json { render :show, status: :created, location: @debate_vote }
+          else
+            format.html { redirect_to @debate_vote.debate, notice: "There was a problem recording your vote, please try again. Error: #{@debate_vote.errors.full_messages.first}" }
+            format.json { render json: @debate_vote.errors, status: :unprocessable_entity }
+          end
+        end
+
       else
-        format.html { redirect_to @debate_vote.debate, notice: "There was a problem recording your vote, please try again. Error: #{@debate_vote.errors.full_messages.first}" }
-        format.json { render json: @debate_vote.errors, status: :unprocessable_entity }
-      end
+        session[:vote_before] = @debate_vote.vote_before
+        puts "a temporary vote_before has been saved. the user has voted #{session[:vote_before]}."
+        redirect_to @debate_vote.debate, notice: 'Thanks! Your initial vote has been temporarily recorded.'
     end
   end
 

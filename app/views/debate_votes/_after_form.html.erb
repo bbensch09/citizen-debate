@@ -10,15 +10,16 @@
       </ul>
     </div>
   <% end %>
-
   <div class="hidden">
     <%= f.label :user_id %><br>
-    <!-- %= f.number_field :user_id, value: current_user.id %> -->
     <%= f.label :debate_id %><br>
     <%= f.number_field :debate_id, value: @debate.id %>
   </div>
   <div class="field">
-    <h4 class="center"> Please now vote again.</h4>
+    <h4 class="center"> Please now vote again. </h4>
+    <% if current_user.nil? %>
+      <h5 class="center"> <em>Note that you must be signed in to record your vote. Clicking below will redirect you to the login page first.</em></h5>
+    <% end %>
     <ul class="center">
     <div class="col-lg-4 col-sm-6">
        <li class="voting-options">
