@@ -33,4 +33,9 @@ class UserMailer < ApplicationMailer
     mail(to: "bbensch@gmail.com", subject: "#{user.email} has registered for Citizen Debate!")
   end
 
+  def oppenent_has_entered_opening_statement(statement)
+      @opening_statement = statement
+    mail(to: "bbensch@gmail.com", subject: "#{user.email} has registered for Citizen Debate!")
+  end
+
 end

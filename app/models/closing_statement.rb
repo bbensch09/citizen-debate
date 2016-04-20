@@ -4,7 +4,13 @@ class ClosingStatement < ActiveRecord::Base
   belongs_to :author, class_name: "Debater", foreign_key: "author_id"
   include ActionView::Helpers::SanitizeHelper
   validate :check_word_count, on: [:update, :create]
+  after_create :send_opponent_notification
 
+  def send_opponent_notification
+      @closing_statement = ClosingStatement.last
+      UserMailer.oppenent_has_entered_closing_statement(@closing_statement).deliver_now
+      puts "an admin notification has been sent."
+  end
 
   def time_since_written
     days_elapsed = ((Time.now - created_at.to_time) / (60*60*24)).round
