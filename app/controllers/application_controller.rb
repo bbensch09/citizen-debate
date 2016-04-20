@@ -28,6 +28,15 @@ def store_location
 end
 
 def after_sign_in_path_for(resource)
+  if session[:vote_before].present?
+    # @temp_vote = DebateVote.new(session[:vote_before])
+    # puts "saved to AR the previously temporary debate vote"
+    # session[:vote_before] = @temp_vote
+    puts "the session variable is storing the vote_before value as #{session[:vote_before]}"
+    flash[:notice] = "Thanks for signing up. Please scroll back to the bottom of the page to confirm your vote."
+  else
+    super
+  end
   session[:previous_url] || root_path
 end
 
