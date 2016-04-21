@@ -118,6 +118,8 @@ class DebatesController < ApplicationController
     @debate.negative_id = current_user.id
     @debate.status = "Active"
     @debate.save
+    UserMailer.challenge_accepted(@debate).deliver_now
+    puts "opponent has been sent notification of statement submission."
     redirect_to @debate, notice: "You've accepted the debate challenge."
   end
 
