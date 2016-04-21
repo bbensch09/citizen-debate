@@ -12,6 +12,15 @@
   You will be able to read your opponent's statement as soon as you submit your own opening statement (in case you haven't already).
   </p>
 
+  <p>
+    To enter your statement now or view your opponent's statement, please click below to access your debate.
+   <ul>
+     <li>
+        <%= link_to @debate.topic.title, debate_path(@debate) %>
+     </li>
+   </ul>
+  </p>
+
   <h4> <b> Debate Details </b> </h4>
   <ul>
       <li> <h3><b> Debate topic: </b> <%=@debate.topic.title%> </h3> </li>

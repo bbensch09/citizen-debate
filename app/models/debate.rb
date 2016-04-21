@@ -12,7 +12,6 @@ class Debate < ActiveRecord::Base
     has_many :debate_votes
     has_many :opening_statements
     has_many :closing_statements
-    # after_create :confirm_new_challengers
 
     def participants
         debaters = Debater.where("id = ? OR id = ? OR id = ?", self.affirmative_id, self.negative_id, self.challenger_id)

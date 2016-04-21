@@ -8,8 +8,8 @@ class ClosingStatement < ActiveRecord::Base
 
   def send_opponent_notification
       @closing_statement = ClosingStatement.last
-      UserMailer.oppenent_has_entered_closing_statement(@closing_statement).deliver_now
-      puts "an admin notification has been sent."
+      UserMailer.closing_statement_complete(@closing_statement).deliver_now
+      puts "opponent has been sent notification of statement submission."
   end
 
   def time_since_written
