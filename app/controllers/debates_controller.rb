@@ -32,12 +32,14 @@ class DebatesController < ApplicationController
     @completed_debates = Debate.where("status = 'Completed'")
     @active_debates = Debate.where("status = 'Active'")
     if current_user
-      @pending_debates = Debate.where("challenge_accepted = false AND challenger_id = ? OR challenger_email=?",current_user.id,current_user.email)
-      all_debates = Debate.where("status != 'Scheduling'")
+      current_user_public_challenges = Debate.where("public_challenge=true AND creator_id =?",current_user.id)
+      all_pending_debates = Debate.where("challenge_accepted = false AND challenger_id = ? OR challenger_email=? OR public_challenge=true",current_user.id,current_user.email)
+      @pending_debates = all_pending_debates - current_user_public_challenges
       current_user_debates = current_user.debater.debates
+      all_debates = Debate.where("status != 'Scheduling'")
       @debates_to_schedule = current_user_debates - all_debates
     else
-      @upcoming_debates = []
+      @pending_debates = []
     end
   end
 
@@ -73,33 +75,27 @@ class DebatesController < ApplicationController
   def create
     @debate = Debate.new(debate_params)
 
-    if @debate.challenger_id
         respond_to do |format|
           if @debate.save
             create_first_round
-            UserMailer.challenge_existing_user(@debate).deliver_now
-            format.html { redirect_to @debate, notice: 'Your debate challenge has successfully been created and an invitation has been sent to the challenger.' }
-            format.json { render :show_debate, status: :created, location: @debate }
-          else
-            # format.html { render :new }
-            # format.json { render json: @debate.errors, status: :unprocessable_entity }
-          end
-        end
-    end
+            if @debate.challenger_id
+              UserMailer.challenge_existing_user(@debate).deliver_now
+              format.html { redirect_to @debate, notice: 'Your debate challenge has successfully been created and an invitation has been sent to the challenger.' }
+              format.json { render :show_debate, status: :created, location: @debate }
+            elsif @debate.challenger_email.length > 5
+              UserMailer.challenge_new_user(@debate).deliver_now
+              format.html { redirect_to @debate, notice: 'Your debate challenge has been created and your challenger has been invited to join Citizen Debate and accept your challenge.' }
+              format.json { render :show_debate, status: :created, location: @debate }
+            else
+              format.html { redirect_to @debate, notice: 'Your debate challenge has successfully been created. You will be notified when another user accepts your public challenge.' }
+              format.json { render :show_debate, status: :created, location: @debate }
+            end
 
-    if @debate.challenger_email.length > 5
-        respond_to do |format|
-          if @debate.save
-            create_first_round
-            UserMailer.challenge_new_user(@debate).deliver_now
-            format.html { redirect_to @debate, notice: 'Your debate challenge has successfully been created and an invitation has been sent to the challenger.' }
-            format.json { render :show_debate, status: :created, location: @debate }
           else
             format.html { render :new }
             format.json { render json: @debate.errors, status: :unprocessable_entity }
           end
         end
-    end
 
   end
 
@@ -114,6 +110,7 @@ class DebatesController < ApplicationController
   def accept_challenge
     puts "logging challenge accepted action"
     @debate.challenge_accepted = true
+    @debate.challenger_id = current_user.id
     if @debate.affirmative_id
         @debate.negative_id = current_user.id
       elsif @debate.negative_id
@@ -168,6 +165,6 @@ class DebatesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def debate_params
-      params.require(:debate).permit(:affirmative_id, :negative_id, :creator_id, :challenger_id, :challenger_email, :status, :start_date, :start_time, :topic_id)
+      params.require(:debate).permit(:affirmative_id, :negative_id, :creator_id, :challenger_id, :challenger_email, :status, :start_date, :start_time, :topic_id, :public_challenge)
     end
 end

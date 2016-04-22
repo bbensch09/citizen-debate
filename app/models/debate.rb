@@ -18,24 +18,26 @@ class Debate < ActiveRecord::Base
     def confirm_challenge_inputs
         if self.affirmative_id && self.negative_id
             puts "both affirmative & negative options selected"
-            errors.add(:status, "You may only select one side of the debate. Please refresh and try again.")
+            errors.add(:status, "You may only select one side of the debate. Please go back and try again.")
         end
-        if self.challenger_id && (self.challenger_email || self.public_challenge == true)
-            errors.add(:status, "You may only select one challenger type, please refresh and try again.")
-        elsif self.challenger_id
-            type = "existing user"
+        if self.affirmative_id.nil? && self.negative_id.nil?
+            puts "both affirmative & negative options left blank"
+            errors.add(:status, "You must select one side of the debate. Please try again.")
         end
-        if self.challenger_email && (self.challenger_id || self.public_challenge == true)
-            errors.add(:status, "You may only select one challenger type, please refresh and try again.")
-        elsif self.challenger_email
-            type = "invite by email"
+        challenger_types_count = 0
+        if not self.challenger_id.nil?
+            challenger_types_count += 1
         end
-        if self.public_challenge == true && (self.challenger_id || self.challenger_email)
-            errors.add(:status, "You may only select one challenger type, please refresh and try again.")
-        elsif self.public_challenge == true
-            type = "public challenge"
+        if self.challenger_email.length > 1
+            challenger_types_count += 1
         end
-        puts "the challenge_method is #{type}"
+        if self.public_challenge == true
+            challenger_types_count += 1
+        end
+        puts "The user has selected #{challenger_types_count} challenger inputs."
+        if challenger_types_count != 1
+            errors.add(:status, "You must only select one challenger type, please refresh and try again.")
+        end
     end
 
     def participants
