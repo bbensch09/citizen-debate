@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+</head>
+<body>
+  <h3>Hello <%= @recipient.profile.display_name %>,</h3>
+  <p>
+  Your opponent has just submitted their opening statement. As a reminder, your cross-examination round is scheduled to begin at DATE_HERE, and your statement must be submitted at least one hour prior.
+  </p>
+  <p>
+  You will be able to read your opponent's statement as soon as you submit your own opening statement (in case you haven't already).
+  </p>
+
+  <p>
+    To enter your statement now or view your opponent's statement, please click below to access your debate.
+   <ul>
+     <li>
+        <%= link_to @debate.topic.title, debate_path(@debate) %>n
+     </li>
+   </ul>
+  </p>
+
+  <h4> <b> Debate Details </b> </h4>
+  <ul>
+      <li> <h3><b> Debate topic: </b> <%=@debate.topic.title%> </h3> </li>
+      <li> <h3><b> Your position: </b> <%=@creator_side%> </h3> </li>
+  </ul>
+
+<p>Again, if you haven't done so already, we recommend that all of our debaters follow the link below to join our Slack channel, so that we you can communicate with each other and the site administrators as necessary. If you've signed up but haven't yet received your Slack invitation, please email us at <a href="mailto:citizen.debate.16@gmail.com">citizen.debate.16@gmail.com</a></p>
+<ul>
+  <li><a href="http://bit.ly/citizen-debate-slack">http://bit.ly/citizen-debate-slack </a></li>
+</ul>
+
+  <p>Best of luck with your upcoming debate!</p>
+</body>
+</html>

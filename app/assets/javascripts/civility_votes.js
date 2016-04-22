@@ -4,14 +4,12 @@
 
 $(document).ready(function(){
 
-console.log("Loading civility_votes.js");
+console.log("FYI -- still not loading tool tips for civility_votes.js");
 
 
-$(function () {
-  $('[data-toggle="tooltip"]').tooltip();
-  console.log("Tooltips should be ready.")
-});
-
-
+// $(function () {
+//   $('[data-toggle="tooltip"]').tooltip();
+//   console.log("Tooltips should be ready.")
+// });
 
 });

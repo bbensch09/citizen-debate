@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+</head>
+<body>
+  <h3>Hello <%= @recipient.profile.display_name %>,</h3>
+  <p>
+  Your opponent has just submitted their closing statement.
+  </p>
+  <p>
+  You will be able to read your opponent's statement as soon as you submit your own closing statement (in case you haven't already).
+  </p>
+
+  <h4> <b> Debate Details </b> </h4>
+  <ul>
+      <li> <h3><b> Debate topic: </b> <%=@debate.topic.title%> </h3> </li>
+      <li> <h3><b> Your position: </b> <%=@creator_side%> </h3> </li>
+  </ul>
+
+  <p>
+    To enter your statement now or view your opponent's statement, please click below to access your debate.
+   <ul>
+     <li>
+        <%= link_to @debate.topic.title, debate_path(@debate) %>
+     </li>
+   </ul>
+  </p>
+
+  <p>As a reminder, the way voting works on Citizen Debate is as follows:
+  </p>
+
+  <ul>
+    <li>User vote before reading the debate.</li>
+    <li>User vote again after reading the debate.</li>
+    <li>The winner of the debate is declared after 14 days as the debater who changed the most minds.</li>
+  </ul>
+
+  <p>
+    If you have any questions, please email us at <a href="mailto:citizen.debate.16@gmail.com">citizen.debate.16@gmail.com</a>
+  </p>
+
+  <p>Best of luck with your upcoming debate!</p>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<div class="profile-container">
+
+<p>
+  <strong>Debate:</strong>
+  <%= @available_time.debate_id %>
+</p>
+
+<p>
+  <strong>Proposed by:</strong>
+  <%= @available_time.proposed_by %>
+</p>
+
+<p>
+  <strong>Proposed to:</strong>
+  <%= @available_time.proposed_to %>
+</p>
+
+<p>
+  <strong>Proposed time:</strong>
+  <%= @available_time.proposed_time %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @available_time.status %>
+</p>
+
+<%= link_to 'Edit', edit_available_time_path(@available_time) %> |
+<%= link_to 'Back', available_times_path %>
+</div>

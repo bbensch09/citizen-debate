@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+</head>
+<body>
+  <p>
+  Congratulations, you and your opponent have confirmed the schedule for your upcoming debate.
+  </p>
+
+  <h3><b> Debate topic: </b> <%=@debate.topic.title%> </h3>
+  <h4><b> Start time: </b> <%=@debate.start_time.strftime("%a %b %d, %Y at %I:%M%p") %> </h4>
+
+  <ul>
+    <li>
+      <b> Affirmative: </b> <%=@debate.affirmative_debater.user.profile.display_name%>
+    </li>
+    <li>
+      <b> Negative: </b> <%=@debate.negative_debater.user.profile.display_name%>
+    </li>
+  </ul>
+
+  <h4>What happens next?</h4>
+  <p>
+    Your debate has now begun. At the start time above, you will begin the live cross-examination period. Both participants must submit their opening statements at least 1 hour in advance of the cross-examination start time.
+  </p>
+
+  <p>
+    After the cross-examination period is complete, each side will have 24 hours to complete their closing statements.
+  </p>
+
+<p>Additionally, as part of our early adopter program, we recommend that all of our debaters follow the link below to join our Slack channel, so that we you can communicate with each other and the site administrators as necessary.</p>
+<ul>
+  <li><a href="http://bit.ly/citizen-debate-slack">http://bit.ly/citizen-debate-slack </a></li>
+</ul>
+
+  <p>Best of luck with your upcoming debate!</p>
+</body>
+</html>

@@ -4,6 +4,13 @@ class OpeningStatement < ActiveRecord::Base
   belongs_to :debate
   belongs_to :author, class_name: "Debater", foreign_key: "author_id"
   validate :check_word_count, on: [:update, :create]
+  after_create :send_opponent_notification
+
+  def send_opponent_notification
+      @opening_statement = OpeningStatement.last
+      UserMailer.opening_statement_complete(@opening_statement).deliver_now
+      puts "opponent has been sent notification of statement submission."
+  end
 
   def time_since_written
     days_elapsed = ((Time.now - created_at.to_time) / (60*60*24)).round

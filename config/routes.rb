@@ -19,8 +19,15 @@ Rails.application.routes.draw do
   resources :debates do
     member do
       post :accept_challenge
+      get :schedule
     end
   end
+  resources :available_times do
+    member do
+      post :confirm
+    end
+  end
+
   resources :debaters
   resources :judges
   resources :profiles do

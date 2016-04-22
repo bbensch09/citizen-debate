@@ -1,0 +1,35 @@
+<%= form_for(@available_time) do |f| %>
+  <% if @available_time.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@available_time.errors.count, "error") %> prohibited this available_time from being saved:</h2>
+
+      <ul>
+      <% @available_time.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="hidden">
+    <%= f.label :debate_id %><br>
+    <%= f.number_field :debate_id, value: debate.id %>
+    <%= f.label :proposed_by %><br>
+    <%= f.number_field :proposed_by, value: current_user.id %>
+    <%= f.label :proposed_to %><br>
+    <%= f.number_field :proposed_to, value: opponent.id %>
+  </div>
+
+  <div class="field col-lg-3 col-sm-3">
+    <%= f.datetime_select :proposed_time, class:"datetimepicker" %>
+        <script type="text/javascript">
+            $(function () {
+                $('.datetimepicker').datetimepicker();
+            });
+        </script>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Propose new time" %>
+  </div>
+<% end %>
