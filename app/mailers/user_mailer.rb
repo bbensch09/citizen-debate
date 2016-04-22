@@ -5,6 +5,11 @@ class UserMailer < ApplicationMailer
     mail(to: @topic.creator.email, subject: "We appreciate your interest!")
   end
 
+  def new_user_signed_up(user)
+    @user = user
+    mail(to: "bbensch@gmail.com", subject: "#{user.email} has registered for Citizen Debate!")
+  end
+
   def challenge_existing_user(debate)
     @debate = debate
     if debate.affirmative_id
@@ -13,7 +18,7 @@ class UserMailer < ApplicationMailer
     if debate.negative_id
       @challenger_side = "affirmative"
     end
-    mail(to: @debate.challenger.email, cc: @debate.creator.email, bcc: "citizen.debate.16+notify@gmail.com", subject:"You've been challenged to a Citizen Debate!")
+    mail(to: @debate.challenger.email, bcc: @debate.creator.email, cc: "citizen.debate.16+notify@gmail.com", subject:"You've been challenged to a Citizen Debate!")
   end
 
   def challenge_new_user(debate)
@@ -24,7 +29,7 @@ class UserMailer < ApplicationMailer
     if debate.negative_id
       @challenger_side = "affirmative"
     end
-    mail(to: @debate.challenger_email, cc: @debate.creator.email, bcc: "citizen.debate.16+notify@gmail.com", subject:"You've invited to join Citizen Debate!")
+    mail(to: @debate.challenger_email, bcc: @debate.creator.email, cc: "citizen.debate.16+notify@gmail.com", subject:"You've invited to join Citizen Debate!")
   end
 
   def challenge_accepted(debate)
@@ -37,9 +42,9 @@ class UserMailer < ApplicationMailer
     mail(to: @debate.creator.email, bcc: @debate.challenger.email, cc: "citizen.debate.16+notify@gmail.com", subject:"Your debate challenge has been accepted!")
   end
 
-  def new_user_signed_up(user)
-    @user = user
-    mail(to: "bbensch@gmail.com", subject: "#{user.email} has registered for Citizen Debate!")
+  def schedule_confirmed(debate)
+    @debate = debate
+    mail(to:"citizen.debate.16+notify@gmail.com", bcc: "#{@debate.creator.email}, #{@debate.challenger.email}", subject:"Your debate schedule is now set.")
   end
 
   def opening_statement_complete(statement)

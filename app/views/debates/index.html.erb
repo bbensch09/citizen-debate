@@ -21,6 +21,7 @@
       </thead>
 
       <tbody>
+      <!-- new debate challenges -- to accept or reject -->
         <% @upcoming_debates.each do |debate| %>
           <tr>
             <td><%= link_to debate.topic.title, debate %></td>
@@ -34,7 +35,29 @@
             </td>
             <td> <b> <%= debate.status %> </b> </td>
             <td><%= debate.time_since_updated %></td>
+            <!-- <td><%= link_to 'Accept Challenge', schedule_debate_path(debate),  method: :get,  class: "btn btn-default" %></td> -->
             <td><%= link_to 'Accept Challenge', accept_challenge_debate_path(debate),  method: :post,  class: "btn btn-default" %></td>
+          <% if current_user && current_user.email == "citizen.debate.16@gmail.com" %>
+            <td><%= link_to 'Edit', edit_debate_path(debate) %></td>
+            <td><%= link_to 'Destroy', debate, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <% end %>
+          </tr>
+        <% end %>
+        <!-- debates to be scheduled -->
+        <% @debates_to_scheduled.each do |debate| %>
+          <tr>
+            <td><%= link_to debate.topic.title, debate %></td>
+            <td><%= debate.creator.profile.display_name %></td>
+            <td>
+              <% if debate.challenger.profile %>
+                  <%= debate.challenger.profile.display_name %>
+                <% else %>
+                "TBD"
+              <% end %>
+            </td>
+            <td> <b> <%= debate.status %> </b> </td>
+            <td><%= debate.time_since_updated %></td>
+            <td><%= link_to 'Schedule Debate', schedule_debate_path(debate),  method: :get,  class: "btn btn-default" %></td>
           <% if current_user && current_user.email == "citizen.debate.16@gmail.com" %>
             <td><%= link_to 'Edit', edit_debate_path(debate) %></td>
             <td><%= link_to 'Destroy', debate, method: :delete, data: { confirm: 'Are you sure?' } %></td>

@@ -1,5 +1,5 @@
 class DebatesController < ApplicationController
-  before_action :set_debate, only: [:show, :edit, :update, :destroy, :accept_challenge]
+  before_action :set_debate, only: [:show, :edit, :update, :destroy, :accept_challenge, :schedule]
   before_action :authenticate_user!, except: [:show, :index, :launch]
   before_action :confirm_new_challengers, only: [:index]
   # after_action :create_first_round, only: [:create]
@@ -33,6 +33,9 @@ class DebatesController < ApplicationController
     @active_debates = Debate.where("status = 'Active'")
     if current_user
       @upcoming_debates = Debate.where("challenge_accepted = false AND challenger_id = ? OR challenger_email=?",current_user.id,current_user.email)
+      all_debates = Debate.where("status != 'Scheduling'")
+      current_user_debates = current_user.debater.debates
+      @debates_to_scheduled = current_user_debates - all_debates
     else
       @upcoming_debates = []
     end
@@ -99,9 +102,6 @@ class DebatesController < ApplicationController
         end
     end
 
-
-
-
   end
 
   def create_first_round
@@ -115,12 +115,26 @@ class DebatesController < ApplicationController
   def accept_challenge
     puts "logging challenge accepted action"
     @debate.challenge_accepted = true
-    @debate.negative_id = current_user.id
-    @debate.status = "Active"
+    if @debate.affirmative_id
+        @debate.negative_id = current_user.id
+      elsif @debate.negative_id
+        @debate.affirmative_id = current_user.id
+    end
+    @debate.status = "Scheduling"
     @debate.save
     UserMailer.challenge_accepted(@debate).deliver_now
     puts "opponent has been sent notification of statement submission."
-    redirect_to @debate, notice: "You've accepted the debate challenge."
+    redirect_to schedule_debate_path(@debate), notice: "You've accepted the debate challenge. Now please propose a few times that you are available."
+  end
+
+  def schedule
+    cu_array = []
+    cu_array << current_user.id
+    opponent_id = (@debate.participants - cu_array).first
+    @opponent = User.find(opponent_id)
+    @current_user_proposed_times = AvailableTime.where("debate_id=? AND proposed_by=?",@debate.id,current_user.id)
+    @opponent_proposed_times = AvailableTime.where("debate_id=? AND proposed_by=?",@debate.id,@opponent.id)
+    @available_time = AvailableTime.new
   end
 
   # PATCH/PUT /debates/1

@@ -11,20 +11,15 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="hidden">
     <%= f.label :debate_id %><br>
-    <%= f.number_field :debate_id %>
-  </div>
-  <div class="field">
+    <%= f.number_field :debate_id, value: debate.id %>
     <%= f.label :proposed_by %><br>
-    <%= f.number_field :proposed_by %>
-  </div>
-  <div class="field">
+    <%= f.number_field :proposed_by, value: current_user.id %>
     <%= f.label :proposed_to %><br>
-    <%= f.number_field :proposed_to %>
+    <%= f.number_field :proposed_to, value: opponent.id %>
   </div>
   <div class="field">
-    <%= f.label :proposed_time %><br>
     <%= f.datetime_select :proposed_time %>
 <br>
   <!-- <input type="text" data-provide='datepicker' name="available_time[proposed_time]"> -->
@@ -53,6 +48,6 @@
 
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Propose this time" %>
   </div>
 <% end %>

@@ -1,5 +1,5 @@
 class AvailableTimesController < ApplicationController
-  before_action :set_available_time, only: [:show, :edit, :update, :destroy]
+  before_action :set_available_time, only: [:show, :edit, :update, :destroy, :confirm]
 
   # GET /available_times
   # GET /available_times.json
@@ -21,14 +21,25 @@ class AvailableTimesController < ApplicationController
   def edit
   end
 
+  #confirm available time
+  # POST /available_times/1
+  def confirm
+    @available_time.status = "confirmed"
+    @available_time.save
+    @available_time.debate.start_time = @available_time.proposed_time
+    @available_time.debate.status = "Active"
+    @available_time.debate.save
+    UserMailer.schedule_confirmed(@available_time.debate).deliver_now
+    redirect_to @available_time.debate, notice: 'Thanks! Your debate schedule is now confirmed. You and your opponent will receive confirmation emails with further instructions.'
+  end
+
   # POST /available_times
   # POST /available_times.json
   def create
     @available_time = AvailableTime.new(available_time_params)
-
     respond_to do |format|
       if @available_time.save
-        format.html { redirect_to @available_time, notice: 'Available time was successfully created.' }
+        format.html { redirect_to schedule_debate_path(@available_time.debate), notice: 'Available time added. Please add at least 2 options before notifying your opponent.' }
         format.json { render :show, status: :created, location: @available_time }
       else
         format.html { render :new }
