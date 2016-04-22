@@ -22,12 +22,12 @@
 
       <tbody>
       <!-- new debate challenges -- to accept or reject -->
-        <% @upcoming_debates.each do |debate| %>
+        <% @pending_debates.each do |debate| %>
           <tr>
             <td><%= link_to debate.topic.title, debate %></td>
             <td><%= debate.creator.profile.display_name %></td>
             <td>
-              <% if debate.challenger.profile %>
+              <% if debate.challenger && debate.challenger.profile %>
                   <%= debate.challenger.profile.display_name %>
                 <% else %>
                 "TBD"
@@ -44,7 +44,7 @@
           </tr>
         <% end %>
         <!-- debates to be scheduled -->
-        <% @debates_to_scheduled.each do |debate| %>
+        <% @debates_to_schedule.each do |debate| %>
           <tr>
             <td><%= link_to debate.topic.title, debate %></td>
             <td><%= debate.creator.profile.display_name %></td>

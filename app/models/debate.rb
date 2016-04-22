@@ -13,6 +13,32 @@ class Debate < ActiveRecord::Base
     has_many :opening_statements
     has_many :closing_statements
     has_many :available_times
+    validate :confirm_challenge_inputs, on: [:create]
+
+    def confirm_challenge_inputs
+        if self.affirmative_id && self.negative_id
+            puts "both affirmative & negative options selected"
+            errors.add(:status, "You may only select one side of the debate. Please go back and try again.")
+        end
+        if self.affirmative_id.nil? && self.negative_id.nil?
+            puts "both affirmative & negative options left blank"
+            errors.add(:status, "You must select one side of the debate. Please try again.")
+        end
+        challenger_types_count = 0
+        if not self.challenger_id.nil?
+            challenger_types_count += 1
+        end
+        if self.challenger_email.length > 1
+            challenger_types_count += 1
+        end
+        if self.public_challenge == true
+            challenger_types_count += 1
+        end
+        puts "The user has selected #{challenger_types_count} challenger inputs."
+        if challenger_types_count != 1
+            errors.add(:status, "You must only select one challenger type, please refresh and try again.")
+        end
+    end
 
     def participants
         debaters = Debater.where("id = ? OR id = ? OR id = ?", self.affirmative_id, self.negative_id, self.challenger_id)
