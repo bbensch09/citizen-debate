@@ -32,10 +32,10 @@ class DebatesController < ApplicationController
     @completed_debates = Debate.where("status = 'Completed'")
     @active_debates = Debate.where("status = 'Active'")
     if current_user
-      @upcoming_debates = Debate.where("challenge_accepted = false AND challenger_id = ? OR challenger_email=?",current_user.id,current_user.email)
+      @pending_debates = Debate.where("challenge_accepted = false AND challenger_id = ? OR challenger_email=?",current_user.id,current_user.email)
       all_debates = Debate.where("status != 'Scheduling'")
       current_user_debates = current_user.debater.debates
-      @debates_to_scheduled = current_user_debates - all_debates
+      @debates_to_schedule = current_user_debates - all_debates
     else
       @upcoming_debates = []
     end
@@ -72,7 +72,6 @@ class DebatesController < ApplicationController
   # POST /debates.json
   def create
     @debate = Debate.new(debate_params)
-    @debate.start_date = Date.today
 
     if @debate.challenger_id
         respond_to do |format|
