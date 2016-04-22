@@ -10,10 +10,12 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require ckeditor/init
+//= require faye
 //= require turbolinks
 //= require jquery
 //= require jquery_ujs
-//= require faye
+//= require moment
 //= require bootstrap
 //= require bootstrap-sprockets
 //= require bootstrap-datepicker
@@ -21,6 +23,4 @@
 //= require comments
 //= require civility_votes
 //= require available_times
-//= require ckeditor/init
-//= require moment
 

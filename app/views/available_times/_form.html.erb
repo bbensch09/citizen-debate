@@ -19,35 +19,17 @@
     <%= f.label :proposed_to %><br>
     <%= f.number_field :proposed_to, value: opponent.id %>
   </div>
-  <div class="field">
-    <%= f.datetime_select :proposed_time %>
-<br>
-  <!-- <input type="text" data-provide='datepicker' name="available_time[proposed_time]"> -->
 
-<!-- Sample code for datetime selector that ought to work -->
-<!-- <div class="container">
-    <div class="row">
-        <div class='col-sm-6'>
-            <div class="form-group">
-                <div class='input-group date' id='datetimepicker1'>
-                    <input type='text' class="form-control" />
-                    <span class="input-group-addon">
-                        <span class="glyphicon glyphicon-calendar"></span>
-                    </span>
-                </div>
-            </div>
-        </div>
+  <div class="field col-lg-3 col-sm-3">
+    <%= f.datetime_select :proposed_time, class:"datetimepicker" %>
         <script type="text/javascript">
             $(function () {
-                $('#datetimepicker1').datetimepicker();
+                $('.datetimepicker').datetimepicker();
             });
         </script>
-    </div>
-</div> -->
-
-
   </div>
+
   <div class="actions">
-    <%= f.submit "Propose this time" %>
+    <%= f.submit "Propose new time" %>
   </div>
 <% end %>

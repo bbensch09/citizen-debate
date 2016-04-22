@@ -9,7 +9,8 @@
   </p>
 
   <h3><b> Debate topic: </b> <%=@debate.topic.title%> </h3>
-  <h4><b> Star time: </b> <%=@debate.start_time%> </h4>
+  <h4><b> Start time: </b> <%=@debate.start_time.strftime("%a %b %d, %Y at %I:%M%p") %> </h4>
+
   <ul>
     <li>
       <b> Affirmative: </b> <%=@debate.affirmative_debater.user.profile.display_name%>

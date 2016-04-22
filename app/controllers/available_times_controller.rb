@@ -42,7 +42,7 @@ class AvailableTimesController < ApplicationController
         format.html { redirect_to schedule_debate_path(@available_time.debate), notice: 'Available time added. Please add at least 2 options before notifying your opponent.' }
         format.json { render :show, status: :created, location: @available_time }
       else
-        format.html { render :new }
+        format.html { redirect_to schedule_debate_path(@available_time.debate), notice: 'Could not submit. Please try again.' }
         format.json { render json: @available_time.errors, status: :unprocessable_entity }
       end
     end
