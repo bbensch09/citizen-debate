@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  debate_id: 1
+  proposed_by: 1
+  proposed_to: 1
+  proposed_time: 2016-04-21 15:09:59
+  status: MyString
+
+two:
+  debate_id: 1
+  proposed_by: 1
+  proposed_to: 1
+  proposed_time: 2016-04-21 15:09:59
+  status: MyString

@@ -1,0 +1,58 @@
+<%= form_for(@available_time) do |f| %>
+  <% if @available_time.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@available_time.errors.count, "error") %> prohibited this available_time from being saved:</h2>
+
+      <ul>
+      <% @available_time.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :debate_id %><br>
+    <%= f.number_field :debate_id %>
+  </div>
+  <div class="field">
+    <%= f.label :proposed_by %><br>
+    <%= f.number_field :proposed_by %>
+  </div>
+  <div class="field">
+    <%= f.label :proposed_to %><br>
+    <%= f.number_field :proposed_to %>
+  </div>
+  <div class="field">
+    <%= f.label :proposed_time %><br>
+    <%= f.datetime_select :proposed_time %>
+<br>
+  <!-- <input type="text" data-provide='datepicker' name="available_time[proposed_time]"> -->
+
+<!-- Sample code for datetime selector that ought to work -->
+<!-- <div class="container">
+    <div class="row">
+        <div class='col-sm-6'>
+            <div class="form-group">
+                <div class='input-group date' id='datetimepicker1'>
+                    <input type='text' class="form-control" />
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript">
+            $(function () {
+                $('#datetimepicker1').datetimepicker();
+            });
+        </script>
+    </div>
+</div> -->
+
+
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

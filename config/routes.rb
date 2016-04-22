@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :available_times
   mount Ckeditor::Engine => '/ckeditor'
 
   get '/taxes-should-be-raised-on-Americans-who-earn-at-least-250k' => 'debates#launch'
