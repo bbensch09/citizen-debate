@@ -20,10 +20,13 @@
     <% if current_user.nil? %>
       <h5 class="center"> <em>Note that you must be signed in to record your vote. Clicking below will redirect you to the login page first.</em></h5>
     <% end %>
+    <h3>
+      <b>Resolved:</b><%= @debate.topic.title %>
+    </h3>
     <ul class="center">
     <div class="col-lg-4 col-sm-6">
        <li class="voting-options">
-        <%= f.label :agree, "I agree", :class=> "voting-options" %>
+        <%= f.label :agree, "I support the resolution.", :class=> "voting-options" %>
         <%= f.radio_button :vote_after, "I agree" %>
       </li>
     </div>
@@ -35,7 +38,7 @@
     </div>
     <div class="col-lg-4 col-sm-6">
       <li class="voting-options">
-        <%= f.label :disagree, "I disagree", :class=> "voting-options" %>
+        <%= f.label :disagree, "I disagree with the resolution.", :class=> "voting-options" %>
         <%= f.radio_button :vote_after, "I disagree" %>
       </li>
     </div>
