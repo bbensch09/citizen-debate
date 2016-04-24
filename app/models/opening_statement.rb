@@ -29,7 +29,7 @@ class OpeningStatement < ActiveRecord::Base
     raw_text = strip_tags(self.content)
     word_count = raw_text.split(" ").length
     puts "word_count is #{word_count}"
-    errors.add(:status,"Please shorten your statement to no more than 250 words. The current word count is #{word_count}.") unless (word_count <=250)
+    errors.add(:status,"Please shorten your statement to no more than 250 words. The current word count is #{word_count}.") unless (word_count <=300)
   end
 
 end
