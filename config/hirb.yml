@@ -10,7 +10,6 @@
         - city
         - snippets
         - profile_bonus
-        - snippet_bonus
         - points
 
   User:
