@@ -72,15 +72,14 @@ class Profile < ActiveRecord::Base
       civility_points = 0
       if aff_ratings.count >= 1
         aff_ratings.each do |rating|
-          civility_points += rating.affirmative_rating
+          civility_points += rating.affirmative_rating.to_f
         end
       end
       if neg_ratings.count >= 1
         neg_ratings.each do |rating|
-          civility_points += rating.negative_rating
+          civility_points += rating.negative_rating.to_f
         end
       end
-      #returns the total number of "stars" awarded to each debater.
       return civility_points
   end
 
