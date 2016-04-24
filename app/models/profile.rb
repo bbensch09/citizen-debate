@@ -70,11 +70,15 @@ class Profile < ActiveRecord::Base
       #negative debate ratings
       neg_ratings = CivilityVote.where("negative_id = ?",self.user.debater.id)
       civility_points = 0
-      aff_ratings.each do |rating|
-        civility_points += rating.affirmative_rating
+      if aff_ratings.count >= 1
+        aff_ratings.each do |rating|
+          civility_points += rating.affirmative_rating
+        end
       end
-      neg_ratings.each do |rating|
-        civility_points += rating.negative_rating
+      if neg_ratings.count >= 1
+        neg_ratings.each do |rating|
+          civility_points += rating.negative_rating
+        end
       end
       #returns the total number of "stars" awarded to each debater.
       return civility_points
