@@ -49,7 +49,8 @@ class ProfilesController < ApplicationController
   # GET /profiles
   # GET /profiles.json
   def index
-    @profiles = Profile.all.sort { |a,b| b.points <=> a.points}
+    non_admin_profiles = Profile.where("id != 1")
+    @profiles = non_admin_profiles.sort { |a,b| b.points <=> a.points}
   end
 
   # GET /profiles/1
