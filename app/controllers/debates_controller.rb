@@ -34,13 +34,17 @@ class DebatesController < ApplicationController
     if current_user
       current_user_public_challenges = Debate.where("public_challenge=true AND creator_id =?",current_user.id)
       all_pending_debates = Debate.where("challenge_accepted = false AND challenger_id = ? OR challenger_email=? OR public_challenge=true",current_user.id,current_user.email)
-      @pending_debates = all_pending_debates - current_user_public_challenges
+      @pending_debates = all_pending_debates - current_user_public_challenges - @active_debates
       current_user_debates = current_user.debater.debates
       all_debates = Debate.where("status != 'Scheduling'")
       @debates_to_schedule = current_user_debates - all_debates
     else
       @pending_debates = []
     end
+  end
+
+  def debate_stages
+
   end
 
   # GET /debates/1
@@ -87,6 +91,8 @@ class DebatesController < ApplicationController
               format.html { redirect_to @debate, notice: 'Your debate challenge has been created and your challenger has been invited to join Citizen Debate and accept your challenge.' }
               format.json { render :show_debate, status: :created, location: @debate }
             else
+              flash[:show_modal] = true
+              flash[:modal_to_show] = '/debates/share_challenge'
               format.html { redirect_to @debate, notice: 'Your debate challenge has successfully been created. You will be notified when another user accepts your public challenge.' }
               format.json { render :show_debate, status: :created, location: @debate }
             end

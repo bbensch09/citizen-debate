@@ -85,7 +85,7 @@
   margin-top: 20px;
 }
 .img-debate-details{
-  max-height: 150px;
+  height: 70px;
 }
 .live-debate-container{
     width: 90vw;
@@ -106,4 +106,14 @@
 .media-body p img {
     max-width: 85vw;
     height: auto !important;
+}
+.affirmative-details{
+  border-right: 2px dotted gray;
+}
+.resolved{
+  font-size: 0.8em;
+  text-decoration: underline;
+}
+.modal-content {
+  max-width: 70vw;
 }
