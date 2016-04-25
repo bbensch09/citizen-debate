@@ -1,0 +1,21 @@
+<div class="modal-header">
+    <h3 className="large_center">Your public debate challenge has been posted!</h3>
+</div>
+<div class="modal-body">
+  <h4>To find a challenger faster, copy your debate link below and share to social. </h4>
+    <%= "www.citizendebate.org/debates/#{@debate.to_param}" %>
+    <br>
+    <a href="https://www.facebook.com/sharer/sharer.php?sdk=joey&u=http%3A%2F%2Fwww.citizendebate.org%2F&display=popup&ref=plugin&src=share_button" class="btn btn-default btn-fb" target="_blank">
+      <i class="fa fa-facebook fa-fw"></i> Share on Facebook
+    </a>
+    <a href="https://twitter.com/share" class="btn btn-default btn-twitter twitter-share-button" data-url=<%= "www.citizendebate.org/debates/#{@debate.to_param}" %> data-via="citizendebate16" data-size="large">Tweet</a>
+
+
+    <!--
+
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+    https://twitter.com/intent/tweet?original_referer=http%3A%2F%2Flocalhost%3A3000%2Fdebates%2F21-the-senate-should-hold-confirmation-hearings-for-merrick-garland-as-the-next-supreme-court-justice&ref_src=twsrc%5Etfw&text=C%7CD%20-%20The%20Senate%20should%20hold%20confirmation%20hearings%20for%20Merrick%20Garland%20as%20the%20next%20Supreme%20Court%20justice.&tw_p=tweetbutton&url=www.citizendebate.org%2Fdebates%2F21-the-senate-should-hold-confirmation-hearings-for-merrick-garland-as-the-next-supreme-court-justice&via=citizendebate16
+    -->
+</div>
+

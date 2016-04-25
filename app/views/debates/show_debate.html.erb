@@ -145,12 +145,11 @@
         <% end %>
     <hr>
 
-    <% else %>
+    <% elsif @debate.status == "Completed" %>
 
         <div class="voting-container">
           <%= render partial: 'debate_votes/before_form' %>
         </div>
 </div>
 <% end %>
-<%= link_to 'Back to All Debates', debates_path %>
 </div>

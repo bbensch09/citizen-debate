@@ -125,6 +125,30 @@
 <div class="nav-buffer">
   <!-- HACKY SHIT SPACE PLACEHOLDER SO CONTENT NOT HIDDEN BEHIND NAV -->
 </div>
+
+<!-- Modal contaner logic -->
+<% if flash[:show_modal] %>
+    <div class="modal fade modal-tiny" tabindex="-1" role="dialog" aria-labelledby="omniModal" id="omniModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <%= render flash[:modal_to_show] %>
+        </div>
+      </div>
+    </div>
+    <script>
+    <% if flash[:required_modal] %>
+    $('#omniModal').modal({
+      keyboard: false,
+      backdrop: 'static'
+    });
+    <% end %>
+    $('#omniModal').modal('show');
+    </script>
+    <% flash.discard(:show_modal) %>
+    <% flash.discard(:modal_to_show) %>
+    <% flash.discard(:required_modal) %>
+<% end %>
+
   <%= yield %>
   <!-- <script src="//my.hellobar.com/4d4249d8ba5d5fbf8bf06c23987b6dafc5bdfa7a.js" type="text/javascript" charset="utf-8" async="async"></script> -->
     <!-- Footer -->

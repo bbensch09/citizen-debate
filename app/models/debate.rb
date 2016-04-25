@@ -15,6 +15,11 @@ class Debate < ActiveRecord::Base
     has_many :available_times
     validate :confirm_challenge_inputs, on: [:create]
 
+    def to_param
+        [id, title.parameterize].join("-")
+    end
+
+
     def confirm_challenge_inputs
         if self.affirmative_id && self.negative_id
             puts "both affirmative & negative options selected"
@@ -40,6 +45,14 @@ class Debate < ActiveRecord::Base
         end
     end
 
+    def challenge_type
+        if self.public_challenge == true
+            return "public challenge"
+        else
+            return "private challenge"
+        end
+    end
+
     def participants
         debaters = Debater.where("id = ? OR id = ? OR id = ?", self.affirmative_id, self.negative_id, self.challenger_id)
         participant_user_ids = []
@@ -47,6 +60,10 @@ class Debate < ActiveRecord::Base
             participant_user_ids << debater.user_id
         end
         participant_user_ids
+    end
+
+    def title
+        self.topic.title
     end
 
     def judges
