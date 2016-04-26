@@ -1,0 +1,62 @@
+<h2>
+  Before votes:
+</h2>
+
+<table class="col-lg-12 col-sm-12 waitlist-table">
+  <thead>
+    <tr>
+      <th>Vote</th>
+      <th>Vote Count</th>
+      <th>Percent</th>
+    </tr>
+  </thead>
+
+  <tbody>
+      <tr>
+        <td> Support the resolution </td>
+        <td><%= @debate.before_agree %></td>
+        <td><%= (@debate.before_agree.to_f / @debate.before_count.to_f)*100 %>%</td>
+      </tr>
+      <tr>
+        <td> Not sure </td>
+        <td><%= @debate.before_unsure %></td>
+        <td><%= (@debate.before_unsure.to_f / @debate.before_count.to_f)*100 %>%</td>
+      </tr>
+      <tr>
+        <td> Do not support the resolution </td>
+        <td><%= @debate.before_disagree %></td>
+        <td><%= (@debate.before_disagree.to_f / @debate.before_count.to_f)*100 %>%</td>
+      </tr>
+  </tbody>
+</table>
+
+<h2>
+  After votes:
+</h2>
+<table class="col-lg-12 col-sm-12 waitlist-table">
+  <thead>
+    <tr>
+      <th>Vote</th>
+      <th>Vote Count</th>
+      <th>Percent</th>
+    </tr>
+  </thead>
+
+  <tbody>
+      <tr>
+        <td> Support the resolution </td>
+        <td><%= @debate.after_agree %></td>
+        <td><%= (@debate.after_agree.to_f / @debate.after_count.to_f)*100 %>%</td>
+      </tr>
+      <tr>
+        <td> Not sure </td>
+        <td><%= @debate.after_unsure %></td>
+        <td><%= (@debate.after_unsure.to_f / @debate.after_count.to_f)*100 %>%</td>
+      </tr>
+      <tr>
+        <td> Do not support the resolution </td>
+        <td><%= @debate.after_disagree %></td>
+        <td><%= (@debate.after_disagree.to_f / @debate.after_count.to_f)*100 %>%</td>
+      </tr>
+  </tbody>
+</table>

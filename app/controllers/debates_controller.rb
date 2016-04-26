@@ -47,7 +47,7 @@ class DebatesController < ApplicationController
   def index
     @completed_debates = Debate.where("status = 'Completed'")
     @active_debates = Debate.where("status = 'Active'")
-    if current_user
+    if current_user && current_user.debater
       current_user_public_challenges = Debate.where("public_challenge=true AND creator_id =?",current_user.id)
       all_pending_debates = Debate.where("challenge_accepted = false AND challenger_id = ? OR challenger_email=? OR public_challenge=true",current_user.id,current_user.email)
       @pending_debates = all_pending_debates - current_user_public_challenges - @active_debates

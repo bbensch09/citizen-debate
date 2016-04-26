@@ -1,6 +1,10 @@
 <% title @debate.topic.title %>
 <div class="debate-container">
-
+<% if current_user and current_user.eligible_civility_votes.exclude? (@debate.id) %>
+      <div class="results-container">
+        <%= render partial: 'results' %>
+      </div>
+<% end %>
 <%= render 'details' %>
 
 <!-- BEGIN LOGIC FOR CURRENT DEBATERS -->
