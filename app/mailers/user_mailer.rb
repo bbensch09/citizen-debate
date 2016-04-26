@@ -81,4 +81,10 @@ class UserMailer < ApplicationMailer
       mail(to: @recipient.email, bcc: @closing_statement.author.user.email, subject: "#{@closing_statement.author.user.profile.display_name} has entered their closing statement!")
   end
 
+  def notify_follower(follower_email, topic, debate)
+    @debate = debate
+    @topic = topic
+    mail(to: follower_email, subject: "Check out the latest debate: #{@topic.title}")
+  end
+
 end

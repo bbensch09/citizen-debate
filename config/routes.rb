@@ -20,6 +20,7 @@ Rails.application.routes.draw do
     member do
       post :accept_challenge
       get :schedule
+      get :notify_followers
     end
   end
   resources :available_times do
@@ -40,6 +41,7 @@ Rails.application.routes.draw do
     member do
       post :upvote
       post :follow
+      post :unfollow
     end
   end
 

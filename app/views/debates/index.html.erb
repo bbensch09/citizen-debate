@@ -110,6 +110,7 @@
       <% if current_user && current_user.email == "citizen.debate.16@gmail.com" %>
         <td><%= link_to 'Show', debate %></td>
         <td><%= link_to 'Edit', edit_debate_path(debate) %></td>
+        <td><%= link_to 'Notify Followers', notify_followers_debate_path(debate) %></td>
         <td><%= link_to 'Destroy', debate, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       <% end %>
       </tr>

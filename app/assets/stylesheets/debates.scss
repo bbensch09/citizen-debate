@@ -30,6 +30,7 @@
 }
 .debate-details{
   min-height: 10vh;
+  clear: both;
 }
 .row{
   height:auto !important;
@@ -116,4 +117,23 @@
 }
 .modal-content {
   max-width: 70vw;
+}
+.results-container{
+  min-height: 30vh;
+  background-color: #fff;
+  /*background-color: rgba(66, 133, 244, 0.3);*/
+  clear: both;
+  display:block;
+  position: relative;
+  border: none;
+  padding: 2px 2px 2px 2px;
+}
+.winner{
+    background-color: rgba(66, 133, 244, 0.3);
+    border: 2px solid blue;
+    margin-bottom: 5vh;
+}
+.summary{
+}
+.social-prompt{
 }

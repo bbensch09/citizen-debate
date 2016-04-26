@@ -1,15 +1,55 @@
 <div class="container section-buffer">
-<p id="notice"><%= notice %></p>
-
-<p>
+<h2>
   <strong>Title:</strong>
   <%= @topic.title %>
-</p>
+</h2>
 
 <p>
+  <% if @topic.description %>
   <strong>Description:</strong>
   <%= @topic.description %>
+  <%end%>
 </p>
+
+<h1 class="center debate-list-header">Recent debates on this topic</h1>
+
+<table class="col-lg-12 col-sm-12 waitlist-table">
+  <thead>
+    <tr>
+      <th>Topic</th>
+      <th>Affirmative</th>
+      <th>Votes for</th>
+      <th>Negative</th>
+      <th>Votes against</th>
+      <!-- <th>Net Delta</th> -->
+      <th>Posted</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @debates.each do |debate| %>
+      <tr>
+        <td><%= link_to debate.topic.title, debate %></td>
+        <td><%= debate.affirmative_debater.user.profile.display_name %> <br> <%= debate.affirmative_debater.user.profile.civility_rating %> stars</td>
+        <td><%= debate.affirmative_debater.user.profile.minds_changed %></td>
+        <td><%= debate.negative_debater.user.profile.display_name %> <br> <%= debate.negative_debater.user.profile.civility_rating %> stars</td>
+        <td><%= debate.negative_debater.user.profile.minds_changed %></td>
+        <!-- <td><%= (debate.affirmative_debater.user.profile.minds_changed - debate.negative_debater.user.profile.minds_changed) %> minds</td> -->
+        <td><%= debate.time_since_updated %></td>
+      <% if current_user && current_user.email == "citizen.debate.16@gmail.com" %>
+        <td><%= link_to 'Show', debate %></td>
+        <td><%= link_to 'Edit', edit_debate_path(debate) %></td>
+        <td><%= link_to 'Notify Followers', notify_followers_debate_path(debate) %></td>
+        <td><%= link_to 'Destroy', debate, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<hr>
+
 <div class="disqus-comments">
   <div id="disqus_thread"></div>
 <script>

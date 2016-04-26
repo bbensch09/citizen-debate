@@ -32,6 +32,15 @@ class User < ActiveRecord::Base
     end
   end
 
+  def topic_ids_following
+    topic_votes = TopicVote.where("voter_id=? AND following=true",self.id)
+    topic_ids =[]
+    topic_votes.each do |vote|
+      topic_ids << vote.topic_id
+    end
+    return topic_ids
+  end
+
   def time_since_created
     time_elapsed = ((Time.now - created_at.to_time) / (60*60*24)).round
       if time_elapsed < 1

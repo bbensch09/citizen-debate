@@ -16,9 +16,11 @@
     <%= f.number_field :debate_id, value: @debate.id %>
   </div>
   <div class="field">
-    <h4 class="center"> Please now vote again. </h4>
+    <h3 class="center"> Have the debaters managed to persuade you? Vote again to determine the winner. </h3>
     <% if current_user.nil? %>
-      <h5 class="center"> <em>Note that you must be signed in to record your vote. Clicking below will redirect you to the login page first.</em></h5>
+      <h4 class="center"> <em>Note that you must register to record your vote and see the results. Clicking below will redirect you to the login page.
+        <br>Also also note that registering to vote<b> will not subscribe </b> you to any automated mailing lists.</em>
+      </h4>
     <% end %>
     <h3>
       <b>Resolved:</b><%= @debate.topic.title %>

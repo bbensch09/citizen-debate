@@ -28,3 +28,23 @@
   background-color: rgba(68,157,68,0.3);
   font-style: bold;
 }
+
+.btn-following{
+  color:#449d44;
+  background-color: #dff0d8 !important;
+}
+.btn-following:hover span{
+    display:none;
+}
+
+.btn-following:hover{
+    background-color: #fcf8e3 !important;
+    border-color: #faebcc;
+}
+.btn-following:hover:after{
+    color: #8a6d3b!important;
+    content: 'Unfollow';
+}
+.btn-fixed-width{
+  width:150px;
+}

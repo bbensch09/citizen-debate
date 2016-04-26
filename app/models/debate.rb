@@ -19,6 +19,62 @@ class Debate < ActiveRecord::Base
         [id, title.parameterize].join("-")
     end
 
+    def before_agree
+        votes = DebateVote.where("vote_before = 'I agree' AND debate_id = ?",self.id)
+        votes.count
+    end
+
+    def before_unsure
+        votes = DebateVote.where("vote_before = 'I am not sure' AND debate_id = ?",self.id)
+        votes.count
+    end
+
+    def before_disagree
+        votes = DebateVote.where("vote_before = 'I disagree' AND debate_id = ?",self.id)
+        votes.count
+    end
+
+    def before_count
+        DebateVote.where(debate_id:self.id).count
+    end
+
+    def after_agree
+        votes = DebateVote.where("vote_after = 'I agree' AND debate_id = ?",self.id)
+        votes.count
+    end
+
+    def after_unsure
+        votes = DebateVote.where("vote_after = 'I am not sure' AND debate_id = ?",self.id)
+        votes.count
+    end
+
+    def after_disagree
+        votes = DebateVote.where("vote_after = 'I disagree' AND debate_id = ?",self.id)
+        votes.count
+    end
+
+    def after_count
+        DebateVote.where(debate_id:self.id).count
+    end
+
+    def affirmative_minds_changed
+        after_agree - before_agree
+    end
+
+    def negative_minds_changed
+        after_disagree - before_disagree
+    end
+
+    def winner
+        if after_count <=5 || affirmative_minds_changed == negative_minds_changed
+            return "Too close to call."
+        elsif affirmative_minds_changed > negative_minds_changed
+            return self.affirmative_debater
+        elsif negative_minds_changed > affirmative_minds_changed
+            return self.negative_debater
+        end
+    end
+
 
     def confirm_challenge_inputs
         if self.affirmative_id && self.negative_id

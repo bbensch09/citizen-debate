@@ -1,11 +1,27 @@
 class DebatesController < ApplicationController
-  before_action :set_debate, only: [:show, :edit, :update, :destroy, :accept_challenge, :schedule]
+  before_action :set_debate, only: [:show, :edit, :update, :destroy, :accept_challenge, :schedule, :notify_followers]
   before_action :authenticate_user!, except: [:show, :index, :launch]
   before_action :confirm_new_challengers, only: [:index]
+  before_action :authenticate_admin, only: [:notify_followers]
   # after_action :create_first_round, only: [:create]
 
   def launch
     redirect_to '/debates/1'
+  end
+
+  def notify_followers
+    topic = @debate.topic
+    puts "finding followers for the topic:#{topic.title}"
+    followers_to_notify = topic.followers
+    followers_to_notify.each do |follower_email|
+      puts "preparing to email #{follower_email}"
+      UserMailer.notify_follower(follower_email, topic, @debate).deliver_now
+    end
+    redirect_to debates_path
+  end
+
+  def authenticate_admin
+    errors.add(:status, "You do not have permission to perform this action") unless current_user.email == "citizen.debate.16@gmail.com"
   end
 
   def confirm_new_challengers
@@ -31,7 +47,7 @@ class DebatesController < ApplicationController
   def index
     @completed_debates = Debate.where("status = 'Completed'")
     @active_debates = Debate.where("status = 'Active'")
-    if current_user
+    if current_user && current_user.debater
       current_user_public_challenges = Debate.where("public_challenge=true AND creator_id =?",current_user.id)
       all_pending_debates = Debate.where("challenge_accepted = false AND challenger_id = ? OR challenger_email=? OR public_challenge=true",current_user.id,current_user.email)
       @pending_debates = all_pending_debates - current_user_public_challenges - @active_debates

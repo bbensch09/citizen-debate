@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+</head>
+<body>
+  <p>
+  A new debate has recently been completed one one of the topics you are following.
+  </p>
+
+  <h3><b> Debate topic: </b> <%=@debate.topic.title%> </h3>
+  <ul>
+    <li>
+      <b> Affirmative: </b> <%=@debate.affirmative_debater.user.profile.display_name%>
+    </li>
+    <li>
+      <b> Negative: </b> <%=@debate.negative_debater.user.profile.display_name%>
+    </li>
+  </ul>
+
+  <p>
+    To check out the debate and cast your vote, please click the link below.
+   <ul>
+     <li>
+        <%= link_to @debate.topic.title, debate_path(@debate) %>
+     </li>
+   </ul>
+  </p>
+
+  <p>As a reminder, the way voting works on Citizen Debate is as follows:
+  </p>
+
+  <ul>
+    <li>User vote before reading the debate.</li>
+    <li>User vote again after reading the debate.</li>
+    <li>The winner of the debate is declared after 14 days as the debater who changed the most minds.</li>
+  </ul>
+
+  <p>
+    To manage your subscription to this and other topics on Citizen Debate, please sign and visit <a href="www.citizendebate.org/topics">www.citizendebate.org/topics</a>.
+  </p>
+  <p>
+    If you have any questions, please email us at <a href="mailto:citizen.debate.16@gmail.com">citizen.debate.16@gmail.com</a>
+  </p>
+
+</body>
+</html>

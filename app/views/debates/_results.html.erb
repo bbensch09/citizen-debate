@@ -1,0 +1,82 @@
+<table class="col-lg-8 col-sm-6 waitlist-table">
+  <thead>
+    <tr>
+      <th>Initial Votes</th>
+      <th>Vote Count</th>
+      <th>Percent</th>
+    </tr>
+  </thead>
+
+  <tbody>
+      <tr>
+        <td> Support the resolution </td>
+        <td><%= @debate.before_agree %></td>
+        <td><%= number_to_percentage((@debate.before_agree.to_f / @debate.before_count.to_f)*100, precision: 2) %></td>
+      </tr>
+      <tr>
+        <td> Undecided </td>
+        <td><%= @debate.before_unsure %></td>
+        <td><%= number_to_percentage((@debate.before_unsure.to_f / @debate.before_count.to_f)*100, precision: 2) %></td>
+      </tr>
+      <tr>
+        <td> Oppose the resolution </td>
+        <td><%= @debate.before_disagree %></td>
+        <td><%= number_to_percentage((@debate.before_disagree.to_f / @debate.before_count.to_f)*100, precision: 2) %></td>
+      </tr>
+  </tbody>
+</table>
+
+<div class="col-lg-4 col-sm-6 results-chart">
+  <%= pie_chart({"Affirmative" => @debate.before_agree, "Negative" => @debate.before_disagree, "Unsure" =>@debate.before_unsure}, id: "before-chart", height: "150px") %>
+</div>
+
+<table class="col-lg-8 col-sm-12 waitlist-table">
+  <thead>
+    <tr>
+      <th>Final votes</th>
+      <th>Vote Count</th>
+      <th>Percent</th>
+    </tr>
+  </thead>
+
+  <tbody>
+      <tr>
+        <td> Support the resolution </td>
+        <td><%= @debate.after_agree %></td>
+        <td><%= number_to_percentage((@debate.after_agree.to_f / @debate.after_count.to_f)*100, precision: 2) %></td>
+      </tr>
+      <tr>
+        <td> Undecided </td>
+        <td><%= @debate.after_unsure %></td>
+        <td><%= number_to_percentage((@debate.after_unsure.to_f / @debate.after_count.to_f)*100, precision: 2) %></td>
+      </tr>
+      <tr>
+        <td> Do not support the resolution </td>
+        <td><%= @debate.after_disagree %></td>
+        <td><%= number_to_percentage((@debate.after_disagree.to_f / @debate.after_count.to_f)*100, precision: 2) %></td>
+      </tr>
+  </tbody>
+</table>
+<div class="col-lg-4 col-sm-6 results-chart">
+  <%= pie_chart({"Affirmative" => @debate.after_agree, "Negative" => @debate.after_disagree, "Unsure" =>@debate.after_unsure}, id: "after-chart", height: "150px") %>
+</div>
+<div class="summary">
+<h3 class="col-lg-6 col-sm-6">Minds changed by the affirmative: <b><%=@debate.affirmative_minds_changed %> </b> </h3>
+<h3 class="col-lg-6 col-sm-6">Minds changed by the negative: <b><%=@debate.negative_minds_changed %></b></h3>
+<h2 class="col-lg-6 col-sm-6 center winner">Trending winner: <%= @debate.winner.user.profile.display_name %>
+<%= image_tag @debate.winner.user.profile.avatar.url(:thumb), alt:"avatar-img", class:"img-debate-details" %>
+</h2>
+</div>
+
+<div class="col-lg-6 col-sm-6 social-prompt">
+  <h2>Think your friends would agree?</h2>
+   <!--  <smaller> <a href=<%= "www.citizendebate.org/debates/#{@debate.to_param}" %> target="_blank"> <%= "www.citizendebate.org/debates/#{@debate.to_param}" %></a></smaller> -->
+    <div class="center">
+    <a href="https://www.facebook.com/sharer/sharer.php?sdk=joey&u=http%3A%2F%2Fwww.citizendebate.org%2F&display=popup&ref=plugin&src=share_button" class="btn btn-default btn-fb" target="_blank">
+      <i class="fa fa-facebook fa-fw"></i> Share
+    </a>
+    <a href="https://twitter.com/share" class="btn btn-default btn-twitter twitter-share-button" data-url=<%= "www.citizendebate.org/debates/#{@debate.to_param}" %> data-via="citizendebate16" data-size="large">
+    <i class="fa fa-twitter fa-fw"></i>Tweet</a>
+    </div>
+</div>
+

@@ -6,23 +6,29 @@
 <table class="col-lg-12 col-sm-12 topics-table">
   <thead>
     <tr>
-      <th>Votes</th>
+      <th></th>
+      <th>Upvotes</th>
       <th>Topic Resolution</th>
-      <th>Upvote</th>
-      <th>Subscribe to Updates</th>
+      <th class="center">Status</th>
     </tr>
   </thead>
 
   <tbody>
     <% @topics.each do |topic| %>
       <tr>
-        <td><%= topic.score %></td>
-        <td class="col-lg-8 col-sm-4"><%= link_to topic.title, topic_path(topic), :class=> "topic-link" %></td>
         <td>
           <%= link_to '', upvote_topic_vote_path(topic), method: :post, class: "glyphicon glyphicon-thumbs-up topic-vote-button" %>
         </td>
+        <td class="center"><%= topic.score %></td>
+        <td class="col-lg-8 col-sm-4"><%= link_to topic.title, topic_path(topic), :class=> "topic-link" %></td>
         <td>
-          <%= link_to 'Subscribe', follow_topic_vote_path(topic), method: :post, class: "glyphicon glyphicon-check btn btn-default" %>
+        <% if current_user && current_user.topic_ids_following.include?(topic.id) %>
+           <a class="btn-fixed-width btn btn-default btn-following" rel="nofollow" data-method="post" href=<%=unfollow_topic_vote_path(topic)%> >
+            <span>Following</span>
+            </a>
+          <%else %>
+          <%= link_to 'Follow', follow_topic_vote_path(topic), method: :post, class: "glyphicon glyphicon-check btn-fixed-width btn btn-default btn-follow" %>
+        <% end %>
         </td>
       </tr>
     <% end %>
