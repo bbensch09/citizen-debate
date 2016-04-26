@@ -63,9 +63,11 @@
 <div class="summary">
 <h3 class="col-lg-6 col-sm-6">Minds changed by the affirmative: <b><%=@debate.affirmative_minds_changed %> </b> </h3>
 <h3 class="col-lg-6 col-sm-6">Minds changed by the negative: <b><%=@debate.negative_minds_changed %></b></h3>
-<h2 class="col-lg-6 col-sm-6 center winner">Trending winner: <%= @debate.winner.user.profile.display_name %>
 <% if @debate.winner.is_a?(Debater) %>
+<h2 class="col-lg-6 col-sm-6 center winner">Trending winner: <%= @debate.winner.user.profile.display_name %>
 <%= image_tag @debate.winner.user.profile.avatar.url(:thumb), alt:"avatar-img", class:"img-debate-details" %>
+<% else %>
+<h2 class="col-lg-6 col-sm-6 center winner">Trending winner: <%= @debate.winner %>
 <% end %>
 </h2>
 </div>
