@@ -1,8 +1,14 @@
 class CivilityVotesController < ApplicationController
   before_action :set_civility_vote, only: [:show, :edit, :update, :destroy]
+  after_action :update_leaderboard
   # before_action :authenticate_user!
 
-
+  def update_leaderboard
+    profiles = Profile.all
+    profiles.each do |profile|
+      profile.update_points
+    end
+  end
   # GET /civility_votes
   # GET /civility_votes.json
   def index

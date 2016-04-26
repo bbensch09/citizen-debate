@@ -180,15 +180,8 @@ class Profile < ActiveRecord::Base
   end
 
   def update_points
-    #free points
-    #users get more points for being earlier to sign up; how it works: all users get a point for every user that signs up after them, so with 10 users, the 1st user gets 10 points, and the last user gets zero. when 11th user signs up, each of those users gets one more point.
     puts "updating points"
-    if self.id <= 51
-      free_points = 51 - self.id
-    else
-      free_points = 0
-    end
-    self.points = free_points + self.profile_bonus + self.feedback_bonus + self.topic_bonus + self.referral_bonus + self.civility_points + self.debate_points
+    self.points = self.profile_bonus + self.feedback_bonus + self.topic_bonus + self.referral_bonus + self.civility_points + self.debate_points
     self.save
     puts "points updated and saved. Profile ID #{self.id} has #{self.points}"
   end

@@ -4,12 +4,12 @@
       :fields:
         - id
         - user_id
+        - display_name
         - rank
-        - first_name
-        - last_name
         - city
-        - snippets
         - profile_bonus
+        - debate_points
+        - civility_points
         - points
 
   User:
