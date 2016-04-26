@@ -12,19 +12,14 @@
     </div>
   <% end %>
 
-<!--   <div class="field">
-    <%= f.label :affirmative_id %><br>
-    <%= f.number_field :affirmative_id %>
-  </div>
-  <div class="field">
-    <%= f.label :negative_id %><br>
-    <%= f.number_field :negative_id %>
-  </div> -->
 
   <div class="field">
     <h2> Select debate topic </h2>
     <%= f.collection_select :topic_id, Topic.all, :id, :title %>
   </div>
+
+  <%= link_to 'Create a new topic', new_topic_path, :class=>"btn btn-default" %> <br> <br>
+
 
   <div class="field">
       <h2>Select your position</h2>
