@@ -57,6 +57,25 @@ class Debate < ActiveRecord::Base
         DebateVote.where(debate_id:self.id).count
     end
 
+    def affirmative_minds_changed
+        after_agree - before_agree
+    end
+
+    def negative_minds_changed
+        after_disagree - before_disagree
+    end
+
+    def winner
+        if after_count <=5 || affirmative_minds_changed == negative_minds_changed
+            return "Too close to call."
+        elsif affirmative_minds_changed > negative_minds_changed
+            return self.affirmative_debater
+        elsif negative_minds_changed > affirmative_minds_changed
+            return self.negative_debater
+        end
+    end
+
+
     def confirm_challenge_inputs
         if self.affirmative_id && self.negative_id
             puts "both affirmative & negative options selected"

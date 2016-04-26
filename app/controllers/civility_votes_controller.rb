@@ -1,6 +1,6 @@
 class CivilityVotesController < ApplicationController
   before_action :set_civility_vote, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!
+  # before_action :authenticate_user!
 
 
   # GET /civility_votes
@@ -30,6 +30,7 @@ class CivilityVotesController < ApplicationController
 
     respond_to do |format|
       if @civility_vote.save
+        session[:civility_vote] = @civility_vote
         format.html { redirect_to @civility_vote.debate, notice: 'Your votes have been recorded. Thank you for rating our debaters!' }
         format.json { render :show, status: :created, location: @civility_vote }
       else

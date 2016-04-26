@@ -32,7 +32,8 @@ class DebateVotesController < ApplicationController
     if @debate_vote.vote_after
         if current_user.nil?
           puts "user not yet signed in"
-          authenticate_user!
+          # authenticate_user!
+          session[:vote_after] = @debate_vote.vote_after
         end
         if session[:vote_before]
         puts "checking to see if there is a session variable that exists..."
@@ -40,11 +41,12 @@ class DebateVotesController < ApplicationController
         @debate_vote.vote_before = session[:vote_before]
         puts "successfully retrieved temp_vote value post-authentication"
         end
-        @debate_vote.user_id = current_user.id
+        # @debate_vote.user_id = current_user.id
 
         respond_to do |format|
           if @debate_vote.save
             session[:vote_before] = nil
+            session[:vote_after] = @debate_vote.vote_after
             format.html { redirect_to @debate_vote.debate, notice: "Thanks! Your debate vote has successfully been recorded. Your initial vote was '#{@debate_vote.vote_before},' and your final vote was '#{@debate_vote.vote_after}'." }
             format.json { render :show, status: :created, location: @debate_vote }
           else

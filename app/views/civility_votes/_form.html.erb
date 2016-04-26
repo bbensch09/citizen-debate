@@ -15,7 +15,9 @@
 
   <div class="hidden">
     <%= f.label :voter_id %><br>
+    <% if current_user %>
     <%= f.number_field :voter_id, value: current_user.id %>
+    <% end %>
     <%= f.label :debate_id %><br>
     <%= f.number_field :debate_id, value: @debate.id %>
     <%= f.number_field :affirmative_id, value: @debate.affirmative_id %>
