@@ -89,7 +89,7 @@
       <th>Topic</th>
       <th>Affirmative</th>
       <th>Negative</th>
-      <!-- <th>Net Delta</th> -->
+      <th>Votes Cast</th>
       <th>Posted</th>
       <th colspan="3"></th>
     </tr>
@@ -101,7 +101,7 @@
         <td><%= link_to debate.topic.title, debate %></td>
         <td><%= debate.affirmative_debater.user.profile.display_name %> <br> <%= debate.affirmative_debater.user.profile.civility_rating %> stars</td>
         <td><%= debate.negative_debater.user.profile.display_name %> <br> <%= debate.negative_debater.user.profile.civility_rating %> stars</td>
-        <!-- <td><%= debate.negative_debater.user.profile.minds_changed %></td> -->
+        <td><%= debate.before_count %></td>
         <!-- <td><%= (debate.affirmative_debater.user.profile.minds_changed - debate.negative_debater.user.profile.minds_changed) %> minds</td> -->
         <td><%= debate.time_since_updated %></td>
       <% if current_user && current_user.email == "citizen.debate.16@gmail.com" %>
