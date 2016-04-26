@@ -17,6 +17,7 @@ class TopicVotesController < ApplicationController
       # topic_vote.save
       # redirect_to(topics_path, notice: 'Your previous down vote was changed to an up vote.')
     else
+      redirect_to(topics_path, notice: 'Your vote was not recorded.' )
     end
   end
 
@@ -40,12 +41,24 @@ class TopicVotesController < ApplicationController
   def follow
     topic = Topic.find(params[:id])
     if TopicVote.where(topic_id:topic.id,voter_id:current_user.id).empty?
-      redirect_to(topics_path, notice: 'You can only follow a topic once you have liked it.')
+      redirect_to(topics_path, notice: 'You can only follow a topic once you have upvoted it.')
     else
     topic_vote = TopicVote.where(topic_id:topic.id,voter_id:current_user.id).first
     topic_vote.following = true
     topic_vote.save
     redirect_to(topics_path, notice: 'You are following this topic.' )
+    end
+  end
+
+  def unfollow
+    topic = Topic.find(params[:id])
+    if TopicVote.where(topic_id:topic.id,voter_id:current_user.id).empty?
+      redirect_to(topics_path, notice: 'Error: You were not following this debate.')
+    else
+    topic_vote = TopicVote.where(topic_id:topic.id,voter_id:current_user.id).first
+    topic_vote.following = false
+    topic_vote.save
+    redirect_to(topics_path, notice: 'You are no longer following this topic.' )
     end
   end
 
