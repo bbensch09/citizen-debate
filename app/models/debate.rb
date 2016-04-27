@@ -131,11 +131,15 @@ class Debate < ActiveRecord::Base
     end
 
     def opening_affirmative
-        OpeningStatement.where("author_id = ? AND debate_id = ?",self.affirmative_debater.user_id, self.id).first
+        if self.affirmative_debater
+            OpeningStatement.where("author_id = ? AND debate_id = ?",self.affirmative_debater.user_id, self.id).first
+        end
     end
 
     def opening_negative
-        OpeningStatement.where("author_id = ? AND debate_id = ?",self.negative_debater.user_id, self.id).first
+        if self.negative_debater
+            OpeningStatement.where("author_id = ? AND debate_id = ?",self.negative_debater.user_id, self.id).first
+        end
     end
 
     def closing_affirmative
