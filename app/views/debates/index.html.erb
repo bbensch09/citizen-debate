@@ -99,8 +99,12 @@
     <% @completed_debates.each do |debate| %>
       <tr>
         <td><%= link_to debate.topic.title, debate %></td>
-        <td><%= debate.affirmative_debater.user.profile.display_name %> <br> <%= debate.affirmative_debater.user.profile.civility_rating %> stars</td>
-        <td><%= debate.negative_debater.user.profile.display_name %> <br> <%= debate.negative_debater.user.profile.civility_rating %> stars</td>
+        <td><%= debate.affirmative_debater.user.profile.display_name %> <
+        <!-- br> <%= debate.affirmative_debater.user.profile.civility_rating %> stars -->
+        </td>
+        <td><%= debate.negative_debater.user.profile.display_name %>
+        <!-- <br> <%= debate.negative_debater.user.profile.civility_rating %> stars -->
+        </td>
         <td><%= debate.before_count %></td>
         <!-- <td><%= (debate.affirmative_debater.user.profile.minds_changed - debate.negative_debater.user.profile.minds_changed) %> minds</td> -->
         <td><%= debate.time_since_updated %></td>
