@@ -143,11 +143,15 @@ class Debate < ActiveRecord::Base
     end
 
     def closing_affirmative
-        ClosingStatement.where("author_id = ? AND debate_id = ?",self.affirmative_debater.user_id, self.id).first
+        if self.affirmative_debater
+            ClosingStatement.where("author_id = ? AND debate_id = ?",self.affirmative_debater.user_id, self.id).first
+        end
     end
 
     def closing_negative
-        ClosingStatement.where("author_id = ? AND debate_id = ?",self.negative_debater.user_id, self.id).first
+        if self.negative_debater
+            ClosingStatement.where("author_id = ? AND debate_id = ?",self.negative_debater.user_id, self.id).first
+        end
     end
 
     def update_status
