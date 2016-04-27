@@ -1,7 +1,7 @@
 <div class="profile-container">
 <h1 class="text-center">Debater Rankings</h1>
-<h4><span class="underlined">How it works:</span></h4>
-<h4>Citizen Debate will be inviting the first <b> 20 users </b> from the wait list for the upcoming beta launch, which is currently scheduled for <b>April 15th, 2016. </b> You are currently ranked number <b> <%= current_user.rank %> below.</b></h4>
+<!-- <h4><span class="underlined">How it works:</span></h4>
+<h4>Citizen Debate will be inviting the first <b> 20 users </b> from the wait list for the upcoming beta launch, which is currently scheduled for <b>April 15th, 2016. </b> You are currently ranked number <b> <%= current_user.rank %> below.</b></h4> -->
 <table class="col-lg-12 col-sm-12 waitlist-table">
   <thead>
     <tr>
@@ -29,7 +29,7 @@
       <% end %>
         <td><%= profile.rank %></td>
         <td> <%= image_tag profile.avatar.url(:thumb), alt:"avatar-img", class:"img-responsive img-thumbnail" %> </td>
-        <td><%= profile.display_name %></td>
+        <td><%= link_to profile.display_name, profile_path(profile) %></td>
         <td><%= profile.user.time_since_created %></td>
         <td><%= profile.points %></td>
         <td><%= profile.city %>, <%= profile.state %></td>

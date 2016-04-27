@@ -10,6 +10,10 @@ class UserMailer < ApplicationMailer
     mail(to: "bbensch@gmail.com", subject: "#{user.email} has registered for Citizen Debate!")
   end
 
+  def debate_vote_recorded(email="Unknown user")
+    mail(to: "bbensch@gmail.com", subject: "#{email} has just voted on a debate.")
+  end
+
   def challenge_existing_user(debate)
     @debate = debate
     if debate.affirmative_id
