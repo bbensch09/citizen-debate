@@ -15,7 +15,7 @@ class ProfilesController < ApplicationController
 
   # HACKY SHIT --> ADMIN VIEW TO SEE ALL SNIPPETS
   def admin_index
-    if current_user.email == "bbensch@gmail.com"
+    if current_user.email == "citizen.debate.16@gmail.com"
       @profiles = Profile.all
       respond_to do |format|
           format.html
@@ -28,7 +28,7 @@ class ProfilesController < ApplicationController
   end
 
   def admin_users
-    if current_user.email == "bbensch@gmail.com"
+    if current_user.email == "citizen.debate.16@gmail.com"
       @users = User.all
       respond_to do |format|
           format.html
