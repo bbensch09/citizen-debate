@@ -1,3 +1,6 @@
+<h3 class="center results-cta">
+   <%= link_to "Subscribe to future debates", new_user_session_path, class: "fa btn btn-success" %>
+</h3>
 <table class="col-lg-8 col-sm-6 waitlist-table">
   <thead>
     <tr>
@@ -27,7 +30,7 @@
 </table>
 
 <div class="col-lg-4 col-sm-6 results-chart">
-  <%= pie_chart({"Affirmative" => @debate.before_agree, "Negative" => @debate.before_disagree, "Unsure" =>@debate.before_unsure}, id: "before-chart", height: "150px") %>
+  <%= pie_chart({"Affirmative" => @debate.before_agree, "Negative" => @debate.before_disagree, "Unsure" =>@debate.before_unsure}, id: "before-chart", height: "140px") %>
 </div>
 
 <table class="col-lg-8 col-sm-12 waitlist-table">
@@ -58,11 +61,11 @@
   </tbody>
 </table>
 <div class="col-lg-4 col-sm-6 results-chart">
-  <%= pie_chart({"Affirmative" => @debate.after_agree, "Negative" => @debate.after_disagree, "Unsure" =>@debate.after_unsure}, id: "after-chart", height: "150px") %>
+  <%= pie_chart({"Affirmative" => @debate.after_agree, "Negative" => @debate.after_disagree, "Unsure" =>@debate.after_unsure}, id: "after-chart", height: "140px") %>
 </div>
 <div class="summary">
-<h3 class="col-lg-6 col-sm-6">Minds changed by the affirmative: <b><%=@debate.affirmative_minds_changed %> </b> </h3>
-<h3 class="col-lg-6 col-sm-6">Minds changed by the negative: <b><%=@debate.negative_minds_changed %></b></h3>
+<h3 class="col-lg-6 col-sm-6 results-minds-changed">Minds changed by the affirmative: <b><%=@debate.affirmative_minds_changed %> </b> </h3>
+<h3 class="col-lg-6 col-sm-6 results-minds-changed">Minds changed by the negative: <b><%=@debate.negative_minds_changed %></b></h3>
 <% if @debate.winner.is_a?(Debater) %>
 <h2 class="col-lg-6 col-sm-6 center winner">Trending winner: <%= @debate.winner.user.profile.display_name %>
 <%= image_tag @debate.winner.user.profile.avatar.url(:thumb), alt:"avatar-img", class:"img-debate-details" %>
