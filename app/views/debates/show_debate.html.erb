@@ -1,6 +1,6 @@
 <% title @debate.topic.title %>
 <div class="debate-container">
-<% if session[:civility_vote] || current_user && current_user.eligible_civility_votes.exclude?(@debate.id) %>
+<% if @debate.status == 'Completed' && (session[:civility_vote] || current_user && current_user.eligible_civility_votes.exclude?(@debate.id) )%>
       <div class="results-container">
         <%= render partial: 'results' %>
       </div>
