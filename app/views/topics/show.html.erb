@@ -20,9 +20,7 @@
     <tr>
       <th>Topic</th>
       <th>Affirmative</th>
-      <th>Votes for</th>
       <th>Negative</th>
-      <th>Votes against</th>
       <!-- <th>Net Delta</th> -->
       <th>Posted</th>
       <th colspan="3"></th>
@@ -33,11 +31,20 @@
     <% @debates.each do |debate| %>
       <tr>
         <td><%= link_to debate.topic.title, debate %></td>
-        <td><%= debate.affirmative_debater.user.profile.display_name %> <br> <%= debate.affirmative_debater.user.profile.civility_rating %> stars</td>
-        <td><%= debate.affirmative_debater.user.profile.minds_changed %></td>
-        <td><%= debate.negative_debater.user.profile.display_name %> <br> <%= debate.negative_debater.user.profile.civility_rating %> stars</td>
-        <td><%= debate.negative_debater.user.profile.minds_changed %></td>
-        <!-- <td><%= (debate.affirmative_debater.user.profile.minds_changed - debate.negative_debater.user.profile.minds_changed) %> minds</td> -->
+        <td>
+          <% if debate.affirmative_debater %>
+            <%= debate.affirmative_debater.user.profile.display_name %>
+            <% else %>
+            Awaiting Challenger
+          <% end %>
+        </td>
+        <td>
+          <% if debate.negative_debater %>
+            <%= debate.negative_debater.user.profile.display_name %>
+            <% else %>
+            Awaiting Challenger
+          <% end %>
+        </td>
         <td><%= debate.time_since_updated %></td>
       <% if current_user && current_user.email == "citizen.debate.16@gmail.com" %>
         <td><%= link_to 'Show', debate %></td>
