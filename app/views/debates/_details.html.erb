@@ -32,6 +32,8 @@
     <h4>
         <b> Bio </b>: <%=@debate.negative_debater.user.profile.about_me %>
     </h4>
+    <% elsif current_user.nil? %>
+        <a href="/users/sign_in" class="btn btn-default">Please sign in if you wish to accept debate challenges</a>
     <% elsif (@debate.public_challenge == true && @debate.creator_id != current_user.id) || @debate.challenger_id == current_user.id || @debate.challenger_email == current_user.email %>
         <%= link_to 'Accept this challenge', accept_challenge_debate_path(@debate),  method: :post,  class: "btn btn-success" %>
     <% else %>
