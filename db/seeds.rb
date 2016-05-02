@@ -38,9 +38,8 @@ User.create!({
       display_name: "citizen_debate_16",
       political_affiliation: political_affiliation_array.sample,
       # snippets: Faker::Hacker.say_something_smart,
-      nps: 10,
       # pmf: ["Very disappointed", "Somewhat disappointed", "Not disappointed", "N/A - I don't know since I haven't used it yet."].sample,
-      pmf: "Very disappointed",
+      # pmf: "Very disappointed",
       linkedin_profile: "https://www.linkedin.com/in/bbensch09",
       # verification_status: ["not yet verified","verified"].sample
       verification_status: "verified"
