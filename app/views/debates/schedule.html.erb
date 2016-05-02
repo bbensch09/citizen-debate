@@ -1,8 +1,21 @@
 <div class="profile-container small-buffer">
+<div class="col-lg-12 col-sm-6">
+  <h1 class="center">Confirm your debate schedule</h1>
+  <p> <em> The structure of a Citizen Debate is as follows:</em></p>
+  <ul>
+    <li>Debaters each submit an opening statement (300 words max) in the first round.</li>
+    <li>The middle cross-examination round is then held over live chat for up to 20 minutes.
+        <ul>
+          <li><b>Please use this page to schedule the time for that middle round. </b></li>
+          <li>Note: opening statements must be submitted at least 1 hour prior to cross-examination.</li>
+        </ul>
+    </li>
+    <li>After completion of the cross-examination round, each debater has 24 hours to submit their closing statement.</li>
+    <li>When both sides are finished, the debate will become visible to the public to read and cast votes.</li>
+  </ul>
 
-<h1 class="center">Schedule your Debate</h1>
-
-<h3><b>Topic: </b><%= @debate.topic.title %></h3>
+  <h3><b>Topic: </b><%= @debate.topic.title %></h3>
+</div>
 
 <div class="col-lg-12 col-sm-6 review-times-container">
     <% if @opponent_proposed_times.count > 0 %>
@@ -10,7 +23,7 @@
         <% @opponent_proposed_times.each do |time| %>
 
           <div class="available-time-slot col-lg-4  col-sm-3">
-              <%= time.proposed_time.strftime("%a %b %d, %Y at %I:%M%p") %> <br>
+              <%= time.proposed_time.strftime("%a %b %d, %Y at %I:%M%p %Z") %> <br>
               <%= link_to 'Confirm this time', confirm_available_time_path(time),  method: :post,  class: "btn btn-success" %>
           </div>
         <% end %>
@@ -28,7 +41,7 @@
       <h3>Times you're available:</h3>
       <% @current_user_proposed_times.each do |time| %>
           <div class="available-time-slot col-lg-4  col-sm-3 btn btn-default">
-              <%= time.proposed_time.strftime("%a %b %d, %Y at %I:%M%p") %>
+              <%= time.proposed_time.strftime("%a %b %d, %Y at %I:%M%p %Z") %>
           </div>
       <% end %>
     <% end %>
