@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+</head>
+<body>
+  <p>
+  <%= @profile.first_name %> <%= @profile.last_name %> has created their profile.
+  </p>
+  <p>
+    Email address: <%= @profile.user.email %> <br>
+    Display name: <%= @profile.display_name %> <br>
+    About me: <%= @profile.about_me %> <br>
+    Location: <%= @profile.city %>, <%=@profile.state %> <br>
+    Political orientation: <% @profile.political_affiliation %> <br>
+    Age: <%= @profile.age %> <br>
+    Feedback: <%= @profile.snippets %> <br>
+    NPS: <%= @profile.nps %>
+
+  </p>
+</body>
+</html>
