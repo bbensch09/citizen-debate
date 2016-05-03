@@ -154,7 +154,7 @@
 </table>
 
 <hr>
-<% if current_user.email == "citizen.debate.16@gmail.com" %>
+<% if current_user && current_user.email == "citizen.debate.16@gmail.com" %>
   <%= render partial: "admin_view_all_debates" %>
 <% end %>
 

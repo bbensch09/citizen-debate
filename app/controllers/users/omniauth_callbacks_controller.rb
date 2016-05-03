@@ -4,49 +4,33 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def facebook
     auth = request.env['omniauth.auth']
     # @user = User.find_for_facebook_oauth
-    if @user = User.where(email:auth.info.email).first
-      # sign_in_and_redirect_to root_path @user, :event => :authentication #this will throw if @user is not activated
-      set_flash_message(:notice, :success, :kind => "Facebook") if is_navigational_format?
-      sign_in(@user)
-      flash[:notice] = "Thanks for logging in with Facebook. Please scroll back to the bottom of the page to confirm your vote."
-      redirect_to (session[:previous_url] || root_path)
-    else
+    # if @user = User.where(email:auth.info.email).first
+    #   # sign_in_and_redirect_to root_path @user, :event => :authentication #this will throw if @user is not activated
+    #   set_flash_message(:notice, :success, :kind => "Facebook") if is_navigational_format?
+    #   sign_in(@user)
+    #   flash[:notice] = "Thanks for logging in with Facebook. Please scroll back to the bottom of the page to confirm your vote."
+    #   redirect_to (session[:previous_url] || root_path)
+    # else
       session["devise.facebook_data"] = request.env["omniauth.auth"]
-      user = User.find_or_create_by(uid: auth['uid'], provider: auth['provider'])
-      p user.email = auth.info.email
-      user.password = Devise.friendly_token[0,20]
-      p user.uid = auth.uid
-      if auth.extra.raw_info.birthday
-        birthday_string = auth.extra.raw_info.birthday
-        birthday = Date.strptime(birthday_string,"%m/%d/%Y")
-        now = Time.now.to_date
-        age = now.year - birthday.year - (birthday.to_date.change(:year => now.year) > now ? 1 : 0)
-        # user.age = age
-        # if age == 0
-        #   user.age = nil
-        # end
-      else
-        # user.age = nil
+      user = User.find_or_create_by(uid: auth['uid'], provider: auth['provider'], email:auth.info.email)
+      if user.sign_in_count == 0
+        user.password = Devise.friendly_token[0,20]
       end
-
       # if auth.extra.raw_info.location
       #   p user.location = auth.extra.raw_info.location.name
       # else
       #   user.location = "unknown"
       # end
       p user.save!
-      @user = user
-      p "---------USER CREATED?"
-      p "the user from FB Data is #{user}"
-      p session[:user_id] = user.id
-      # flash[:success] = "Welcome, #{user.email}!"
-      current_user = @user
-
       sign_in(user)
-      # @activity_blub = ActivityBlurb.new
+      @user = user
+      p "----USER SIGNED IN VIA FB------"
+      p "email: #{user.email}"
+      p "sign_in_count: #{user.sign_in_count}"
+      p session[:user_id] = user.id
+      current_user = @user
       flash[:notice] = "Thanks for logging in with Facebook. Please scroll back to the bottom of the page to confirm your vote."
       redirect_to (session[:previous_url] || root_path)
-    end
 
   end
 
