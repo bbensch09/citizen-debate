@@ -18,14 +18,14 @@
         <td><%= link_to debate.topic.title, debate %></td>
         <td>
             <% if debate.affirmative_debater %>
-                  <%= debate.affirmative_debater.profile.display_name %>
+                  <%= debate.affirmative_debater.user.profile.display_name %>
                 <% else %>
                 "TBD"
             <% end %>
         </td>
         <td>
           <% if debate.negative_debater %>
-                  <%= debate.negative_debater.profile.display_name %>
+                  <%= debate.negative_debater.user.profile.display_name %>
                 <% else %>
                 "TBD"
             <% end %>
