@@ -58,7 +58,7 @@ class DebatesController < ApplicationController
     else
       @pending_debates = []
     end
-    if current_user.email == "citizen.debate.16@gmail.com"
+    if current_user && current_user.email == "citizen.debate.16@gmail.com"
       @all_debates = Debate.all
     end
   end
