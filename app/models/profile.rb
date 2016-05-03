@@ -11,6 +11,13 @@ class Profile < ActiveRecord::Base
 
   validates :first_name, :last_name, :city, :state, :age, :about_me, :display_name, :political_affiliation,
     presence: true #:linkedin_profile,
+  after_create :send_admin_profile_notification
+
+  def send_admin_profile_notification
+      @profile = Profile.last
+      UserMailer.new_profile_created(@profile).deliver_now
+      puts "an admin profile notification has been sent."
+  end
 
   def self.to_csv
     attributes = %w{id first_name last_name display_name email city state age political_affiliation points snippets nps pmf created_at}

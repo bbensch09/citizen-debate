@@ -10,6 +10,11 @@ class UserMailer < ApplicationMailer
     mail(to: "bbensch@gmail.com", subject: "#{user.email} has registered for Citizen Debate!")
   end
 
+  def new_profile_created(profile)
+    @profile = profile
+    mail(to: "bbensch@gmail.com", subject: "#{profile.user.email} has completed their profile.")
+  end
+
   def debate_vote_recorded(email="Unknown user")
     mail(to: "bbensch@gmail.com", subject: "#{email} has just voted on a debate.")
   end
