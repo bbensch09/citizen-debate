@@ -16,8 +16,20 @@
     <% @all_debates.each do |debate| %>
       <tr>
         <td><%= link_to debate.topic.title, debate %></td>
-        <td><%= debate.affirmative_debater.user.profile.display_name %></td>
-        <td><%= debate.negative_debater.user.profile.display_name %></td>
+        <td>
+            <% if debate.affirmative_debater %>
+                  <%= debate.affirmative_debater.profile.display_name %>
+                <% else %>
+                "TBD"
+            <% end %>
+        </td>
+        <td>
+          <% if debate.negative_debater %>
+                  <%= debate.negative_debater.profile.display_name %>
+                <% else %>
+                "TBD"
+            <% end %>
+        </td>
         <td> <b> <%= debate.rounds.last.round_number %> </b> </td>
         <td><%= debate.time_since_updated %></td>
       <% if current_user && current_user.email == "citizen.debate.16@gmail.com" %>
