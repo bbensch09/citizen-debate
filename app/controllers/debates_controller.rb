@@ -54,6 +54,7 @@ class DebatesController < ApplicationController
       @pending_debates = all_pending_public_challenges + current_user_pending_challenges - current_user_public_challenges - @active_debates
       current_user_debates = current_user.debater.debates
       all_debates = Debate.where("status != 'Scheduling'")
+      @outstanding_challenges = Debate.where("creator_id=? AND challenge_accepted = false",current_user.id)
       @debates_to_schedule = current_user_debates - all_debates
     else
       @pending_debates = []

@@ -7,16 +7,16 @@
 <% if current_user && current_user.profile %>
 
 <%= link_to 'Initiate a Debate', new_debate_path, class: "btn btn-default" %>
-    <% if @pending_debates.count >= 1 %>
+    <% if @pending_debates.count >= 1 || @debates_to_schedule.count >=1 || @outstanding_challenges.count >= 1%>
     <table class="col-lg-12 col-sm-12 waitlist-table">
       <thead>
         <tr>
-          <th class="col-lg-4 col-sm-6">Topic</th>
-          <th class="col-lg-2 col-sm-hidden">Creator</th>
-          <th class="col-lg-2 col-sm-hidden">Challenger</th>
+          <th class="col-lg-6 col-sm-6">Topic</th>
+<!--           <th class="col-lg-2 col-sm-hidden">Creator</th>
+          <th class="col-lg-2 col-sm-hidden">Challenger</th> -->
           <th class="col-lg-1 col-sm-hidden">Status</th>
           <th class="col-lg-1 col-sm-hidden">Last Updated</th>
-          <th colspan="3"></th>
+          <th colspan="1"></th>
         </tr>
       </thead>
     <% end %>
@@ -26,14 +26,14 @@
         <% @pending_debates.each do |debate| %>
           <tr>
             <td class="col-lg-4 col-sm-6"><%= link_to debate.topic.title, debate %></td>
-            <td class="col-lg-2 col-sm-hidden"><%= debate.creator.profile.display_name %></td>
+            <!-- <td class="col-lg-2 col-sm-hidden"><%= debate.creator.profile.display_name %></td>
             <td class="col-lg-2 col-sm-hidden">
               <% if debate.challenger && debate.challenger.profile %>
                   <%= debate.challenger.profile.display_name %>
                 <% else %>
                 "TBD"
               <% end %>
-            </td>
+            </td> -->
             <td class="col-lg-2 col-sm-hidden"> <b> <%= debate.status %> </b> </td>
             <td class="col-lg-2 col-sm-hidden"><%= debate.time_since_updated %></td>
             <!-- <td><%= link_to 'Accept Challenge', schedule_debate_path(debate),  method: :get,  class: "btn btn-default" %></td> -->
@@ -48,17 +48,37 @@
         <% @debates_to_schedule.each do |debate| %>
           <tr>
             <td class="col-lg-4 col-sm-6"><%= link_to debate.topic.title, debate %></td>
-            <td class="col-lg-2 col-sm-hidden"><%= debate.creator.profile.display_name %></td>
+            <!-- <td class="col-lg-2 col-sm-hidden"><%= debate.creator.profile.display_name %></td>
             <td class="col-lg-2 col-sm-hidden">
               <% if debate.challenger.profile %>
                   <%= debate.challenger.profile.display_name %>
                 <% else %>
                 "TBD"
               <% end %>
-            </td>
+            </td> -->
             <td class="col-lg-2 col-sm-hidden"> <b> <%= debate.status %> </b> </td>
             <td class="col-lg-2 col-sm-hidden"><%= debate.time_since_updated %></td>
             <td><%= link_to 'Schedule Debate', schedule_debate_path(debate),  method: :get,  class: "btn btn-default" %></td>
+          <% if current_user && current_user.email == "citizen.debate.16@gmail.com" %>
+            <td><%= link_to 'Edit', edit_debate_path(debate) %></td>
+            <td><%= link_to 'Destroy', debate, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <% end %>
+          </tr>
+        <% end %>
+        <% @outstanding_challenges.each do |debate| %>
+          <tr>
+            <td class="col-lg-4 col-sm-6"><%= link_to debate.topic.title, debate %></td>
+<!--             <td class="col-lg-2 col-sm-hidden"><%= debate.creator.profile.display_name %></td>
+            <td class="col-lg-2 col-sm-hidden">
+              <% if debate.challenger %>
+                  <%= debate.challenger.profile.display_name %>
+                <% else %>
+                "TBD"
+              <% end %>
+            </td> -->
+            <td class="col-lg-2 col-sm-hidden"> <b> <%= debate.status %> </b> </td>
+            <td class="col-lg-2 col-sm-hidden"><%= debate.time_since_updated %></td>
+            <td><%= link_to 'Share Debate Challenge', debate_path(debate), class: "btn btn-default" %></td>
           <% if current_user && current_user.email == "citizen.debate.16@gmail.com" %>
             <td><%= link_to 'Edit', edit_debate_path(debate) %></td>
             <td><%= link_to 'Destroy', debate, method: :delete, data: { confirm: 'Are you sure?' } %></td>

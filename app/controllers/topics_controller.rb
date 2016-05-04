@@ -1,6 +1,13 @@
 class TopicsController < ApplicationController
   before_action :set_topic, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:index, :show]
+  before_action :authenticate_admin, only: [:edit, :update, :destroy]
+
+  def authenticate_admin
+    unless current_user.email == "citizen.debate.16@gmail.com"
+      redirect_to @topic, notice: "You do not have permission to perform this action"
+    end
+  end
 
 
   # GET /topics
