@@ -12,10 +12,12 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     #   redirect_to (session[:previous_url] || root_path)
     # else
       session["devise.facebook_data"] = request.env["omniauth.auth"]
-      user = User.find_or_create_by(uid: auth['uid'], provider: auth['provider'], email:auth.info.email)
+      user = User.find_or_create_by(email:auth.info.email)
       if user.sign_in_count == 0
         user.password = Devise.friendly_token[0,20]
       end
+      user.uid = auth['uid']
+      user.provider = auth['provider']
       # if auth.extra.raw_info.location
       #   p user.location = auth.extra.raw_info.location.name
       # else

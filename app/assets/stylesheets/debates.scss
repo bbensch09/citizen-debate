@@ -141,3 +141,11 @@ h3.results-cta, h3.results-minds-changed{
   margin-top: 2px;
   margin-bottom:2px;
 }
+@media screen and (max-width:767px) {
+  .col-sm-hidden{
+    display:none !important;
+  }
+  .debate-list-header{
+    font-size: 1.2em;
+  }
+}
