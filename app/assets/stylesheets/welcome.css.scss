@@ -17,7 +17,6 @@
 }
 
 .intro-header {
-    padding-top: 50px; /* If you're making other pages, make sure there is 50px of padding to make sure the navbar doesn't overlap content! */
     padding-bottom: 50px;
     text-align: center;
     color: #f8f8f8;
@@ -688,9 +687,27 @@ a.btn-success{
     color: black !important;
 }
 .civility-quote, .civility-quote a{
-    background-color: rgba(66, 133, 244, .3);
+    background-color: rgba(66, 133, 244, 1);
     color: #fff;
     /*max-width: 50vw;*/
+}
+.featured-debate-container{
+    background-color: #fff;
+/*    min-height: 300px;
+*/    padding-left: 10px;
+    padding-top: 5px;
+    border: 1px solid gray;
+}
+.space-holder{
+    min-height: 10px;
+    clear:both;
+}
+.featured-debate-container h1, .featured-debate-container h2, .featured-debate-container h3 {
+    color:#4285F4;
+}
+
+.featured-debate-container h4,{
+    color: #000;
 }
 .civility-quote h3 {
     text-align: left;
