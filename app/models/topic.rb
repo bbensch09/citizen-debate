@@ -3,6 +3,11 @@ class Topic < ActiveRecord::Base
   has_many :votes, :class_name => "TopicVote"
   has_many :debates
 
+  def to_param
+        [id, title.parameterize].join("-")
+  end
+
+
   def score
     collected_votes = self.votes
     score = 0
