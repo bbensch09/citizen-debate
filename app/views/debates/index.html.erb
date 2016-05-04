@@ -2,39 +2,40 @@
 
 <div class="profile-container">
 
-<h1 class="center debate-list-header">Your Pending Debate Challenges</h1>
+<h1 class="center debate-list-header">Pending Debate Challenges</h1>
 
 <% if current_user && current_user.profile %>
 
 <%= link_to 'Initiate a Debate', new_debate_path, class: "btn btn-default" %>
-
+    <% if @pending_debates.count >= 1 %>
     <table class="col-lg-12 col-sm-12 waitlist-table">
       <thead>
         <tr>
-          <th>Topic</th>
-          <th>Creator</th>
-          <th>Challenger</th>
-          <th>Status</th>
-          <th>Last Updated</th>
+          <th class="col-lg-4 col-sm-6">Topic</th>
+          <th class="col-lg-2 col-sm-hidden">Creator</th>
+          <th class="col-lg-2 col-sm-hidden">Challenger</th>
+          <th class="col-lg-1 col-sm-hidden">Status</th>
+          <th class="col-lg-1 col-sm-hidden">Last Updated</th>
           <th colspan="3"></th>
         </tr>
       </thead>
+    <% end %>
 
       <tbody>
       <!-- new debate challenges -- to accept or reject -->
         <% @pending_debates.each do |debate| %>
           <tr>
-            <td><%= link_to debate.topic.title, debate %></td>
-            <td><%= debate.creator.profile.display_name %></td>
-            <td>
+            <td class="col-lg-4 col-sm-6"><%= link_to debate.topic.title, debate %></td>
+            <td class="col-lg-2 col-sm-hidden"><%= debate.creator.profile.display_name %></td>
+            <td class="col-lg-2 col-sm-hidden">
               <% if debate.challenger && debate.challenger.profile %>
                   <%= debate.challenger.profile.display_name %>
                 <% else %>
                 "TBD"
               <% end %>
             </td>
-            <td> <b> <%= debate.status %> </b> </td>
-            <td><%= debate.time_since_updated %></td>
+            <td class="col-lg-2 col-sm-hidden"> <b> <%= debate.status %> </b> </td>
+            <td class="col-lg-2 col-sm-hidden"><%= debate.time_since_updated %></td>
             <!-- <td><%= link_to 'Accept Challenge', schedule_debate_path(debate),  method: :get,  class: "btn btn-default" %></td> -->
             <td><%= link_to 'Accept Challenge', accept_challenge_debate_path(debate),  method: :post,  class: "btn btn-default" %></td>
           <% if current_user && current_user.email == "citizen.debate.16@gmail.com" %>
@@ -46,17 +47,17 @@
         <!-- debates to be scheduled -->
         <% @debates_to_schedule.each do |debate| %>
           <tr>
-            <td><%= link_to debate.topic.title, debate %></td>
-            <td><%= debate.creator.profile.display_name %></td>
-            <td>
+            <td class="col-lg-4 col-sm-6"><%= link_to debate.topic.title, debate %></td>
+            <td class="col-lg-2 col-sm-hidden"><%= debate.creator.profile.display_name %></td>
+            <td class="col-lg-2 col-sm-hidden">
               <% if debate.challenger.profile %>
                   <%= debate.challenger.profile.display_name %>
                 <% else %>
                 "TBD"
               <% end %>
             </td>
-            <td> <b> <%= debate.status %> </b> </td>
-            <td><%= debate.time_since_updated %></td>
+            <td class="col-lg-2 col-sm-hidden"> <b> <%= debate.status %> </b> </td>
+            <td class="col-lg-2 col-sm-hidden"><%= debate.time_since_updated %></td>
             <td><%= link_to 'Schedule Debate', schedule_debate_path(debate),  method: :get,  class: "btn btn-default" %></td>
           <% if current_user && current_user.email == "citizen.debate.16@gmail.com" %>
             <td><%= link_to 'Edit', edit_debate_path(debate) %></td>
@@ -81,33 +82,34 @@
   </h4>
 <% end %>
 
+<% if @completed_debates.count >= 1 %>
 <h1 class="center debate-list-header">Recently Completed Debates</h1>
-
 <table class="col-lg-12 col-sm-12 waitlist-table">
   <thead>
     <tr>
-      <th>Topic</th>
-      <th>Affirmative</th>
-      <th>Negative</th>
-      <th>Votes Cast</th>
-      <th>Posted</th>
+      <th class="col-lg-4 col-sm-6">Topic</th>
+      <th class="col-lg-2 col-sm-hidden">Affirmative</th>
+      <th class="col-lg-2 col-sm-hidden">Negative</th>
+      <th class="col-lg-1 col-sm-hidden">Votes Cast</th>
+      <th class="col-lg-1 col-sm-hidden">Posted</th>
       <th colspan="3"></th>
     </tr>
   </thead>
+<% end %>
 
   <tbody>
     <% @completed_debates.each do |debate| %>
       <tr>
-        <td><%= link_to debate.topic.title, debate %></td>
-        <td><%= debate.affirmative_debater.user.profile.display_name %>
+        <td class="col-lg-4"><%= link_to debate.topic.title, debate %></td>
+        <td class="col-lg-2 col-sm-hidden"><%= debate.affirmative_debater.user.profile.display_name %>
         <!-- br> <%= debate.affirmative_debater.user.profile.civility_rating %> stars -->
         </td>
-        <td><%= debate.negative_debater.user.profile.display_name %>
+        <td class="col-lg-2 col-sm-hidden"><%= debate.negative_debater.user.profile.display_name %>
         <!-- <br> <%= debate.negative_debater.user.profile.civility_rating %> stars -->
         </td>
-        <td><%= debate.before_count %></td>
+        <td class="col-lg-2 col-sm-hidden"><%= debate.before_count %></td>
         <!-- <td><%= (debate.affirmative_debater.user.profile.minds_changed - debate.negative_debater.user.profile.minds_changed) %> minds</td> -->
-        <td><%= debate.time_since_updated %></td>
+        <td class="col-lg-2 col-sm-hidden"><%= debate.time_since_updated %></td>
       <% if current_user && current_user.email == "citizen.debate.16@gmail.com" %>
         <td><%= link_to 'Show', debate %></td>
         <td><%= link_to 'Edit', edit_debate_path(debate) %></td>
@@ -119,30 +121,30 @@
   </tbody>
 </table>
 
+<% if @active_debates.count >= 1 %>
 <hr>
-
 <h1 class="center debate-list-header">In-progress Debates</h1>
 
 <table class="col-lg-12 col-sm-12 waitlist-table">
   <thead>
     <tr>
-      <th>Topic</th>
-      <th>Affirmative</th>
-      <th>Negative</th>
-      <th>Current Round</th>
-      <th>Last Updated</th>
+      <th class="col-lg-4 col-sm-6">Topic</th>
+      <th class="col-lg-2 col-sm-hidden">Affirmative</th>
+      <th class="col-lg-2 col-sm-hidden">Negative</th>
+      <th class="col-lg-2 col-sm-hidden">Current Round</th>
+      <th class="col-lg-2 col-sm-hidden">Last Updated</th>
       <th colspan="3"></th>
     </tr>
   </thead>
-
+<% end %>
   <tbody>
     <% @active_debates.each do |debate| %>
       <tr>
-        <td><%= link_to debate.topic.title, debate %></td>
-        <td><%= debate.affirmative_debater.user.profile.display_name %></td>
-        <td><%= debate.negative_debater.user.profile.display_name %></td>
-        <td> <b> <%= debate.rounds.last.round_number %> </b> </td>
-        <td><%= debate.time_since_updated %></td>
+        <td class="col-lg-4 col-sm-6"><%= link_to debate.topic.title, debate %></td>
+        <td class="col-lg-2 col-sm-hidden"><%= debate.affirmative_debater.user.profile.display_name %></td>
+        <td class="col-lg-2 col-sm-hidden"><%= debate.negative_debater.user.profile.display_name %></td>
+        <td class="col-lg-2 col-sm-hidden"> <b> <%= debate.rounds.last.round_number %> </b> </td>
+        <td class="col-lg-2 col-sm-hidden"><%= debate.time_since_updated %></td>
       <% if current_user && current_user.email == "citizen.debate.16@gmail.com" %>
         <td><%= link_to 'Show', debate %></td>
         <td><%= link_to 'Edit', edit_debate_path(debate) %></td>
@@ -153,8 +155,8 @@
   </tbody>
 </table>
 
-<hr>
 <% if current_user && current_user.email == "citizen.debate.16@gmail.com" %>
+<hr>
   <%= render partial: "admin_view_all_debates" %>
 <% end %>
 
