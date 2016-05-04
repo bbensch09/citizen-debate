@@ -13,15 +13,13 @@
                             <li>
                                 <a href="/users/sign_up" class="btn btn-default btn-hero"> Sign Up </a>
                             </li>
+                            <li>
+                                <%= link_to "View Today's Debate", debate_path(@debate), class: "btn btn-default btn-success" %>
+                            </li>
                         </ul>
                     </div>
-                    <div class="col-lg-6 col-md-6 civility-quote">
-                            <h3>"We need to rethink today's social media ecosystem and redesign its experiences to reward thoughtfulness, civility and mutual understanding."</h3>
-                            <a href="https://www.ted.com/talks/wael_ghonim_let_s_design_social_media_that_drives_real_change/transcript?language=en">Wael Ghonim, TED 2016 </a>
-                    </div>
-                    <div class="col-lg-6 col-md-6 civility-quote">
-                            <h3>"Civility is the ability to disagree productively with others. By civility we do NOT mean agreement. We think citizens are well served when political parties represent different viewpoints and then compete vigorously to recruit voters to their side."</h3>
-                            <a href="http://www.civilpolitics.org/home/">Ravi Iyer, CivilPolitics.org </a>
+                    <div class="featured-debate-container">
+                        <%= render partial: "featured_debate_preview" %>
                     </div>
                 </div>
             </div>
@@ -51,6 +49,14 @@
                         <p>3 - Pew Research Center. <a href="http://www.journalism.org/2014/10/21/political-polarization-media-habits/"> www.journalism.org/2014/10/21/political-polarization-media-habits/ </a></p>
                     </div>
                 </div>
+                    <div class="col-lg-6 col-md-6 civility-quote">
+                            <h3>"We need to rethink today's social media ecosystem and redesign its experiences to reward thoughtfulness, civility and mutual understanding."</h3>
+                            <a href="https://www.ted.com/talks/wael_ghonim_let_s_design_social_media_that_drives_real_change/transcript?language=en">Wael Ghonim, TED 2016 </a>
+                    </div>
+                    <div class="col-lg-6 col-md-6 civility-quote">
+                            <h3>"Civility is the ability to disagree productively with others. By civility we do NOT mean agreement. We think citizens are well served when political parties represent different viewpoints and then compete vigorously to recruit voters to their side."</h3>
+                            <a href="http://www.civilpolitics.org/home/">Ravi Iyer, CivilPolitics.org </a>
+                    </div>
             </div>
             <!-- /.container -->
         </div>
