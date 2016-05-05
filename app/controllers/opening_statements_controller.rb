@@ -1,5 +1,7 @@
 class OpeningStatementsController < ApplicationController
   before_action :set_opening_statement, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, except: [:index, :show]
+
 
   # GET /opening_statements
   # GET /opening_statements.json
