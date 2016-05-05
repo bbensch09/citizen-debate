@@ -65,6 +65,9 @@ class UserMailer < ApplicationMailer
       if @opening_statement.author.user.id == @opening_statement.debate.challenger.id
         @recipient = @opening_statement.debate.creator
       end
+      if @opening_statement.author.user.email == "citizen.debate.16@gmail.com"
+        @recipient = @opening_statement.debate.creator
+      end
       if @debate.affirmative_id == @debate.creator_id
         @creator_side = "affirmative"
       else
