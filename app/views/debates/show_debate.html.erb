@@ -37,7 +37,7 @@
     <div class="statments">
       <% if @debate.status == "Active" && @debate.rounds.last.round_number == 1 && @debate.rounds.last.status != "Completed" %>
 
-          <% if current_user.id == @debate.affirmative_debater.user_id %>
+          <% if current_user.id == @debate.affirmative_debater.user_id || current_user.email == "citizen.debate.16@gmail.com" %>
 
               <% if @debate.opening_affirmative %>
 
@@ -50,7 +50,7 @@
 
           <% end %>
 
-          <% if current_user.id == @debate.negative_debater.user_id %>
+          <% if current_user.id == @debate.negative_debater.user_id || current_user.email == "citizen.debate.16@gmail.com" %>
 
               <% if @debate.opening_negative %>
 
@@ -70,7 +70,7 @@
     <div class="statments">
       <% if @debate.status == "Active" && @debate.rounds.last.round_number == 3 && @debate.rounds.last.status != "Completed" %>
 
-          <% if current_user.id == @debate.affirmative_debater.user_id %>
+          <% if current_user.id == @debate.affirmative_debater.user_id || current_user.email == "citizen.debate.16@gmail.com"%>
 
               <% if @debate.closing_affirmative %>
 
@@ -83,7 +83,7 @@
 
           <% end %>
 
-          <% if current_user.id == @debate.negative_debater.user_id %>
+          <% if current_user.id == @debate.negative_debater.user_id || current_user.email == "citizen.debate.16@gmail.com" %>
 
               <% if @debate.closing_negative %>
 
