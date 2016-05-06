@@ -56,16 +56,21 @@ class UserMailer < ApplicationMailer
     mail(to:"citizen.debate.16+notify@gmail.com", bcc: "#{@debate.creator.email}, #{@debate.challenger.email}", subject:"Your debate schedule is now set.")
   end
 
+  def proposed_times_added(debate)
+    @debate = debate
+    mail(to:"citizen.debate.16+notify@gmail.com", bcc: "#{@debate.creator.email}, #{@debate.challenger.email}", subject:"Your opponent has added times for you to review.")
+  end
+
   def opening_statement_complete(statement)
       @opening_statement = statement
       @debate = @opening_statement.debate
-      if @opening_statement.author.user.id == @opening_statement.debate.creator.id
+      if @opening_statement.author.id == @opening_statement.debate.creator.id
         @recipient = @opening_statement.debate.challenger
       end
-      if @opening_statement.author.user.id == @opening_statement.debate.challenger.id
+      if @opening_statement.author.id == @opening_statement.debate.challenger.id
         @recipient = @opening_statement.debate.creator
       end
-      if @opening_statement.author.user.email == "citizen.debate.16@gmail.com"
+      if @opening_statement.author.email == "citizen.debate.16@gmail.com"
         @recipient = @opening_statement.debate.creator
       end
       if @debate.affirmative_id == @debate.creator_id
@@ -73,16 +78,16 @@ class UserMailer < ApplicationMailer
       else
         @creator_side = "negative"
       end
-    mail(to: @recipient.email, bcc: @opening_statement.author.user.email, subject: "#{@opening_statement.author.user.profile.display_name} has entered their opening statement!")
+    mail(to: @recipient.email, bcc: @opening_statement.author.email, subject: "#{@opening_statement.author.profile.display_name} has entered their opening statement!")
   end
 
   def closing_statement_complete(statement)
       @closing_statement = statement
       @debate = @closing_statement.debate
-      if @closing_statement.author.user.id == @closing_statement.debate.creator.id
+      if @closing_statement.author.id == @closing_statement.debate.creator.id
         @recipient = @closing_statement.debate.challenger
       end
-      if @closing_statement.author.user.id == @closing_statement.debate.challenger.id
+      if @closing_statement.author.id == @closing_statement.debate.challenger.id
         @recipient = @closing_statement.debate.creator
       end
       if @debate.affirmative_id == @debate.creator_id
@@ -90,7 +95,7 @@ class UserMailer < ApplicationMailer
       else
         @creator_side = "negative"
       end
-      mail(to: @recipient.email, bcc: @closing_statement.author.user.email, subject: "#{@closing_statement.author.user.profile.display_name} has entered their closing statement!")
+      mail(to: @recipient.email, bcc: @closing_statement.author.email, subject: "#{@closing_statement.author.profile.display_name} has entered their closing statement!")
   end
 
   def notify_follower(follower_email, topic, debate)

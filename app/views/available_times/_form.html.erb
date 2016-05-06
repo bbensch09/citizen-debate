@@ -19,12 +19,15 @@
     <%= f.label :proposed_to %><br>
     <%= f.number_field :proposed_to, value: opponent.id %>
   </div>
+<!-- <input type="text" name="" placeholder="Full Name"/> -->
 
   <div class="field col-lg-3 col-sm-3">
-    <%= f.datetime_select :proposed_time, class:"datetimepicker" %>
+    <%= f.datetime_select :proposed_time, class:"datetimepicker" %> <br>
+       <!-- <p class="hint"> Click into box to select times.</p> -->
         <script type="text/javascript">
             $(function () {
                 $('.datetimepicker').datetimepicker();
+                $('.form-control').addClass('highlight-box');
             });
         </script>
   </div>

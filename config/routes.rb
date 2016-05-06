@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   resources :debates do
     member do
       post :accept_challenge
+      get :share_times_with_opponent
       get :schedule
       get :notify_followers
     end

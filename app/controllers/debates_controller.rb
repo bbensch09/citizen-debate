@@ -1,5 +1,5 @@
 class DebatesController < ApplicationController
-  before_action :set_debate, only: [:show, :edit, :update, :destroy, :accept_challenge, :schedule, :notify_followers]
+  before_action :set_debate, only: [:show, :edit, :update, :destroy, :accept_challenge, :schedule, :notify_followers, :share_times_with_opponent]
   before_action :authenticate_user!, except: [:show, :index, :launch]
   before_action :confirm_new_challengers, only: [:index]
   before_action :authenticate_admin, only: [:notify_followers]
@@ -22,6 +22,11 @@ class DebatesController < ApplicationController
 
   def authenticate_admin
     errors.add(:status, "You do not have permission to perform this action") unless current_user.email == "citizen.debate.16@gmail.com"
+  end
+
+  def share_times_with_opponent
+      UserMailer.proposed_times_added(@debate).deliver_now
+      redirect_to debate_path(@debate), notice: 'Your opponent has been notified of the times you are available.'
   end
 
   def confirm_new_challengers
@@ -139,9 +144,9 @@ class DebatesController < ApplicationController
     @debate.challenge_accepted = true
     @debate.challenger_id = current_user.id
     if @debate.affirmative_id
-        @debate.negative_id = current_user.id
+        @debate.negative_id = current_user.debater.id
       elsif @debate.negative_id
-        @debate.affirmative_id = current_user.id
+        @debate.affirmative_id = current_user.debater.id
     end
     if @debate.challenger_email.nil?
       @debate.challenger_email = current_user.email

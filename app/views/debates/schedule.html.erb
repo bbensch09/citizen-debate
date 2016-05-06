@@ -44,6 +44,10 @@
               <%= time.proposed_time.strftime("%a %b %d, %Y at %I:%M%p %Z") %>
           </div>
       <% end %>
+      <br><br>
+      <h4>
+          <%= link_to 'Notify your opponent', share_times_with_opponent_debate_path(@debate),  method: :get,  class: "btn btn-success" %>
+      </h4>
     <% end %>
 </div>
 
