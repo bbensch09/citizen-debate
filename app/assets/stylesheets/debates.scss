@@ -20,13 +20,13 @@
   text-align: center;
 }
 .debate-container{
-    width: 100vw;
+    width: 90vw;
     max-width: 1600px;
     /*min-height: 80vh;*/
     margin: auto;
     margin-top: 50px;
-    padding-right: 10vw !important;
-    padding-left: 10vw !important;
+   /* padding-right: 5vw !important;
+    padding-left: 5vw !important;*/
 }
 .debate-details{
   min-height: 10vh;
@@ -90,10 +90,13 @@
 }
 .live-debate-container{
     width: 90vw;
-    max-width: 1600px;
+    max-width: 1200px;
     margin: auto;
     position: relative;
     clear:both;
+}
+.statements{
+  max-width: 90vw;
 }
 .media-body {
   max-width: 85vw;
