@@ -2,7 +2,7 @@ class OpeningStatement < ActiveRecord::Base
   include ActionView::Helpers::SanitizeHelper
   belongs_to :round
   belongs_to :debate
-  belongs_to :author, class_name: "Debater", foreign_key: "author_id"
+  belongs_to :author, class_name: "User", foreign_key: "author_id"
   validate :check_word_count, on: [:update, :create]
   validates :debate_id, :author_id, :round_id, presence: true
   after_create :send_opponent_notification

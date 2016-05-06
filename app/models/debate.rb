@@ -1,6 +1,8 @@
 class Debate < ActiveRecord::Base
-    belongs_to :judge_left, class_name: "Judge", foreign_key: "judge_left_id"
-    belongs_to :judge_right, class_name: "Judge", foreign_key: "judge_right_id"
+    # belongs_to :judge_left, class_name: "Judge", foreign_key: "judge_left_id"
+    # belongs_to :judge_right, class_name: "Judge", foreign_key: "judge_right_id"
+
+    #HACKY SHIT -- aff & neg debater helpers are indexing on "Debater" class, but should be cleaned up later and everything should use user class as the index
     belongs_to :affirmative_debater, class_name: "Debater", foreign_key: "affirmative_id"
     belongs_to :negative_debater, class_name: "Debater", foreign_key: "negative_id"
     belongs_to :topic
@@ -110,7 +112,7 @@ class Debate < ActiveRecord::Base
     end
 
     def participants
-        debaters = Debater.where("id = ? OR id = ? OR id = ?", self.affirmative_id, self.negative_id, self.challenger_id)
+        debaters = Debater.where("id = ? OR id = ? OR user_id = ?", self.affirmative_id, self.negative_id, self.challenger_id)
         participant_user_ids = []
         debaters.each do |debater|
             participant_user_ids << debater.user_id
