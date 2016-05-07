@@ -80,6 +80,6 @@ test:
 #
 production:
   <<: *default
-  database: citizen_debate_production
-  username: citizen_debate
-  password: <%= ENV['CITIZEN_DEBATE_DATABASE_PASSWORD'] %>
+  database: lean-developer_production
+  lean-developer
+  password: <%= ENV['LEAN-DEVELOPER_DATABASE_PASSWORD'] %>
