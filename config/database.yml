@@ -81,5 +81,5 @@ test:
 production:
   <<: *default
   database: lean-developer_production
-  lean-developer
+  username: lean-developer
   password: <%= ENV['LEAN-DEVELOPER_DATABASE_PASSWORD'] %>
