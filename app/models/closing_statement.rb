@@ -1,7 +1,7 @@
 class ClosingStatement < ActiveRecord::Base
   belongs_to :round
   belongs_to :debate
-  belongs_to :author, class_name: "Debater", foreign_key: "author_id"
+  belongs_to :author, class_name: "User", foreign_key: "author_id"
   include ActionView::Helpers::SanitizeHelper
   validate :check_word_count, on: [:update, :create]
   after_create :send_opponent_notification
