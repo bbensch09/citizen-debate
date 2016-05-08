@@ -123,7 +123,7 @@
         <% if @debate.closing_affirmative && @debate.closing_negative %>
           <%= render partial: 'closing' %>
         <% end %>
-        <% if session[:vote_after].nil? || current_user && current_user.eligible_after_votes.include?(@debate.id) %>
+        <% if @debate.status == "Completed" && session[:vote_after].nil? || current_user && current_user.eligible_after_votes.include?(@debate.id) %>
         <div class="voting-container">
           <%= render partial: 'debate_votes/after_form' %>
         </div>
