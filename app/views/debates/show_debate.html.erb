@@ -127,7 +127,7 @@
         <div class="voting-container">
           <%= render partial: 'debate_votes/after_form' %>
         </div>
-        <% elsif session[:civility_vote].nil? || (current_user && current_user.eligible_civility_votes.include?(@debate.id)) %>
+        <% elsif @debate.status == "Completed" && session[:civility_vote].nil? || (current_user && current_user.eligible_civility_votes.include?(@debate.id)) %>
           <div class="voting-container">
           <%= render partial: 'civility_votes/form' %>
         </div>
