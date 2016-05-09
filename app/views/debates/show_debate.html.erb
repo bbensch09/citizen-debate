@@ -1,7 +1,7 @@
 <% title @debate.topic.title %>
 <div class="debate-container">
 
-<% if @debate.status == 'Completed' && (session[:civility_vote] == @debate.topic.title || current_user && current_user.eligible_civility_votes.exclude?(@debate.id) )%>
+<% if @debate.status == 'Completed' && session[:vote_after] && (session[:civility_vote] == @debate.topic.title || (current_user && current_user.eligible_civility_votes.exclude?(@debate.id)) )%>
       <div class="results-container">
         <%= render partial: 'results' %>
       </div>
@@ -116,15 +116,23 @@
 <% if session[:vote_before] || session[:vote_after] || current_user && (current_user.before_votes.include?(@debate.id) ||( @debate.participants.include?(current_user.id)) || current_user.email == "citizen.debate.16@gmail.com") && @debate.status != "Pending" %>
 <div class="debate-recap-container">
 
-  <% if @debate.status == "Completed" && session[:civility_vote] && session[:civility_vote] != @debate.topic.title %>
+  <% if @debate.status == "Completed" && session[:civility_vote] != @debate.topic.title && session[:civility_vote] && current_user.nil? %>
 
-    <h2 class="alert-info">
-      In order to vote in more than one debate, you must first sign up or login.
+    <div class="alert-info">
+      <h2 class="center"> In order to vote on more than one debate, you must first sign up or login.<br>
+      <h4 class="center"> If you are already logged in, please logout first and then login again, or email <a href="citizen.debate.16@gmail.com">citizen.debate.16@gmail.com</a> if you still have issues.</h4>
+      </h2>
       <h4 class="center">
-        <%= link_to 'Sign up', new_user_registration_path, class: "btn btn-default" %>
-        <%= link_to 'Log in', new_user_session_path, class: "btn btn-default" %>
+        <%= link_to 'Sign up', new_user_registration_path, class: "btn btn-default fa" %>
+        <%= link_to 'Log in', new_user_session_path, class: "btn btn-default fa" %>
+        <%= link_to "Login with Facebook", user_omniauth_authorize_path(:facebook), class: "btn btn-default fa fa-facebook" %>
       </h4>
-    </h2>
+    </div>
+
+  <% elsif @debate.status == "Completed" && session[:vote_before].nil? %>
+        <div class="voting-container">
+          <%= render partial: 'debate_votes/before_form' %>
+        </div>
   <% else %>
 
         <% if @debate.opening_affirmative && @debate.opening_negative %>
