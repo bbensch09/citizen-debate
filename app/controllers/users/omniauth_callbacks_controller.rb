@@ -31,7 +31,10 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       p "sign_in_count: #{user.sign_in_count}"
       p session[:user_id] = user.id
       current_user = @user
-      flash[:notice] = "Thanks for logging in with Facebook. Please scroll back to the bottom of the page to confirm your vote."
+      session[:civility_vote] = nil
+      session[:vote_before] = nil
+      session[:vote_after] = nil
+      flash[:notice] = "Thanks for logging in with Facebook. You are now approved to view and vote in all debates."
       redirect_to (session[:previous_url] || root_path)
 
   end
