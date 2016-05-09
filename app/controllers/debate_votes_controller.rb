@@ -45,8 +45,9 @@ class DebateVotesController < ApplicationController
 
         respond_to do |format|
           if @debate_vote.save
+            #after saving, should reset session cookies to nil.
             session[:vote_before] = nil
-            session[:vote_after] = @debate_vote.vote_after
+            session[:vote_after] = 'already_voted'
             format.html { redirect_to @debate_vote.debate, notice: "Thanks! Your debate vote has successfully been recorded. Your initial vote was '#{@debate_vote.vote_before},' and your final vote was '#{@debate_vote.vote_after}'." }
             format.json { render :show, status: :created, location: @debate_vote }
           else

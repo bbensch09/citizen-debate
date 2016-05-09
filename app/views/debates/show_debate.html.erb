@@ -1,6 +1,7 @@
 <% title @debate.topic.title %>
 <div class="debate-container">
-<% if @debate.status == 'Completed' && (session[:civility_vote] || current_user && current_user.eligible_civility_votes.exclude?(@debate.id) )%>
+
+<% if @debate.status == 'Completed' && (session[:civility_vote] == @debate.topic.title || current_user && current_user.eligible_civility_votes.exclude?(@debate.id) )%>
       <div class="results-container">
         <%= render partial: 'results' %>
       </div>
@@ -114,6 +115,18 @@
 <!-- BEGIN DEBATE ARCHIVE FOR ALL USERS TO SEE -->
 <% if session[:vote_before] || session[:vote_after] || current_user && (current_user.before_votes.include?(@debate.id) ||( @debate.participants.include?(current_user.id)) || current_user.email == "citizen.debate.16@gmail.com") && @debate.status != "Pending" %>
 <div class="debate-recap-container">
+
+  <% if @debate.status == "Completed" && session[:civility_vote] && session[:civility_vote] != @debate.topic.title %>
+
+    <h2 class="alert-info">
+      In order to vote in more than one debate, you must first sign up or login.
+      <h4 class="center">
+        <%= link_to 'Sign up', new_user_registration_path, class: "btn btn-default" %>
+        <%= link_to 'Log in', new_user_session_path, class: "btn btn-default" %>
+      </h4>
+    </h2>
+  <% else %>
+
         <% if @debate.opening_affirmative && @debate.opening_negative %>
           <%= render partial: 'opening' %>
         <% end %>
@@ -127,10 +140,10 @@
         <div class="voting-container">
           <%= render partial: 'debate_votes/after_form' %>
         </div>
-        <% elsif @debate.status == "Completed" && session[:civility_vote].nil? || (current_user && current_user.eligible_civility_votes.include?(@debate.id)) %>
+        <% elsif @debate.status == "Completed" && session[:vote_after] == 'already_voted' && session[:civility_vote].nil? || (current_user && current_user.eligible_civility_votes.include?(@debate.id)) %>
           <div class="voting-container">
           <%= render partial: 'civility_votes/form' %>
-        </div>
+          </div>
         <% else %>
           <div class="disqus-comments">
           <div id="disqus_thread"></div>
@@ -148,6 +161,7 @@
           </div>
         <% end %>
     <hr>
+  <% end %>
 
     <% elsif @debate.status == "Completed" && session[:vote_after].nil? %>
 

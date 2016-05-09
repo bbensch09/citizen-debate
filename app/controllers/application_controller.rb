@@ -32,6 +32,9 @@ def after_sign_in_path_for(resource)
     # @temp_vote = DebateVote.new(session[:vote_before])
     # puts "saved to AR the previously temporary debate vote"
     # session[:vote_before] = @temp_vote
+    session[:civility_vote] = nil
+    session[:vote_before] = nil
+    session[:vote_after] = nil
     puts "the session variable is storing the vote_before value as #{session[:vote_before]}"
     flash[:notice] = "Thanks for signing up. Please scroll back to the bottom of the page to confirm your vote."
   else

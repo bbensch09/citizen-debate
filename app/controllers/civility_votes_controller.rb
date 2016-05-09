@@ -36,7 +36,12 @@ class CivilityVotesController < ApplicationController
 
     respond_to do |format|
       if @civility_vote.save
-        session[:civility_vote] = @civility_vote
+        if current_user.nil?
+          session[:civility_vote] = @civility_vote.debate.topic.title
+          puts "the civility vote session has been recorded and marked as #{@civility_vote.debate.topic.title}. "
+        else
+          session[:civility_vote] = "signed_in_user has voted."
+        end
         format.html { redirect_to @civility_vote.debate, notice: 'Your votes have been recorded. Thank you for rating our debaters!' }
         format.json { render :show, status: :created, location: @civility_vote }
       else
