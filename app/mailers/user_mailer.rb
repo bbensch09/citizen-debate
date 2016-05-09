@@ -91,7 +91,7 @@ class UserMailer < ApplicationMailer
         @recipient = @closing_statement.debate.creator
       end
       if @closing_statement.author.email == "citizen.debate.16@gmail.com"
-        @recipient = @opening_statement.debate.creator
+        @recipient = @closing_statement.debate.creator
       end
       if @debate.affirmative_id == @debate.creator_id
         @creator_side = "affirmative"
