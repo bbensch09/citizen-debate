@@ -6,7 +6,7 @@
 <body>
   <h3>Hello <%= @debate.creator.profile.display_name %>,</h3>
   <p>
-  Congratulations, your debate challenge has been accepted by <%= @debate.challenger.profile.display_name %>.
+  Congratulations, your debate challenge has been accepted by <%= @debate.challenger.email %>.
   </p>
 
   <h3><b> Debate topic: </b> <%=@debate.topic.title%> </h3>

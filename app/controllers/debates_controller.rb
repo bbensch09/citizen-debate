@@ -3,7 +3,17 @@ class DebatesController < ApplicationController
   before_action :authenticate_user!, except: [:show, :index, :launch]
   before_action :confirm_new_challengers, only: [:index]
   before_action :authenticate_admin, only: [:notify_followers]
-  # after_action :create_first_round, only: [:create]
+  before_action :confirm_debater_exists, only: [:create, :update, :accept_challenge]
+
+  def confirm_debater_exists
+    if current_user.debater
+      return true
+    else
+      Debater.create!({
+        user_id: current_user.id
+        })
+    end
+  end
 
   def launch
     redirect_to '/debates/1'
