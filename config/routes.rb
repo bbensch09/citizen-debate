@@ -22,6 +22,7 @@ Rails.application.routes.draw do
       get :share_times_with_opponent
       get :schedule
       get :notify_followers
+      get :skip_to_results
     end
   end
   resources :available_times do

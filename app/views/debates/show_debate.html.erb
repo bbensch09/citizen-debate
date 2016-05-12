@@ -1,5 +1,8 @@
 <% title @debate.topic.title %>
 <div class="debate-container">
+<% if current_user && current_user.email == "citizen.debate.16@gmail.com" %>
+    <%= link_to 'Admin: skip to results', skip_to_results_debate_path(@debate),  method: :get,  class: "btn btn-default" %>
+<% end %>
 
 <% if @debate.status == 'Completed' && session[:vote_after] && (session[:civility_vote] == @debate.topic.title || (current_user && current_user.eligible_civility_votes.exclude?(@debate.id)) )%>
       <div class="results-container">
