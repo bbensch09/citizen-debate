@@ -1,9 +1,15 @@
 class DebatesController < ApplicationController
-  before_action :set_debate, only: [:show, :edit, :update, :destroy, :accept_challenge, :schedule, :notify_followers, :share_times_with_opponent]
+  before_action :set_debate, only: [:show, :edit, :update, :destroy, :accept_challenge, :schedule, :notify_followers, :share_times_with_opponent, :skip_to_results]
   before_action :authenticate_user!, except: [:show, :index, :launch]
   before_action :confirm_new_challengers, only: [:index]
   before_action :authenticate_admin, only: [:notify_followers]
   before_action :confirm_debater_exists, only: [:create, :update, :accept_challenge]
+
+  def skip_to_results
+      session[:vote_after] = "admin skip to results"
+      session[:civility_vote] = @debate.topic.title
+      redirect_to debate_path
+  end
 
   def confirm_debater_exists
     if current_user.debater
