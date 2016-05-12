@@ -54,6 +54,13 @@
 @media(max-width:767px) {
     .intro-message {
         padding-bottom: 0%;
+        font-size: 3em;
+    }
+    .intro-tagline{
+        font-size: 1.5em;
+    }
+    .intro-tagline2{
+        display:none;
     }
     .bottom-cta{
     margin-left: 15vw;
@@ -538,11 +545,11 @@ h3 {
     margin-top: 0px !important;
   }
   .content-section-a, .content-section-b{
-    height:95vh;
+    max-height:95vh;
     top: 50px;
     position: relative;
-    padding-top: 0px;
-    padding-bottom: 0px;
+    padding-top: 20px;
+    padding-bottom: 20px;
   }
   .section-heading{
     font-size: 1.6em;
@@ -616,7 +623,7 @@ a.btn-success{
 .citations {
     position: relative;
     bottom:0px;
-    padding-bottom: 50px;
+    padding-bottom: 10px;
     font-size:12px;
     color: gray;
     text-align: left;
@@ -689,6 +696,8 @@ a.btn-success{
 .civility-quote, .civility-quote a{
     background-color: rgba(66, 133, 244, 1);
     color: #fff;
+    padding-top:10px;
+    padding-bottom:10px;
     /*max-width: 50vw;*/
 }
 .featured-debate-container{
