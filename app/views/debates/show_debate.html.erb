@@ -9,7 +9,10 @@
         <%= render partial: 'results' %>
       </div>
 <% end %>
+
+<% if @debate.rounds.last.round_number == 1 || @debate.status == 'Completed' %>
 <%= render 'details' %>
+<% end %>
 
 <!-- BEGIN LOGIC FOR CURRENT DEBATERS -->
 <% if current_user && @debate.status == "Active" && (current_user == @debate.affirmative_debater.user || current_user == @debate.negative_debater.user  || current_user.email == "citizen.debate.16@gmail.com" ) %>
