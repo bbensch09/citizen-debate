@@ -1,19 +1,22 @@
 <div class="well">
   <%= form_for @message, remote: true do |f| %>
     <div class="form-group live-comment-box">
-            <%= f.label :message_content, "Enter your messages in the box below. The affirmative should ask the first question, and each side should alternate answering their opponent, and then asking a question of their own. Please ask one question at a time, and please respond to questions as directly and succinctly as possible." %><br>
+            <%= f.label :message_content, "Enter messages below. The affirmative should ask the first question, and then please alternate by answering your opponent, and then asking a question of your own. Please ask one question at a time, be respectful, and respond as succinctly as possible." %><br>
             <%= f.text_area :message_content, rows: 4, class: 'form-control', id: 'message-text-area', required: true, maxlength: 1000 %>
           </div>
           <div class="hidden">
             <%= f.number_field :round_id, value: @debate.rounds.last.id %>
             <%= f.number_field :debate_id, value: @debate.id %>
           </div>
-    <%= f.submit 'Submit message for cross-examination', class: 'btn btn-primary btn-lg' %>
+    <h4 class="current-status">
+    </h4>
+    <% if current_user.id == @debate.affirmative_debater.user.id %>
+        <%= f.submit 'Submit first question', class: 'btn btn-primary btn-lg' %>
+      <% else %>
+        <%= f.submit 'Submit your response', class: 'btn btn-primary btn-lg' %>
+    <% end %>
     </div>
   <% end %>
   <div id="opponent-status">
-    <h4 class="current-status">
-      Status:
-    </h4>
   </div>
 </div>
