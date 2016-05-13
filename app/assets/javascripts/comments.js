@@ -25,8 +25,22 @@ jQuery(function() {
 // Detect and log to console when text box is clicked into
 console.log("listening for form to be selected");
 document.getElementById('message-text-area').onclick = function() {userTyping() };
+
 function userTyping() {
   console.log("Opponent is typing...");
+
+  status_publisher = client.publish('/comments', {
+  status: 'Opponent is typing...'
+  });
+
+  status_publisher.callback(function() {
+  console.log("status_publisher callback received");
+  // $('#message-text-area').val('');
+});
+
+  status_publisher.errback(function() {
+    alert('There was an error while posting your comment.');
+});
 }
 
 
@@ -39,8 +53,8 @@ function userTyping() {
     };
 
     // If typing status is published display it here.
-    if (payload){
-      return $('#opponent-status').find('.current-status').innerHTML = payload.status;
+    if (payload.status){
+      return $('.current-status').html(payload.status);
     }
 
   });

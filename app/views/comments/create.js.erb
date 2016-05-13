@@ -1,11 +1,11 @@
+// THIS FILE SHOULD NOT BE USED ANYMORE. IT WAS USED ONLY FOR TESTING
 console.log("rendering create.js.erb within comments controller.")
 publisher = client.publish('/comments', {
   message: '<%= j render @comment %>' //replace @message with @comment
 });
 
 publisher.callback(function() {
-  console.log("publisher callback received");
-  $('#message-text-area').val('');
+  $('#comment_body').val('');
   $('#new_comment').find("input[type='submit']").val('Submit').prop('disabled', false)
 });
 
