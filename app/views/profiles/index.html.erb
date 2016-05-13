@@ -8,7 +8,7 @@
       <th>Rank </th>
       <th>Avatar </th>
       <th>Display name</th>
-      <th>Signed up</th>
+<!--       <th>Signed up</th> -->
       <th>Points </th>
       <th>Location</th>
     <% if current_user && current_user.email == "citizen.debate.16@gmail.com" %>
@@ -30,7 +30,7 @@
         <td><%= profile.rank %></td>
         <td> <%= image_tag profile.avatar.url(:thumb), alt:"avatar-img", class:"img-responsive img-thumbnail" %> </td>
         <td><%= link_to profile.display_name, profile_path(profile) %></td>
-        <td><%= profile.user.time_since_created %></td>
+        <!-- <td><%= profile.user.time_since_created %></td> -->
         <td><%= profile.points %></td>
         <td><%= profile.city %>, <%= profile.state %></td>
         <% if current_user && current_user.email == "citizen.debate.16@gmail.com" %>

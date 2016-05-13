@@ -38,7 +38,7 @@ class UserMailer < ApplicationMailer
     if debate.negative_id
       @challenger_side = "affirmative"
     end
-    mail(to: @debate.challenger_email, bcc: @debate.creator.email, cc: "citizen.debate.16+notify@gmail.com", subject:"You've invited to join Citizen Debate!")
+    mail(to: @debate.challenger_email, bcc: @debate.creator.email, cc: "citizen.debate.16+notify@gmail.com", subject:"You've been invited to join Citizen Debate!")
   end
 
   def challenge_accepted(debate)
