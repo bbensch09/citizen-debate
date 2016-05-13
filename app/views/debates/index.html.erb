@@ -68,14 +68,6 @@
         <% @outstanding_challenges.each do |debate| %>
           <tr>
             <td class="col-lg-4 col-sm-6"><%= link_to debate.topic.title, debate %></td>
-<!--             <td class="col-lg-2 col-sm-hidden"><%= debate.creator.profile.display_name %></td>
-            <td class="col-lg-2 col-sm-hidden">
-              <% if debate.challenger %>
-                  <%= debate.challenger.profile.display_name %>
-                <% else %>
-                "TBD"
-              <% end %>
-            </td> -->
             <td class="col-lg-2 col-sm-hidden"> <b> <%= debate.status %> </b> </td>
             <td class="col-lg-2 col-sm-hidden"><%= debate.time_since_updated %></td>
             <td><%= link_to 'Share Debate Challenge', debate_path(debate), class: "btn btn-default" %></td>
