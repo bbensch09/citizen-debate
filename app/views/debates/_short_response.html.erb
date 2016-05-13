@@ -1,8 +1,8 @@
 <div class="well">
   <%= form_for @message, remote: true do |f| %>
-    <div class="form-group">
-            <%= f.label :message_content, "Enter your messages in the box below. During the cross-examination round, either side can begin first. Please ask one question at a time, and please respond to questions as directly and succinctly as possible." %><br>
-            <%= f.text_area :message_content, rows: 4, class: 'form-control', required: true, maxlength: 1000 %>
+    <div class="form-group live-comment-box">
+            <%= f.label :message_content, "Enter your messages in the box below. The affirmative should ask the first question, and each side should alternate answering their opponent, and then asking a question of their own. Please ask one question at a time, and please respond to questions as directly and succinctly as possible." %><br>
+            <%= f.text_area :message_content, rows: 4, class: 'form-control', id: 'message-text-area', required: true, maxlength: 1000 %>
           </div>
           <div class="hidden">
             <%= f.number_field :round_id, value: @debate.rounds.last.id %>
@@ -11,4 +11,7 @@
     <%= f.submit 'Submit message for cross-examination', class: 'btn btn-primary btn-lg' %>
     </div>
   <% end %>
+  <div id="opponent-status">
+    <h4 class="current-status"></h4>
+  </div>
 </div>

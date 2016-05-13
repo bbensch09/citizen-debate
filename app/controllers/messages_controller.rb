@@ -26,6 +26,7 @@ class MessagesController < ApplicationController
   def create
     @message = Message.new(message_params)
     @message.author_id = current_user.debater.id
+    puts "new message being created via faye server(?)"
 
     if @message #.round.cross_ex? #HACKY SHIT
         respond_to do |format|

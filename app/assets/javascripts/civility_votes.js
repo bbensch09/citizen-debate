@@ -4,7 +4,7 @@
 
 $(document).ready(function(){
 
-console.log("FYI -- still not loading tool tips for civility_votes.js");
+// console.log("FYI -- still not loading tool tips for civility_votes.js");
 
 
 // $(function () {
