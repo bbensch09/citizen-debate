@@ -27,8 +27,10 @@ jQuery(function() {
 
 // Detect and log to console when text box is clicked into
 console.log("listening for form to be selected");
+if (document.getElementById('message-text-area') ) {
 document.getElementById('message-text-area').focusin = function() {userTyping() };
 document.getElementById('message-text-area').focusout = function() {awaitingReply() };
+}
 
 function userTyping() {
   status_publisher = client.publish('/comments', {
