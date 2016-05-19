@@ -19,6 +19,10 @@ class UserMailer < ApplicationMailer
     mail(to: "bbensch@gmail.com", subject: "#{email} has just voted on a debate.")
   end
 
+  def gotv_clickthru(email="Unknown user")
+    mail(to: "bbensch@gmail.com", subject: "#{email} has just clicked through to the voter-registration page.")
+  end
+
   def challenge_existing_user(debate)
     @debate = debate
     if debate.affirmative_id
