@@ -11,5 +11,11 @@ class AboutController < ApplicationController
   end
 
   def register_to_vote
+    if current_user && current_user.email
+      UserMailer.gotv_clickthru(current_user.email).deliver_now
+    else
+      UserMailer.gotv_clickthru.deliver_now
+    end
   end
+
 end
