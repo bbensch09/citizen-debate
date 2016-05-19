@@ -57,6 +57,7 @@ Rails.application.routes.draw do
   get '/reputation' => 'about#reputation'
   get '/faqs' => 'about#faqs'
   get '/about_us' => 'about#about_us'
+  get '/register-to-vote' => 'about#register_to_vote'
   get '/privacy_policy' =>'about#privacy_policy'
   get '/terms_of_service' =>'about#terms_of_service'
   # HACKY SHIT

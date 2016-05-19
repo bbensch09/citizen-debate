@@ -9,4 +9,7 @@ class AboutController < ApplicationController
 
   def BingSiteAuth
   end
+
+  def register_to_vote
+  end
 end
