@@ -179,16 +179,20 @@ class Profile < ActiveRecord::Base
     end
 
   # calculate total points as sum of aff + neg points
-  debate_points = aff_points + neg_points
+  debate_points = (aff_points + neg_points)/5
   end
 
   def minds_changed
-    return (self.debate_points / 5)
+    return self.debate_points
   end
 
   def update_points
     puts "updating points"
-    self.points = self.profile_bonus + self.feedback_bonus + self.topic_bonus + self.referral_bonus + self.civility_points + self.debate_points
+    # original formula for pre-launch phase
+    # self.points = self.profile_bonus + self.feedback_bonus + self.topic_bonus + self.referral_bonus + self.civility_points + self.debate_points
+    # Alternative = points = minds changed + civility rating
+    # self.points = (self.civility_rating * self.user.debater.debates.count) + self.debate_points
+    self.points = self.debate_points
     self.save
     puts "points updated and saved. Profile ID #{self.id} has #{self.points}"
   end
