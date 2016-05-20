@@ -157,8 +157,13 @@ class Debate < ActiveRecord::Base
     end
 
     def update_status
+        days_elapsed = ((Time.now - updated_at.to_time) / (60*60*24)).round
         if self.rounds.count == 1 && self.rounds.first.status =="Pending"
             return "This debate has not yet started."
+        elsif self.status == "Completed" && days_elapsed > 10
+            self.status = "Voting period is now over."
+            self.save
+            return self.status
         elsif self.rounds.count >=3 && self.rounds.last.status =="Completed"
             self.status = "Completed"
             self.save

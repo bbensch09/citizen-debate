@@ -4,13 +4,13 @@
     <%= link_to 'Admin: skip to results', skip_to_results_debate_path(@debate),  method: :get,  class: "btn btn-default" %>
 <% end %>
 
-<% if @debate.status == 'Completed' && session[:vote_after] && (session[:civility_vote] == @debate.topic.title || (current_user && current_user.eligible_civility_votes.exclude?(@debate.id)) )%>
+<% if (@debate.status == 'Completed' || @debate.status == 'Voting period is now over.') && session[:vote_after] && (session[:civility_vote] == @debate.topic.title || (current_user && current_user.eligible_civility_votes.exclude?(@debate.id)) )%>
       <div class="results-container">
         <%= render partial: 'results' %>
       </div>
 <% end %>
 
-<% if @debate.rounds.last.round_number == 1 || @debate.status == 'Completed' %>
+<% if @debate.rounds.last.round_number == 1 || @debate.status == 'Completed' || @debate.status == 'Voting period is now over.' %>
 <%= render 'details' %>
 <% end %>
 
