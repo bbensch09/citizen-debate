@@ -9,7 +9,8 @@
       <th>Avatar </th>
       <th>Display name</th>
 <!--       <th>Signed up</th> -->
-      <th>Points </th>
+      <th>Minds Changed </th>
+      <th>Civility Score </th>
       <th>Location</th>
     <% if current_user && current_user.email == "citizen.debate.16@gmail.com" %>
       <th>Political affiliation</th>
@@ -32,6 +33,13 @@
         <td><%= link_to profile.display_name, profile_path(profile) %></td>
         <!-- <td><%= profile.user.time_since_created %></td> -->
         <td><%= profile.points %></td>
+        <td>
+          <% if profile.civility_rating > 0 %>
+            <%= profile.civility_rating %> stars
+            <% else %>
+            N/A
+          <% end %>
+        </td>
         <td><%= profile.city %>, <%= profile.state %></td>
         <% if current_user && current_user.email == "citizen.debate.16@gmail.com" %>
         <td><%= profile.political_affiliation %></td>
