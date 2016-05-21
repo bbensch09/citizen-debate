@@ -1,0 +1,48 @@
+<%= form_for(@debate_vote) do |f| %>
+  <% if @debate_vote.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@debate_vote.errors.count, "error") %> prohibited this debate_vote from being saved:</h2>
+
+      <ul>
+      <% @debate_vote.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="hidden">
+    <%= f.label :user_id %><br>
+    <%= f.label :debate_id %><br>
+    <%= f.number_field :debate_id, value: @debate.id %>
+  </div>
+  <div class="field">
+    <h4 class="center"> Before viewing the debate, please tell us which way you are leaning. You will vote again at the end of the debate.</h4>
+    <h3>
+      <b>Resolved:</b><%= @debate.topic.title %>
+    </h3>
+    <ul class="center">
+    <div class="col-lg-4 col-sm-6">
+       <li class="voting-options">
+        <%= f.label :agree, "I support the resolution.", :class=> "voting-options" %>
+        <%= f.radio_button :vote_before, "I agree" %>
+      </li>
+    </div>
+    <div class="col-lg-4 col-sm-6">
+      <li class="voting-options">
+        <%= f.label :undecided, "I am not sure", :class=> "voting-options" %>
+        <%= f.radio_button :vote_before, "I am not sure" %>
+      </li>
+    </div>
+    <div class="col-lg-4 col-sm-6">
+      <li class="voting-options">
+        <%= f.label :disagree, "I disagree with the resolution.", :class=> "voting-options" %>
+        <%= f.radio_button :vote_before, "I disagree" %>
+      </li>
+    </div>
+      <li class="voting-options">
+        <%= f.submit "Cast initial vote", :class=>"actions btn btn-success" %>
+      </li>
+    </ul>
+  </div>
+<% end %>

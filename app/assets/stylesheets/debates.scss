@@ -68,6 +68,10 @@
   padding-left: 10px;
   padding-right: 10px;
 }
+.voting-buttons{
+  height:60px;
+  margin-bottom: 15px;
+}
 .voting-container{
   min-height: 10vh;
   background-color: rgba(66, 133, 244, .3);
@@ -165,5 +169,8 @@ h3.results-cta, h3.results-minds-changed{
   }
   .debate-list-header{
     font-size: 1.2em;
+  }
+  .voting-container{
+  min-height: 60vh;
   }
 }
