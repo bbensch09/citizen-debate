@@ -51,40 +51,7 @@
     text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
 }
 
-@media(max-width:767px) {
-    .intro-message {
-        padding-bottom: 0%;
-        font-size: 3em;
-    }
-    .intro-tagline{
-        font-size: 1.5em;
-    }
-    .intro-tagline2{
-        display:none;
-    }
-    .bottom-cta{
-    margin-left: 15vw;
-    width: 60vw;
-    }
 
-    .intro-message > h1 {
-        font-size: 3em;
-    }
-
-    ul.intro-social-buttons > li {
-        display: block;
-        margin-bottom: 20px;
-        padding: 0;
-    }
-
-    ul.intro-social-buttons > li:last-child {
-        margin-bottom: 0;
-    }
-
-    .intro-divider {
-        width: 100%;
-    }
-}
 
 .network-name {
     text-transform: uppercase;
@@ -141,8 +108,8 @@
     }
 
     ul.banner-social-buttons > li {
-        display: block;
-        margin-bottom: 20px;
+        display: inline-block;
+        margin-bottom: 10px;
         padding: 0;
     }
 
@@ -546,7 +513,6 @@ h3 {
   }
   .content-section-a, .content-section-b{
     max-height:95vh;
-    top: 50px;
     position: relative;
     padding-top: 20px;
     padding-bottom: 20px;
@@ -702,8 +668,9 @@ a.btn-success{
 }
 .featured-debate-container{
     background-color: #fff;
-/*    min-height: 300px;
-*/    padding-left: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 70px;
     padding-top: 5px;
     border: 1px solid gray;
 }
@@ -733,4 +700,66 @@ a.btn-success{
 .btn-twitter{
     background-color: #1b95e0 !important;
     color: #fff !important;
+}
+.debate-preview-container{
+    max-height: 30vh;
+    padding-bottom: 10px;
+    overflow: hidden;
+}
+.preview-cta{
+    margin-top:10px;
+}
+.display-name{
+    color: #4285F4;
+    font-style: bold;
+}
+
+@media(max-width:767px) {
+    .intro-message {
+        padding-bottom: 0%;
+        font-size: 3em;
+    }
+    .intro-tagline{
+        font-size: 1.5em;
+    }
+    .intro-tagline2{
+        display:none;
+    }
+    .bottom-cta{
+    margin-left: 15vw;
+    width: 60vw;
+    }
+
+    .intro-message > h1 {
+        font-size: 3em;
+    }
+
+    ul.intro-social-buttons > li {
+        display: block;
+        margin-bottom: 20px;
+        padding: 0;
+    }
+
+    ul.intro-social-buttons > li:last-child {
+        margin-bottom: 0;
+    }
+
+    .intro-divider {
+        width: 100%;
+    }
+    .affirmative-details{
+        border-right: none;
+    }
+    .featured-debate-container{
+        padding-bottom: 5px;
+    }
+    .debate-preview-container{
+    max-height: 80vh;
+    padding-bottom: 10px;
+    overflow: hidden;
+    }
+    .preview-cta{
+    margin-bottom:10px;
+    margin-top: 0px;
+    }
 }

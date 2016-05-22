@@ -183,13 +183,24 @@ h3.alert-danger{
   .navbar-nav li a {
     color: white !important;
   }
-  a.btn{
+  a.btn-default{
     font-size: 1em;
+  }
+  a.btn-lg{
+    font-size: 1.3em;
   }
   .small-buffer{
       padding-top:80px;
   }
   .cross-ex-messages {
     padding-left: 0px;
+  }
+  list-inline > li {
+    display: inline-block;
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+  .footer-link {
+    font-size: 14px;
   }
 }
