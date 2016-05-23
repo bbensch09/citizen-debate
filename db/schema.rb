@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160422182316) do
+ActiveRecord::Schema.define(version: 20160523223657) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -94,13 +94,15 @@ ActiveRecord::Schema.define(version: 20160422182316) do
     t.integer  "creator_id"
     t.integer  "challenger_id"
     t.string   "challenger_email"
-    t.boolean  "challenge_accepted", default: false
+    t.boolean  "challenge_accepted",    default: false
     t.string   "status"
     t.datetime "start_time"
     t.integer  "topic_id"
-    t.datetime "created_at",                         null: false
-    t.datetime "updated_at",                         null: false
-    t.boolean  "public_challenge",   default: false
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
+    t.boolean  "public_challenge",      default: false
+    t.string   "resolution"
+    t.boolean  "affirmative_confirmed"
   end
 
   create_table "judges", force: :cascade do |t|
@@ -170,6 +172,13 @@ ActiveRecord::Schema.define(version: 20160422182316) do
     t.string   "status"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+  end
+
+  create_table "topic_tags", force: :cascade do |t|
+    t.integer  "debate_id"
+    t.integer  "topic_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "topic_votes", force: :cascade do |t|

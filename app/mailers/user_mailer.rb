@@ -69,9 +69,9 @@ class UserMailer < ApplicationMailer
       @opening_statement = statement
       @debate = @opening_statement.debate
       if @opening_statement.author.id == @opening_statement.debate.creator.id
-        @recipient = @opening_statement.debate.challenger
+        @recipient = @opening_statement.author
       end
-      if @opening_statement.author.id == @opening_statement.debate.challenger.id
+      if @opening_statement.debate.challenger && @opening_statement.author.id == @opening_statement.debate.challenger.id
         @recipient = @opening_statement.debate.creator
       end
       if @opening_statement.author.email == "citizen.debate.16@gmail.com"

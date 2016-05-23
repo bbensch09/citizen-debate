@@ -13,28 +13,29 @@
   <% end %>
 
 
-  <div class="field">
-    <h2> Select debate topic </h2>
-    <%= f.collection_select :topic_id, Topic.all, :id, :title %>
-  </div>
-
+  <div class="field col-lg-12 col-sm-6">
+  <h1 class="center">Initiate a Debate</h1>
+    <h2>
+    Resolved: <%= f.text_field :resolution, placeholder: "America would be better off if...", class: "new-resolution-field" %>
+    </h2>
+<!--     <h3 class="col-lg-12 col-sm-6">
+      Optional: tag your debate with relevant topic areas.
+      <%= f.collection_select :topic_id, Topic.all, :id, :title %>
   <%= link_to 'Create a new topic', new_topic_path, :class=>"btn btn-default" %> <br> <br>
+    </h3> -->
+  </div>
 
-
-  <div class="field">
-      <h2>Select your position</h2>
+  <div class="field col-lg-12 col-sm-6">
+      <h2>Your position</h2>
       <li class="voting-options">
-        <%= f.label :affirmative_id, "I support the affirmative.", :class=> "voting-options" %>
-        <%= f.radio_button :affirmative_id, current_user.debater.id %>
-      </li>
-      <li class="voting-options">
-        <%= f.label :negative_id, "I support the negative.", :class=> "voting-options" %>
-        <%= f.radio_button :negative_id, current_user.debater.id %>
+        <%= f.check_box :affirmative_confirmed, :checked => true  %>
+        <%= f.label :affirmative_confirmed, "I support the affirmative", :class=> "voting-options" %>
+        <smaller> (Please draft your resolution such that you are in favor of the affirmative.) </smaller>
       </li>
   </div>
 
-<h2><em>Three ways to select your opponent</em></h2>
-  <div class="field">
+  <div class="field col-lg-12 col-sm-6">
+    <h2><em>Three ways to select your opponent</em></h2>
     <div class="col-lg-4 col-sm-6">
       <%= f.label :challenger_id, "Challenge an existing user" %> <br>
       <%= f.collection_select :challenger_id, Profile.all, :user_id, :display_name, :include_blank => true %>
@@ -53,6 +54,7 @@
   <div class="hidden">
     <%= f.text_field :status, value: "Pending" %>
     <%= f.text_field :creator_id, value: current_user.id %>
+    <%= f.text_field :affirmative_id, value: current_user.debater.id %>
   </div>
   <div class="col-lg-12 col-sm-6 center actions">
     <%= f.submit "Issue debate challenge", :class => "btn btn-lg btn-success" %>

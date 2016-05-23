@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  debate_id: 1
+  topic_id: 1
+
+two:
+  debate_id: 1
+  topic_id: 1

@@ -101,6 +101,9 @@ class Debate < ActiveRecord::Base
         if challenger_types_count != 1
             errors.add(:status, "You must only select one challenger type, please refresh and try again.")
         end
+        if self.affirmative_confirmed.nil?
+            errors.add(:status, "The debate creator must argue for the affirmative. Please revise your resolution as appropriate.")
+        end
     end
 
     def challenge_type
@@ -121,7 +124,7 @@ class Debate < ActiveRecord::Base
     end
 
     def title
-        self.topic.title
+        self.resolution
     end
 
     def judges

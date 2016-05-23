@@ -7,7 +7,7 @@ class DebatesController < ApplicationController
 
   def skip_to_results
       session[:vote_after] = "admin skip to results"
-      session[:civility_vote] = @debate.topic.title
+      session[:civility_vote] = @debate.title
       redirect_to debate_path
   end
 
@@ -212,6 +212,6 @@ class DebatesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def debate_params
-      params.require(:debate).permit(:affirmative_id, :negative_id, :creator_id, :challenger_id, :challenger_email, :status, :start_date, :start_time, :topic_id, :public_challenge)
+      params.require(:debate).permit(:affirmative_id, :negative_id, :creator_id, :challenger_id, :challenger_email, :status, :start_date, :start_time, :topic_id, :public_challenge, :resolution, :affirmative_confirmed)
     end
 end
