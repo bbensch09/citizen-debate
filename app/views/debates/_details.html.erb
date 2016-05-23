@@ -9,6 +9,9 @@
     <h3>
     <%= image_tag @debate.affirmative_debater.user.profile.avatar.url(:thumb), alt:"avatar-img", class:"img-debate-details" %>
      <strong><%= @debate.affirmative_debater.user.profile.display_name %></strong>
+     <% if @debate.winner == @debate.affirmative_debater && session[:vote_after] %>
+        <span class="glyphicon glyphicon-ok highlight-winner-details"> Winner </span>
+      <% end %>
     </h3>
     <br>
     <!-- <h4>
@@ -27,6 +30,9 @@
     <h3>
     <%= image_tag @debate.negative_debater.user.profile.avatar.url(:thumb), alt:"avatar-img", class:"img-debate-details" %>
      <strong><%= @debate.negative_debater.user.profile.display_name %></strong>
+     <% if @debate.winner == @debate.negative_debater && session[:vote_after] %>
+        <span class="glyphicon glyphicon-ok highlight-winner-details"> Winner </span>
+      <% end %>
     </h3>
     <br>
    <!--  <h4>

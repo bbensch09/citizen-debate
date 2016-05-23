@@ -67,13 +67,13 @@ class User < ActiveRecord::Base
     return before_debate_ids
   end
 
-  def eligible_after_votes
-    eligible_after_votes = DebateVote.where("user_id = ? AND vote_after is null",self.id)
-    eligible_debate_ids = []
-    eligible_after_votes.each do |vote|
-      eligible_debate_ids << vote.debate_id
+  def previous_votes
+    user_debate_votes = DebateVote.where("user_id = ?",self.id)
+    previous_debate_ids = []
+    user_debate_votes.each do |vote|
+      previous_debate_ids << vote.debate_id
     end
-    return eligible_debate_ids
+    return previous_debate_ids
   end
 
   def eligible_civility_votes

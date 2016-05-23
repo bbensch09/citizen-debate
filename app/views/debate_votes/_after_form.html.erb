@@ -14,12 +14,13 @@
                   </div>
                 <% end %>
             <div class="hidden">
-                <%= f1.label :user_id %><br>
-                <%= f1.label :debate_id %><br>
+                <% if current_user %>
+                <%= f1.number_field :user_id, value: current_user.id %><br>
+                <% end %>
                 <%= f1.number_field :debate_id, value: @debate.id %>
                 <%= f1.text_field :vote_after, value: "I agree" %>
             </div>
-            <%= f1.submit "I agree", :class=>"actions btn btn-lg btn-success" %>
+            <%= f1.submit "In Favor", :class=>"actions btn btn-lg btn-success" %>
           <% end %>
     </div>
       <div class="col-lg-4 col-sm-6 voting-options">
@@ -35,12 +36,13 @@
                   </div>
                 <% end %>
             <div class="hidden">
-                <%= f2.label :user_id %><br>
-                <%= f2.label :debate_id %><br>
+                <% if current_user %>
+                <%= f2.number_field :user_id, value: current_user.id %><br>
+                <% end %>
                 <%= f2.number_field :debate_id, value: @debate.id %>
-                <%= f2.text_field :vote_after, value: "I agree" %>
+                <%= f2.text_field :vote_after, value: "I am not sure" %>
             </div>
-            <%= f2.submit "I am not sure", :class=>"actions btn btn-lg btn-warning" %>
+            <%= f2.submit "Undecided", :class=>"actions btn btn-lg btn-warning" %>
           <% end %>
     </div>
       <div class="col-lg-4 col-sm-6 voting-options">
@@ -56,12 +58,13 @@
                   </div>
                 <% end %>
             <div class="hidden">
-                <%= f3.label :user_id %><br>
-                <%= f3.label :debate_id %><br>
+                <% if current_user %>
+                <%= f3.number_field :user_id, value: current_user.id %><br>
+                <% end %>
                 <%= f3.number_field :debate_id, value: @debate.id %>
-                <%= f3.text_field :vote_after, value: "I agree" %>
+                <%= f3.text_field :vote_after, value: "I disagree" %>
             </div>
-            <%= f3.submit "I disagree", :class=>"actions btn btn-lg btn-danger" %>
+            <%= f3.submit "Against", :class=>"actions btn btn-lg btn-danger" %>
           <% end %>
     </div>
     </ul>
