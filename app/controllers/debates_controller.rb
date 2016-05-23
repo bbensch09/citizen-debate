@@ -97,11 +97,7 @@ class DebatesController < ApplicationController
     @messages = @debate.cross_ex_messages
     @opening_statement = OpeningStatement.new
     @closing_statement = ClosingStatement.new
-    if current_user && current_user.eligible_after_votes.include?(@debate.id)
-        @debate_vote = DebateVote.where("debate_id =? AND user_id = ?",@debate.id,current_user.id).first
-      else
-        @debate_vote = DebateVote.new
-    end
+    @debate_vote = DebateVote.new
     @civility_vote = CivilityVote.new
 
     render 'show_debate'
