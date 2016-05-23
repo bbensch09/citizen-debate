@@ -83,14 +83,85 @@
           <li>  <a class="signed-in-nav" href='/profiles/new' >Complete your profile</a> </li>
           <li> <%= link_to "Log out", destroy_user_session_path, :method => :delete %></li>
           <%else%>
-          <li><%= link_to "Login", user_omniauth_authorize_path(:facebook), class: "fa fa-facebook" %></li>
-          <li> <%= link_to 'Sign up or login', new_user_session_path %></li>
-          <!-- <li> <%= link_to 'Sign up', new_user_registration_path %></li> -->
+          <!-- <li><%= link_to "Log In", user_omniauth_authorize_path(:facebook), class: "fa fa-facebook" %></li>
+          <li> <%= link_to 'Register', new_user_registration_path %></li>
+          <li> <%= link_to 'Log In', new_user_session_path %></li> -->
+          <li><a href="#" class="nav-links" data-toggle="modal" data-target="#registerModal">Register</a></li>
+          <li> <a href="#" class="nav-links" data-toggle="modal" data-target="#loginModal">Log In</a></li>
           <%end%>
         </ul>
       </div><!-- /.navbar-collapse -->
     </div><!-- /.container-nav -->
   </nav>
+
+<!-- Modal -->
+<div class="modal" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Login with either Facebook, or your email and password.</h4>
+      </div>
+      <div class="modal-body">
+          <h3 class="center">
+            <%= link_to " Facebook Log In", user_omniauth_authorize_path(:facebook), class: "btn btn-default fa fa-facebook" %>
+          </h3>
+          <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+            <div class="field center">
+              <%= f.email_field :email, placeholder: "Email", autofocus: true %>
+            </div>
+            <div class="field center">
+              <%= f.password_field :password, placeholder: "password", autocomplete: "off" %>
+            </div>
+            <div class="actions center">
+              <%= f.submit "Log in", class: "btn btn-success" %>
+            <% end %>
+            </div>
+            <div class="center">
+              <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+                <%= link_to "Forgot your password?", new_password_path(resource_name) %><br />
+              <% end -%>
+              <a href="#" data-toggle="modal" data-target="#registerModal">Register your Account</a>
+            </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Registration Modal -->
+<div class="modal" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="registerModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Register with Facebook, or with an email and password.</h4>
+      </div>
+      <div class="modal-body">
+          <h3 class="center">
+            <%= link_to " Register with Facebook", user_omniauth_authorize_path(:facebook), class: "btn btn-default fa fa-facebook" %>
+          </h3>
+          <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+            <%= devise_error_messages! %>
+            <div class="field center">
+              <%= f.email_field :email, placeholder: "Email", autofocus: true %>
+            </div>
+            <div class="field center">
+              <% if @minimum_password_length %>
+              <em>(<%= @minimum_password_length %> characters minimum)</em>
+              <% end %>
+              <%= f.password_field :password, placeholder: "password", autocomplete: "off" %>
+            </div>
+            <div class="field center">
+              <%= f.password_field :password_confirmation,  placeholder: "confirm password", autocomplete: "off" %>
+            </div>
+            <br>
+            <div class="actions center">
+              <%= f.submit "Register", class: "btn btn-success"%>
+            </div>
+          <% end %>
+      </div>
+    </div>
+  </div>
+</div>
 <div id="flash-notice-overlays">
     <% if notice || alert %>
       <div class="alert alert-warning" role="alert">

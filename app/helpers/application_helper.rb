@@ -1,4 +1,17 @@
 module ApplicationHelper
+
+  def resource_name
+    :user
+  end
+
+  def resource
+    @resource ||= User.new
+  end
+
+  def devise_mapping
+    @devise_mapping ||= Devise.mappings[:user]
+  end
+
   def title(title = nil)
     if title.present?
       content_for :title, title
@@ -8,7 +21,7 @@ module ApplicationHelper
   end
 end
 
-# HACKY SHIT
+# HACKY SHIT for Scheduler
 module ActionView
   module Helpers
     class FormBuilder
