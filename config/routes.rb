@@ -24,6 +24,7 @@ Rails.application.routes.draw do
       get :schedule
       get :notify_followers
       get :skip_to_results
+      get :share_challenge
     end
   end
   resources :available_times do

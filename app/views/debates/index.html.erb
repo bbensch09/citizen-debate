@@ -4,7 +4,7 @@
 
 <h1 class="center debate-list-header">Pending Debate Challenges</h1>
 
-<% if current_user && current_user.profile %>
+<% if current_user || current_user.nil? %>
 
 <%= link_to 'Initiate a Debate', new_debate_path, class: "btn btn-default" %>
     <% if @pending_debates.count >= 1 || @debates_to_schedule.count >=1 || @outstanding_challenges.count >= 1%>

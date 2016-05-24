@@ -87,7 +87,7 @@
           <li> <%= link_to 'Register', new_user_registration_path %></li>
           <li> <%= link_to 'Log In', new_user_session_path %></li> -->
           <li><a href="#" class="nav-links" data-toggle="modal" data-target="#registerModal">Register</a></li>
-          <li> <a href="#" class="nav-links" data-toggle="modal" data-target="#loginModal">Log In</a></li>
+          <li><a href="#" class="nav-links" data-toggle="modal" data-target="#loginModal">Log In</a></li>
           <%end%>
         </ul>
       </div><!-- /.navbar-collapse -->
@@ -121,7 +121,7 @@
               <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
                 <%= link_to "Forgot your password?", new_password_path(resource_name) %><br />
               <% end -%>
-              <a href="#" data-toggle="modal" data-target="#registerModal">Register your Account</a>
+              <a href="#" data-toggle="modal" data-target="#registerModal">New user? First register your Account</a>
             </div>
       </div>
     </div>

@@ -1,5 +1,5 @@
 class DebatesController < ApplicationController
-  before_action :set_debate, only: [:show, :edit, :update, :destroy, :accept_challenge, :schedule, :notify_followers, :share_times_with_opponent, :skip_to_results]
+  before_action :set_debate, only: [:show, :edit, :update, :destroy, :accept_challenge, :schedule, :notify_followers, :share_times_with_opponent, :skip_to_results, :share_challenge]
   before_action :authenticate_user!, except: [:show, :index, :launch]
   before_action :confirm_new_challengers, only: [:index]
   before_action :authenticate_admin, only: [:notify_followers]
@@ -68,18 +68,21 @@ class DebatesController < ApplicationController
   def index
     @completed_debates = Debate.where("status = 'Completed' AND id != 1")
     @active_debates = Debate.where("status = 'Active'")
-    if current_user && current_user.debater
+    if current_user
       current_user_public_challenges = Debate.where("public_challenge=true AND creator_id =?",current_user.id)
-      all_pending_public_challenges = Debate.where("challenge_accepted = false AND public_challenge=true")
       current_user_pending_challenges = Debate.where("challenger_id = ? OR challenger_email=?",current_user.id,current_user.email)
-      @pending_debates = all_pending_public_challenges + current_user_pending_challenges - current_user_public_challenges - @active_debates - @completed_debates
       current_user_debates = current_user.debater.debates
-      all_debates = Debate.where("status != 'Scheduling'")
       @outstanding_challenges = Debate.where("creator_id=? AND challenge_accepted = false",current_user.id)
-      @debates_to_schedule = current_user_debates - all_debates
     else
-      @pending_debates = []
+      current_user_public_challenges = []
+      current_user_pending_challenges = []
+      current_user_debates = []
+      @outstanding_challenges = []
     end
+      all_pending_public_challenges = Debate.where("challenge_accepted = false AND public_challenge=true")
+      @pending_debates = all_pending_public_challenges + current_user_pending_challenges - current_user_public_challenges - @active_debates - @completed_debates
+      all_debates = Debate.where("status != 'Scheduling'")
+      @debates_to_schedule = current_user_debates - all_debates
     if current_user && current_user.email == "citizen.debate.16@gmail.com"
       @all_debates = Debate.all
     end
@@ -99,7 +102,6 @@ class DebatesController < ApplicationController
     @closing_statement = ClosingStatement.new
     @debate_vote = DebateVote.new
     @civility_vote = CivilityVote.new
-
     render 'show_debate'
   end
 
@@ -129,8 +131,8 @@ class DebatesController < ApplicationController
               format.html { redirect_to @debate, notice: 'Your debate challenge has been created and your challenger has been invited to join Citizen Debate and accept your challenge.' }
               format.json { render :show_debate, status: :created, location: @debate }
             else
-              flash[:show_modal] = true
-              flash[:modal_to_show] = '/debates/share_challenge'
+              # flash[:show_modal] = true
+              # flash[:modal_to_show] = '/debates/share_challenge'
               format.html { redirect_to @debate, notice: 'Your debate challenge has successfully been created. You will be notified when another user accepts your public challenge.' }
               format.json { render :show_debate, status: :created, location: @debate }
             end
@@ -153,6 +155,7 @@ class DebatesController < ApplicationController
 
   def accept_challenge
     puts "logging challenge accepted action"
+    confirm_debater_exists
     @debate.challenge_accepted = true
     @debate.challenger_id = current_user.id
     if @debate.affirmative_id
@@ -166,8 +169,15 @@ class DebatesController < ApplicationController
     @debate.status = "Scheduling"
     @debate.save
     UserMailer.challenge_accepted(@debate).deliver_now
-    puts "opponent has been sent notification of statement submission."
-    redirect_to schedule_debate_path(@debate), notice: "You've accepted the debate challenge. Now please propose a few times that you are available."
+    # redirect_to schedule_debate_path(@debate), notice: "You've accepted the debate challenge. Now please propose a few times that you are available for the live cross-examination round."
+    redirect_to @debate, notice: "You've accepted the debate challenge. Please draft your opening statement below and submit your response within 8 hours."
+  end
+
+  def share_challenge
+      puts "accessing share challenge method"
+      flash[:show_modal] = true
+      flash[:modal_to_show] = '/debates/share_challenge'
+      render 'show_debate'
   end
 
   def schedule

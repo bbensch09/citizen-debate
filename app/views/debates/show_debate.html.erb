@@ -1,4 +1,6 @@
 <% title @debate.title %>
+
+
 <div class="debate-container">
 <% if current_user && current_user.email == "citizen.debate.16@gmail.com" %>
     <%= link_to 'Admin: skip to results', skip_to_results_debate_path(@debate),  method: :get,  class: "btn btn-default" %>
@@ -12,6 +14,11 @@
 
 <% if @debate.rounds.last.round_number == 1 || @debate.status == 'Completed' || @debate.status == 'Voting period is now over.' %>
 <%= render 'details' %>
+<% end %>
+
+Current user: <%= current_user %> <br>
+<% if current_user %>
+Debater exists? <%= current_user.debater.present? %>
 <% end %>
 
 <!-- BEGIN LOGIC FOR CURRENT DEBATERS -->
@@ -155,7 +162,7 @@
           <%= render partial: 'closing' %>
         <% end %>
 
-        <% if @debate.status == "Completed" && (current_user && current_user.previous_votes.exclude?(@debate.id) && @debate.participants.exclude?(current_user.id)) || (current_user.nil? && session[:vote_after].nil?) %>
+        <% if @debate.status == "Completed" && (current_user && current_user.previous_votes.exclude?(@debate.id) && @debate.participants.exclude?(current_user.id)) || (current_user.nil? && session[:vote_before] && session[:vote_after].nil?) %>
         <div class="voting-container">
           <%= render partial: 'debate_votes/after_form' %>
         </div>
