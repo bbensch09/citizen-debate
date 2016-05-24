@@ -16,9 +16,10 @@ class Debate < ActiveRecord::Base
     has_many :closing_statements
     has_many :available_times
     validate :confirm_challenge_inputs, on: [:create]
+    validates :resolution, presence: true
 
     def to_param
-        [id, title.parameterize].join("-")
+        [id, resolution.parameterize].join("-")
     end
 
     def before_agree
@@ -124,7 +125,11 @@ class Debate < ActiveRecord::Base
     end
 
     def title
-        self.resolution
+        if self.resolution
+            return self.resolution
+        else
+            "no_title_found"
+        end
     end
 
     def judges
