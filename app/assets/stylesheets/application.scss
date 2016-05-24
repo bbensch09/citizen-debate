@@ -34,12 +34,18 @@ $black: #0F0F0D;
   box-sizing: border-box;
   /*Cannot define a font-family within umbrella CSS as it will overwrite any font-awesome or glyphicon abilities*/
   /*font-family: 'Raleway', sans-serif !important;*/
-  font-family: 'Chronicle SSm',serif;
+}
+
+p, ol, ul, td {
+    font-size: 16px;
+    line-height: 18px;
+    /*font-family: 'Open Sans' !important;*/
+    font-family: "RobotoDraft","Roboto",sans-serif;
 }
 
 h1,h2,h3,h4,p,li,div{
-  /*color: #4285F4;*/
-  font-family: 'Raleway', sans-serif !important;
+    /*font-family: 'Open Sans' !important;*/
+    font-family: "RobotoDraft","Roboto",sans-serif;
 }
 p span {
     font-size: 18px !important;
@@ -175,6 +181,12 @@ h3.alert-danger{
 .small-buffer{
   padding-top:10px;
 }
+.fb-login-btn{
+  width:300px;
+}
+.new-session-buffer{
+  margin-top: 50px;
+}
 
 @media screen and (max-width:767px) {
   .navbar-collapse{
@@ -207,4 +219,8 @@ h3.alert-danger{
     width:90vw;
     margin-left:5vw;
   }
+  .fb-login-btn{
+  width:250px;
+  }
+
 }

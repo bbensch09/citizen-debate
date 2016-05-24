@@ -17,11 +17,11 @@
 <!-- BEGIN LOGIC FOR CURRENT DEBATERS -->
 <% if current_user && (@debate.status == "Active" || @debate.status == "Pending") && (current_user == @debate.affirmative_debater.user || current_user == @debate.challenger  || current_user.email == "citizen.debate.16@gmail.com" ) %>
 <div class="live-debate-container">
-  <small class="text-muted">Note: if you hear a notification sound but do not see any new messages, please simply refresh the page.</small>
 
     <!-- BEGIN REAL-TIME CONTAINER FOR ROUND 2 -->
     <div class="round2" >
       <% if @debate.rounds.last.round_number == 2 && @debate.rounds.last.status != "Completed" %>
+      <small class="text-muted">Note: if you hear a notification sound but do not see any new messages, please simply refresh the page.</small>
       <div class="panel panel-default" id="comments">
           <div class="panel-body">
             <h3><%= @debate.rounds.last.name %>
@@ -35,7 +35,7 @@
           </div>
       </div>
           <%= render 'short_response' %>
-          <%= render 'finish_round' %>
+            <%= render 'finish_round' %>
       <% end %>
     </div>
     <!-- END REAL-TIME CONTAINTER -->
@@ -50,7 +50,9 @@
 
                   <%= raw(@debate.opening_affirmative.content) %>
                   <%= link_to 'Edit your statement', edit_opening_statement_path(@debate.opening_affirmative.id) %>
-                  <%= render 'finish_round' %>
+                  <% if @debate.opening_negative %>
+                    <%= render 'finish_round' %>
+                  <% end %>
                 <% else %>
                   <%= render 'compose_opening' %>
               <% end %>
@@ -63,7 +65,9 @@
 
                   <%= raw(@debate.opening_negative.content) %>
                   <%= link_to 'Edit your statement', edit_opening_statement_path(@debate.opening_negative.id) %>
-                  <%= render 'finish_round' %>
+                  <% if @debate.opening_negative %>
+                      <%= render 'finish_round' %>
+                  <% end %>
                 <% else %>
                   <%= render 'compose_opening' %>
               <% end %>
