@@ -5,12 +5,9 @@
         - id
         - user_id
         - display_name
-        - rank
-        - city
-        - profile_bonus
-        - debate_points
-        - civility_points
         - points
+        - nps
+        - snippets
 
   User:
     :options:
@@ -18,3 +15,13 @@
         - id
         - email
         - rank
+  Debate:
+    :options:
+      :fields:
+        - id
+        - affirmative_id
+        - negative_id
+        - creator_id
+        - challenger_id
+        - status
+        - resolution
