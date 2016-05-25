@@ -3,8 +3,12 @@
     <span class="resolved">RESOLVED:</span> <%= @debate.title %>
   </h1>
 
-  <div class="col-lg-6 col-md-3 affirmative-details">
-    <h4>Supporting the affirmative:</h4>
+  <% if @debate.liberal_side == @debate.creator %>
+    <div class="col-lg-6 col-md-3 liberal-side">
+    <% else %>
+    <div class="col-lg-6 col-md-3 conservative-side">
+  <% end %>
+    <h4>In favor of the resolution:</h4>
     <% if @debate.affirmative_debater %>
     <h3>
     <%= image_tag @debate.affirmative_debater.user.profile.avatar.url(:thumb), alt:"avatar-img", class:"img-debate-details" %>
@@ -14,20 +18,21 @@
       <% end %>
     </h3>
     <br>
-    <!-- <h4>
-        <b> Bio</b>: <%=@debate.affirmative_debater.user.profile.about_me %>
-    </h4> -->
-<!--
+
     <% elsif @debate.public_challenge == true || @debate.challenger_id == current_user.id || @debate.challenger_email == current_user.email %>
         <%= link_to 'Accept this challenge', accept_challenge_debate_path(@debate),  method: :post,  class: "btn btn-success" %>
     <% else %>
     <h4>TBD - Awaiting challenge acceptance</h4>
     <% end %>
-     -->
   </div>
 
-  <div class="col-lg-6 col-md-3 ">
-    <h4>Supporting the negative:</h4>
+  <% if @debate.liberal_side == @debate.challenger %>
+    <div class="col-lg-6 col-md-3 liberal-side">
+    <% elsif @debate.challenger %>
+    <div class="col-lg-6 col-md-3 conservative-side">
+    <% else %>
+    <div class="col-lg-6 col-md-3">
+  <% end %>    <h4>Against the resolution:</h4>
     <% if @debate.negative_debater %>
     <h3>
     <%= image_tag @debate.negative_debater.user.profile.avatar.url(:thumb), alt:"avatar-img", class:"img-debate-details" %>
@@ -41,9 +46,9 @@
         <b> Bio </b>: <%=@debate.negative_debater.user.profile.about_me %>
     </h4> -->
     <% elsif current_user == @debate.creator %>
-        <%= link_to 'Share this debate', share_challenge_debate_path(@debate), class: "btn btn-success" %>
+        <a href="#" class="btn btn-success" data-toggle="modal" data-target="#shareModal">Share this debate</a>
     <% elsif current_user.nil? %>
-        <a href="#" class="btn btn-default" data-toggle="modal" data-target="#loginModal">Want to join this debate?</a>
+        <a href="#" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#loginModal">Ready to join this debate?</a>
     <% elsif (@debate.public_challenge == true && @debate.creator_id != current_user.id) || @debate.challenger_id == current_user.id || @debate.challenger_email == current_user.email %>
         <%= link_to 'Accept this challenge', accept_challenge_debate_path(@debate),  method: :post,  class: "btn btn-success" %>
     <% else %>

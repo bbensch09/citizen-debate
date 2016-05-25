@@ -42,7 +42,7 @@ class User < ActiveRecord::Base
       age: " ",
       about_me: " ",
       display_name: "new_user_#{user_id}",
-      political_affiliation: ""
+      political_affiliation: "Moderate"
       })
   end
 

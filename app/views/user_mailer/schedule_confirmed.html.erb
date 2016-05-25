@@ -5,10 +5,11 @@
 </head>
 <body>
   <p>
-  Congratulations, you and your opponent have confirmed the schedule for your upcoming debate.
+  Congratulations, you and your opponent have confirmed the schedule for your upcoming debate. At your agreed upon time, please login using the link below.
   </p>
 
-  <h3><b> Debate topic: </b> <%=@debate.title%> </h3>
+  <h3> Cross-examination round:<b> <%= link_to @debate.title, debate_path(@debate) %> </h3>
+
   <h4><b> Start time: </b> <%=@debate.start_time.strftime("%a %b %d, %Y at %I:%M%p") %> </h4>
 
   <ul>
@@ -22,7 +23,7 @@
 
   <h4>What happens next?</h4>
   <p>
-    Your debate has now begun. At the start time above, you will begin the live cross-examination period. Both participants must submit their opening statements at least 1 hour in advance of the cross-examination start time.
+    The cross-examination round can last up to 20 minutes.
   </p>
 
   <p>

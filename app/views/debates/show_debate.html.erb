@@ -5,6 +5,7 @@
 <% if current_user && current_user.email == "citizen.debate.16@gmail.com" %>
     <%= link_to 'Admin: skip to results', skip_to_results_debate_path(@debate),  method: :get,  class: "btn btn-default" %>
 <% end %>
+<%= render partial: 'share_challenge' %>
 
 <% if (@debate.status == 'Completed' || @debate.status == 'Voting period is now over.') && (session[:civility_vote] == @debate.title || (current_user && current_user.eligible_civility_votes.exclude?(@debate.id)) )%>
       <div class="results-container">
@@ -36,7 +37,6 @@
           </div>
       </div>
           <%= render 'short_response' %>
-            <%= render 'finish_round' %>
       <% end %>
     </div>
     <!-- END REAL-TIME CONTAINTER -->
@@ -48,11 +48,13 @@
           <% if current_user.id == @debate.affirmative_debater.user_id %>
 
               <% if @debate.opening_affirmative %>
+                <h4 class="center">
                   <%= link_to 'Edit your statement', edit_opening_statement_path(@debate.opening_affirmative.id), class: "btn btn-default"  %>
-                  <%= render partial: 'opening' %>
                   <% if @debate.opening_negative %>
                     <%= render 'finish_round' %>
                   <% end %>
+                </h4>
+                  <%= render partial: 'opening' %>
                 <% else %>
                   <%= render 'compose_opening' %>
               <% end %>
@@ -60,11 +62,13 @@
 
           <% if @debate.negative_debater && current_user.id == @debate.negative_debater.user_id || current_user.email == "citizen.debate.16@gmail.com" %>
               <% if @debate.opening_negative %>
-                  <%= link_to 'Edit your statement', edit_opening_statement_path(@debate.opening_negative.id), class: "btn btn-default" %>
+                  <h4 class="center">
+                    <%= link_to 'Edit your statement', edit_opening_statement_path(@debate.opening_negative.id), class: "btn btn-default" %>
+                    <% if @debate.opening_negative %>
+                        <%= link_to 'Submit opening statement', submit_negative_opening_debate_path(@debate ), class: "btn btn-primary" %>
+                    <% end %>
+                  </h4>
                   <%= render partial: 'opening' %>
-                  <% if @debate.opening_negative %>
-                      <br> <%= link_to 'Submit opening statement', submit_negative_opening_debate_path(@debate ), class: "btn btn-default" %>
-                  <% end %>
                 <% else %>
                   <%= render 'compose_opening' %>
               <% end %>
@@ -86,9 +90,13 @@
           <% if current_user.id == @debate.affirmative_debater.user_id || current_user.email == "citizen.debate.16@gmail.com"%>
 
               <% if @debate.closing_affirmative %>
+                <h4 class="center">
                   <%= link_to 'Edit your statement', edit_closing_statement_path(@debate.closing_affirmative.id), class: "btn btn-default" %>
+                  <% if @debate.opening_negative %>
+                    <%= render 'finish_final_round' %>
+                  <% end %>
+                </h4>
                   <%= render partial: 'preview_closing' %>
-                  <%= render 'finish_round' %>
                 <% else %>
                   <%= render 'compose_closing' %>
               <% end %>
@@ -98,9 +106,13 @@
           <% if current_user.id == @debate.negative_debater.user_id || current_user.email == "citizen.debate.16@gmail.com" %>
 
               <% if @debate.closing_negative %>
-                  <%= link_to 'Edit your statement', edit_closing_statement_path(@debate.closing_negative.id), class: "btn btn-default" %>
+                <h4 class="center">
+                  <%= link_to 'Edit your statement', edit_closing_statement_path(@debate.closing_affirmative.id), class: "btn btn-default" %>
+                  <% if @debate.opening_negative %>
+                    <%= render 'finish_final_round' %>
+                  <% end %>
+                </h4>
                   <%= render partial: 'preview_closing' %>
-                  <%= render 'finish_round' %>
                 <% else %>
                   <%= render 'compose_closing' %>
               <% end %>
@@ -149,7 +161,7 @@
         </div>
   <% else %>
 
-        <% if @debate.opening_affirmative && current_user.id != @debate.affirmative_debater.user_id %>
+        <% if @debate.opening_affirmative && current_user != @debate.affirmative_debater.user %>
           <%= render partial: 'opening' %>
         <% end %>
         <% if @debate.rounds.last.round_number >= 2 %>

@@ -4,9 +4,9 @@
   <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
 </head>
 <body>
-  <h3>Hello <%= @recipient.profile.display_name %>,</h3>
+  <h3>Hello,</h3>
   <p>
-  Your opponent has just submitted their opening statement. As a reminder, your cross-examination round is scheduled to begin at DATE_HERE, and your statement must be submitted at least one hour prior.
+  A debater has just submitted or updated their opening statement.
   </p>
   <p>
   You will be able to read your opponent's statement as soon as you submit your own opening statement (in case you haven't already).
@@ -16,7 +16,7 @@
     To enter your statement now or view your opponent's statement, please click below to access your debate.
    <ul>
      <li>
-        <%= link_to @debate.title, debate_path(@debate) %>n
+        <%= link_to @debate.title, debate_path(@debate) %>
      </li>
    </ul>
   </p>

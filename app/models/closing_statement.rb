@@ -4,7 +4,7 @@ class ClosingStatement < ActiveRecord::Base
   belongs_to :author, class_name: "User", foreign_key: "author_id"
   include ActionView::Helpers::SanitizeHelper
   validate :check_word_count, on: [:update, :create]
-  after_create :send_opponent_notification
+  # after_create :send_opponent_notification
 
   def send_opponent_notification
       @closing_statement = ClosingStatement.last

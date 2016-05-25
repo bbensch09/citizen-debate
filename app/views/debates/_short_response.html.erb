@@ -11,13 +11,26 @@
           </div>
     <h4 class="current-status">
     </h4>
-    <% if current_user.id == @debate.affirmative_debater.user.id %>
-        <%= f.submit 'Submit first question', class: 'btn btn-primary btn-lg btn-cross-ex' %>
-      <% else %>
-        <%= f.submit 'Submit your response', class: 'btn btn-primary btn-lg btn-cross-ex' %>
-    <% end %>
+    <div class="col-lg-4 col-sm-6">
+        <% if current_user.id == @debate.affirmative_debater.user.id %>
+            <%= f.submit 'Submit first question', class: 'btn btn-primary btn-lg btn-cross-ex' %>
+          <% else %>
+            <%= f.submit 'Submit your response', class: 'btn btn-primary btn-lg btn-cross-ex' %>
+        <% end %>
     </div>
   <% end %>
   <div id="opponent-status">
   </div>
+  <div class="col-lg-4 col-lg-offset-4 col-sm-6">
+      <% @current_round = @debate.rounds.last %>
+        <%= form_for(@current_round, :html => {class:'inline-block fl-r'}) do |f2| %>
+        <div class="field hidden">
+          <%= f2.number_field :debate_id, value: @debate.id %>
+          <%= f2.text_field :status, value: "Completed" %>
+        </div>
+        <span class="">
+          <%= f2.submit "End the cross-examination", class: "btn btn-lg btn-success" %>
+        </span>
+      <% end %>
+    </div>
 </div>

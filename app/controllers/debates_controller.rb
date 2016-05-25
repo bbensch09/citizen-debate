@@ -42,7 +42,7 @@ class DebatesController < ApplicationController
 
   def share_times_with_opponent
       UserMailer.proposed_times_added(@debate).deliver_now
-      redirect_to debate_path(@debate), notice: 'Your opponent has been notified of the times you are available.'
+      redirect_to debate_path(@debate), notice: 'Your opponent has been notified. You will receive an email when they have confirmed a time. '
   end
 
   def confirm_new_challengers
@@ -80,8 +80,8 @@ class DebatesController < ApplicationController
       current_user_debates = []
       @outstanding_challenges = []
     end
-      all_pending_public_challenges = Debate.where("challenge_accepted = false AND public_challenge=true")
-      @pending_debates = all_pending_public_challenges + current_user_pending_challenges - current_user_public_challenges - @active_debates - @completed_debates
+      all_pending_challenges = Debate.where("status = 'Pending'")
+      @pending_debates = all_pending_challenges - @active_debates - @completed_debates - @outstanding_challenges
       all_debates = Debate.where("status != 'Scheduling'")
       @debates_to_schedule = current_user_debates - all_debates
     if current_user && current_user.email == "citizen.debate.16@gmail.com"

@@ -24,6 +24,7 @@
             <%= f.cktext_area :content, rows: 4, class: 'ckeditor-content', required: true, :ckeditor => {:language => 'us'} %>
           </div>
     <%= f.submit 'Update statement', class: 'btn btn-primary btn-lg' %>
+    <%= link_to 'Cancel', debate_path(@opening_statement.debate), class: 'btn btn-default' %>
     </div>
   <% end %>
 </div>

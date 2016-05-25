@@ -33,6 +33,21 @@ class Profile < ActiveRecord::Base
     self.user.email
   end
 
+  def liberal_score
+        case self.political_affiliation
+        when 'Very liberal'
+            return 5
+        when 'Lean liberal'
+            return 4
+        when 'Moderate'
+            return 3
+        when 'Lean conservative'
+            return 2
+        when 'Very conservative'
+            return 1
+        end
+  end
+
   def profile_bonus
     profile_bonus = 0
     if self.about_me.length > 75

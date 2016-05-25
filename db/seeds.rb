@@ -27,7 +27,8 @@ User.create!({
       email: "citizen.debate.16@gmail.com",
       password: 'bb4cd109'
     })
-  Profile.create!({
+  Profile.update({
+      id: User.last.id,
       user_id: User.last.id,
       first_name: "Citizen",
       last_name: "Debate",
