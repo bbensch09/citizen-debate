@@ -9,9 +9,9 @@ class Profile < ActiveRecord::Base
 
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
 
-  validates :first_name, :last_name, :city, :state, :age, :about_me, :display_name, :political_affiliation,
-    presence: true #:linkedin_profile,
-  after_create :send_admin_profile_notification
+  validates  :display_name,
+    presence: true #:linkedin_profile, :first_name, :last_name, :city, :state, :age, :about_me, :political_affiliation,
+  after_update :send_admin_profile_notification
 
   def send_admin_profile_notification
       @profile = Profile.last

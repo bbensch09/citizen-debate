@@ -16,9 +16,10 @@ class Debate < ActiveRecord::Base
     has_many :closing_statements
     has_many :available_times
     validate :confirm_challenge_inputs, on: [:create]
+    validates :resolution, presence: true
 
     def to_param
-        [id, title.parameterize].join("-")
+        [id, resolution.parameterize].join("-")
     end
 
     def before_agree
@@ -101,6 +102,9 @@ class Debate < ActiveRecord::Base
         if challenger_types_count != 1
             errors.add(:status, "You must only select one challenger type, please refresh and try again.")
         end
+        if self.affirmative_confirmed.nil?
+            errors.add(:status, "The debate creator must argue for the affirmative. Please revise your resolution as appropriate.")
+        end
     end
 
     def challenge_type
@@ -121,7 +125,11 @@ class Debate < ActiveRecord::Base
     end
 
     def title
-        self.topic.title
+        if self.resolution
+            return self.resolution
+        else
+            "no_title_found"
+        end
     end
 
     def judges
@@ -158,8 +166,14 @@ class Debate < ActiveRecord::Base
 
     def update_status
         days_elapsed = ((Time.now - updated_at.to_time) / (60*60*24)).round
-        if self.rounds.count == 1 && self.rounds.first.status =="Pending"
-            return "This debate has not yet started."
+        if self.rounds.count == 1 && self.rounds.first.status !="Completed"
+            self.status = "Pending"
+            self.save
+        elsif self.status == "Active"
+            return "Active"
+        elsif self.rounds.count == 1 && self.rounds.first.status =="Completed"
+            self.status = "Scheduling"
+            self.save
         elsif self.status == "Completed" && days_elapsed > 10
             self.status = "Voting period is now over."
             self.save

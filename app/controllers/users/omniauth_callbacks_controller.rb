@@ -34,7 +34,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       session[:civility_vote] = nil
       session[:vote_before] = nil
       session[:vote_after] = nil
-      flash[:notice] = "Thanks for logging in with Facebook. You are now approved to view and vote in all debates."
+      flash[:notice] = "Thanks for logging in with Facebook. You are now ready to initiate or join a debate."
       redirect_to (session[:previous_url] || root_path)
 
   end

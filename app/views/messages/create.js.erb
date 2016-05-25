@@ -6,7 +6,8 @@ publisher = client.publish('/comments', {
 publisher.callback(function() {
   console.log("publisher callback received");
   $('#message-text-area').val('');
-  $('#new_message').find("input[type='submit']").val('Reply').prop('disabled', false)
+  $('#new_message').find("input[type='submit']").val('Reply').prop('disabled', false);
+  $('.btn-cross-ex').blur();
 });
 
 publisher.errback(function() {

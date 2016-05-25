@@ -8,7 +8,7 @@
   A new debate has recently been completed one one of the topics you are following.
   </p>
 
-  <h3><b> Debate topic: </b> <%=@debate.topic.title%> </h3>
+  <h3><b> Debate topic: </b> <%=@debate.title%> </h3>
   <ul>
     <li>
       <b> Affirmative: </b> <%=@debate.affirmative_debater.user.profile.display_name%>
@@ -22,7 +22,7 @@
     To check out the debate and cast your vote, please click the link below.
    <ul>
      <li>
-        <%= link_to @debate.topic.title, debate_path(@debate) %>
+        <%= link_to @debate.title, debate_path(@debate) %>
      </li>
    </ul>
   </p>

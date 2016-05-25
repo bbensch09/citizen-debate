@@ -37,8 +37,8 @@ class CivilityVotesController < ApplicationController
     respond_to do |format|
       if @civility_vote.save
         if current_user.nil?
-          session[:civility_vote] = @civility_vote.debate.topic.title
-          puts "the civility vote session has been recorded and marked as #{@civility_vote.debate.topic.title}. "
+          session[:civility_vote] = @civility_vote.debate.title
+          puts "the civility vote session has been recorded and marked as #{@civility_vote.debate.title}. "
         else
           session[:civility_vote] = "signed_in_user has voted."
         end

@@ -30,7 +30,7 @@
   <tbody>
     <% @debates.each do |debate| %>
       <tr>
-        <td><%= link_to debate.topic.title, debate %></td>
+        <td><%= link_to debate.title, debate %></td>
         <td>
           <% if debate.affirmative_debater %>
             <%= debate.affirmative_debater.user.profile.display_name %>

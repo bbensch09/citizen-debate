@@ -4,7 +4,7 @@
 
 <h1 class="center debate-list-header">Pending Debate Challenges</h1>
 
-<% if current_user && current_user.profile %>
+<% if current_user || current_user.nil? %>
 
 <%= link_to 'Initiate a Debate', new_debate_path, class: "btn btn-default" %>
     <% if @pending_debates.count >= 1 || @debates_to_schedule.count >=1 || @outstanding_challenges.count >= 1%>
@@ -25,7 +25,7 @@
       <!-- new debate challenges -- to accept or reject -->
         <% @pending_debates.each do |debate| %>
           <tr>
-            <td class="col-lg-4 col-sm-6"><%= link_to debate.topic.title, debate %></td>
+            <td class="col-lg-4 col-sm-6"><%= link_to debate.title, debate %></td>
             <!-- <td class="col-lg-2 col-sm-hidden"><%= debate.creator.profile.display_name %></td>
             <td class="col-lg-2 col-sm-hidden">
               <% if debate.challenger && debate.challenger.profile %>
@@ -47,7 +47,7 @@
         <!-- debates to be scheduled -->
         <% @debates_to_schedule.each do |debate| %>
           <tr>
-            <td class="col-lg-4 col-sm-6"><%= link_to debate.topic.title, debate %></td>
+            <td class="col-lg-4 col-sm-6"><%= link_to debate.title, debate %></td>
             <!-- <td class="col-lg-2 col-sm-hidden"><%= debate.creator.profile.display_name %></td>
             <td class="col-lg-2 col-sm-hidden">
               <% if debate.challenger.profile %>
@@ -67,7 +67,7 @@
         <% end %>
         <% @outstanding_challenges.each do |debate| %>
           <tr>
-            <td class="col-lg-4 col-sm-6"><%= link_to debate.topic.title, debate %></td>
+            <td class="col-lg-4 col-sm-6"><%= link_to debate.title, debate %></td>
             <td class="col-lg-2 col-sm-hidden"> <b> <%= debate.status %> </b> </td>
             <td class="col-lg-2 col-sm-hidden"><%= debate.time_since_updated %></td>
             <td><%= link_to 'Share Debate Challenge', debate_path(debate), class: "btn btn-default" %></td>
@@ -112,7 +112,7 @@
   <tbody>
     <% @completed_debates.each do |debate| %>
       <tr>
-        <td class="col-lg-4"><%= link_to debate.topic.title, debate %></td>
+        <td class="col-lg-4"><%= link_to debate.title, debate %></td>
         <td class="col-lg-2 col-sm-hidden"><%= debate.affirmative_debater.user.profile.display_name %>
         <!-- br> <%= debate.affirmative_debater.user.profile.civility_rating %> stars -->
         </td>
@@ -152,7 +152,7 @@
   <tbody>
     <% @active_debates.each do |debate| %>
       <tr>
-        <td class="col-lg-4 col-sm-6"><%= link_to debate.topic.title, debate %></td>
+        <td class="col-lg-4 col-sm-6"><%= link_to debate.title, debate %></td>
         <td class="col-lg-2 col-sm-hidden"><%= debate.affirmative_debater.user.profile.display_name %></td>
         <td class="col-lg-2 col-sm-hidden"><%= debate.negative_debater.user.profile.display_name %></td>
         <td class="col-lg-2 col-sm-hidden"> <b> <%= debate.rounds.last.round_number %> </b> </td>

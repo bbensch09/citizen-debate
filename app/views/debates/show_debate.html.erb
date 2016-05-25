@@ -1,10 +1,12 @@
-<% title @debate.topic.title %>
+<% title @debate.title %>
+
+
 <div class="debate-container">
 <% if current_user && current_user.email == "citizen.debate.16@gmail.com" %>
     <%= link_to 'Admin: skip to results', skip_to_results_debate_path(@debate),  method: :get,  class: "btn btn-default" %>
 <% end %>
 
-<% if (@debate.status == 'Completed' || @debate.status == 'Voting period is now over.') && (session[:civility_vote] == @debate.topic.title || (current_user && current_user.eligible_civility_votes.exclude?(@debate.id)) )%>
+<% if (@debate.status == 'Completed' || @debate.status == 'Voting period is now over.') && (session[:civility_vote] == @debate.title || (current_user && current_user.eligible_civility_votes.exclude?(@debate.id)) )%>
       <div class="results-container">
         <%= render partial: 'results' %>
       </div>
@@ -15,63 +17,67 @@
 <% end %>
 
 <!-- BEGIN LOGIC FOR CURRENT DEBATERS -->
-<% if current_user && @debate.status == "Active" && (current_user == @debate.affirmative_debater.user || current_user == @debate.negative_debater.user  || current_user.email == "citizen.debate.16@gmail.com" ) %>
+<% if current_user && (@debate.status == "Active" || @debate.status == "Pending"|| @debate.status == "Scheduling") && (current_user == @debate.affirmative_debater.user || current_user == @debate.challenger  || current_user.email == "citizen.debate.16@gmail.com" ) %>
 <div class="live-debate-container">
-  <small class="text-muted">Note: if you hear a notification sound but do not see any new messages, please simply refresh the page.</small>
 
     <!-- BEGIN REAL-TIME CONTAINER FOR ROUND 2 -->
-    <div class="round2" >
+    <div class="round2 col-lg-12 col-xs-12" >
       <% if @debate.rounds.last.round_number == 2 && @debate.rounds.last.status != "Completed" %>
       <div class="panel panel-default" id="comments">
-          <div class="panel-body">
-            <h3><%= @debate.rounds.last.name %>
+            <h3 class="center"><%= @debate.rounds.last.name %>
                 <% if @debate.rounds.last.end_time %>
                 ends at <%= @debate.rounds.last.ends_at.strftime('%l:%M %p') %>
                 <% end %>
             </h3>
+          <div class="panel-body">
             <ul class="media-list">
               <%= render partial: 'message', collection: @messages %>
             </ul>
           </div>
       </div>
           <%= render 'short_response' %>
-          <%= render 'finish_round' %>
+            <%= render 'finish_round' %>
       <% end %>
     </div>
     <!-- END REAL-TIME CONTAINTER -->
 
     <!-- BEGIN CONTAINER FOR OPENING STATEMENTS -->
     <div class="statments">
-      <% if @debate.status == "Active" && @debate.rounds.last.round_number == 1 && @debate.rounds.last.status != "Completed" %>
+      <% if @debate.status == "Pending" && @debate.rounds.last.round_number == 1 && @debate.rounds.last.status != "Completed" %>
 
           <% if current_user.id == @debate.affirmative_debater.user_id %>
 
               <% if @debate.opening_affirmative %>
-
-                  <%= raw(@debate.opening_affirmative.content) %>
-                  <%= link_to 'Edit your statement', edit_opening_statement_path(@debate.opening_affirmative.id) %>
-                  <%= render 'finish_round' %>
+                  <%= link_to 'Edit your statement', edit_opening_statement_path(@debate.opening_affirmative.id), class: "btn btn-default"  %>
+                  <%= render partial: 'opening' %>
+                  <% if @debate.opening_negative %>
+                    <%= render 'finish_round' %>
+                  <% end %>
                 <% else %>
                   <%= render 'compose_opening' %>
               <% end %>
-
           <% end %>
 
-          <% if current_user.id == @debate.negative_debater.user_id || current_user.email == "citizen.debate.16@gmail.com" %>
-
+          <% if @debate.negative_debater && current_user.id == @debate.negative_debater.user_id || current_user.email == "citizen.debate.16@gmail.com" %>
               <% if @debate.opening_negative %>
-
-                  <%= raw(@debate.opening_negative.content) %>
-                  <%= link_to 'Edit your statement', edit_opening_statement_path(@debate.opening_negative.id) %>
-                  <%= render 'finish_round' %>
+                  <%= link_to 'Edit your statement', edit_opening_statement_path(@debate.opening_negative.id), class: "btn btn-default" %>
+                  <%= render partial: 'opening' %>
+                  <% if @debate.opening_negative %>
+                      <br> <%= link_to 'Submit opening statement', submit_negative_opening_debate_path(@debate ), class: "btn btn-default" %>
+                  <% end %>
                 <% else %>
                   <%= render 'compose_opening' %>
               <% end %>
-
           <% end %>
 
       <% end %>
     </div>
+
+    <% if @debate.status == "Scheduling" %>
+      <h3 class="text-left">
+        <%= link_to "Schedule Cross-examination", schedule_debate_path(@debate), class: "btn btn-lg btn-default" %>
+      </h3>
+    <% end %>
 
     <!-- BEGIN CONTAINER FOR CLOSING STATEMENTS -->
     <div class="statments">
@@ -80,9 +86,8 @@
           <% if current_user.id == @debate.affirmative_debater.user_id || current_user.email == "citizen.debate.16@gmail.com"%>
 
               <% if @debate.closing_affirmative %>
-
-                  <%= raw(@debate.closing_affirmative.content) %>
-                  <%= link_to 'Edit your statement', edit_closing_statement_path(@debate.closing_affirmative.id) %>
+                  <%= link_to 'Edit your statement', edit_closing_statement_path(@debate.closing_affirmative.id), class: "btn btn-default" %>
+                  <%= render partial: 'preview_closing' %>
                   <%= render 'finish_round' %>
                 <% else %>
                   <%= render 'compose_closing' %>
@@ -93,9 +98,8 @@
           <% if current_user.id == @debate.negative_debater.user_id || current_user.email == "citizen.debate.16@gmail.com" %>
 
               <% if @debate.closing_negative %>
-
-                  <%= raw(@debate.closing_negative.content) %>
-                  <%= link_to 'Edit your statement', edit_closing_statement_path(@debate.closing_negative.id) %>
+                  <%= link_to 'Edit your statement', edit_closing_statement_path(@debate.closing_negative.id), class: "btn btn-default" %>
+                  <%= render partial: 'preview_closing' %>
                   <%= render 'finish_round' %>
                 <% else %>
                   <%= render 'compose_closing' %>
@@ -107,7 +111,11 @@
 
     <!-- Show option to start the next round if the debate is still active and the most recent round has been completed. -->
       <% if @debate.status == "Active" && @debate.rounds.last.status == "Completed" %>
-              <%= render 'start_round' %>
+              <% if @debate.rounds.count == 1 %>
+                <%= render 'start_round' %>
+                <% else %>
+                <%= render 'start_final_round' %>
+              <% end %>
       <% end %>
 
       <!-- <h4><%= link_to "Refresh page", debate_path, class: "btn btn-default" %></h4> -->
@@ -119,10 +127,10 @@
 <!-- END LOGIC FOR CURRENT DEBATERS -->
 
 <!-- BEGIN DEBATE ARCHIVE FOR ALL USERS TO SEE -->
-<% if session[:vote_before] || session[:vote_after] || current_user && (current_user.before_votes.include?(@debate.id) ||( @debate.participants.include?(current_user.id)) || current_user.email == "citizen.debate.16@gmail.com") && @debate.status != "Pending" %>
+<% if session[:vote_before] || session[:vote_after] || @debate.opening_negative.nil? || current_user && (current_user.before_votes.include?(@debate.id) ||( @debate.participants.include?(current_user.id)) || current_user.email == "citizen.debate.16@gmail.com") && @debate.status != "Pending" %>
 <div class="debate-recap-container">
 
-  <% if @debate.status == "Completed" && session[:civility_vote] != @debate.topic.title && session[:civility_vote] && current_user.nil? %>
+  <% if @debate.status == "Completed" && session[:civility_vote] != @debate.title && session[:civility_vote] && current_user.nil? %>
 
     <div class="alert-info">
       <h2 class="center"> In order to vote on more than one debate, you must first sign up or login.<br>
@@ -141,17 +149,17 @@
         </div>
   <% else %>
 
-        <% if @debate.opening_affirmative && @debate.opening_negative %>
+        <% if @debate.opening_affirmative && current_user.id != @debate.affirmative_debater.user_id %>
           <%= render partial: 'opening' %>
         <% end %>
-        <% if @debate.rounds.last.round_number > 2 %>
+        <% if @debate.rounds.last.round_number >= 2 %>
           <%= render partial: 'middle' %>
         <% end %>
         <% if @debate.closing_affirmative && @debate.closing_negative %>
           <%= render partial: 'closing' %>
         <% end %>
 
-        <% if @debate.status == "Completed" && (current_user && current_user.previous_votes.exclude?(@debate.id) && @debate.participants.exclude?(current_user.id)) || (current_user.nil? && session[:vote_after].nil?) %>
+        <% if @debate.status == "Completed" && (current_user && current_user.previous_votes.exclude?(@debate.id) && @debate.participants.exclude?(current_user.id)) || (current_user.nil? && session[:vote_before] && session[:vote_after].nil?) %>
         <div class="voting-container">
           <%= render partial: 'debate_votes/after_form' %>
         </div>

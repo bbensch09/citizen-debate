@@ -29,6 +29,7 @@ class AvailableTimesController < ApplicationController
     @available_time.debate.start_time = @available_time.proposed_time
     @available_time.debate.status = "Active"
     @available_time.debate.save
+    puts "=========Status saved: Active========="
     UserMailer.schedule_confirmed(@available_time.debate).deliver_now
     redirect_to @available_time.debate, notice: 'Thanks! Your debate schedule is now confirmed. You and your opponent will receive confirmation emails with further instructions.'
   end

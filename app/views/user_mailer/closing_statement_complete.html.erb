@@ -14,7 +14,7 @@
 
   <h4> <b> Debate Details </b> </h4>
   <ul>
-      <li> <h3><b> Debate topic: </b> <%=@debate.topic.title%> </h3> </li>
+      <li> <h3><b> Debate topic: </b> <%=@debate.title%> </h3> </li>
       <li> <h3><b> Your position: </b> <%=@creator_side%> </h3> </li>
   </ul>
 
@@ -22,7 +22,7 @@
     To enter your statement now or view your opponent's statement, please click below to access your debate.
    <ul>
      <li>
-        <%= link_to @debate.topic.title, debate_path(@debate) %>
+        <%= link_to @debate.title, debate_path(@debate) %>
      </li>
    </ul>
   </p>

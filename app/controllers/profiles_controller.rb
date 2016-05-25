@@ -62,7 +62,7 @@ class ProfilesController < ApplicationController
   def new
     puts "trying to load /profiles/new"
     if current_user.profile
-      redirect_to "/profiles/#{current_user.id}"
+      redirect_to "/profiles/#{current_user.profile.id}"
     else
     @profile = Profile.new
     end

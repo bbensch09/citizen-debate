@@ -1,0 +1,36 @@
+<!-- THIS IS THE PARTIAL TO RENDER CLOSING STATEMENTS -->
+
+<div class="closing-round row">
+
+    <h2 class="center">Preview Your Closing Statement</h2>
+
+<% if @debate.closing_affirmative && current_user.id == @debate.affirmative_debater.user_id %>
+    <div class="col-lg-12 col-md-6 affirmative-closing">
+      <%= image_tag(@debate.affirmative_debater.user.profile.avatar.url(:thumb), alt: "image not found", class: "avatar-nav") %>
+      <b> <%=@debate.affirmative_debater.user.profile.display_name %></b>
+      <br>
+      <small class="text-muted"> posted <%=@debate.closing_affirmative.time_since_written %> </small>
+      <div class="media-body">
+          <%= raw(@debate.closing_affirmative.content) %>
+      </div>
+      <% if current_user && current_user.email == "citizen.debate.16@gmail.com" %>
+              <%= link_to 'Edit your statement', edit_closing_statement_path(@debate.closing_affirmative.id) %>
+      <% end %>
+    </div>
+  <% end %>
+<hr>
+<% if @debate.closing_negative && current_user.id == @debate.negative_debater.user_id %>
+    <div class="col-lg-12 col-md-6 negative-closing">
+      <%= image_tag(@debate.negative_debater.user.profile.avatar.url(:thumb), alt: "image not found", class: "avatar-nav") %>
+      <b> <%=@debate.negative_debater.user.profile.display_name %></b>
+      <br>
+      <small class="text-muted"> posted <%=@debate.closing_negative.time_since_written %> </small>
+      <div class="media-body">
+          <%= raw(@debate.closing_negative.content) %>
+      </div>
+      <% if current_user && current_user.email == "citizen.debate.16@gmail.com" %>
+              <%= link_to 'Edit your statement', edit_closing_statement_path(@debate.closing_negative.id) %>
+      <% end %>
+    </div>
+<% end %>
+</div>

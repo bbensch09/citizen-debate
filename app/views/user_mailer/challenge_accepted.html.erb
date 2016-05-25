@@ -6,22 +6,22 @@
 <body>
   <h3>Hello <%= @debate.creator.profile.display_name %>,</h3>
   <p>
-  Congratulations, your debate challenge has been accepted by <%= @debate.challenger.email %>.
+  Congratulations, your debate challenge has been accepted by <%= @debate.challenger.profile.display_name %>.
   </p>
 
-  <h3><b> Debate topic: </b> <%=@debate.topic.title%> </h3>
+  <h3><b> Debate topic: </b> <%=@debate.title%> </h3>
   <h3><b> Your position: </b> <%=@creator_side%> </h3>
 
   <h4>What happens next?</h4>
   <p>
-    The only live round of a Citizen Debate is the cross-examination, and so the next step is for you and your challenger to confirm a mutually agreeable time to begin that round. By now your opponent should have now selected 3 times that they are available to meet for the live cross-examination.
+    The only live round of a Citizen Debate is the cross-examination, and so the next step is for you and your challenger to confirm a mutually agreeable time to begin that round.
   </p>
   <p>
-    To review and accept one of the proposed times, please sign in and visit the <a href="www.citizendebate.org/debates">Debates</a> page of your account. Under your "Pending Debate Challenges", you will see an option to <b> schedule this debate </b>.
+    To coordinate the date and time for your cross-examination round, please sign in and visit the <a href=<%= "www.citizendebate.org/debates/#{@debate.to_param}/schedule" %>>debate scheduling page</a> for this debate. You can also login and view your Debates page, and you should see an option to <b> "schedule this debate" </b>.
   </p>
 
   <p>
-    Both the opening and closing rounds are completed asynchronously, but please keep in mind that your opening round statement is due at least 1 hour before the scheduled cross-examination round. Likewise, you will have 24 hours to complete your closing statement after the completion of cross examination.  by visiting
+    Do note that your opponent may still be working on their opening statement, which is due at least 1 hour before the scheduled cross-examination round. Likewise, keep in mind that you will have 24 hours to complete your closing statement after the completion of the cross examination round.
   </p>
 
 <p>Finally, as part of our early adopter program, we recommend that all of our debaters follow the link below to join our Slack channel, so that we you can communicate with each other and the site administrators as necessary.</p>

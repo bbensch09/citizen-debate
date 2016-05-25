@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :topic_tags
   mount Ckeditor::Engine => '/ckeditor'
 
   get '/taxes-should-be-raised-on-Americans-who-earn-at-least-250k' => 'debates#launch'
@@ -23,6 +24,8 @@ Rails.application.routes.draw do
       get :schedule
       get :notify_followers
       get :skip_to_results
+      get :share_challenge
+      get :submit_negative_opening
     end
   end
   resources :available_times do

@@ -14,12 +14,36 @@ class User < ActiveRecord::Base
 
   # HACKY SHIT
   has_many :comments, dependent: :delete_all
-  after_create :send_admin_notification
+  after_create :send_admin_notification, :create_empty_profile, :confirm_debater_exists
 
   def send_admin_notification
       @user = User.last
       UserMailer.new_user_signed_up(@user).deliver_now
       puts "an admin notification has been sent."
+  end
+
+  def confirm_debater_exists
+    if User.last.debater
+      return true
+    else
+      Debater.create!({user_id: User.last.id})
+      puts "a new debater has been created for this user."
+    end
+  end
+
+  def create_empty_profile
+    user_id = User.last.id
+    Profile.create!({
+      user_id: User.last.id,
+      first_name: " ",
+      last_name: " ",
+      city: " ",
+      state: " ",
+      age: " ",
+      about_me: " ",
+      display_name: "new_user_#{user_id}",
+      political_affiliation: ""
+      })
   end
 
   def self.to_csv

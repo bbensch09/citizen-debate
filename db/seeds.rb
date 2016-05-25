@@ -130,6 +130,7 @@ puts "Sample debate #1 complete with three users."
 # #Seed debate #1
 Debate.create!({
   affirmative_id: 2,
+  affirmative_confirmed: true,
   status: "Completed",
   topic_id: 1,
   creator_id: 2,
@@ -137,6 +138,7 @@ Debate.create!({
   challenge_accepted: true,
   challenger_email: "",
   status: "Completed",
+  resolution:   "Taxes should be raised on Americans who earn at least $250k."
   })
 
 Debate.last.update!({
