@@ -20,7 +20,7 @@ class UserMailer < ApplicationMailer
 
   def track_opens(debate,email="Unknown user")
     @debate = debate
-    mail(to: "notifications@citizendebate.org", subject: "#{email} has just clicked through to check out the debate preview.")
+    mail(to: "notifications@citizendebate.org", subject: "#{email} just previewed: #{@debate.resolution}")
   end
 
   def challenge_existing_user(debate)
