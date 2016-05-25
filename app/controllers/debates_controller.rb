@@ -96,6 +96,11 @@ class DebatesController < ApplicationController
   # GET /debates/1
   # GET /debates/1.json
   def show
+    if current_user.nil? && @debate.status == "Pending"
+      UserMailer.track_opens(@debate).deliver_now
+    elsif current_user && @debate.status == "Pending"
+      UserMailer.track_opens(@debate,current_user.email).deliver_now
+    end
     @current_user = current_user
     @message = Message.new
     @messages = @debate.cross_ex_messages

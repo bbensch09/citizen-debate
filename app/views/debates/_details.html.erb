@@ -4,9 +4,9 @@
   </h1>
 
   <% if @debate.liberal_side == @debate.creator %>
-    <div class="col-lg-6 col-md-3 liberal-side">
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 liberal-side">
     <% else %>
-    <div class="col-lg-6 col-md-3 conservative-side">
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 conservative-side">
   <% end %>
     <h4>In favor of the resolution:</h4>
     <% if @debate.affirmative_debater %>
@@ -27,11 +27,11 @@
   </div>
 
   <% if @debate.liberal_side == @debate.challenger %>
-    <div class="col-lg-6 col-md-3 liberal-side">
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 liberal-side">
     <% elsif @debate.challenger %>
-    <div class="col-lg-6 col-md-3 conservative-side">
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 conservative-side">
     <% else %>
-    <div class="col-lg-6 col-md-3">
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
   <% end %>    <h4>Against the resolution:</h4>
     <% if @debate.negative_debater %>
     <h3>

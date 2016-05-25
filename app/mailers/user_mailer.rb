@@ -18,6 +18,11 @@ class UserMailer < ApplicationMailer
     mail(to: "notifications@citizendebate.org", subject: "#{email} has just clicked through to the voter-registration page.")
   end
 
+  def track_opens(debate,email="Unknown user")
+    @debate = debate
+    mail(to: "notifications@citizendebate.org", subject: "#{email} has just clicked through to check out the debate preview.")
+  end
+
   def challenge_existing_user(debate)
     @debate = debate
     if debate.affirmative_id
