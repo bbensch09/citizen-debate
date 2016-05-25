@@ -5,10 +5,10 @@
 </head>
 <body>
   <p>
-  Your Citizen Debate opponent has just proposed some times for your scheduled cross-examination round. Please login and confirm which the proposed time works for you.
+  Your Citizen Debate opponent has just proposed some times for your scheduled cross-examination round. Please click the link below to review and confirm which the proposed time works for you.
   </p>
 
-  <h4>  <%= link_to @debate.title, schedule_debate_path(@debate) %> </h4>
+  <h4>  <%= link_to "Confirm schedule - #{@debate.title}", schedule_debate_path(@debate) %> </h4>
 
   <ul>
     <li>

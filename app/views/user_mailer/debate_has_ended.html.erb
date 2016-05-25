@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+</head>
+<body>
+  <h3>Your Citizen Debate is now complete! </h3>
+  <p>
+  Both you and your opponent have submitted your closing statements, and the debate will now open to the public for voting over the next 7 days.
+  </p>
+  <p>
+  Feel free to share the debate link below on social media, and see how many fellow citizens you can convince to change their minds in your favor.
+  </p>
+  <p>
+   <ul>
+     <li>
+        <%= link_to @debate.title, debate_path(@debate) %>
+     </li>
+   </ul>
+  </p>
+
+  <h4> <b> Debate Details </b> </h4>
+  <ul>
+      <li> <h3><b> Debate topic: </b> <%=@debate.title%> </h3> </li>
+      <li> <h3><b> Your position: </b> <%=@creator_side%> </h3> </li>
+  </ul>
+
+  <p>As a reminder, the way voting works on Citizen Debate is as follows:
+  </p>
+
+  <ul>
+    <li>User vote before reading the debate.</li>
+    <li>User vote again after reading the debate.</li>
+    <li>The winner of the debate is declared after 7 days as the debater who changed the most minds.</li>
+  </ul>
+
+  <p>
+    If you have any questions, please email us at <a href="mailto:citizen.debate.16@gmail.com">citizen.debate.16@gmail.com</a>
+  </p>
+</body>
+</html>

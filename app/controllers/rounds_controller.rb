@@ -11,7 +11,7 @@ class RoundsController < ApplicationController
   # end
 
   def update_debate_status
-    Round.last.debate.update_status
+    @round.debate.update_status
   end
 
   # GET /rounds
@@ -54,14 +54,14 @@ class RoundsController < ApplicationController
   # PATCH/PUT /rounds/1.json
   def update
     respond_to do |format|
-      if @round.update(round_params) && @round.debate.rounds.count == 3
+      if @round.update(round_params) && @round.debate.rounds.count >= 3
         format.html { redirect_to @round.debate, notice: 'Your debate is now over. Share with friends and check back later for results.' }
         format.json { render :show, status: :ok, location: @round }
       elsif @round.update(round_params) && @round.debate.rounds.count < 3
         format.html { redirect_to @round.debate, notice: 'The previous round is now complete.' }
         format.json { render :show, status: :ok, location: @round }
       else
-        format.html { redirect_to @round.debate, notice: "Unable to finish round. #{@round.errors.full_messages.first}"}
+        format.html { redirect_to @round.debate, notice: @round.errors.full_messages.first[7..100]}
         format.json { render json: @round.errors, status: :unprocessable_entity }
       end
     end

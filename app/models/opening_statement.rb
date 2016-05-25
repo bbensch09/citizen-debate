@@ -5,12 +5,12 @@ class OpeningStatement < ActiveRecord::Base
   belongs_to :author, class_name: "User", foreign_key: "author_id"
   validate :check_word_count, on: [:update, :create]
   validates :debate_id, :author_id, :round_id, presence: true
-  after_create :send_opponent_notification
+  after_create :send_admin_notification
+  after_update :send_admin_notification
 
-  def send_opponent_notification
+  def send_admin_notification
       @opening_statement = OpeningStatement.last
       UserMailer.opening_statement_complete(@opening_statement).deliver_now
-      puts "opponent has been sent notification of statement submission."
   end
 
   def time_since_written

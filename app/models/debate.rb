@@ -102,7 +102,7 @@ class Debate < ActiveRecord::Base
         if challenger_types_count != 1
             errors.add(:status, "You must only select one challenger type, please refresh and try again.")
         end
-        if self.affirmative_confirmed.nil?
+        if self.affirmative_confirmed == false
             errors.add(:status, "The debate creator must argue for the affirmative. Please revise your resolution as appropriate.")
         end
     end
@@ -122,6 +122,14 @@ class Debate < ActiveRecord::Base
             participant_user_ids << debater.user_id
         end
         participant_user_ids
+    end
+
+    def liberal_side
+        if challenger && challenger.profile.liberal_score >= creator.profile.liberal_score
+            challenger
+            else
+            creator
+        end
     end
 
     def title
@@ -169,7 +177,7 @@ class Debate < ActiveRecord::Base
         if self.rounds.count == 1 && self.rounds.first.status !="Completed"
             self.status = "Pending"
             self.save
-        elsif self.status == "Active"
+        elsif self.status == "Active" && self.rounds.count < 3
             return "Active"
         elsif self.rounds.count == 1 && self.rounds.first.status =="Completed"
             self.status = "Scheduling"
