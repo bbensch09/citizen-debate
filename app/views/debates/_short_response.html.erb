@@ -1,3 +1,4 @@
+<small class="text-muted">Note: if you hear a notification sound but do not see any new messages, please simply refresh the page.</small>
 <div class="well">
   <%= form_for @message, remote: true do |f| %>
     <div class="form-group live-comment-box">
@@ -11,9 +12,9 @@
     <h4 class="current-status">
     </h4>
     <% if current_user.id == @debate.affirmative_debater.user.id %>
-        <%= f.submit 'Submit first question', class: 'btn btn-primary btn-lg' %>
+        <%= f.submit 'Submit first question', class: 'btn btn-primary btn-lg btn-cross-ex' %>
       <% else %>
-        <%= f.submit 'Submit your response', class: 'btn btn-primary btn-lg' %>
+        <%= f.submit 'Submit your response', class: 'btn btn-primary btn-lg btn-cross-ex' %>
     <% end %>
     </div>
   <% end %>

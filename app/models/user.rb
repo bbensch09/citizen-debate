@@ -23,12 +23,11 @@ class User < ActiveRecord::Base
   end
 
   def confirm_debater_exists
-    if current_user.debater
+    if User.last.debater
       return true
     else
-      Debater.create!({
-        user_id: current_user.id
-        })
+      Debater.create!({user_id: User.last.id})
+      puts "a new debater has been created for this user."
     end
   end
 

@@ -16,26 +16,20 @@
 <%= render 'details' %>
 <% end %>
 
-Current user: <%= current_user %> <br>
-<% if current_user %>
-Debater exists? <%= current_user.debater.present? %>
-<% end %>
-
 <!-- BEGIN LOGIC FOR CURRENT DEBATERS -->
-<% if current_user && (@debate.status == "Active" || @debate.status == "Pending") && (current_user == @debate.affirmative_debater.user || current_user == @debate.challenger  || current_user.email == "citizen.debate.16@gmail.com" ) %>
+<% if current_user && (@debate.status == "Active" || @debate.status == "Pending"|| @debate.status == "Scheduling") && (current_user == @debate.affirmative_debater.user || current_user == @debate.challenger  || current_user.email == "citizen.debate.16@gmail.com" ) %>
 <div class="live-debate-container">
 
     <!-- BEGIN REAL-TIME CONTAINER FOR ROUND 2 -->
-    <div class="round2" >
+    <div class="round2 col-lg-12 col-xs-12" >
       <% if @debate.rounds.last.round_number == 2 && @debate.rounds.last.status != "Completed" %>
-      <small class="text-muted">Note: if you hear a notification sound but do not see any new messages, please simply refresh the page.</small>
       <div class="panel panel-default" id="comments">
-          <div class="panel-body">
-            <h3><%= @debate.rounds.last.name %>
+            <h3 class="center"><%= @debate.rounds.last.name %>
                 <% if @debate.rounds.last.end_time %>
                 ends at <%= @debate.rounds.last.ends_at.strftime('%l:%M %p') %>
                 <% end %>
             </h3>
+          <div class="panel-body">
             <ul class="media-list">
               <%= render partial: 'message', collection: @messages %>
             </ul>
@@ -54,35 +48,36 @@ Debater exists? <%= current_user.debater.present? %>
           <% if current_user.id == @debate.affirmative_debater.user_id %>
 
               <% if @debate.opening_affirmative %>
-
-                  <%= raw(@debate.opening_affirmative.content) %>
-                  <%= link_to 'Edit your statement', edit_opening_statement_path(@debate.opening_affirmative.id) %>
+                  <%= link_to 'Edit your statement', edit_opening_statement_path(@debate.opening_affirmative.id), class: "btn btn-default"  %>
+                  <%= render partial: 'opening' %>
                   <% if @debate.opening_negative %>
                     <%= render 'finish_round' %>
                   <% end %>
                 <% else %>
                   <%= render 'compose_opening' %>
               <% end %>
-
           <% end %>
 
-          <% if @debate.negative_debater && current_user == @debate.negative_debater.user_id || current_user.email == "citizen.debate.16@gmail.com" %>
-
+          <% if @debate.negative_debater && current_user.id == @debate.negative_debater.user_id || current_user.email == "citizen.debate.16@gmail.com" %>
               <% if @debate.opening_negative %>
-
-                  <%= raw(@debate.opening_negative.content) %>
-                  <%= link_to 'Edit your statement', edit_opening_statement_path(@debate.opening_negative.id) %>
+                  <%= link_to 'Edit your statement', edit_opening_statement_path(@debate.opening_negative.id), class: "btn btn-default" %>
+                  <%= render partial: 'opening' %>
                   <% if @debate.opening_negative %>
-                      <%= render 'finish_round' %>
+                      <br> <%= link_to 'Submit opening statement', submit_negative_opening_debate_path(@debate ), class: "btn btn-default" %>
                   <% end %>
                 <% else %>
                   <%= render 'compose_opening' %>
               <% end %>
-
           <% end %>
 
       <% end %>
     </div>
+
+    <% if @debate.status == "Scheduling" %>
+      <h3 class="text-left">
+        <%= link_to "Schedule Cross-examination", schedule_debate_path(@debate), class: "btn btn-lg btn-default" %>
+      </h3>
+    <% end %>
 
     <!-- BEGIN CONTAINER FOR CLOSING STATEMENTS -->
     <div class="statments">
@@ -91,9 +86,8 @@ Debater exists? <%= current_user.debater.present? %>
           <% if current_user.id == @debate.affirmative_debater.user_id || current_user.email == "citizen.debate.16@gmail.com"%>
 
               <% if @debate.closing_affirmative %>
-
-                  <%= raw(@debate.closing_affirmative.content) %>
-                  <%= link_to 'Edit your statement', edit_closing_statement_path(@debate.closing_affirmative.id) %>
+                  <%= link_to 'Edit your statement', edit_closing_statement_path(@debate.closing_affirmative.id), class: "btn btn-default" %>
+                  <%= render partial: 'preview_closing' %>
                   <%= render 'finish_round' %>
                 <% else %>
                   <%= render 'compose_closing' %>
@@ -104,9 +98,8 @@ Debater exists? <%= current_user.debater.present? %>
           <% if current_user.id == @debate.negative_debater.user_id || current_user.email == "citizen.debate.16@gmail.com" %>
 
               <% if @debate.closing_negative %>
-
-                  <%= raw(@debate.closing_negative.content) %>
-                  <%= link_to 'Edit your statement', edit_closing_statement_path(@debate.closing_negative.id) %>
+                  <%= link_to 'Edit your statement', edit_closing_statement_path(@debate.closing_negative.id), class: "btn btn-default" %>
+                  <%= render partial: 'preview_closing' %>
                   <%= render 'finish_round' %>
                 <% else %>
                   <%= render 'compose_closing' %>
@@ -118,7 +111,11 @@ Debater exists? <%= current_user.debater.present? %>
 
     <!-- Show option to start the next round if the debate is still active and the most recent round has been completed. -->
       <% if @debate.status == "Active" && @debate.rounds.last.status == "Completed" %>
-              <%= render 'start_round' %>
+              <% if @debate.rounds.count == 1 %>
+                <%= render 'start_round' %>
+                <% else %>
+                <%= render 'start_final_round' %>
+              <% end %>
       <% end %>
 
       <!-- <h4><%= link_to "Refresh page", debate_path, class: "btn btn-default" %></h4> -->
@@ -152,10 +149,10 @@ Debater exists? <%= current_user.debater.present? %>
         </div>
   <% else %>
 
-        <% if @debate.opening_affirmative %>
+        <% if @debate.opening_affirmative && current_user.id != @debate.affirmative_debater.user_id %>
           <%= render partial: 'opening' %>
         <% end %>
-        <% if @debate.rounds.last.round_number > 2 %>
+        <% if @debate.rounds.last.round_number >= 2 %>
           <%= render partial: 'middle' %>
         <% end %>
         <% if @debate.closing_affirmative && @debate.closing_negative %>

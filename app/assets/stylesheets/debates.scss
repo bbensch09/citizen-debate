@@ -3,7 +3,7 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .affirmative-opening, .negative-opening, .affirmative-closing, .negative-closing{
-  border-bottom: 2px dotted gray;
+  border-bottom: 2px dotted #4285F4;
   padding-bottom: 30px;
 }
 .highlight-current-user{
@@ -37,7 +37,6 @@
   min-height: 20vh;
 }
 .round2{
-  max-width:1000px;
 }
 .form-control{
   /*min-height: 10vh !important;*/
@@ -96,7 +95,6 @@
 }
 .live-debate-container{
     width: 90vw;
-    max-width: 1200px;
     margin: auto;
     position: relative;
     clear:both;
@@ -209,7 +207,12 @@ h3.results-cta, h3.results-minds-changed{
 .new-resolution-field{
   width: 80%;
 }
-
+.panel-body{
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top: 0px !important;
+  padding-bottom: 0px !important;
+}
 
 
 

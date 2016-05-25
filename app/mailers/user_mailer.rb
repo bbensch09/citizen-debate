@@ -12,7 +12,7 @@ class UserMailer < ApplicationMailer
 
   def new_profile_created(profile)
     @profile = profile
-    mail(to: "bbensch@gmail.com", subject: "#{profile.user.email} has completed their profile.")
+    mail(to: "bbensch@gmail.com", subject: "#{profile.user.email} has updated their profile.")
   end
 
   def debate_vote_recorded(email="Unknown user")

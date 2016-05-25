@@ -25,6 +25,7 @@ Rails.application.routes.draw do
       get :notify_followers
       get :skip_to_results
       get :share_challenge
+      get :submit_negative_opening
     end
   end
   resources :available_times do

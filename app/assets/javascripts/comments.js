@@ -30,6 +30,8 @@ console.log("listening for form to be selected");
 if (document.getElementById('message-text-area') ) {
 document.getElementById('message-text-area').focusin = function() {userTyping() };
 document.getElementById('message-text-area').focusout = function() {awaitingReply() };
+document.getElementsByClassName('btn-cross-ex')[0].focusin = function() {userTyping() };
+document.getElementsByClassName('btn-cross-ex')[0].focusout = function() {awaitingReply() };
 }
 
 function userTyping() {

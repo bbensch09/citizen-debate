@@ -41,7 +41,7 @@ class RoundsController < ApplicationController
 
     respond_to do |format|
       if @round.save
-        format.html { redirect_to @round.debate, notice: 'You have begun the next round.' }
+        format.html { redirect_to @round.debate }
         format.json { render :show, status: :created, location: @round }
       else
         format.html { render :new }
@@ -54,7 +54,10 @@ class RoundsController < ApplicationController
   # PATCH/PUT /rounds/1.json
   def update
     respond_to do |format|
-      if @round.update(round_params)
+      if @round.update(round_params) && @round.debate.rounds.count == 3
+        format.html { redirect_to @round.debate, notice: 'Your debate is now over. Share with friends and check back later for results.' }
+        format.json { render :show, status: :ok, location: @round }
+      elsif @round.update(round_params) && @round.debate.rounds.count < 3
         format.html { redirect_to @round.debate, notice: 'The previous round is now complete.' }
         format.json { render :show, status: :ok, location: @round }
       else

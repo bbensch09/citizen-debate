@@ -1,5 +1,5 @@
 class DebatesController < ApplicationController
-  before_action :set_debate, only: [:show, :edit, :update, :destroy, :accept_challenge, :schedule, :notify_followers, :share_times_with_opponent, :skip_to_results, :share_challenge]
+  before_action :set_debate, only: [:show, :edit, :update, :destroy, :accept_challenge, :schedule, :notify_followers, :share_times_with_opponent, :skip_to_results, :share_challenge, :submit_negative_opening]
   before_action :authenticate_user!, except: [:show, :index, :launch]
   before_action :confirm_new_challengers, only: [:index]
   before_action :authenticate_admin, only: [:notify_followers]
@@ -66,7 +66,8 @@ class DebatesController < ApplicationController
   # GET /debates
   # GET /debates.json
   def index
-    @completed_debates = Debate.where("status = 'Completed' AND id != 1")
+    @completed_debates = Debate.where("status = 'Completed'")
+    # @completed_debates = Debate.where("status = 'Completed' AND id != 1")
     @active_debates = Debate.where("status = 'Active'")
     if current_user
       current_user_public_challenges = Debate.where("public_challenge=true AND creator_id =?",current_user.id)
@@ -166,10 +167,8 @@ class DebatesController < ApplicationController
     if @debate.challenger_email.nil?
       @debate.challenger_email = current_user.email
     end
-    @debate.status = "Scheduling"
     @debate.save
     UserMailer.challenge_accepted(@debate).deliver_now
-    # redirect_to schedule_debate_path(@debate), notice: "You've accepted the debate challenge. Now please propose a few times that you are available for the live cross-examination round."
     redirect_to @debate, notice: "You've accepted the debate challenge. Please draft your opening statement below and submit your response within 8 hours."
   end
 
@@ -178,6 +177,15 @@ class DebatesController < ApplicationController
       flash[:show_modal] = true
       flash[:modal_to_show] = '/debates/share_challenge'
       render 'show_debate'
+  end
+
+  def submit_negative_opening
+    @debate.status = "Scheduling"
+    @debate.save
+    @current_round = @debate.rounds.last
+    @current_round.status = "Completed"
+    @current_round.save
+    redirect_to schedule_debate_path(@debate), notice: "Your statement was successfully submitted. Now please propose a few times that you are available for the live cross-examination round."
   end
 
   def schedule

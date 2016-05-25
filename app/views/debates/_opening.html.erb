@@ -3,7 +3,7 @@
 <div class="opening-round row">
 
     <h2 class="center">Opening Statements</h2>
-
+  <% if @debate.opening_affirmative %>
     <div class="col-lg-12 col-md-6 affirmative-opening">
       <%= image_tag(@debate.affirmative_debater.user.profile.avatar.url(:thumb), alt: "image not found", class: "avatar-nav") %>
       <b> <%=@debate.affirmative_debater.user.profile.display_name %></b>
@@ -16,6 +16,7 @@
               <%= link_to 'Edit your statement', edit_opening_statement_path(@debate.opening_affirmative.id) %>
       <% end %>
     </div>
+  <% end %>
 <hr>
   <% if @debate.opening_negative %>
     <div class="col-lg-12 col-md-6 negative-opening">
