@@ -1,5 +1,7 @@
 <% title @debate.title %>
+<% if current_user.nil? && @debate.status == "Pending" %>
 
+<% end %>
 
 <div class="debate-container">
 <% if current_user && current_user.email == "citizen.debate.16@gmail.com" %>

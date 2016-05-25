@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160523223657) do
+ActiveRecord::Schema.define(version: 20160525211607) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -103,6 +103,7 @@ ActiveRecord::Schema.define(version: 20160523223657) do
     t.boolean  "public_challenge",      default: false
     t.string   "resolution"
     t.boolean  "affirmative_confirmed"
+    t.boolean  "track_opens",           default: false
   end
 
   create_table "judges", force: :cascade do |t|

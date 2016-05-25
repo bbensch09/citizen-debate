@@ -96,6 +96,11 @@ class DebatesController < ApplicationController
   # GET /debates/1
   # GET /debates/1.json
   def show
+    if current_user.nil? && @debate.status == "Pending" && @debate.track_opens == true
+      UserMailer.track_opens(@debate).deliver_now
+    elsif current_user && @debate.status == "Pending"  && @debate.track_opens == true
+      UserMailer.track_opens(@debate,current_user.email).deliver_now
+    end
     @current_user = current_user
     @message = Message.new
     @messages = @debate.cross_ex_messages
@@ -230,6 +235,6 @@ class DebatesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def debate_params
-      params.require(:debate).permit(:affirmative_id, :negative_id, :creator_id, :challenger_id, :challenger_email, :status, :start_date, :start_time, :topic_id, :public_challenge, :resolution, :affirmative_confirmed)
+      params.require(:debate).permit(:affirmative_id, :negative_id, :creator_id, :challenger_id, :challenger_email, :status, :start_date, :start_time, :topic_id, :public_challenge, :resolution, :affirmative_confirmed, :track_opens)
     end
 end

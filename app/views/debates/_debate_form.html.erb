@@ -15,6 +15,12 @@
 
   <div class="field col-lg-12 col-sm-6">
   <h1 class="center">Initiate a Debate</h1>
+
+  <% if current_user && current_user.email == "citizen.debate.16@gmail.com"%>
+        <%= f.check_box :track_opens  %>
+        <%= f.label :track_opens, "Track opens during pending stage?", :class=> "voting-options" %>
+  <% end %>
+
     <h2>
     Resolved: <%= f.text_field :resolution, placeholder: "America would be better off if...", class: "new-resolution-field" %>
     </h2>
