@@ -66,8 +66,8 @@ class DebatesController < ApplicationController
   # GET /debates
   # GET /debates.json
   def index
-    @completed_debates = Debate.where("status = 'Completed'")
-    # @completed_debates = Debate.where("status = 'Completed' AND id != 1")
+    # @completed_debates = Debate.where("status = 'Completed'")
+    @completed_debates = Debate.where("status = 'Completed' AND id != 1")
     @active_debates = Debate.where("status = 'Active'")
     if current_user
       current_user_public_challenges = Debate.where("public_challenge=true AND creator_id =?",current_user.id)
