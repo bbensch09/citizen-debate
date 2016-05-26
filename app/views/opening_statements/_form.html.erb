@@ -43,11 +43,16 @@
             author_id: <%= f.number_field :author_id, value: @opening_statement.author_id %>
           </div>
           <% end %>
+          <div class="hidden">
+            <%= f.number_field :round_id, value: 1 %>
+            <%= f.number_field :debate_id, value: @opening_statement.debate.id %>
+            <%= f.number_field :author_id, value: current_user.id %>
+          </div>
             <%= f.label :content, "Post your opening statement." %><br>
             <%= f.cktext_area :content, rows: 4, class: 'ckeditor-content', required: true, :ckeditor => {:language => 'us'} %>
           </div>
     <%= f.submit 'Update statement', class: 'btn btn-primary btn-lg' %>
-    <%= link_to 'Cancel', debate_path(@opening_statement.debate), class: 'btn btn-default' %>
+    <%= link_to 'Cancel', @opening_statement.debate, class: 'btn btn-default' %>
     </div>
   <% end %>
 </div>

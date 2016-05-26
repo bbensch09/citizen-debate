@@ -181,7 +181,10 @@
           <div class="voting-container">
           <%= render partial: 'civility_votes/form' %>
           </div>
-        <% elsif @debate.status == "Completed" %>
+        <% elsif @debate.status == "Completed" || @debate.status == "Pending" %>
+          <h3 class="col-lg-12">
+            Not ready to debate? Please still share your thoughts in the comments
+          </h3>
           <div class="disqus-comments">
           <div id="disqus_thread"></div>
           <script>
