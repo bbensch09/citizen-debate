@@ -698,20 +698,29 @@ a.btn-success{
     color: #fff !important;
 }
 .upcoming-debates-container, .debate-preview-container{
-    height: 35vh;
+    max-height: 45vh;
     background-color: #fff;
     padding-left: 10px;
     padding-right: 10px;
     padding-bottom: 10px;
     border: 1px solid gray;
+    border-bottom: none;
     overflow: hidden;
 }
 .preview-cta{
-    margin-top:10px;
+    padding-top:10px;
+    padding-bottom:10px;
+    background-color: #fff;
+    border: 1px solid gray;
+    border-top: none;
 }
 .display-name{
     color: #4285F4;
     font-style: bold;
+}
+.padding-xs{
+    padding-left: 2px !important;
+    padding-right: 2px !important;
 }
 
 @media(max-width:767px) {
