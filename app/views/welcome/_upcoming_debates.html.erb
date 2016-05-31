@@ -1,0 +1,15 @@
+<div class="upcoming-debates-container">
+  <h2 class="center">
+    <span class="resolved"><%= link_to "Upcoming Debates", debates_path %></span>
+  </h2>
+  <% @pending_debates.each do |debate| %>
+          <div class="col-lg-12 row">
+          <h4 class="col-lg-2 col-sm-2"><%= image_tag debate.affirmative_debater.user.profile.avatar.url(:thumb), alt:"avatar-img", class:"img-debate-details" %></h4>
+          <h4 class="col-lg-6 col-sm-6"> <%= link_to debate.title, debate %> </h4>
+          <h5 class="col-lg-4 col-sm-4"> <%= link_to 'Preview Debate', debate,  method: :get,  class: "btn btn-default" %></h5>
+          </div>
+      <% end %>
+<div class="preview-cta">
+  <%= link_to "Join the debate", debate_path(@debate), class: "col-lg-12 btn btn-success" %>
+</div>
+</div>

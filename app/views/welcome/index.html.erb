@@ -1,4 +1,4 @@
-    <section class=" intro-header">
+    <section class="intro-header">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -11,14 +11,17 @@
                         <ul class="list-inline intro-social-buttons">
                             <li>
                                 <% if current_user %>
-                                    <a href="/debates" class="btn btn-default btn-success btn-lg" > Join the Debate</a>
+                                    <!-- <a href="/debates" class="btn btn-default btn-success btn-lg" > Join the Debate</a> -->
                                 <% else %>
                                     <a href="#" class="btn btn-default btn-lg" data-toggle="modal" data-target="#loginModal">Sign up</a>
                                 <% end %>
                             </li>
                         </ul>
                     </div>
-                    <div class="featured-debate-container">
+                    <div class="featured-debates-container col-lg-6 col-md-5 col-sm-12">
+                        <%= render partial: "upcoming_debates" %>
+                    </div>
+                    <div class="featured-debates-container col-lg-6 col-md-5 col-sm-12">
                         <%= render partial: "featured_debate_preview" %>
                     </div>
                 </div>

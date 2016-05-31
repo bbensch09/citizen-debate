@@ -666,23 +666,19 @@ a.btn-success{
     padding-bottom:10px;
     /*max-width: 50vw;*/
 }
-.featured-debate-container{
-    background-color: #fff;
-    padding-left: 10px;
-    padding-right: 10px;
+.featured-debates-container{
     padding-bottom: 70px;
     padding-top: 5px;
-    border: 1px solid gray;
 }
 .space-holder{
     min-height: 10px;
     clear:both;
 }
-.featured-debate-container h1, .featured-debate-container h2, .featured-debate-container h3 {
+.featured-debates-container h1, .featured-debates-container h2, .featured-debates-container h3 {
     color:#4285F4;
 }
 
-.featured-debate-container h4,{
+.featured-debates-container h4,{
     color: #000;
 }
 .civility-quote h3 {
@@ -701,9 +697,13 @@ a.btn-success{
     background-color: #1b95e0 !important;
     color: #fff !important;
 }
-.debate-preview-container{
-    max-height: 30vh;
+.upcoming-debates-container, .debate-preview-container{
+    height: 35vh;
+    background-color: #fff;
+    padding-left: 10px;
+    padding-right: 10px;
     padding-bottom: 10px;
+    border: 1px solid gray;
     overflow: hidden;
 }
 .preview-cta{
@@ -750,8 +750,11 @@ a.btn-success{
     .affirmative-details{
         border-right: none;
     }
-    .featured-debate-container{
+    .featured-debates-container{
         padding-bottom: 5px;
+    }
+    .upcoming-debates-container, .debate-preview-container{
+    height: 70vh;
     }
     .debate-preview-container{
     max-height: 80vh;
