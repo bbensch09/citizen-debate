@@ -620,6 +620,7 @@ a.btn-success{
 .example-prompts{
     color: #fff !important;
     font-style: italic;
+    height:40px;
 }
 .img-top-padding{
     padding-top:50px;
@@ -651,13 +652,13 @@ a.btn-success{
 }
 .carousel-inner{
     z-index: 10;
-    top:100px;
+/*    top:100px;
     left: 80px;
     max-width:350px;
-    height: 300px;
+    height: 300px;*/
 }
 #activityCarousel .carousel-inner .item span{
-    color: black !important;
+    color: white !important;
 }
 .civility-quote, .civility-quote a{
     background-color: rgba(66, 133, 244, 1);
