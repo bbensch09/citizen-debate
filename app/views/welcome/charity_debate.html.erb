@@ -35,11 +35,13 @@
                             <img src="assets/charity_debate_header.png" alt="matchup" class="img-responsive">
                         </div>
                         <h1 class="intro-tagline"> They debate. You Decide. Up to $10,000 to the winner's charity charity.</h1>
+                        <h3 class=""> <a href="https://www.hfotusa.org/" class="">Homes for our Troops</a> - helping our nations veterans rebuild their lives.</h3>
                         <hr class="intro-divider">
                         <ul class="list-inline intro-social-buttons">
                             <li>
                                 <% if current_user %>
                                     <!-- <a href="/debates" class="btn btn-default btn-success btn-lg" > Join the Debate</a> -->
+                                    <a href="#" class="btn btn-default btn-lg btn-success" data-toggle="modal" data-target="#loginModal">Support the Kickstarter to Make it Happen</a>
                                 <% else %>
                                     <a href="#" class="btn btn-default btn-lg btn-success" data-toggle="modal" data-target="#loginModal">Support the Kickstarter to Make it Happen</a>
                                 <% end %>

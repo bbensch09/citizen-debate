@@ -65,10 +65,11 @@ Rails.application.routes.draw do
   get '/terms_of_service' =>'about#terms_of_service'
   # HACKY SHIT
   get '/test' => 'profiles#test_page'
+  get '/charity_debate' => 'welcome#charity_debate'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'welcome#charity_debate'
+  root 'welcome#index'
 
   end
