@@ -242,8 +242,15 @@ h3.results-cta, h3.results-minds-changed{
   min-height: 30vh;
   padding-bottom: 10px;
 }
-
-
+.charity_header{
+  max-height: 200px
+}
+.charity-links:visited, .charity-links:visited, {
+  color:#4285F4;
+}
+.underline{
+  text-decoration: underline;
+}
 
 @media screen and (max-width:767px) {
   .col-sm-hidden{
