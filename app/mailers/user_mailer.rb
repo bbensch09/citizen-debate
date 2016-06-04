@@ -5,6 +5,11 @@ class UserMailer < ApplicationMailer
     mail(to: "notifications@citizendebate.org", subject: "#{user.email} has registered for Citizen Debate!")
   end
 
+  def charity_user_signed_up(charity_email)
+    @charity_email = charity_email
+    mail(to: "notifications@citizendebate.org", subject: "#{charity_email.email} has registered for the charity debate!")
+  end
+
   def new_profile_created(profile)
     @profile = profile
     mail(to: "notifications@citizendebate.org", subject: "#{profile.user.email} has updated their profile.")

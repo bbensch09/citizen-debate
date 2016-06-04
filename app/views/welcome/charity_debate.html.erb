@@ -5,11 +5,14 @@
                     <div class="intro-container">
                         <h1 class="intro-message"> A Debate for Good</h1>
                         <h2 class="example-prompts">
-                          <div id="activityCarousel" class=" slide" data-ride="carousel" data-interval="5000">
+                          <div id="activityCarousel" class=" slide" data-ride="carousel" data-interval="10000">
                             <div class="carousel-inner" role="listbox">
                               <div class="item active">
-                                  <span>Will Donald Trump be able to unify the Republican Party?</span><br>
+                                  <span>Who should be the Vice Presidential nominee?</span><br>
                                 </div>
+                              <div class="item">
+                                  <span>Will Donald Trump be able to unify the Republican Party?</span><br>
+                              </div>
                               <div class="item">
                                   <span>Should the Senate hold confirmation hearings for SCOTUS nominee Merrick Garland?</span><br>
                               </div>
@@ -34,22 +37,43 @@
                         <div class="hero-image">
                             <img src="assets/charity_debate_header2.svg" alt="matchup" class="img-responsive charity_header">
                         </div>
-                        <h1 class="intro-tagline"> They debate. You Decide. $25,000 to the winner's charity charity.</h1>
-                        <h4 class="center underline">Potential beneficiaries</h4>
+                        <h1 class="intro-tagline"> They debate. You Decide. $25,000 to the winner's charity.</h1>
+                        <!-- <h4 class="center underline">Beneficiaries</h4>
                         <ul>
                             <li class="list-inline"><a href="https://www.donorschoose.org/" class="charity-links">Donors Choose </a> - Support a Classroom. Build a Future</li>
                             <li class="list-inline"><a href="http://www.habitat.org/" class="charity-links">Habitat for Humanity</a> - Changing Lives with Homes</li>
-                        </ul>
+                        </ul> -->
                        <!--  <h3 class=""> <a href="https://www.hfotusa.org/" class="">Homes for our Troops</a> - helping our nations veterans rebuild their lives.</h3>
                         --> <hr class="intro-divider">
                         <ul class="list-inline intro-social-buttons">
-                            <li>
+             <!--                <li>
                                 <% if current_user %>
                                     <!-- <a href="/debates" class="btn btn-default btn-success btn-lg" > Join the Debate</a> -->
-                                    <a href="#" class="btn btn-default btn-lg btn-success" data-toggle="modal" data-target="#loginModal">Support the Crowdwise Campaign to Make it Happen</a>
+                                    <a href="#" class="btn btn-default btn-lg btn-success">Support the Crowdwise Campaign to Make it Happen</a>
                                 <% else %>
-                                    <a href="#" class="btn btn-default btn-lg btn-success" data-toggle="modal" data-target="#loginModal">Support the Crowdwise campaign</a>
+                                    <a href="#" class="btn btn-default btn-lg btn-success"">Support the Crowdwise campaign</a>
                                 <% end %>
+                            </li> -->
+                            <li>
+                              <%= form_for(@charity_email) do |f| %>
+                                <% if @charity_email.errors.any? %>
+                                  <div id="error_explanation">
+                                    <h2><%= pluralize(@charity_email.errors.count, "error") %> prohibited this charity_email from being saved:</h2>
+
+                                    <ul>
+                                    <% @charity_email.errors.full_messages.each do |message| %>
+                                      <li><%= message %></li>
+                                    <% end %>
+                                    </ul>
+                                  </div>
+                                <% end %>
+
+                                <div class="form-inline">
+                                  <%= f.email_field :email, autofocus: true, class:"input-group input-group-lg text-black", placeholder:"Email"  %>
+                                  <%= f.submit "Stay Tuned", class:"btn btn-success btn-lg" %>
+                                </div>
+                              <% end %>
+
                             </li>
                         </ul>
                     </div>
