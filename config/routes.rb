@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :charity_emails
   resources :topic_tags
   mount Ckeditor::Engine => '/ckeditor'
 

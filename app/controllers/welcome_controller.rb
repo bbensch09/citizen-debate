@@ -9,6 +9,7 @@ class WelcomeController < ApplicationController
   end
 
   def charity_debate
+        @charity_email = CharityEmail.new
         render :layout => 'charity'
   end
 end
